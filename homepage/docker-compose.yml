@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  homepage:
+    image: ghcr.io/benphelps/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /mnt/docker-volumes/homepage/config:/app/config # Make sure your local config directory exists
+      - /mnt/docker-volumes/homepage/icons:/app/public/icons
+    #  - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.homepage.rule=Host(`home.example.com`)
+    #  - traefik.http.services.homepage.loadbalancer.server.port=3000
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  - traefik.http.routers.homepage.middlewares=local-ipwhitelist@file

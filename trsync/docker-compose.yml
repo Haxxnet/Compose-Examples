@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+    trsync:
+        image: l4rm4nd/trsync:latest
+        container_name: trsync
+        ports:
+            - '8000:8000'
+        environment:
+            - SECRET_KEY=ChooseStrongSecretKeyHere # pls change
+            - DOMAIN=trsync.example.com # your hostname to put in Django's ALLOW_HOSTS

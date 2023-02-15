@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+  drone-server:
+    image: drone/drone:latest
+    container_name: drone-server
+    restart: unless-stopped
+    dns:
+      - 192.168.178.100 # specify your internal dns server for proper dns lookups; especially if you are using https and hostnames
+    volumes:
+      - /mnt/docker-volumes/drone/data:/var/lib/drone
+      #- /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - DRONE_DEBUG=true
+      #- DRONE_ADMIN=droneadm
+      #- DRONE_USER_CREATE=username:droneadm,admin:true
+      - DRONE_SERVER_PORT=:80
+      - DRONE_DATABASE_DRIVER=sqlite3
+      - DRONE_GIT_ALWAYS_AUTH=false
+      - DRONE_GITEA_SERVER=https://git.domain.tld # change this to your gitea instance
+      - DRONE_RPC_SECRET=8aff725d2e16ef31fbc42
+      - DRONE_SERVER_HOST=drone.domain.tld # change this to your drone instance
+      - DRONE_HOST=https://drone.domain.tld # change this to your drone instance; adjust http/https
+      - DRONE_SERVER_PROTO=https # adjust http/https
+      - DRONE_TLS_AUTOCERT=false
+      - DRONE_AGENTS_ENABLED=true
+      - DRONE_GITEA_CLIENT_ID=XXX-XXX # change this to your client ID from Gitea; see https://docs.drone.io/server/provider/gitea/
+      - DRONE_GITEA_CLIENT_SECRET=XXX-XXX # change this to your client secret from Gitea; see https://docs.drone.io/server/provider/gitea/
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.drone-server.rule=Host(`drone.domain.tld`)
+      - traefik.http.services.drone-server.loadbalancer.server.port=80
+      - traefik.docker.network=proxy
+      # Part for local lan services only; disable to expose externally
+      - traefik.http.routers.drone-server.middlewares=local-ipwhitelist@file
+
+  drone-agent:
+    image: drone/agent:1.2.1
+    command: agent
+    restart: unless-stopped
+    container_name: drone-agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # optional; necessary if you run docker runners and need access to docker socket
+    environment:
+      - DRONE_RPC_SERVER=http://drone-server:80
+      - DRONE_RPC_SECRET=8aff725d2e16ef31fbc42
+      - DRONE_RUNNER_CAPACITY=2
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

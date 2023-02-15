@@ -1,0 +1,104 @@
+version: "2"
+
+services:
+
+  loki:
+    image: grafana/loki:latest
+    hostname: loki
+    container_name: loki
+    volumes:
+      - /mnt/docker-volumes/loki:/etc/loki # see example-configs and place loki-config.yml
+    ports:
+      - "127.0.0.1:3100:3100"
+    restart: unless-stopped
+    user: 1000:1000
+    command: -config.file=/etc/loki/loki-config.yml  
+    networks:
+      - monitoring_default
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    depends_on:
+      - loki
+    hostname: promtail
+    volumes:
+      - /var/log:/var/log
+      - /mnt/docker-volumes/promtail:/etc/promtail # see example-configs and place promtail-config.yml
+      #- /mnt/docker-volumes/traefik/logs:/var/log/traefik
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/promtail-config.yml
+    networks:
+      - monitoring_default
+
+  influxdb:
+    image: influxdb:1.8.10
+    container_name: influxdb
+    hostname: influxdb
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/influxdb/data:/var/lib/influxdb
+      - /mnt/docker-volumes/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro # see example-configs and place infuxdb.conf
+      - /mnt/docker-volumes/influxdb/init:/docker-entrypoint-initdb.d # see example-configs and place create-database.iql
+    environment:
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=SuperDuperAdminPW
+    networks:
+      - monitoring_default
+
+  telegraf:
+    image: telegraf:latest
+    restart: unless-stopped
+    user: telegraf:998 # see: https://www.influxdata.com/blog/docker-run-telegraf-as-non-root/
+    container_name: telegraf
+    hostname: telegraf
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    depends_on:
+      - influxdb
+    volumes:
+      - /mnt/docker-volumes/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro # see example-configs and place telegraf.conf
+      - /:/hostfs:ro
+      - /etc:/hostfs/etc:ro
+      - /proc:/hostfs/proc:ro
+      - /sys:/hostfs/sys:ro
+      - /var/run/utmp:/var/run/utmp:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - HOST_ETC=/hostfs/etc
+      - HOST_PROC=/hostfs/proc
+      - HOST_SYS=/hostfs/sys
+      - HOST_MOUNT_PREFIX=/hostfs
+    networks:
+      - monitoring_default
+
+  grafana:
+    container_name: grafana
+    hostname: grafana
+    user: 1000:1000
+    depends_on:
+      - influxdb
+      - loki
+      - promtail
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    #environment:
+    #  - GF_SERVER_ROOT_URL=https://grafana.example.com # optional
+    volumes:
+      - /mnt/docker-volumes/grafana:/var/lib/grafana
+    #ports:
+    #  - 3000:3000
+    networks:
+      - monitoring_default
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.grafana.rule=Host(`grafana.example.com`)
+    #  - traefik.http.services.grafana.loadbalancer.server.port=3000
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  - traefik.http.routers.grafana.middlewares=local-ipwhitelist@file
+
+networks:
+  monitoring_default:
+   external: true

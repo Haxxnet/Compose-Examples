@@ -1,0 +1,18 @@
+version: "3"
+services:
+  wyl:
+    image: aceberg/watchyourlan
+    container_name: watchyourlan
+    network_mode: "host"
+    restart: unless-stopped
+    volumes:
+    - /mnt/docker-volumes/watchyourlan:/data
+    environment:
+      TZ: Europe/Berlin                 # required: needs your TZ for correct time
+      IFACE: "ens18"                    # required: 1 or more interface
+      DBPATH: "/data/db.sqlite"         # optional, default: /data/db.sqlite
+      GUIIP: "127.0.0.1"                # optional, default: localhost
+      GUIPORT: "8840"                   # optional, default: 8840
+      TIMEOUT: "120"                    # optional, time in seconds, default: 60
+      #SHOUTRRR_URL: "telegram://"      # optional, set url to notify
+      THEME: "darkly"                   # optional

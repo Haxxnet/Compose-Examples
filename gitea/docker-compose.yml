@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  gitea:
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    hostname: gitea
+    ports:
+      - 3000:3000 #webgui
+      - 2222:22 #ssh
+    image: gitea/gitea:latest
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/gitea/data:/data
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.gitea.rule=Host(`git.example.com`)
+    #  - traefik.http.services.gitea.loadbalancer.server.port=3000
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  - traefik.http.routers.gitea.middlewares=local-ipwhitelist@file

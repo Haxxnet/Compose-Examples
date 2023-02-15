@@ -1,0 +1,43 @@
+services:
+  nc:
+    image: nextcloud
+    container_name: nextcloud
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - /mnt/docker-volumes/nextcloud/apps:/var/www/html/custom_apps
+      - /mnt/docker-volumes/nextcloud/config:/var/www/html/config
+      - /mnt/docker-volumes/nextcloud/data:/var/www/html/data
+      - /mnt/docker-volumes/nextcloud/wwwroot:/var/www/html
+      #- /mnt/docker-volumes/nextcloud/theme:/var/www/html/themes/<YOUR_CUSTOM_THEME>
+    environment:
+      - REDIS_HOST=redis
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+  
+  redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    restart: always
+    volumes:
+      - /mnt/docker-volumes/nextcloud/redis:/data
+    expose:
+      - 6379
+  
+  db:
+    image: mariadb:10.5
+    container_name: nextcloud-mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - /mnt/docker-volumes/nextcloud/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_ROOT_PASSWORD=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+    expose:
+      - 3306   

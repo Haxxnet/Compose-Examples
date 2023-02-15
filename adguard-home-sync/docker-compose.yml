@@ -1,0 +1,21 @@
+version: "2.1"
+services:
+  adguardhome-sync:
+    image: linuxserver/adguardhome-sync
+    container_name: adguardhome-sync
+    hostname: adguardhome-sync
+    environment:
+      - ORIGIN_URL=http://10.10.10.10:8080 # your main adguard instance for synchronization
+      - ORIGIN_USERNAME=admin1
+      - ORIGIN_PASSWORD=password1
+      - REPLICA_URL=http://20.20.20.20:8080 # your replica adguard instance to be synced with main instance
+      - REPLICA_USERNAME=admin2
+      - REPLICA_PASSWORD=password2
+      - CRON=*/30 * * * * # run every 30 minute; see https://crontab.guru/
+      - RUNONSTART=true
+      - TZ=Europe/Berlin
+      - PUID=1000
+      - PGID=1000
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/adguard-home-sync:/config

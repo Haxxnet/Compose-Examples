@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /mnt/docker-volumes/caddy/CaddyFile:/etc/caddy/Caddyfile
+      - /mnt/docker-volumes/caddy/data:/data
+      - /mnt/docker-volumes/caddy/config:/config

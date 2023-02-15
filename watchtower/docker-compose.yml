@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  watchtower:
+    container_name: watchtower
+    hostname: watchtower
+    environment:
+      #- WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=587
+      #- WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=watchtower@example.com
+      #- WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=MyStrongSmtpLoginPassword
+      #- WATCHTOWER_NOTIFICATION_EMAIL_FROM=watchtower@example.com
+      #- WATCHTOWER_NOTIFICATION_EMAIL_TO=john.doe@example.com
+      #- WATCHTOWER_NOTIFICATION_EMAIL_SERVER=smtp.google.com
+      #- WATCHTOWER_NOTIFICATIONS=email
+      - WATCHTOWER_SCHEDULE=0 0 6 * * * # see https://crontab.guru/
+      - WATCHTOWER_CLEANUP=true # remove unused images afterwards
+    image: containrrr/watchtower:latest
+    labels:
+      com.centurylinklabs.watchtower: true
+    restart: always
+    network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    working_dir: /

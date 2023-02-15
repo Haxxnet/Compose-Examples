@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  npm:
+    container_name: npm
+    environment:
+      - TZ=Europe/Berlin
+    hostname: npm
+    user: 0:1000
+    networks:
+      - npm_proxy
+    image: jc21/nginx-proxy-manager:latest
+    ports:
+      - 443:443/tcp # HTTPS
+      - 81:81/tcp # MGMT UI
+      - 80:80/tcp # HTTP
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "/bin/check-health"]
+      interval: 30s
+      timeout: 3s
+    volumes:
+      - /mnt/docker-volumes/nginx-proxy-manager/data:/data
+      - /mnt/docker-volumes/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+
+networks:
+  npm_proxy:
+    external: true

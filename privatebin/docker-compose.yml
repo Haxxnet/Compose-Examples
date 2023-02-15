@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  privatebin:
+    hostname: privatebin
+    container_name: privatebin
+    image: privatebin/nginx-fpm-alpine:latest
+    read_only: true # not in compose 3.0 documentation but appears supported based
+    ports:
+      - 8080:8080
+    volumes:
+      - '/mnt/docker-volumes/privatebin/data:/srv/data' # volume for persisted data pastes
+      - '/mnt/docker-volumes/privatebin/configs/config.php:/srv/cfg/conf.php:ro' # volume for custom privatebin config
+      #- '/mnt/docker-volumes/privatebin/configs/nginx.conf:/etc/nginx/nginx.conf:ro' # custom nginx container config to increase file upload size
+      #- '/mnt/docker-volumes/privatebin/configs/php.ini:/etc/php81/conf.d/00-docker.ini:ro' # custom php container config to increase file upload size
+    restart: always
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.privatebin.rule=Host(`privatebin.example.com`)
+    #  - traefik.http.services.privatebin.loadbalancer.server.port=8080
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  # - traefik.http.routers.privatebin.middlewares=local-ipwhitelist@file
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads

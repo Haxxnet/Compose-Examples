@@ -1,0 +1,41 @@
+version: "2"
+
+services:
+  matomo:
+    container_name: matomo
+    image: matomo
+    ports:
+      - 8099:80
+    volumes:
+      - /mnt/docker-volumes/matomo/apache/apache2.conf:/etc/apache2/apache2.conf:ro
+      - /mnt/docker-volumes/matomo/html:/var/www/html
+    environment:
+      - MATOMO_DATABASE_HOST=matomo_db
+      #- VIRTUAL_HOST=matomo.example.com
+      #- LETSENCRYPT_HOST=stats.mysite.ext
+      #- LETSENCRYPT_EMAIL=email@something.ext
+    env_file:
+      - ./db.env
+    depends_on:
+      - matomo_db
+    restart: unless-stopped
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.matomo.rule=Host(`matomo.example.com`)
+    #  - traefik.http.services.matomo.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  # - traefik.http.routers.matomo.middlewares=local-ipwhitelist@file
+
+
+  matomo_db:
+    container_name: matomo_db
+    image: mariadb
+    command: --max-allowed-packet=64MB
+    environment:
+      - MYSQL_ROOT_PASSWORD=makeitup
+    env_file:
+      - ./db.env
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/matomo/database:/var/lib/mysql

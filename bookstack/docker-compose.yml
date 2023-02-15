@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  bookstack:
+    image: linuxserver/bookstack
+    container_name: bookstack
+    hostname: bookstack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - APP_URL=https://wiki.example.com # change this
+      - DB_HOST=bookstack_db
+      - DB_USER=bookstack
+      - DB_PASS=USERPW1
+      - DB_DATABASE=bookstackapp
+    volumes:
+      - /mnt/docker-volumes/bookstack/config:/config
+    restart: unless-stopped
+    ports:
+      - 8099:80
+    depends_on:
+      - bookstack_db
+
+  bookstack_db:
+    image: linuxserver/mariadb
+    container_name: bookstack_db
+    hostname: bookstack_db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=ROOTPW
+      - TZ=Europe/Berlin
+      - MYSQL_DATABASE=bookstackapp
+      - MYSQL_USER=bookstack
+      - MYSQL_PASSWORD=USERPW1
+    volumes:
+      - /mnt/docker-volumes/bookstack/mariadb-config:/config
+    restart: unless-stopped

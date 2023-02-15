@@ -1,0 +1,48 @@
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+  grpc_listen_port: 9096
+
+common:
+  path_prefix: /tmp/loki
+  storage:
+    filesystem:
+      chunks_directory: /tmp/loki/chunks
+      rules_directory: /tmp/loki/rules
+  replication_factor: 1
+  ring:
+    instance_addr: 127.0.0.1
+    kvstore:
+      store: inmemory
+
+limits_config:
+   reject_old_samples: true
+   reject_old_samples_max_age: 168h
+   retention_period: 360h
+   max_query_series: 100000
+   max_query_parallelism: 2
+
+schema_config:
+  configs:
+    - from: 2020-10-24
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
+
+query_range:
+  split_queries_by_interval: 0
+  parallelise_shardable_queries: false
+
+querier:
+  max_concurrent: 2048
+
+frontend:
+  max_outstanding_per_tenant: 4096
+  compress_responses: true
+
+ruler:
+  alertmanager_url: http://localhost:9093

@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  app:
+    image: fireflyiii/core:latest
+    container_name: firefly
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/firefly/upload:/var/www/html/storage/upload
+    env_file: .env
+    ports:
+      - 80:8080
+    depends_on:
+      - db
+  
+  db:
+    image: mariadb    
+    container_name: firefly-db
+    restart: unless-stopped
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=firefly
+      - MYSQL_PASSWORD=MySecretDatabasePassword # if changed --> also update in .env file
+      - MYSQL_DATABASE=firefly
+    volumes:
+      - /mnt/docker-volumes/firefly/mysql:/var/lib/mysql

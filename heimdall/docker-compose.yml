@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  heimdall:
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    ports:
+      - 8099:80
+    hostname: heimdall
+    image: linuxserver/heimdall:latest
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/heimdall:/config

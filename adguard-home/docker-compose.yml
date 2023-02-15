@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  adguard:
+    container_name: adguard
+    hostname: adguard
+    image: adguard/adguardhome:latest
+    ports:
+      - 53:53/tcp
+      - 8080:80/tcp
+      - 53:53/udp
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/adguard-home/work:/opt/adguardhome/work
+      - /mnt/docker-volumes/adguard-home/conf:/opt/adguardhome/conf

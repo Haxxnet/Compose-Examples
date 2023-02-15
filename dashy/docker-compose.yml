@@ -1,0 +1,21 @@
+---
+version: "3.8"
+services:
+  dashy:
+    container_name: dashy
+    hostname: dashy
+    image: lissy93/dashy
+    volumes:
+      - /mnt/docker-volumes/dashy/config/config.yml:/app/public/conf.yml
+      - /mnt/docker-volumes/dashy/icons:/app/public/item-icons
+    environment:
+      - NODE_ENV=production
+      - UID=1000
+      - GID=1000
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

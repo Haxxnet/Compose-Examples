@@ -1,0 +1,35 @@
+services:
+  sftpgo:
+    image: "drakkan/sftpgo:v2-alpine"
+    user: "1000:1000"
+    restart: unless-stopped
+    ports:
+      - 8080:8080 # HTTP
+      #- 8443:443" # HTTPS
+      #- 5007:5007 # WEBDAV
+    environment:
+      # These are the settings to access your db
+      SFTPGO_WEBDAVD__BINDINGS__0__PORT: 5007
+      SFTPGO_DATA_PROVIDER__DRIVER: "mysql"
+      SFTPGO_DATA_PROVIDER__NAME: "sftpgo"
+      SFTPGO_DATA_PROVIDER__HOST: "mysql"
+      SFTPGO_DATA_PROVIDER__PORT: 3306
+      SFTPGO_DATA_PROVIDER__USERNAME: sftpgo # please change
+      SFTPGO_DATA_PROVIDER__PASSWORD: sftpgo # please change
+      SFTPGO_COMMON_DEFENDER__ENABLED: "true"
+      SFTPGO_COMMON_DEFENDER__BAN_TIME: 15  
+      SFTPGO_COMMON_DEFENDER__BAN_TIME_INCREMENT: 100
+      SFTPGO_COMMON_DEFENDER__THRESHOLD: 5  
+      SFTPGO_COMMON_DEFENDER__OBSERVATION_TIME: 15
+    volumes:
+      - /mnt/docker-volumes/sftpgo/data:/srv/sftpgo
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: "sftpgo"
+      MYSQL_USER: sftpgo # please change    
+      MYSQL_PASSWORD: sftpgo # please change
+      MYSQL_ROOT_PASSWORD: MySecureRootDatabasePassword
+    volumes:
+      - /mnt/docker-volumes/sftpgo/mysql:/var/lib/mysql

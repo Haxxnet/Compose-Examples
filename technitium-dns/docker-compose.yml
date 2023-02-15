@@ -1,0 +1,42 @@
+version: "3"
+services:
+  dns-server:
+    container_name: dns-server
+    hostname: dns-server
+    image: technitium/dns-server:latest
+    # Use "host" network mode for DHCP deployments
+    # network_mode: "host"
+    ports:
+      #- "5380:5380/tcp" #DNS web console
+      - "53:53/udp" #DNS service
+      - "53:53/tcp" #DNS service
+      - "5380:5380/tcp" #Web UI
+      #- 5380:5380/tcp #WEBGUI
+      # - "67:67/udp" #DHCP service
+      # - "853:853/tcp" #DNS-over-TLS service
+      # - "443:443/tcp" #DNS-over-HTTPS service
+      # - "80:80/tcp" #DNS-over-HTTPS service certbot certificate renewal
+      # - "8053:8053/tcp" #DNS-over-HTTPS using reverse proxy
+    environment:
+      - DNS_SERVER_DOMAIN=technitium.example.com #The primary domain name used by this DNS Server to identify itself.
+      # - DNS_SERVER_ADMIN_PASSWORD=password #DNS web console admin user password.
+      # - DNS_SERVER_ADMIN_PASSWORD_FILE=password.txt #The path to a file that contains a plain text password for the DNS web console admin user.
+      # - DNS_SERVER_PREFER_IPV6=false #DNS Server will use IPv6 for querying whenever possible with this option enabled.
+      # - DNS_SERVER_OPTIONAL_PROTOCOL_DNS_OVER_HTTP=false #Enables DNS server optional protocol DNS-over-HTTP on TCP port 8053 to be used with a TLS terminating reverse proxy like nginx.
+      # - DNS_SERVER_RECURSION=AllowOnlyForPrivateNetworks #Recursion options: Allow, Deny, AllowOnlyForPrivateNetworks, UseSpecifiedNetworks.
+      # - DNS_SERVER_RECURSION_DENIED_NETWORKS=1.1.1.0/24 #Comma separated list of IP addresses or network addresses to deny recursion. Valid only for `UseSpecifiedNetworks` recursion option.
+      # - DNS_SERVER_RECURSION_ALLOWED_NETWORKS=127.0.0.1, 192.168.1.0/24 #Comma separated list of IP addresses or network addresses to allow recursion. Valid only for `UseSpecifiedNetworks` recursion option.
+      # - DNS_SERVER_ENABLE_BLOCKING=false #Sets the DNS server to block domain names using Blocked Zone and Block List Zone.
+      # - DNS_SERVER_ALLOW_TXT_BLOCKING_REPORT=false #Specifies if the DNS Server should respond with TXT records containing a blocked domain report for TXT type requests.
+      # - DNS_SERVER_FORWARDERS=1.1.1.1, 8.8.8.8 #Comma separated list of forwarder addresses.
+      # - DNS_SERVER_FORWARDER_PROTOCOL=Tcp #Forwarder protocol options: Udp, Tcp, Tls, Https, HttpsJson.
+    volumes:
+      - /mnt/docker-volumes/technitium/config:/etc/dns/config
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.technitium.rule=Host(`technitium.example.com`)
+      - traefik.http.services.technitium.loadbalancer.server.port=5380
+      - traefik.docker.network=proxy
+      # Part for local lan services only
+      #- traefik.http.routers.technitium.middlewares=local-ipwhitelist@file

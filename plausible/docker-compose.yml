@@ -1,0 +1,50 @@
+version: "3.3"
+services:
+  #mail:
+  #  image: bytemark/smtp
+  #  restart: always
+  #  container_name: plausible-smtp
+
+  plausible_db:
+    # supported versions are 12, 13, and 14
+    image: postgres:14-alpine
+    restart: always
+    container_name: plausible-db
+    volumes:
+      - /mnt/docker-volumes/plausible/database/:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+  plausible_events_db:
+    container_name: plausible-events-db
+    image: clickhouse/clickhouse-server:22.6-alpine
+    restart: always
+    volumes:
+      - /mnt/docker-volumes/plausible/event-data:/var/lib/clickhouse
+      - /mnt/docker-volumes/plausible/clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro
+      - /mnt/docker-volumes/plausible/clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  plausible:
+    container_name: plausible
+    image: plausible/analytics:latest
+    restart: always
+    command: sh -c "sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh db init-admin && /entrypoint.sh run"
+    depends_on:
+      - plausible_db
+      - plausible_events_db
+    #  - mail
+    ports:
+      - 8000:8000 # WEB UI
+    env_file:
+      - plausible-conf.env
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.plausible.rule=Host(`plausible.example.com`)
+    #  - traefik.http.services.plausible.loadbalancer.server.port=8000
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  # - traefik.http.routers.plausible.middlewares=local-ipwhitelist@file

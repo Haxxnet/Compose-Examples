@@ -1,0 +1,14 @@
+version: '3'
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped
+    environment:
+      - PASSWORD=MySecureLoginPassword
+      - TZ="Europe/Berlin"
+    volumes:
+      - /mnt/docker-volumes/homarr/configs:/app/data/configs
+      #- /mnt/docker-volumes/homarr/icons:/app/public/icons # optional for custom icons
+    ports:
+      - '7575:7575'

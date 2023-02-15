@@ -1,0 +1,21 @@
+version: "2.1"
+services:
+  changedetection:
+    image: lscr.io/linuxserver/changedetection.io:latest
+    container_name: changedetection
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /mnt/docker-volumes/changedetection/config:/config
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.changedetection.rule=Host(`changedetection.example.com`)
+    #  - traefik.http.services.changedetection.loadbalancer.server.port=5000
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only; disable to expose externally
+    #  - traefik.http.routers.changedetection.middlewares=local-ipwhitelist@file,basic-auth@file

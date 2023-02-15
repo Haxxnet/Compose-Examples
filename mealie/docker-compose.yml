@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  mealie:
+    container_name: mealie
+    environment:
+      - DB_TYPE=sqlite
+      - PRODUCTION=true
+    hostname: mealie
+    image: hkotel/mealie:latest
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/mealie:/app/data
+    working_dir: /app

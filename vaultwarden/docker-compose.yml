@@ -1,0 +1,67 @@
+version: "3"
+
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    dns:
+      - 1.1.1.1
+    environment:
+      #- ADMIN_TOKEN=MySecureAdminTokenPasswordForAdminArea
+      #- globalSettings__mail__replyToEmail=bitwarden@example.com
+      #- globalSettings__mail__smtp__host=smtp.gmail.com
+      #- globalSettings__mail__smtp__username=bitwarden@example.com
+      #- globalSettings__mail__smtp__password=MyStrongSmtpLoginPassword
+      #- globalSettings__mail__smtp__ssl=true
+      #- globalSettings__mail__smtp__port=587
+      - globalSettings__disableUserRegistration=true
+      - LOG_FILE=/data/logs/access.log
+      - WEBSOCKET_ENABLED=true
+      - ROCKET_ENV=prod
+      - ROCKET_WORKERS=10
+      - TZ=Europe/Berlin
+      - LOG_LEVEL=error
+      - EXTENDED_LOGGING=true
+    hostname: vaultwarden
+    ports:
+      - 8888:80
+    image: vaultwarden/server:latest
+    #labels:
+    #  - com.centurylinklabs.watchtower.monitor-only=true
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.vaultwarden.rule=Host(`bitwarden.example.com`)
+    #  - traefik.http.routers.vaultwarden.service=vaultwarden
+    #  - traefik.http.services.vaultwarden.loadbalancer.server.port=80
+    #  - traefik.http.routers.vaultwarden-ws.rule=Host(`bitwarden.example.com`) && Path(`/notifications/hub`)
+    #  - traefik.http.routers.vaultwarden-ws.service=vaultwarden-ws
+    #  - traefik.http.services.vaultwarden-ws.loadbalancer.server.port=3012
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/vaultwarden/data:/data
+      - /mnt/docker-volumes/vaultwarden/logs:/data/logs
+
+  # this service will backup your vaultwarden instance corretly
+  # see https://github.com/Bruceforce/vaultwarden-backup for more information
+  vaultwarden-backup:
+    container_name: vaultwarden-backup
+    hostname: vaultwarden-backup
+    image: bruceforce/vaultwarden-backup:latest
+    restart: on-failure
+    init: true
+    depends_on:
+      - vaultwarden
+    #labels:
+    #  com.centurylinklabs.watchtower.monitor-only: true
+    volumes:
+      - /mnt/docker-volumes/vaultwarden/data:/data/
+      - /mnt/docker-volumes/vaultwarden/backup:/myBackup
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - TIMESTAMP=true
+      - DELETE_AFTER=30
+      - UID=0
+      - GID=1000
+      - TZ=Europe/Berlin
+      - BACKUP_DIR=/myBackup
+      - CRON_TIME=50 3 * * * # see https://crontab.guru/

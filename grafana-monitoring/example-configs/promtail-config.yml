@@ -1,0 +1,35 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+# local machine logs
+scrape_configs:
+  - job_name: vpn
+    static_configs:
+    - targets:
+        - localhost
+      labels:
+        job: vpnlogs
+        __path__: /var/log/openvpn.log
+
+  - job_name: auth
+    static_configs:
+    - targets:
+        - localhost
+      labels:
+        job: authlogs
+        __path__: /var/log/auth.log
+
+  - job_name: traefik
+    static_configs:
+    - targets:
+        - localhost
+      labels:
+        job: traefiklogs
+        __path__: /var/log/traefik/*.log

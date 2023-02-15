@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  obsidian:
+    image: 'ghcr.io/sytone/obsidian-remote:latest'
+    container_name: obsidian-remote
+    restart: unless-stopped
+    ports:
+      - 8080:8080 # Obsidian Web Interface
+      #- 27123:27123 # Local REST API Plugin HTTP Server Port
+      #- 27124:27124 # Local REST API Plugin HTTPS Server Port
+    volumes:
+      - /mnt/docker-volumes/obsidian-remote/vaults:/vaults # The location on the host for your Obsidian Vaults
+      - /mnt/docker-volumes/obsidian-remote/config:/config # The location to store Obsidan configuration and ssh data for obsidian-git
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - DOCKER_MODS=linuxserver/mods:universal-git # Use to add mods to the container like git.
+      - KEYBOARD=de-de-qwertz # Used to se the keyboard being used for input. E.g. KEYBOARD=en-us-qwerty or KEYBOARD=de-de-qwertz

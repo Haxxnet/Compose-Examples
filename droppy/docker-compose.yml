@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  droppy:
+    container_name: droppy
+    image: silverwind/droppy
+    ports:
+      - 8989:8989
+    volumes:
+      - /mnt/docker-volumes/droppy/config:/config
+      - /path/to/my/data/for/sharing:/files # path to shared files
+    environment:
+      - UID=1000
+      - GID=1000
+      - TZ="Europe/Berlin"
+    restart: unless-stopped

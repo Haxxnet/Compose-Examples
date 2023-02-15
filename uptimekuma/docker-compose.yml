@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: uptime-kuma
+    hostname: uptime-kuma
+    image: louislam/uptime-kuma
+    restart: always
+    ports:
+      - 3001:3001
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    volumes:
+      - /mnt/docker-volumes/uptimekuma:/app/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.uptimekuma.rule=Host(`uptimekuma.example.com`)
+      - traefik.http.services.uptimekuma.loadbalancer.server.port=3001
+      - traefik.docker.network=proxy
+      # Part for local lan services only
+      #- traefik.http.routers.uptimekuma.middlewares=local-ipwhitelist@file

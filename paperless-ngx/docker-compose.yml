@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  paperless-ngx:
+    image: lscr.io/linuxserver/paperless-ngx:latest
+    container_name: paperless-ngx
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - REDIS_URL= #optional
+    volumes:
+      - /mnt/docker-volumes/paperless-ngx/config:/config
+      - /mnt/docker-volumes/paperless-ngx/data:/data
+    ports:
+      - 8000:8000
+    restart: unless-stopped

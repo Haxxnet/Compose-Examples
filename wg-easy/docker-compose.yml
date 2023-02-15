@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  wg-easy:
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    container_name: wg-easy
+    environment:
+      - WG_HOST=vpn.example.com # your hostname or ip address
+      - PASSWORD=MyStrongPasswordForWebUi # change this
+      - WG_DEFAULT_DNS=1.1.1.1,8.8.8.8 # add your local dns like pihole
+    hostname: wireguard-easy
+    image: docker.io/weejewel/wg-easy:latest
+    ports:
+      - 51820:51820/udp #VPN
+      - 51821:51821/tcp #WEBGUI
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/wg-easy:/etc/wireguard
+#    labels:
+#      - traefik.enable=true
+#      - traefik.http.routers.wireguard.rule=Host(`vpn.example.com`)
+#      - traefik.http.services.wireguard.loadbalancer.server.port=51821
+#      - traefik.docker.network=proxy
+#      # Part for local lan services only
+#      - traefik.http.routers.wireguard.middlewares=local-ipwhitelist@file

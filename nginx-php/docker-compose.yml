@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  web:
+    image: nginx:latest
+    hostname: nginx
+    volumes:
+      - /mnt/docker-volumes/nginx/www-data:/var/www
+      - /mnt/docker-volumes/nginx/nginx-conf:/etc/nginx/conf.d
+      - /mnt/docker-volumes/nginx/logs:/var/log/nginx
+    links:
+        - php
+    container_name: nginx
+    restart: unless-stopped
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.nginx.rule=Host(`nginx.example.com`)
+    #  - traefik.http.services.nginx.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  #- traefik.http.routers.nginx.middlewares=error-pages-middleware@docker
+  php:
+    image: php:8-fpm-alpine
+    hostname: php
+    volumes:
+      - /mnt/docker-volumes/nginx/www-data:/var/www
+    container_name: php
+    restart: unless-stopped
+    working_dir: /var/www

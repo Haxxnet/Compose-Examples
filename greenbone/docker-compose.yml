@@ -1,0 +1,23 @@
+version: "3"
+services:
+    gvm:
+        image: securecompliance/gvm
+        volumes:
+          - /mnt/docker-volumes/greenbone/database:/opt/database
+          - /mnt/docker-volumes/greenbone/gvm:/var/lib/gvm
+          - /mnt/docker-volumes/greenbone/plugins:/var/lib/openvas/plugins
+        environment:
+          - USERNAME="admin"
+          - PASSWORD="admin"
+          - RELAYHOST="smtp.gmail.com"
+          - SMTPPORT=465
+          - AUTO_SYNC=true
+          - HTTPS=true
+          - TZ="Europe/Berlin"
+          - SSHD=false
+          - DB_PASSWORD="none"
+        ports:
+          - "9392:9392"  # Web interface
+          #- "5432:5432" # Access PostgreSQL database from external tools
+          #- "2222:22"   # SSH for remote sensors
+        restart: unless-stopped

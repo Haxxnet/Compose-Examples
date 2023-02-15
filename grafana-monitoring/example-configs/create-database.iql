@@ -1,0 +1,3 @@
+CREATE DATABASE telegraf WITH DURATION 31d
+CREATE USER telegrafuser WITH PASSWORD 'MyStrongTelegrafPassword'
+GRANT ALL ON telegraf to telegrafuser

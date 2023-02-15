@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  nessus:
+    hostname: nessus
+    container_name: nessus
+    image: tenableofficial/nessus:latest
+    ports:
+      - 8834:8834/tcp # WEB UI
+    environment:
+      - ACTIVATION_CODE=XXX-XXXXX-XXXXX-XXXX # change this
+      - USERNAME=nessus
+      - PASSWORD=MyVeryStrongNessusLoginPassword
+    restart: always

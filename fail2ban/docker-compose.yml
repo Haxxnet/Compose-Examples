@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  fail2ban:
+    container_name: fail2ban
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      - TZ=Europe/Berlin
+      - F2B_DB_PURGE_AGE=14d
+    image: crazymax/fail2ban:latest
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/fail2Ban/data:/data
+      - /path/to/my/logs/to/monitor:/var/log
+      #- /mnt/docker-volumes/traefik/logs:/var/log/traefik

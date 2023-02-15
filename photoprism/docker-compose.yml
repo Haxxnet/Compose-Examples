@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  photoprism:
+    container_name: photoprism
+    environment:
+      - PHOTOPRISM_ADMIN_PASSWORD=MySecureLoginPasswordForPhotoprism
+      - PHOTOPRISM_DEBUG=false
+      - PHOTOPRISM_PUBLIC=false
+      - PHOTOPRISM_UPLOAD_NSFW=true
+      - PHOTOPRISM_DETECT_NSFW=false
+      - PHOTOPRISM_HTTP_HOST=0.0.0.0
+      - PHOTOPRISM_HTTP_PORT=2342
+      - PHOTOPRISM_DATABASE_DRIVER=sqlite
+    ports:
+      - 2342:2342
+    image: photoprism/photoprism:latest
+    restart: unless-stopped
+    volumes:
+      - /path/to/my/locally/stored/media/files:/photoprism/originals
+      - /mnt/docker-volumes/photoprism/storage:/photoprism/storage

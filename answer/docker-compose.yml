@@ -1,0 +1,10 @@
+version: "3"
+services:
+  answer:
+    container_name: answer
+    image: answerdev/answer
+    ports:
+      - '9080:80'
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/answer/data:/data

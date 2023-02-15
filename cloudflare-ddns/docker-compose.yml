@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  ddns:
+    image: oznu/cloudflare-ddns:latest
+    restart: unless-stopped
+    environment:
+    - API_KEY=MyCloudflareApiToken # change this
+    - ZONE=example.com
+    - SUBDOMAIN=* # either subdomain or wildcard * to update root domain

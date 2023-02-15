@@ -1,0 +1,32 @@
+version: "2.1"
+services:
+  projectsend:
+    image: lscr.io/linuxserver/projectsend:latest
+    container_name: projectsend
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - MAX_UPLOAD=5000
+    volumes:
+      - /mnt/docker-volumes/projectsend/config:/config
+      - /mnt/docker-volumes/projectsend/data:/data
+    ports:
+      - 8080:80 # WEB UI
+    restart: unless-stopped
+    depends_on:
+      - database
+
+  database:
+    image: mariadb:10.5
+    container_name: projectsend-db
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/projectsend/database:/var/lib/mysql
+    environment:
+      # the projectsend setup ui will ask for a database hostname; specify "database", as this is the container hostname
+      - MYSQL_DATABASE=projectsend # use this name during projectsend database setup
+      - MYSQL_USER=projectsend # use this name during projectsend database setup
+      - MYSQL_PASSWORD=projectsend # use this pw during projectsend database setup
+      - MYSQL_ROOT_PASSWORD=projectsend 

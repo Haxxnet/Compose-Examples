@@ -1,0 +1,101 @@
+http:
+
+  ## EXTERNAL ROUTING EXAMPLE - Only use if you want to proxy something manually ##
+  #routers:
+  #  homeassistant:
+  #    entryPoints:
+  #      - https
+  #      - http
+  #    rule: 'Host(`ha.example.com`)'
+  #    service: homeassistant
+  #    middlewares:
+  #      - "local-ipwhitelist@file"
+
+  #  pve:
+  #    entryPoints:
+  #      - https
+  #      - http
+  #    rule: 'Host(`pve.example.com`)'
+  #    service: pve
+  #    middlewares:
+  #      - "local-ipwhitelist@file"
+
+  ## SERVICES EXAMPLE ##
+  #services:
+  #  homeassistant:
+  #    loadBalancer:
+  #      serversTransport: insecureTransport
+  #      servers:
+  #        - url: http://192.168.1.10:8123
+
+  #  pve:
+  #    loadBalancer:
+  #      serversTransport: insecureTransport
+  #      servers:
+  #        - url: https://192.168.1.20:8006
+
+  # allow self-signed certificates for proxied web services
+  serversTransports:
+    insecureTransport:
+      insecureSkipVerify: true
+
+  ## MIDDLEWARES ##
+  middlewares:
+    # Only Allow Local networks
+    local-ipwhitelist:
+      ipWhiteList:
+        sourceRange: 
+          - 127.0.0.1/32 # localhost
+          - 10.0.0.0/8 # private class A
+          - 172.16.0.0/12 # private class B
+          - 192.168.0.0/16 # private class C
+
+    # Security headers
+    security-headers:
+      headers:
+        customResponseHeaders: # field names are case-insensitive
+          X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
+          Server: "" # prevent version disclosure
+          X-Powered-By: "" # prevent version disclosure
+          X-Forwarded-Proto: "https"
+        sslProxyHeaders:
+          X-Forwarded-Proto: "https"
+        hostsProxyHeaders:
+          - "X-Forwarded-Host"
+        customRequestHeaders:
+          X-Forwarded-Proto: "https"
+        contentTypeNosniff: true # X-Content-Type-Options
+        customFrameOptionsValue: "SAMEORIGIN" # X-Frame-Options
+        browserXssFilter: false # X-XSS-Protection; deprecated
+        referrerPolicy: "strict-origin-when-cross-origin" # Referrer-Policy
+        forceSTSHeader: true # HTTP-Strict-Transport-Security (HSTS)
+        stsIncludeSubdomains: true # HTTP-Strict-Transport-Security (HSTS)
+        stsSeconds: 63072000 # HTTP-Strict-Transport-Security (HSTS)
+        stsPreload: true # HTTP-Strict-Transport-Security (HSTS)
+        #contentSecurityPolicy: "block-all-mixed-content" # Content-Security-Policy (CSP)
+        
+    # rate limiting
+    rate-limit:
+      rateLimit:
+        average: 100
+        period: 1
+        burst: 100
+
+    # basic auth popup
+    basic-auth:
+      basicAuth:
+        # https://hostingcanada.org/htpasswd-generator/
+        users: "admin:$$apr1$$epoKf5li$$QfTMJZOCS/halv3CiIUEu0" # admin:password
+
+# Only use secure ciphers - https://ssl-config.mozilla.org/#server=traefik&version=2.9&config=intermediate&guideline=5.6
+tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+      cipherSuites:
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305

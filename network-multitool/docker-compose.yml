@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  network-multitool:
+    image: praqma/network-multitool:alpine-extra
+    container_name: network-multitool
+    environment:
+      - HTTP_PORT=9988 # useful to daemonize the container; see https://hub.docker.com/r/praqma/network-multitool
+      - HTTPS_PORT=9989 # useful to daemonize the container; see https://hub.docker.com/r/praqma/network-multitool
+    restart: unless-stopped

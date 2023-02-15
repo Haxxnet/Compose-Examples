@@ -1,0 +1,32 @@
+version: "3"
+services:
+  db_recipes:
+    restart: always
+    container_name: tandoor_db
+    image: postgres:11-alpine
+    volumes:
+      - /mnt/docker-volumes/tandoor/postgresql:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+
+  web_recipes:
+    restart: always
+    container_name: tandoor_recipes
+    ports:
+      - 8080:8080
+    image: vabene1111/recipes:latest
+    env_file:
+      - ./.env
+    volumes:
+      - /mnt/docker-volumes/tandoor/staticfiles:/opt/recipes/staticfiles
+      - /mnt/docker-volumes/tandoor/nginx_config:/opt/recipes/nginx/conf.d
+      - /mnt/docker-volumes/tandoor/mediafiles:/opt/recipes/mediafiles
+    depends_on:
+      - db_recipes
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.tandoor.rule=Host(`tandoor.example.com`)
+      - traefik.http.services.tandoor.loadbalancer.server.port=8080
+      - traefik.docker.network=proxy
+      # Part for local lan services only
+      #- traefik.http.routers.tandoor.middlewares=local-ipwhitelist@file

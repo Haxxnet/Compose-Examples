@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  deemix:
+    container_name: deemix
+    environment:
+      - PUID=1000
+      - PGID=1000
+    hostname: deemix
+    image: registry.gitlab.com/bockiii/deemix-docker:latest
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/deemix/config:/config
+      - /mnt/docker-volumes/deemix/downloads:/downloads

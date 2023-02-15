@@ -1,0 +1,18 @@
+version: "3"
+services:
+  openspeedtest:
+    image: openspeedtest/latest:latest
+    container_name: openspeedtest
+    ports:
+      - 3380:3000 # HTTP
+      - 3001:3001 # HTTPS
+    restart: always
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.openspeedtest.middlewares=local-ipwhitelist@file, limit
+    #  - traefik.http.routers.openspeedtest.rule=Host(`speedtest.example.com`)
+    #  - traefik.http.services.openspeedtest.loadbalancer.server.port=3000
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=10000000000
+    #  - traefik.http.middlewares.test-compress.compress=true

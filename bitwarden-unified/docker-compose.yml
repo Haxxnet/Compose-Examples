@@ -1,0 +1,28 @@
+---
+version: "3.8"
+
+services:
+  bitwarden:
+    container_name: bitwarden_unified
+    depends_on:
+      - db
+    env_file:
+      - settings.env
+    image: bitwarden/self-host:beta
+    restart: always
+    ports:
+      - "8888:80"
+    volumes:
+      - /mnt/docker-volumes/bitwarden-unified/data:/etc/bitwarden
+
+  db:
+    environment:
+      MARIADB_USER: "bitwarden"
+      MARIADB_PASSWORD: "Secure_MariaDB_Password1"
+      MARIADB_DATABASE: "bitwarden_vault"
+      MARIADB_RANDOM_ROOT_PASSWORD: "true"
+    image: mariadb:10
+    container_name: bitwarden_unified_db
+    restart: always
+    volumes:
+      - /mnt/docker-volumes/bitwarden-unified/mariadb:/var/lib/mysql

@@ -1,0 +1,14 @@
+services:
+  torbrowser:
+    image: domistyle/tor-browser
+    restart: unless-stopped
+    ports:
+      - 5800:5800 # Provides a web interface to access the Tor browser
+      #- 5900:5900 # Provides direct access to the VNC server; optional
+    environment:
+      #- DISPLAY_WIDTH=1280 # default; optional
+      #- DISPLAY_HEIGHT=768 # default; optional
+      #- KEEP_APP_RUNNING=0 # default; optional
+      - TZ=Europe/Berlin
+    #volumes:
+    #  - /mnt/docker-volumes/torbrowser/data:/app/Browser/TorBrowser/Data/Tor # optional, just to speed up container recreation

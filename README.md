@@ -48,8 +48,8 @@ docker compose up -d
 - [Drone](drone)
 - [Code Server](code-server)
 - [Obsidian-Remote](obsidian-remote)
-- ~~[Onedev](TBD)~~
-- ~~[Gitlab](TBD)~~
+- ~~[Onedev](https://github.com/theonedev/onedev)~~
+- ~~[Gitlab](https://docs.gitlab.com/ee/install/docker.html)~~
 
 ## Monitoring
 - [Watchtower](watchtower)

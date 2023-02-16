@@ -1,6 +1,6 @@
 services:
   torbrowser:
-    image: domistyle/tor-browser
+    image: domistyle/tor-browser:latest
     restart: unless-stopped
     ports:
       - 5800:5800 # Provides a web interface to access the Tor browser

@@ -94,11 +94,12 @@ docker compose up -d
 - [Matomo](matomo)
 - [Plausible](plausible)
 
-## Security & Vulnerability Management
+## Security & Privacy
 - [Nessus](nessus)
 - [Greenbone](greenbone)
 - [SonarQube](sonarqube)
 - [Fail2ban](fail2ban)
+- [Tor-Browser](tor-browser)
 
 ## Internet of Things / Smart Home
 - [Home Assistant](homeassistant)

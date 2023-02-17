@@ -32,9 +32,9 @@ docker compose up -d
 
 ## Virtual Private Network (VPN)
 - [wg-easy](wg-easy)
+- [Wireguard](wireguard)
 - ~~[Netbird](https://github.com/netbirdio/netbird)~~
 - ~~[Firezone](https://github.com/firezone/firezone)~~
-- ~~[Wireguard](https://docs.linuxserver.io/images/docker-wireguard)~~
 
 ## Domain Name Service (DNS)
 - [Adguard Home](adguard-home)

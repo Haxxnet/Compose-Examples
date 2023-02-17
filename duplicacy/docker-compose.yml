@@ -4,11 +4,13 @@ version: '3.7'
 services:
   duplicacy-web:
     container_name: duplicacy-web
-    image: saspus/duplicacy-web:v1.4.1
+    hostname: myhost # pls adjust
+    image: saspus/duplicacy-web:mini
     environment:
       - USR_ID=1000 # user account id on the system
       - GRP_ID=1000 # group id on the system
       - TZ=Europe/Berlin
+      - DUPLICACY_WEB_VERSION=latest
     ports:
       - "3875:3875/tcp"
     volumes:

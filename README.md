@@ -46,10 +46,10 @@ docker compose up -d
 ## Repository Management & Coding
 - [Gitea](gitea)
 - [Drone](drone)
+- [Gitlab Community](gitlab-ce)
 - [Code Server](code-server)
 - [Obsidian-Remote](obsidian-remote)
 - ~~[Onedev](https://github.com/theonedev/onedev)~~
-- ~~[Gitlab](https://docs.gitlab.com/ee/install/docker.html)~~
 
 ## Monitoring
 - [Watchtower](watchtower)

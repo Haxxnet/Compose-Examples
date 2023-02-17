@@ -58,6 +58,10 @@ http:
           Server: "" # prevent version disclosure
           X-Powered-By: "" # prevent version disclosure
           X-Forwarded-Proto: "https"
+          #Permissions-Policy: "geolocation=(self), midi=(self), camera=(self), usb=(self), magnetometer=(self), accelerometer=(self), gyroscope=(self), microphone=(self)"
+          #Cross-Origin-Embedder-Policy: "unsafe-none"
+          #Cross-Origin-Opener-Policy: "same-origin"
+          #Cross-Origin-Resource-Policy: "same-site"
         sslProxyHeaders:
           X-Forwarded-Proto: "https"
         hostsProxyHeaders:

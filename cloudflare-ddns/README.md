@@ -1,3 +1,4 @@
 # Reference
 
-https://hub.docker.com/r/oznu/cloudflare-ddns/
+- https://github.com/favonia/cloudflare-ddns
+- https://hub.docker.com/r/oznu/cloudflare-ddns/ (deprecated)

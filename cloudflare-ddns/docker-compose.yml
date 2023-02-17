@@ -16,3 +16,4 @@ services:
       - CF_API_TOKEN=YOUR-CLOUDFLARE-API-TOKEN # pls adjust
       - DOMAINS=example.org,www.example.org,example.io # pls adjust; a list of fully qualified domain names separated by commas
       - PROXIED=true # instructs Cloudflare to cache webpages on your machine and hide its actual IP addresses
+      - TZ=Europe/Berlin

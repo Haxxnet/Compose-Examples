@@ -33,6 +33,7 @@ services:
     image: nextcloud
     container_name: nextcloud-app
     hostname: nextcloud-app
+    user: 1000:1000
     restart: unless-stopped
     ports:
       - 8080:80

@@ -1,43 +1,68 @@
 services:
-  nc:
+  
+  nextcloud-db:
+    image: mariadb
+    container_name: nextcloud-db
+    hostname: nextcloud-db
+    command: --transaction-isolation=READ-COMMITTED --innodb_read_only_compressed=OFF
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /mnt/docker-volumes/nextcloud/database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=test #SQL root Passwort eingeben
+      - MYSQL_PASSWORD=nextcloud #SQL Benutzer Passwort eingeben
+      - MYSQL_DATABASE=nextcloud #Datenbank Name
+      - MYSQL_USER=nextcloud #SQL Nutzername
+      - MYSQL_INITDB_SKIP_TZINFO=1
+      - MARIADB_AUTO_UPGRADE=1
+    networks:
+      - proxy
+  
+  nextcloud-redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    hostname: nextcloud-redis
+    networks:
+        - proxy
+    restart: unless-stopped
+    command: redis-server --requirepass nextcloud # Redis Passwort eingeben
+  
+  nextcloud-app:
     image: nextcloud
-    container_name: nextcloud
-    restart: always
+    container_name: nextcloud-app
+    hostname: nextcloud-app
+    restart: unless-stopped
     ports:
       - 8080:80
+    networks:
+      - proxy
+    depends_on:
+      - nextcloud-db
+      - nextcloud-redis
+    environment:
+        TRUSTED_PROXIES: 172.18.0.2/16
+        OVERWRITEPROTOCOL: https
+        OVERWRITECLIURL: https://cloud.example.com # pls change
+        OVERWRITEHOST: cloud.example.com # pls change
+        REDIS_HOST: nextcloud-redis
+        REDIS_HOST_PASSWORD: nextcloud # Redis Passwort von oben wieder eingeben
     volumes:
       - /mnt/docker-volumes/nextcloud/apps:/var/www/html/custom_apps
       - /mnt/docker-volumes/nextcloud/config:/var/www/html/config
       - /mnt/docker-volumes/nextcloud/data:/var/www/html/data
       - /mnt/docker-volumes/nextcloud/wwwroot:/var/www/html
-      #- /mnt/docker-volumes/nextcloud/theme:/var/www/html/themes/<YOUR_CUSTOM_THEME>
-    environment:
-      - REDIS_HOST=redis
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_PASSWORD=nextcloud
-  
-  redis:
-    image: redis:alpine
-    container_name: nextcloud-redis
-    restart: always
-    volumes:
-      - /mnt/docker-volumes/nextcloud/redis:/data
-    expose:
-      - 6379
-  
-  db:
-    image: mariadb:10.5
-    container_name: nextcloud-mariadb
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
-    restart: always
-    volumes:
-      - /mnt/docker-volumes/nextcloud/mysql:/var/lib/mysql
-    environment:
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_ROOT_PASSWORD=nextcloud
-      - MYSQL_PASSWORD=nextcloud
-    expose:
-      - 3306   
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.nextcloud.rule=(Host(`cloud.example.com`)) # pls change
+    #  - traefik.http.services.nextcloud.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav
+    #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  # Part for local lan services only
+    #  #- traefik.http.routers.privatebin.middlewares=basic-auth@file,local-ipwhitelist@file,security-headers@file

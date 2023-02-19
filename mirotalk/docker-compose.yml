@@ -6,22 +6,16 @@ services:
     restart: unless-stopped
     container_name: mirotalk
     hostname: mirotalk
-    #ports:
-    #  - 3000:3000 # WEB UI
-    networks:
-      - proxy
+    ports:
+      - 3000:3000 # WEB UI
     volumes:
       - .env:/src/.env:ro
       - /mnt/docker-volumes/mirotalk/app:/src/app:ro
       - /mnt/docker-volumes/mirotalk/public:/src/public:ro
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.mirotalk.rule=Host(`meet.example.com`) # pls adjust
-      - traefik.http.services.mirotalk.loadbalancer.server.port=3000
-      - traefik.docker.network=proxy
-      # Part for local lan services only; disable to expose externally
-      #- traefik.http.routers.mirotalk.middlewares=local-ipwhitelist@file
-
-networks:
-  proxy:
-    external: true
+    #labels:
+      #- traefik.enable=true
+      #- traefik.http.routers.mirotalk.rule=Host(`meet.example.com`) # pls adjust
+      #- traefik.http.services.mirotalk.loadbalancer.server.port=3000
+      #- traefik.docker.network=proxy
+      ## Part for local lan services only; disable to expose externally
+      ##- traefik.http.routers.mirotalk.middlewares=local-ipwhitelist@file

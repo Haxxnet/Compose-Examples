@@ -15,13 +15,13 @@ services:
       - proxy
     environment:
       - TZ=Europe/Berlin
-      #- CF_DNS_API_TOKEN=MyCloudflareApiToken # change this
+      - CF_DNS_API_TOKEN=MyCloudflareApiToken # change this
     labels:
       - traefik.enable=true
       - traefik.http.routers.api.rule=Host(`traefik.example.com`) # Define the subdomain for the traefik dashboard.
       - traefik.http.routers.api.service=api@internal # Enable Traefik API.
-      #- traefik.http.routers.api.middlewares=local-ipwhitelist@file,basic-auth@file
-      - traefik.http.middlewares.basic-auth-global.basicauth.users=admin:$$apr1$$epoKf5li$$QfTMJZOCS/halv3CiIUEu0 # protect the traefik dashboard by basic auth (pw=password)
+      - traefik.http.routers.api.middlewares=local-ipwhitelist@file,basic-auth@file # protect dashboard with basic auth and restrict access to private class subnets only
+      #- traefik.http.middlewares.basic-auth-global.basicauth.users=admin:$$apr1$$epoKf5li$$QfTMJZOCS/halv3CiIUEu0 # protect the traefik dashboard by basic auth (pw=password)
     restart: always
     extra_hosts:
       - host.docker.internal:172.17.0.1

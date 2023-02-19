@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   youtrack:
-    image: jetbrains/youtrack:2020.2.7479
+    image: jetbrains/youtrack:2022.3.65371
     container_name: youtrack
     hostname: youtrack
     restart: unless-stopped

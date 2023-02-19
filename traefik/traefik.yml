@@ -16,10 +16,10 @@ log:
 accessLog:
   filePath: "/logs/traefik.log"
   format: json
-  #filters:
-  #  statusCodes:
-  #    - "200"
-  #    - "300-302"
+  filters:
+    statusCodes:
+    #  - "200" # log successful http requests
+      - "400-599" # log failed http requests
     #retryAttempts: true
     #minDuration: "10ms"
   # collect logs as in-memory buffer before writing into log file

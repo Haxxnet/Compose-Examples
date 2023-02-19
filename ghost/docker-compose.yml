@@ -16,7 +16,7 @@ services:
       database__connection__user: ghost
       database__connection__password: MyStrongDatabasePassword
       database__connection__database: ghost
-      url: https://blog.example.com # change this
+      # url: https://blog.example.com # change this for production
       NODE_ENV: production
       #mail__transport: SMTP
       #mail__options__host: smtp.gmail.com

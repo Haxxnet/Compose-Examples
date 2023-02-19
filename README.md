@@ -129,3 +129,6 @@ docker compose up -d
 - [Rocket.Chat](rocketchat)
 - [Answer](answer)
 - [Excalidraw](excalidraw)
+
+## Project Management
+- [JetBrains YouTrack](youtrack)

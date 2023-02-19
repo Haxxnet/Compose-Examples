@@ -59,9 +59,10 @@ docker compose up -d
 - [Grafana Stack](grafana-monitoring)
 - [Speedtest-Tracker](speedtest-tracker)
 - [Openspeedtest](openspeedtest)
-- [Goaccess for Nginx Proxy Manager](nginx-proxy-manager-goaccess)
+- [Goaccess](nginx-proxy-manager-goaccess)
 - [WatchYourLAN](watchyourlan)
 - [Network-Multitool](network-multitool)
+- [Home Assistant](homeassistant)
 
 ## Recipe Managers
 - [Tandoor](tandoor)
@@ -85,10 +86,10 @@ docker compose up -d
 - [Projectsend](projectsend)
 
 ## Publishing, Writing, Hosting
-- [Excalidraw](excalidraw)
-- [Overleaf](overleaf)
-- [Ghost CMS](ghost)
+- [Ghost](ghost)
 - [Nginx + PHP](nginx-php)
+- [Overleaf](overleaf)
+- [Answer](answer)
 
 ## Analytics
 - [Matomo](matomo)
@@ -114,8 +115,8 @@ docker compose up -d
 
 ## Wiki & Knowledge Base
 - [Bookstack](bookstack)
-- [Answer](answer)
 - [Wiki.js](wikijs)
+- [Answer](answer)
 - [Obsidian-Remote](obsidian-remote)
 
 ## Finance
@@ -126,3 +127,5 @@ docker compose up -d
 ## Communication and Social
 - [Mirotalk WebRTC](mirotalk)
 - [Rocket.Chat](rocketchat)
+- [Answer](answer)
+- [Excalidraw](excalidraw)

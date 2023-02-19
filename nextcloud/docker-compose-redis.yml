@@ -50,10 +50,8 @@ services:
         REDIS_HOST: nextcloud-redis
         REDIS_HOST_PASSWORD: nextcloud # Redis Passwort von oben wieder eingeben
     volumes:
-      - /mnt/docker-volumes/nextcloud/apps:/var/www/html/custom_apps
-      - /mnt/docker-volumes/nextcloud/config:/var/www/html/config
       - /mnt/docker-volumes/nextcloud/data:/var/www/html/data
-      - /mnt/docker-volumes/nextcloud/wwwroot:/var/www/html
+      - /mnt/docker-volumes/nextcloud/app:/var/www/html
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.nextcloud.rule=(Host(`cloud.example.com`)) # pls change

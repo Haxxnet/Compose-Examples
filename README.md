@@ -85,8 +85,9 @@ docker compose up -d
 - [Gokapi](gokapi)
 - [Projectsend](projectsend)
 
-## Publishing, Writing, Hosting
+## Publishing, Writing, Blogging, Hosting
 - [Ghost](ghost)
+- [WordPress](wordpress)
 - [Nginx + PHP](nginx-php)
 - [Overleaf](overleaf)
 - [Answer](answer)

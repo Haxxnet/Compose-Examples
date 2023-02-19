@@ -123,6 +123,6 @@ docker compose up -d
 - [Money-Balancer](money-balancer)
 - [Firefly III](firefly-iii)
 
-## Meeting and Conference
+## Communication and Social
 - [Mirotalk WebRTC](mirotalk)
 - [Rocket.Chat](rocketchat)

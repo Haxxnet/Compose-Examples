@@ -12,7 +12,7 @@ services:
       #- WATCHTOWER_NOTIFICATION_EMAIL_TO=john.doe@example.com
       #- WATCHTOWER_NOTIFICATION_EMAIL_SERVER=smtp.google.com
       #- WATCHTOWER_NOTIFICATIONS=email
-      - WATCHTOWER_SCHEDULE=0 0 6 * * * # see https://crontab.guru/
+      - WATCHTOWER_SCHEDULE=0 0 6 * * * # see https://containrrr.dev/watchtower/arguments/#scheduling
       - WATCHTOWER_CLEANUP=true # remove unused images afterwards
     image: containrrr/watchtower:latest
     labels:

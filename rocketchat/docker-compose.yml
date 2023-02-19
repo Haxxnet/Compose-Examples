@@ -1,0 +1,47 @@
+version: "3.7"
+
+services:
+  rocketchat:
+    container_name: rocketchat
+    hostname: rocketchat
+    image: registry.rocket.chat/rocketchat/rocket.chat:latest
+    restart: unless-stopped
+    ports:
+       - 3000:3000 # web ui
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.rocketchat.rule=Host(`chat.example.com`) # pls change
+    #  - traefik.http.services.rocketchat.loadbalancer.server.port=3000
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only; disable to expose externally
+    #  - traefik.http.routers.rocketchat.middlewares=local-ipwhitelist@file
+    environment:
+      MONGO_URL: "${MONGO_URL:-\
+        mongodb://${MONGODB_ADVERTISED_HOSTNAME:-mongodb}:${MONGODB_INITIAL_PRIMARY_PORT_NUMBER:-27017}/\
+        ${MONGODB_DATABASE:-rocketchat}?replicaSet=${MONGODB_REPLICA_SET_NAME:-rs0}}"
+      MONGO_OPLOG_URL: "${MONGO_OPLOG_URL:\
+        -mongodb://${MONGODB_ADVERTISED_HOSTNAME:-mongodb}:${MONGODB_INITIAL_PRIMARY_PORT_NUMBER:-27017}>
+        local?replicaSet=${MONGODB_REPLICA_SET_NAME:-rs0}}"
+      ROOT_URL: ${ROOT_URL:-http://localhost:${HOST_PORT:-3000}}
+      PORT: ${PORT:-3000}
+      DEPLOY_METHOD: docker
+      DEPLOY_PLATFORM: ${DEPLOY_PLATFORM}
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: rocketchat-db
+    hostname: rocketchat-db
+    image: docker.io/bitnami/mongodb:${MONGODB_VERSION:-4.4}
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/rocketchat/mongodb:/bitnami/mongodb
+    environment:
+      MONGODB_REPLICA_SET_MODE: primary
+      MONGODB_REPLICA_SET_NAME: ${MONGODB_REPLICA_SET_NAME:-rs0}
+      MONGODB_PORT_NUMBER: ${MONGODB_PORT_NUMBER:-27017}
+      MONGODB_INITIAL_PRIMARY_HOST: ${MONGODB_INITIAL_PRIMARY_HOST:-mongodb}
+      MONGODB_INITIAL_PRIMARY_PORT_NUMBER: ${MONGODB_INITIAL_PRIMARY_PORT_NUMBER:-27017}
+      MONGODB_ADVERTISED_HOSTNAME: ${MONGODB_ADVERTISED_HOSTNAME:-mongodb}
+      MONGODB_ENABLE_JOURNAL: ${MONGODB_ENABLE_JOURNAL:-true}
+      ALLOW_EMPTY_PASSWORD: ${ALLOW_EMPTY_PASSWORD:-yes}

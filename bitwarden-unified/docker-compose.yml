@@ -11,7 +11,7 @@ services:
     image: bitwarden/self-host:beta
     restart: always
     ports:
-      - "8888:80"
+      - "8888:8080"
     volumes:
       - /mnt/docker-volumes/bitwarden-unified/data:/etc/bitwarden
 

@@ -12,5 +12,6 @@ cp -R mirotalk/app/ /mnt/docker-volumes/mirotalk/app
 cp -R mirotalk/public/ /mnt/docker-volumes/mirotalk/public
 rm -rf mirotalk
 
+# may move the .env too and adjust compose file
 # then docker compose up
 ````

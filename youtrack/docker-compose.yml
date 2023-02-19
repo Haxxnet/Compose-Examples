@@ -5,6 +5,7 @@ services:
     image: jetbrains/youtrack:2022.3.65371
     container_name: youtrack
     hostname: youtrack
+    user: 13001:13001 # this is the default UID:GUID; see https://hub.docker.com/r/jetbrains/youtrack/
     restart: unless-stopped
     ports:
       - 8080:8080 # web ui

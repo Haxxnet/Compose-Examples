@@ -28,7 +28,7 @@ services:
     #  - traefik.http.services.CHANGEME.loadbalancer.serverstransport=insecureTransport@file # optional, but sometines necessary when proxying to https services
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file
+    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,basic-auth@file
 
 networks:
   proxy:

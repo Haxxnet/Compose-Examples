@@ -13,7 +13,7 @@ services:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
       database__connection__host: database
-      database__connection__user: root
+      database__connection__user: ghost
       database__connection__password: MyStrongDatabasePassword
       database__connection__database: ghost
       url: https://blog.example.com # change this
@@ -43,5 +43,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: AnotherStrongDatabasePasswordForRootUser
       MYSQL_DATABASE: ghost
-      MYSQL_USER: user
+      MYSQL_USER: ghost
       MYSQL_PASSWORD: MyStrongDatabasePassword

@@ -24,6 +24,8 @@ services:
     #  - traefik.enable=true
     #  - traefik.http.routers.CHANGEME.rule=Host(`service.example.com`)
     #  - traefik.http.services.CHANGEME.loadbalancer.server.port=8080
+    #  - traefik.http.services.CHANGEME.loadbalancer.server.scheme=https # optional, but sometines necessary when proxying to https services
+    #  - traefik.http.services.CHANGEME.loadbalancer.serverstransport=insecureTransport@file # optional, but sometines necessary when proxying to https services
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file

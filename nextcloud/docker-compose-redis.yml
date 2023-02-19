@@ -58,6 +58,8 @@ services:
     #  - traefik.enable=true
     #  - traefik.http.routers.nextcloud.rule=(Host(`cloud.example.com`)) # pls change
     #  - traefik.http.services.nextcloud.loadbalancer.server.port=80
+    #  - traefik.http.services.nextcloud.loadbalancer.server.scheme=https
+    #  - traefik.http.services.nextcloud.loadbalancer.serverstransport=insecureTransport@file    
     #  - traefik.docker.network=proxy
     #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav
     #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/

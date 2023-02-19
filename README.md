@@ -125,3 +125,4 @@ docker compose up -d
 
 ## Meeting and Conference
 - [Mirotalk WebRTC](mirotalk)
+- [Rocket.Chat](rocketchat)

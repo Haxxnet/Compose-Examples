@@ -3,12 +3,16 @@ version: '3.3'
 services:
   example:
     image: user/image:tag
-    container_name: example-container-name
+    container_name: example
+    hostname: example
+    #user: 1000:1000
     restart: unless-stopped
-    #ports:
-    #  - 8080:2368
+    ports:
+      - 8080:8080
     volumes:
-      - /mnt/docker-volumes/example:/example
+      #- /etc/localtime:/etc/localtime:ro
+      #- /var/run/docker.sock:/var/run/docker.sock:ro
+      - /mnt/docker-volumes/example:/opt/example/data
     environment:
       - PUID=1000
       - PGID=1000
@@ -20,7 +24,7 @@ services:
     #  - traefik.http.routers.CHANGEME.rule=Host(`service.example.com`)
     #  - traefik.http.services.CHANGEME.loadbalancer.server.port=8080
     #  - traefik.docker.network=proxy
-    #  # Part for local lan services only; disable to expose externally
+    #  # Part for optional traefik middlewares
     #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file
 
 networks:

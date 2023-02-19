@@ -22,3 +22,5 @@ services:
       #  - traefik.docker.network=proxy
       #  - traefik.http.routers.youtrack.rule=Host(`projects.example.com`)
       #  - traefik.http.services.youtrack.loadbalancer.server.port=8080
+      #  # Part for local lan services only; disable to expose externally
+      #  - traefik.http.routers.youtrack.middlewares=local-ipwhitelist@file

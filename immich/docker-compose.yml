@@ -12,8 +12,8 @@ services:
     environment:
       - NODE_ENV=production
     depends_on:
-      - redis
-      - database
+      - immich-redis
+      - immich-database
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
@@ -29,8 +29,8 @@ services:
     environment:
       - NODE_ENV=production
     depends_on:
-      - redis
-      - database
+      - immich-redis
+      - immich-database
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
@@ -46,7 +46,7 @@ services:
   #  environment:
   #    - NODE_ENV=production
   #  depends_on:
-  #    - database
+  #    - immich-database
   #  restart: always
   #  labels:
   #    - "com.centurylinklabs.watchtower.enable=true"
@@ -61,14 +61,14 @@ services:
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
 
-  redis:
+  immich-redis:
     container_name: immich-redis
     image: redis:6.2
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
 
-  database:
+  immich-database:
     container_name: immich-database
     image: postgres:14
     env_file:

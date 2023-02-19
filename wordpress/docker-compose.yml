@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+  wordpress-db:
+    image: mariadb:10.6.4-focal
+    container_name: wordpress-db
+    hostname: wordpress-db
+    command: '--default-authentication-plugin=mysql_native_password'
+    #networks:
+    #  - proxy
+    volumes:
+      - /mnt/docker-volumes/wordpress/mysql:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=wordpressroot
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+  
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    hostname: wordpress
+    volumes:
+      - /mnt/docker-volumes/wordpress/data:/var/www/html
+    ports:
+      - 80:80
+    #networks:
+    #  - proxy      
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=wordpress-db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.wordpress.rule=Host(`blog.example.com`) # please adjust
+    #  - traefik.http.services.wordpress.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.wordpress.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

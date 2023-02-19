@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+  youtrack:
+    image: jetbrains/youtrack:2020.2.7479
+    container_name: youtrack
+    hostname: youtrack
+    restart: unless-stopped
+    ports:
+      - 8080:8080 # web ui
+    volumes:
+      - /mnt/docker-volumes/youtrack/data:/opt/youtrack/data
+      - /mnt/docker-volumes/youtrack/conf:/opt/youtrack/conf
+      - /mnt/docker-volumes/youtrack/logs:/opt/youtrack/logs
+      - /mnt/docker-volumes/youtrack/backups:/opt/youtrack/backups
+    deploy:
+      placement:
+        constraints:
+          - node.labels.youtrack.data == true
+      #labels:
+      #  - traefik.enable=true
+      #  - traefik.docker.network=proxy
+      #  - traefik.http.routers.youtrack.rule=Host(`projects.example.com`)
+      #  - traefik.http.services.youtrack.loadbalancer.server.port=8080

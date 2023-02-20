@@ -14,7 +14,7 @@ services:
       - SECRET_DISABLE_USERS=false        # Disable user registration
       - SECRET_ENABLE_FILE_UPLOAD=true    # Enable or disable file upload
       - SECRET_FILE_SIZE=10               # Set the total allowed upload file size in mb
-      - SECRET_FORCED_LANGUAGE=de         # Set the default language for the application
+      - SECRET_FORCED_LANGUAGE=en         # Set the default language for the application
       - SECRET_JWT_SECRET=!changeme!      # Override this for the secret signin JWT tokens for log in
       - SECRET_MAX_TEXT_SIZE=256          # The max text size for the secret. Is set in kb. i.e. 256 for 256kb
     ports:

@@ -7,7 +7,10 @@ services:
     container_name: mirotalk
     hostname: mirotalk
     ports:
-      - 3000:3000 # WEB UI
+      # use a reverse proxy with SSL/TLS support
+      # otherwise webrtc won't work with plaintext http after Chrome 47+
+      # see https://stackoverflow.com/questions/52759992/how-to-access-camera-and-microphone-in-chrome-without-https/58449078#58449078
+      - 3000:3000 # WEB UI; 
     volumes:
       - .env:/src/.env:ro
       - /mnt/docker-volumes/mirotalk/app:/src/app:ro

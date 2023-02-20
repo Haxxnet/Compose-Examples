@@ -1,29 +1,52 @@
 services:
-  hemmelig-web:
-    container_name: hemmelig
+  hemmelig:
     image: hemmeligapp/hemmelig:latest
+    container_name: hemmelig
     hostname: hemmelig
-    ports:
-      - 3000:3000
-    environment:
-      - SECRET_REDIS_HOST=hemmelig-redis
-      - SECRET_DISABLE_USERS=true
+    init: true
     volumes:
-      - /mnt/docker-volumes/hemmelig:/var/tmp/hemmelig/upload/files
-    restart: unless-stopped
+      - /mnt/docker-volumes/hemmelig/files:/var/tmp/hemmelig/upload/files
+    environment:
+      - SECRET_REDIS_HOST=hemmelig-redis  # Override this for your redis host address
+      - SECRET_LOCAL_HOSTNAME=0.0.0.0     # The local hostname for the fastify instance
+      - SECRET_PORT=3000                  # The port number for the fastify instance
+      - SECRET_HOST=                      # Used for i.e. set cors to your domain name
+      - SECRET_DISABLE_USERS=false        # Disable user registration
+      - SECRET_ENABLE_FILE_UPLOAD=true    # Enable or disable file upload
+      - SECRET_FILE_SIZE=10               # Set the total allowed upload file size in mb
+      - SECRET_FORCED_LANGUAGE=de         # Set the default language for the application
+      - SECRET_JWT_SECRET=!changeme!      # Override this for the secret signin JWT tokens for log in
+      - SECRET_MAX_TEXT_SIZE=256          # The max text size for the secret. Is set in kb. i.e. 256 for 256kb
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    restart: always
+    stop_grace_period: 1m
+    healthcheck:
+      test: "wget -O /dev/null localhost:3000 || exit 1"
+      timeout: 5s
+      retries: 1
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.hemmelig.rule=Host(`hemmelig.example.com`)
     #  - traefik.http.services.hemmelig.loadbalancer.server.port=3000
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.hemmelig.middlewares=local-ipwhitelist@file,basic-auth@file    
-  
-  hemmelig-redis:
-    container_name: hemmelig-redis
+    #  - traefik.http.routers.hemmelig.middlewares=local-ipwhitelist@file,basic-auth@file  
+
+  redis:
     image: redis
+    container_name: hemmelig-redis
     hostname: hemmelig-redis
-    restart: unless-stopped
-    command: redis-server --appendonly yes
+    init: true
+    # Enable to make redis data persistent
     volumes:
-      - /mnt/docker-volumes/hemmelig/redis:/data
+      - /mnt/docker-volumes/hemmelig/redis/:/data
+    command: redis-server --appendonly yes
+    restart: always
+    stop_grace_period: 1m
+    healthcheck:
+      test: "redis-cli ping | grep PONG || exit 1"
+      timeout: 5s
+      retries: 1

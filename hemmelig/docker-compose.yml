@@ -1,0 +1,29 @@
+services:
+  hemmelig-web:
+    container_name: hemmelig
+    image: hemmeligapp/hemmelig:latest
+    hostname: hemmelig
+    ports:
+      - 3000:3000
+    environment:
+      - SECRET_REDIS_HOST=hemmelig-redis
+      - SECRET_DISABLE_USERS=true
+    volumes:
+      - /mnt/docker-volumes/hemmelig:/var/tmp/hemmelig/upload/files
+    restart: unless-stopped
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.hemmelig.rule=Host(`hemmelig.example.com`)
+    #  - traefik.http.services.hemmelig.loadbalancer.server.port=3000
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.hemmelig.middlewares=local-ipwhitelist@file,basic-auth@file    
+  
+  hemmelig-redis:
+    container_name: hemmelig-redis
+    image: redis
+    hostname: hemmelig-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - /mnt/docker-volumes/hemmelig/redis:/data

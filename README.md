@@ -75,15 +75,18 @@ docker compose up -d
 - [Papermerge](papermerge)
 - [Paperless NGX](paperless-ngx)
 
-## File Sharing
+## Pastebins
 - [PrivateBin](privatebin)
+- [Hemmelig](hemmelig)
+
+## File Sharing
 - [Nextcloud](nextcloud)
-- [Pwndrop](pwndrop)
 - [Seafile](seafile)
-- [Droppy](droppy)
 - [SFTPGo](sftpgo)
 - [Gokapi](gokapi)
 - [Projectsend](projectsend)
+- [Pwndrop](pwndrop)
+- [Droppy](droppy)
 
 ## Publishing, Writing, Blogging, Hosting
 - [Ghost](ghost)

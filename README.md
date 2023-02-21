@@ -10,6 +10,8 @@
 [![GitHub forks](https://img.shields.io/github/forks/Haxxnet/Compose-Examples.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/Haxxnet/Compose-Examples/network/)
 [![GitHub watchers](https://img.shields.io/github/watchers/Haxxnet/Compose-Examples.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/Haxxnet/Compose-Examples/watchers/)
 
+![Maintainer](https://img.shields.io/badge/maintainer-LRVT-orange)
+
 # Compose-Examples
 
 Various Docker Compose examples of selfhosted projects.

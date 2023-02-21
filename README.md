@@ -11,6 +11,7 @@
 [![GitHub watchers](https://img.shields.io/github/watchers/Haxxnet/Compose-Examples.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/Haxxnet/Compose-Examples/watchers/)
 
 [![Maintainer](https://img.shields.io/badge/maintainer-LRVT-orange)](https://github.com/l4rm4nd)
+[![GitHub contributors](https://img.shields.io/github/contributors/Haxxnet/Compose-Examples.svg)](https://GitHub.com/Haxxnet/Compose-Examples/graphs/contributors/)
 
 # Compose-Examples
 

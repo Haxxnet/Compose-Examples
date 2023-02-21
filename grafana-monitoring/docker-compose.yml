@@ -87,8 +87,8 @@ services:
     #  - GF_SERVER_ROOT_URL=https://grafana.example.com # optional
     volumes:
       - /mnt/docker-volumes/grafana:/var/lib/grafana
-    #ports:
-    #  - 3000:3000
+    ports:
+      - 3000:3000
     networks:
       - monitoring_default
     #labels:

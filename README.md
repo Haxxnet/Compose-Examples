@@ -1,4 +1,17 @@
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![GitLab last commit](https://img.shields.io/github/last-commit/Haxxnet/Compose-Examples.svg)](https://GitHub.com/Haxxnet/Compose-Examples/commits/)
+[![GitHub issues](https://img.shields.io/github/issues/Haxxnet/Compose-Examples.svg)](https://GitHub.com/Haxxnet/Compose-Examples/issues/)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed/Haxxnet/Compose-Examples.svg)](https://GitHub.com/Naereen/Haxxnet/Compose-Examples/issues?q=is%3Aissue+is%3Aclosed)
+
+[![Docker](https://badgen.net/badge/icon/docker%20compose?icon=docker&label)](https://https://docker.com/)
+[![Reddit](https://badgen.net/badge/icon/r%2fselfhosted?icon=reddit&label&color=red)](https://reddit.com)
+[![ForTheBadge makes-people-smile](http://ForTheBadge.com/images/badges/makes-people-smile.svg)](http://ForTheBadge.com)
+[![GitHub stars](https://img.shields.io/github/stars/Haxxnet/Compose-Examples.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/Haxxnet/Compose-Examples/stargazers/)
+[![GitHub forks](https://img.shields.io/github/forks/Haxxnet/Compose-Examples.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/Haxxnet/Compose-Examples/network/)
+[![GitHub watchers](https://img.shields.io/github/watchers/Haxxnet/Compose-Examples.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/Haxxnet/Compose-Examples/watchers/)
+
 # Compose-Examples
+
 Various Docker Compose examples of selfhosted projects.
 
 - Volume bind mounts are assumed to be located at `/mnt/docker-volumes/<container-name>/`

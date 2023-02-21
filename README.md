@@ -4,7 +4,7 @@
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Haxxnet/Compose-Examples.svg)](https://GitHub.com/Naereen/Haxxnet/Compose-Examples/issues?q=is%3Aissue+is%3Aclosed)
 
 [![Docker](https://badgen.net/badge/icon/docker%20compose?icon=docker&label)](https://https://docker.com/)
-[![Reddit](https://badgen.net/badge/icon/r%2fselfhosted?icon=reddit&label&color=red)](https://reddit.com)<br>
+[![Reddit](https://badgen.net/badge/icon/r%2fselfhosted?icon=reddit&label&color=red)](https://www.reddit.com/r/selfhosted)<br>
 [![ForTheBadge makes-people-smile](http://ForTheBadge.com/images/badges/makes-people-smile.svg)](http://ForTheBadge.com)<br>
 [![GitHub stars](https://img.shields.io/github/stars/Haxxnet/Compose-Examples.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/Haxxnet/Compose-Examples/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/Haxxnet/Compose-Examples.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/Haxxnet/Compose-Examples/network/)

@@ -15,12 +15,13 @@
 
 # Compose-Examples
 
-Various Docker Compose examples of selfhosted projects.
+Various Docker Compose examples of selfhosted FOSS projects.
 
 - Volume bind mounts are assumed to be located at `/mnt/docker-volumes/<container-name>/`
-- Docker networks are not hardcoded and may have to be created or defined manually
-- Example config files are provided but not yet located in the correct volume bind mount path. Adjust!
-- Default credentials should be adjusted to your needs
+- Permissions must be set correctly by yourself
+- Docker networks are not pre-defined. Adjust to your preferences.
+- Example config files are usually provided but not yet located in the correct volume bind mount paths.
+- Default credentials should be adjusted to your needs. Read the comments!
 
 Otherwise, it should be a matter of:
 ````

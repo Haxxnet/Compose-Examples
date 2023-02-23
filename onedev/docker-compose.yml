@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  onedev:
+    image: 1dev/server:latest
+    container_name: onedev
+    hostname: onedev
+    restart: unless-stopped
+    ports:
+      - 6610:6610/tcp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /mnt/docker-volumes/onedev:/opt/onedev
+    environment:
+      - initial_user=1dev # only used for init, may change
+      - initial_password=onedev # only used for init, may change
+      - initial_email=onedev@example.com # only used for init, may change
+      - initial_server_url=http://localhost:6610 # adjust
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.onedev.rule=Host(`onedev.example.com`)
+    #  - traefik.http.services.onedev.loadbalancer.server.port=6010
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.onedev.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

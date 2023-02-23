@@ -72,7 +72,7 @@ docker compose up
 - [Gitlab Community](gitlab-ce)
 - [Code Server](code-server)
 - [Obsidian-Remote](obsidian-remote)
-- ~~[Onedev](https://github.com/theonedev/onedev)~~
+- [Onedev](onedev)
 
 ### Monitoring
 - [Watchtower](watchtower)

@@ -66,13 +66,14 @@ docker compose up
 - [Pihole](pihole)
 - [Cloudflare DDNS](cloudflare-ddns)
 
-### Repository Management & Coding
+### Repository Management, Coding and Automation
 - [Gitea](gitea)
 - [Drone](drone)
 - [Gitlab Community](gitlab-ce)
 - [Code Server](code-server)
 - [Obsidian-Remote](obsidian-remote)
 - [Onedev](onedev)
+- [N8N]{n8n}
 
 ### Monitoring
 - [Watchtower](watchtower)

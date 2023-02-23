@@ -37,130 +37,130 @@ docker compose up
 ## 🐳 Project List
 
 ### Dashboards
-- [Homepage](homepage)
-- [Homer](homer)
-- [Dashy](dashy)
-- [Homarr](homarr)
-- [Flame](flame)
-- [Heimdall](heimdall)
+- [Homepage](examples/homepage)
+- [Homer](examples/homer)
+- [Dashy](examples/dashy)
+- [Homarr](examples/homarr)
+- [Flame](examples/flame)
+- [Heimdall](examples/heimdall)
 
 ### Password Management
-- [Vaultwarden](vaultwarden)
-- [Bitwarden Unified](bitwarden-unified)
+- [Vaultwarden](examples/vaultwarden)
+- [Bitwarden Unified](examples/bitwarden-unified)
 
 ### Reverse Proxies
-- [Traefik](traefik)
-- [Nginx Proxy Manager](nginx-proxy-manager)
-- [Caddy](caddy)
+- [Traefik](examples/traefik)
+- [Nginx Proxy Manager](examples/nginx-proxy-manager)
+- [Caddy](examples/caddy)
 
 ### Virtual Private Network (VPN)
-- [wg-easy](wg-easy)
-- [Wireguard](wireguard)
-- ~~[Netbird](https://github.com/netbirdio/netbird)~~
-- ~~[Firezone](https://github.com/firezone/firezone)~~
+- [wg-easy](examples/wg-easy)
+- [Wireguard](examples/wireguard)
+- ~~[Netbird](examples/https://github.com/netbirdio/netbird)~~
+- ~~[Firezone](examples/https://github.com/firezone/firezone)~~
 
 ### Domain Name Service (DNS)
-- [Adguard Home](adguard-home)
-- [Adguard Home Sync](adguard-home-sync)
-- [Technitium DNS](technitium-dns)
-- [Pihole](pihole)
-- [Cloudflare DDNS](cloudflare-ddns)
+- [Adguard Home](examples/adguard-home)
+- [Adguard Home Sync](examples/adguard-home-sync)
+- [Technitium DNS](examples/technitium-dns)
+- [Pihole](examples/pihole)
+- [Cloudflare DDNS](examples/cloudflare-ddns)
 
 ### Repository Management, Coding and Automation
-- [Gitea](gitea)
-- [Drone](drone)
-- [Gitlab Community](gitlab-ce)
-- [Code Server](code-server)
-- [Obsidian-Remote](obsidian-remote)
-- [Onedev](onedev)
-- [N8N](n8n)
+- [Gitea](examples/gitea)
+- [Drone](examples/drone)
+- [Gitlab Community](examples/gitlab-ce)
+- [Code Server](examples/code-server)
+- [Obsidian-Remote](examples/obsidian-remote)
+- [Onedev](examples/onedev)
+- [N8N](examples/n8n)
 
 ### Monitoring
-- [Watchtower](watchtower)
-- [Portainer Enterprise](portainer-ee)
-- [Uptimekuma](uptimekuma)
-- [Changedetection](changedetection)
-- [Grafana Stack](grafana-monitoring)
-- [Speedtest-Tracker](speedtest-tracker)
-- [Openspeedtest](openspeedtest)
-- [Goaccess](nginx-proxy-manager-goaccess)
-- [WatchYourLAN](watchyourlan)
-- [Network-Multitool](network-multitool)
-- [Home Assistant](homeassistant)
+- [Watchtower](examples/watchtower)
+- [Portainer Enterprise](examples/portainer-ee)
+- [Uptimekuma](examples/uptimekuma)
+- [Changedetection](examples/changedetection)
+- [Grafana Stack](examples/grafana-monitoring)
+- [Speedtest-Tracker](examples/speedtest-tracker)
+- [Openspeedtest](examples/openspeedtest)
+- [Goaccess](examples/nginx-proxy-manager-goaccess)
+- [WatchYourLAN](examples/watchyourlan)
+- [Network-Multitool](examples/network-multitool)
+- [Home Assistant](examples/homeassistant)
 
 ### Recipe Managers
-- [Tandoor](tandoor)
-- [Mealie](mealie)
+- [Tandoor](examples/tandoor)
+- [Mealie](examples/mealie)
 
 ### Media Management
-- [Immich](immich)
-- [Photoprism](photoprism)
-- [Deemix](deemix)
-- [Papermerge](papermerge)
-- [Paperless NGX](paperless-ngx)
-- [Stash](stash)
+- [Immich](examples/immich)
+- [Photoprism](examples/photoprism)
+- [Deemix](examples/deemix)
+- [Papermerge](examples/papermerge)
+- [Paperless NGX](examples/paperless-ngx)
+- [Stash](examples/stash)
 
 ### Pastebins
-- [PrivateBin](privatebin)
-- [Hemmelig](hemmelig)
+- [PrivateBin](examples/privatebin)
+- [Hemmelig](examples/hemmelig)
 
 ### File Sharing
-- [Nextcloud](nextcloud)
-- [Seafile](seafile)
-- [SFTPGo](sftpgo)
-- [Gokapi](gokapi)
-- [Projectsend](projectsend)
-- [Pwndrop](pwndrop)
-- [Droppy](droppy)
+- [Nextcloud](examples/nextcloud)
+- [Seafile](examples/seafile)
+- [SFTPGo](examples/sftpgo)
+- [Gokapi](examples/gokapi)
+- [Projectsend](examples/projectsend)
+- [Pwndrop](examples/pwndrop)
+- [Droppy](examples/droppy)
 
 ### Publishing, Writing, Blogging, Hosting
-- [Ghost](ghost)
-- [WordPress](wordpress)
-- [Nginx + PHP](nginx-php)
-- [Overleaf](overleaf)
-- [Answer](answer)
+- [Ghost](examples/ghost)
+- [WordPress](examples/wordpress)
+- [Nginx + PHP](examples/nginx-php)
+- [Overleaf](examples/overleaf)
+- [Answer](examples/answer)
 
 ### Analytics
-- [Matomo](matomo)
-- [Plausible](plausible)
+- [Matomo](examples/matomo)
+- [Plausible](examples/plausible)
 
 ### Security & Privacy
-- [Nessus](nessus)
-- [Greenbone](greenbone)
-- [SonarQube](sonarqube)
-- [Fail2ban](fail2ban)
-- [Tor-Browser](tor-browser)
+- [Nessus](examples/nessus)
+- [Greenbone](examples/greenbone)
+- [SonarQube](examples/sonarqube)
+- [Fail2ban](examples/fail2ban)
+- [Tor-Browser](examples/tor-browser)
 
 ### Internet of Things / Smart Home
-- [Home Assistant](homeassistant)
+- [Home Assistant](examples/homeassistant)
 
 ### Asset Management
-- [Domainmod](domainmod)
-- [Snipe-IT](snipe-it)
+- [Domainmod](examples/domainmod)
+- [Snipe-IT](examples/snipe-it)
 
 ### Backups
-- [Duplicati](duplicati)
-- [Duplicacy](duplicacy)
+- [Duplicati](examples/duplicati)
+- [Duplicacy](examples/duplicacy)
 
 ### Wiki & Knowledge Base
-- [Bookstack](bookstack)
-- [Wiki.js](wikijs)
-- [Answer](answer)
-- [Obsidian-Remote](obsidian-remote)
+- [Bookstack](examples/bookstack)
+- [Wiki.js](examples/wikijs)
+- [Answer](examples/answer)
+- [Obsidian-Remote](examples/obsidian-remote)
 
 ### Finance
-- [TRSync](trsync)
-- [Money-Balancer](money-balancer)
-- [Firefly III](firefly-iii)
+- [TRSync](examples/trsync)
+- [Money-Balancer](examples/money-balancer)
+- [Firefly III](examples/firefly-iii)
 
 ### Communication and Social
-- [Mirotalk WebRTC](mirotalk)
-- [Rocket.Chat](rocketchat)
-- [Answer](answer)
-- [Excalidraw](excalidraw)
+- [Mirotalk WebRTC](examples/mirotalk)
+- [Rocket.Chat](examples/rocketchat)
+- [Answer](examples/answer)
+- [Excalidraw](examples/excalidraw)
 
 ### Project Management
-- [JetBrains YouTrack](youtrack)
+- [JetBrains YouTrack](examples/youtrack)
 
 ## Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)

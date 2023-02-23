@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/linuxserver/docker-bookstack
+- https://github.com/linuxserver/docker-bookstack

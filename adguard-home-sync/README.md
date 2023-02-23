@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/bakito/adguardhome-sync
+- https://github.com/bakito/adguardhome-sync

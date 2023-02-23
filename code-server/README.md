@@ -1,5 +1,3 @@
-# Reference
+# References
 
-https://github.com/linuxserver/docker-code-server
-
-
+- https://github.com/linuxserver/docker-code-server

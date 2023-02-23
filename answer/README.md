@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/answerdev/answer
+- https://github.com/answerdev/answer

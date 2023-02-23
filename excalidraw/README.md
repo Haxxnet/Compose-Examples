@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/excalidraw/excalidraw
+- https://github.com/excalidraw/excalidraw

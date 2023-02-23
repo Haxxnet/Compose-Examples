@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/linuxserver/docker-changedetection.io
+- https://github.com/linuxserver/docker-changedetection.io

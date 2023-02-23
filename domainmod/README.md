@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/domainmod/domainmod
+- https://github.com/domainmod/domainmod

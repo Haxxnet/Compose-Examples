@@ -1,3 +1,3 @@
 # References
 
-https://github.com/caddyserver/caddy
+- https://github.com/caddyserver/caddy

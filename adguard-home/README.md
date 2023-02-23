@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/AdguardTeam/AdGuardHome
+- https://github.com/AdguardTeam/AdGuardHome

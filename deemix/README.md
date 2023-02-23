@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://gitlab.com/Bockiii/deemix-docker
+- https://gitlab.com/Bockiii/deemix-docker

@@ -37,7 +37,7 @@ docker compose up
 ## 🐳 Project List
 
 ### Dashboards
-- [Homepage](examples/homepage) A highly customizable homepage (or startpage / application dashboard) with Docker and service API integrations.
+- [Homepage](examples/homepage) - A highly customizable homepage (or startpage / application dashboard) with Docker and service API integrations.
 - [Homer](examples/homer) - A dead simple static homepage to expose your server services, with an easy yaml configuration and connectivity check.
 - [Dashy](examples/dashy) - Feature-rich homepage for your homelab, with easy YAML configuration.
 - [Homarr](examples/homarr) - A sleek, modern dashboard that puts all of your apps and services at your fingertips.

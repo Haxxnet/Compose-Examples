@@ -98,6 +98,7 @@ docker compose up
 - [Deemix](deemix)
 - [Papermerge](papermerge)
 - [Paperless NGX](paperless-ngx)
+- [Stash](stash)
 
 ### Pastebins
 - [PrivateBin](privatebin)
@@ -161,7 +162,5 @@ docker compose up
 ### Project Management
 - [JetBrains YouTrack](youtrack)
 
-
 ## Star History
-
 [![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)

@@ -1,0 +1,45 @@
+# APPNICENAME=Stash
+version: '3.4'
+
+services:
+  stash:
+    image: stashapp/stash:latest
+    container_name: stash
+    hostname: stash
+    restart: unless-stopped
+    ## the container's port must be the same with the STASH_PORT in the environment section
+    ports:
+      - "9999:9999"
+    ## If you intend to use stash's DLNA functionality uncomment the below network mode and comment out the above ports section
+    # network_mode: host
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "10"
+        max-size: "2m"
+    environment:
+      - STASH_STASH=/data/
+      - STASH_GENERATED=/generated/
+      - STASH_METADATA=/metadata/
+      - STASH_CACHE=/cache/
+      ## Adjust below to change default port (9999)
+      - STASH_PORT=9999
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      ## Keep configs, scrapers, and plugins here.
+      - /mnt/docker-volumes/stash/config:/root/.stash
+      ## Point this at your collection.
+      - /mnt/docker-volumes/stash/data:/data
+      ## This is where your stash's metadata lives
+      - /mnt/docker-volumes/stash/metadata:/metadata
+      ## Any other cache content.
+      - /mnt/docker-volumes/stash/cache:/cache
+      ## Where to store generated content (screenshots,previews,transcodes,sprites)
+      - /mnt/docker-volumes/stash/generated:/generated
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.stash.rule=Host(`stash.example.com`)
+    #  - traefik.http.services.stash.loadbalancer.server.port=9999
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.stash.middlewares=local-ipwhitelist@file,basic-auth@file

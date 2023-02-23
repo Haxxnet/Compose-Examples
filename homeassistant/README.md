@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/linuxserver/docker-homeassistant
+- https://github.com/linuxserver/docker-homeassistant

@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/TryGhost/Ghost
+- https://github.com/TryGhost/Ghost

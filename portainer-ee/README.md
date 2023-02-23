@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/portainer/portainer
+- https://github.com/portainer/portainer

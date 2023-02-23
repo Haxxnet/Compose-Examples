@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/linuxserver/Heimdall
+- https://github.com/linuxserver/Heimdall

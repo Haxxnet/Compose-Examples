@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://hub.docker.com/r/securecompliance/gvm
+- https://hub.docker.com/r/securecompliance/gvm

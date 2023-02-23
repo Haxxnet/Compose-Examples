@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/overleaf/overleaf
+- https://github.com/overleaf/overleaf

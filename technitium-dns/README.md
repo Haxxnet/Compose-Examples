@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/TechnitiumSoftware/DnsServer
+- https://github.com/TechnitiumSoftware/DnsServer

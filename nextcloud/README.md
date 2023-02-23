@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://hub.docker.com/r/linuxserver/nextcloud
+- https://hub.docker.com/r/linuxserver/nextcloud

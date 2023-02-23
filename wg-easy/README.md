@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/WeeJeWel/wg-easy
+- https://github.com/WeeJeWel/wg-easy

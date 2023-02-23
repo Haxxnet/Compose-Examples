@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/containrrr/watchtower
+- https://github.com/containrrr/watchtower

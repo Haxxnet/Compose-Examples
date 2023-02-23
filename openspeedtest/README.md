@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/openspeedtest/Speed-Test
+- https://github.com/openspeedtest/Speed-Test

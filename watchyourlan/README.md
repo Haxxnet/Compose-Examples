@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/aceberg/WatchYourLAN
+- https://github.com/aceberg/WatchYourLAN

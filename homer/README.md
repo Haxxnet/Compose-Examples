@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/bastienwirtz/homer
+- https://github.com/bastienwirtz/homer

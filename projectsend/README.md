@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://hub.docker.com/r/linuxserver/projectsend
+- https://hub.docker.com/r/linuxserver/projectsend

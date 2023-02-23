@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/ciur/papermerge
+- https://github.com/ciur/papermerge

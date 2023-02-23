@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/PrivateBin/PrivateBin
+- https://github.com/PrivateBin/PrivateBin

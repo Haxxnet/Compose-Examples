@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/pawelmalak/flame
+- https://github.com/pawelmalak/flame

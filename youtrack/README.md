@@ -1,6 +1,6 @@
 # References
 
-https://hub.docker.com/r/jetbrains/youtrack/
+- https://hub.docker.com/r/jetbrains/youtrack/
 
 # Note
 

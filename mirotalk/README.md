@@ -1,6 +1,6 @@
 # References
 
-https://github.com/miroslavpejic85/mirotalk
+- https://github.com/miroslavpejic85/mirotalk
 
 # Notes
 

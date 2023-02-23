@@ -1,4 +1,4 @@
-# Reference
+# References
 
 - https://github.com/crazy-max/docker-fail2ban
 - https://blog.lrvt.de/configuring-fail2ban-with-traefik/

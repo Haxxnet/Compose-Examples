@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/immich-app/immich
+- https://github.com/immich-app/immich

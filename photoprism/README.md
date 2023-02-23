@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/photoprism/photoprism
+- https://github.com/photoprism/photoprism

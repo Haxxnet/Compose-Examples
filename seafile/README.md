@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/haiwen/seafile-docker
+- https://github.com/haiwen/seafile-docker

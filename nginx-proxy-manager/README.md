@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/NginxProxyManager/nginx-proxy-manager
+- https://github.com/NginxProxyManager/nginx-proxy-manager

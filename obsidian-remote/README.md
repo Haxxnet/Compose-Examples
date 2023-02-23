@@ -1,3 +1,3 @@
 # References
 
-https://github.com/sytone/obsidian-remote
+- https://github.com/sytone/obsidian-remote

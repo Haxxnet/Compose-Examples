@@ -1,4 +1,4 @@
-# Reference
+# References
 
 - https://github.com/traefik/traefik
 - https://blog.lrvt.de/nginx-proxy-manager-versus-traefik/

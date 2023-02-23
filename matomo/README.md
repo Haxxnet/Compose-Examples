@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/matomo-org/matomo
+- https://github.com/matomo-org/matomo

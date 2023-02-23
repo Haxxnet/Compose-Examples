@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/hay-kot/mealie
+- https://github.com/hay-kot/mealie

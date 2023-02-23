@@ -1,3 +1,3 @@
 # References
 
-https://hub.docker.com/r/linuxserver/paperless-ngx
+- https://hub.docker.com/r/linuxserver/paperless-ngx

@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager
+- https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager

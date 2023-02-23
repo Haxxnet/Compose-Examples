@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/benphelps/homepage
+- https://github.com/benphelps/homepage

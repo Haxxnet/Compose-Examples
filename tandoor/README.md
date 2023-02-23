@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/TandoorRecipes/recipes
+- https://github.com/TandoorRecipes/recipes

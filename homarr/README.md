@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/ajnart/homarr
+- https://github.com/ajnart/homarr

@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/duplicati/duplicati
+- https://github.com/duplicati/duplicati

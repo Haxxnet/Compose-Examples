@@ -1,3 +1,3 @@
-# Reference
+# References
 
-https://github.com/henrywhitaker3/Speedtest-Tracker
+- https://github.com/henrywhitaker3/Speedtest-Tracker

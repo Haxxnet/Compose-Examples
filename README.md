@@ -56,8 +56,8 @@ docker compose up
 ### Virtual Private Network (VPN)
 - [wg-easy](examples/wg-easy) - The easiest way to install & manage WireGuard on any Linux host. All-in-one deployment of a WireGuard VPN network service + web management UI.
 - [WireGuard](examples/wireguard) - WireGuard by Linuxserver.io is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography.
-- ~~[Netbird](examples/https://github.com/netbirdio/netbird)~~ - Quickly connect your computers, servers, cloud instances, and IoT devices into a secure private network. No configuration required.
-- ~~[Firezone](examples/https://github.com/firezone/firezone)~~ - Self-hosted secure remote access gateway that supports the WireGuard protocol. It offers a Web GUI, 1-line install script, multi-factor auth (MFA), and SSO.
+- ~~[Netbird](https://github.com/netbirdio/netbird)~~ - Quickly connect your computers, servers, cloud instances, and IoT devices into a secure private network. No configuration required.
+- ~~[Firezone](https://github.com/firezone/firezone)~~ - Self-hosted secure remote access gateway that supports the WireGuard protocol. It offers a Web GUI, 1-line install script, multi-factor auth (MFA), and SSO.
 
 ### Domain Name Service (DNS)
 - [AdGuard Home](examples/adguard-home) - AdGuard Home is a network-wide software for blocking ads and tracking. 

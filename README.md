@@ -73,11 +73,11 @@ docker compose up
 - [Code-Server](examples/code-server) - VS Code in the browser, hosted on a remote server. 
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
 - [Onedev](examples/onedev) - Self-hosted Git Server with CI/CD and Kanban.
-- [N8N](examples/n8n) - Free and source-available fair-code licensed workflow automation tool. Easily automate tasks across different services.
+- [n8n](examples/n8n) - Free and source-available fair-code licensed workflow automation tool. Easily automate tasks across different services.
 
 ### Monitoring
 - [Watchtower](examples/watchtower) - A container-based solution for automating Docker container base image updates.
-- [Portainer Enterprise](examples/portainer-ee) - Portainer is a lightweight management UI which allows you to easily manage your different Docker environments (Docker hosts or Swarm clusters).
+- [Portainer](examples/portainer-ee) - Portainer is a lightweight management UI which allows you to easily manage your different Docker environments (Docker hosts or Swarm clusters).
 - [Uptimekuma](examples/uptimekuma) - Uptime Kuma is an easy-to-use self-hosted monitoring tool.
 - [Changedetection](examples/changedetection) - Self-hosted tool for staying up-to-date with web-site content changes.
 - [Grafana+Loki+Promtail+InfluxDB+Telegraf](examples/grafana-monitoring) - Grafana is the open source analytics & monitoring solution for every database. Combined with other open-source tools like Loki, Promtail, InfluxDB and Telegraf, monitoring data can be aggregated, normalized, filtered, parsed and finally visualized within a web dashboard.

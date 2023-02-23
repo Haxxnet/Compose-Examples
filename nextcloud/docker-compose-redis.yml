@@ -17,15 +17,11 @@ services:
       - MYSQL_USER=nextcloud #SQL Nutzername
       - MYSQL_INITDB_SKIP_TZINFO=1
       - MARIADB_AUTO_UPGRADE=1
-    networks:
-      - proxy
   
   nextcloud-redis:
     image: redis:alpine
     container_name: nextcloud-redis
     hostname: nextcloud-redis
-    networks:
-        - proxy
     restart: unless-stopped
     command: redis-server --requirepass nextcloud # Redis Passwort eingeben
   
@@ -37,8 +33,6 @@ services:
     restart: unless-stopped
     ports:
       - 8080:80
-    networks:
-      - proxy
     depends_on:
       - nextcloud-db
       - nextcloud-redis

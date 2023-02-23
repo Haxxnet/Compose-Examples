@@ -73,7 +73,7 @@ docker compose up
 - [Code Server](examples/code-server)
 - [Obsidian-Remote](examples/obsidian-remote)
 - [Onedev](examples/onedev)
-- [N8N](examples/n8n)
+- [n8n](examples/n8n)
 
 ### Monitoring
 - [Watchtower](examples/watchtower)

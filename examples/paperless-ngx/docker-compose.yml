@@ -8,10 +8,18 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
-      - REDIS_URL= #optional
+      #- PAPERLESS_URL=https://docs.example.com # uncomment and adjust if behind reverse proxy
+      #- REDIS_URL= #optional
     volumes:
       - /mnt/docker-volumes/paperless-ngx/config:/config
       - /mnt/docker-volumes/paperless-ngx/data:/data
     ports:
       - 8000:8000
     restart: unless-stopped
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.paperless-ngx.rule=Host(`docs.example.com`)
+    #  - traefik.http.services.paperless-ngx.loadbalancer.server.port=8000
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.paperless-ngx.middlewares=local-ipwhitelist@file    

@@ -23,7 +23,7 @@ services:
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.onedev.rule=Host(`onedev.example.com`)
-    #  - traefik.http.services.onedev.loadbalancer.server.port=6010
+    #  - traefik.http.services.onedev.loadbalancer.server.port=6610
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.onedev.middlewares=local-ipwhitelist@file,basic-auth@file

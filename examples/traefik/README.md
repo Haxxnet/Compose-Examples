@@ -8,7 +8,7 @@
 # Notes
 
 1. Put the provided `traefik.yml` (static) and `fileConfig.yml` (dynamic) configuration files to your volume bind mount (here `/mnt/docker-volumes/traefik`). 
-2. Add your Cloudflare API token as environment variable to the `docker-compose.yml` file
+2. Add your Cloudflare API token as environment variable to the `docker-compose.yml` file and define your Cloudflare email address in the `traefik.yml` file.
 3. Adjust the static and dynamic configuration files to your needs. Especially replace the `example.com` strings with your domain name.
 
 Optionally configure logrotation on your Docker host server if you've enabled Traefik access logs. See `logrotate_example.txt` as example.

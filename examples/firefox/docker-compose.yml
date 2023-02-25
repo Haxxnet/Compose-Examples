@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+  firefox:
+    image: lscr.io/linuxserver/firefox:latest
+    container_name: firefox
+    hostname: firefox
+    restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined # optional
+    environment:
+      - PUID=1000 # optional
+      - PGID=1000 # optional
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/firefox/config:/config
+    ports:
+      - 3210:3000
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.firefox.rule=Host(`firefox.example.com`)
+    #  - traefik.http.services.firefox.loadbalancer.server.port=8080
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.firefox.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

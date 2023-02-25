@@ -13,7 +13,7 @@ services:
       #- /etc/localtime:/etc/localtime:ro
       #- /etc/timezone:/etc/timezone:ro
       #- /var/run/docker.sock:/var/run/docker.sock:ro
-      - /mnt/docker-volumes/example:/opt/example/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/example:/opt/example/data
     environment:
       - PUID=1000
       - PGID=1000

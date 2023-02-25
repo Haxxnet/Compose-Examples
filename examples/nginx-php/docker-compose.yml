@@ -5,9 +5,9 @@ services:
     image: nginx:latest
     hostname: nginx
     volumes:
-      - /mnt/docker-volumes/nginx/www-data:/var/www
-      - /mnt/docker-volumes/nginx/nginx-conf:/etc/nginx/conf.d
-      - /mnt/docker-volumes/nginx/logs:/var/log/nginx
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/nginx-conf:/etc/nginx/conf.d
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/logs:/var/log/nginx
     links:
         - php
     container_name: nginx
@@ -23,7 +23,7 @@ services:
     image: php:8-fpm-alpine
     hostname: php
     volumes:
-      - /mnt/docker-volumes/nginx/www-data:/var/www
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www
     container_name: php
     restart: unless-stopped
     working_dir: /var/www

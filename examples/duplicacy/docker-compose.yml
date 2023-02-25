@@ -14,8 +14,8 @@ services:
     ports:
       - "3875:3875/tcp"
     volumes:
-      - /mnt/docker-volumes/duplicacy-web/config:/config
-      - /mnt/docker-volumes/duplicacy-web/logs:/logs
-      - /mnt/docker-volumes/duplicacy-web/cache:/cache
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicacy-web/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicacy-web/logs:/logs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicacy-web/cache:/cache
       - /path/to/my/data/dir1:/data/dir1:ro # 1st path to your data for backup
       - /path/to/my/data/dir2:/data/dir2:ro # 2nd path to your data for backup

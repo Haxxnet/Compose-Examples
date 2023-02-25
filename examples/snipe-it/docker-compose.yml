@@ -15,7 +15,7 @@ services:
       - MYSQL_PASSWORD=VeryStrongDatabasePassword
       - TZ=Europe/Berlin
     volumes:
-      - /mnt/docker-volumes/snipeit/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/snipeit/config:/config
     ports:
       - 8080:80
     restart: unless-stopped
@@ -32,5 +32,5 @@ services:
       - MYSQL_USER=snipeit
       - MYSQL_PASSWORD=VeryStrongDatabasePassword # change this
     volumes:
-      - /mnt/docker-volumes/snipeit/mariadb:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/snipeit/mariadb:/config
     restart: unless-stopped

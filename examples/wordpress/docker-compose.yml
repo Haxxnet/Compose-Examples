@@ -9,7 +9,7 @@ services:
     #networks:
     #  - proxy
     volumes:
-      - /mnt/docker-volumes/wordpress/mysql:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wordpress/mysql:/var/lib/mysql
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=wordpressroot
@@ -22,7 +22,7 @@ services:
     container_name: wordpress
     hostname: wordpress
     volumes:
-      - /mnt/docker-volumes/wordpress/data:/var/www/html
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wordpress/data:/var/www/html
     ports:
       - 80:80
     #networks:

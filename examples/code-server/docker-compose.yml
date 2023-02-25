@@ -14,7 +14,7 @@ services:
       - PROXY_DOMAIN=vscode.example.com #optional
       - DEFAULT_WORKSPACE=/config/workspace #optional
     volumes:
-      - /mnt/docker-volumes/vscode/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vscode/config:/config
     ports:
       - 8443:8443
     restart: unless-stopped

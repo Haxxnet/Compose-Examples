@@ -17,7 +17,7 @@ services:
       - 51821:51821/tcp #WEBGUI
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/wg-easy:/etc/wireguard
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wg-easy:/etc/wireguard
 #    labels:
 #      - traefik.enable=true
 #      - traefik.http.routers.wireguard.rule=Host(`vpn.example.com`)

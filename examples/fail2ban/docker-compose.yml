@@ -13,6 +13,6 @@ services:
     network_mode: host
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/fail2Ban/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/fail2Ban/data:/data
       - /path/to/my/logs/to/monitor:/var/log
-      #- /mnt/docker-volumes/traefik/logs:/var/log/traefik
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/var/log/traefik

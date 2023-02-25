@@ -10,8 +10,8 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /mnt/docker-volumes/homepage/config:/app/config # Make sure your local config directory exists
-      - /mnt/docker-volumes/homepage/icons:/app/public/icons
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homepage/config:/app/config # Make sure your local config directory exists
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homepage/icons:/app/public/icons
     #  - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations
     #labels:
     #  - traefik.enable=true

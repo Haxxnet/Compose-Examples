@@ -7,6 +7,6 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - /mnt/docker-volumes/money-balancer/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/money-balancer/data:/data
     environment:
       - JWT_SECRET=ThisIsAVerySecretString # change this

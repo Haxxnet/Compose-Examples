@@ -6,7 +6,7 @@ services:
     container_name: firefly
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/firefly/upload:/var/www/html/storage/upload
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/firefly/upload:/var/www/html/storage/upload
     env_file: .env
     ports:
       - 80:8080
@@ -23,4 +23,4 @@ services:
       - MYSQL_PASSWORD=MySecretDatabasePassword # if changed --> also update in .env file
       - MYSQL_DATABASE=firefly
     volumes:
-      - /mnt/docker-volumes/firefly/mysql:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/firefly/mysql:/var/lib/mysql

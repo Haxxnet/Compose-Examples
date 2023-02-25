@@ -5,7 +5,7 @@ services:
     image: b4bz/homer:latest
     container_name: homer
     volumes:
-      - /mnt/docker-volumes/homer:/www/assets
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homer:/www/assets
     restart: unless-stopped
     environment:
       - UID=1000

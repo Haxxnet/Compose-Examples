@@ -8,7 +8,7 @@ services:
       - MYSQL_LOG_CONSOLE=true
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/seafile/db:/var/lib/mysql  # Requested, specifies the path to MySQL data persistent store.
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/seafile/db:/var/lib/mysql  # Requested, specifies the path to MySQL data persistent store.
 
   memcached:
     image: memcached:1.6
@@ -24,7 +24,7 @@ services:
       - "7780:80" # HTTP
       - "7443:443"  # HTTPS
     volumes:
-      - /mnt/docker-volumes/seafile/data:/shared   # Requested, specifies the path to Seafile data persistent store.
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/seafile/data:/shared   # Requested, specifies the path to Seafile data persistent store.
     environment:
       - DB_HOST=db
       - DB_ROOT_PASSWD=db_dev  # Requested, the value shuold be root's password of MySQL service.

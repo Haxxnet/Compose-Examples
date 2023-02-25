@@ -12,9 +12,9 @@ services:
       - 8434:443 # HTTPS
       - 2222:22 # SSH
     volumes:
-      - /mnt/docker-volumes/gitlab/config:/etc/gitlab
-      - /mnt/docker-volumes/gitlab/logs:/var/log/gitlab
-      - /mnt/docker-volumes/gitlab/data:/var/opt/gitlab
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitlab/config:/etc/gitlab
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitlab/logs:/var/log/gitlab
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitlab/data:/var/opt/gitlab
   
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
@@ -24,4 +24,4 @@ services:
       - gitlab-ce
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/docker-volumes/gitlab/runner:/etc/gitlab-runner
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitlab/runner:/etc/gitlab-runner

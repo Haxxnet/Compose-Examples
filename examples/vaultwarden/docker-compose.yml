@@ -37,8 +37,8 @@ services:
     #  - traefik.http.services.vaultwarden-ws.loadbalancer.server.port=3012
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/vaultwarden/data:/data
-      - /mnt/docker-volumes/vaultwarden/logs:/data/logs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/logs:/data/logs
 
   # this service will backup your vaultwarden instance corretly
   # see https://github.com/Bruceforce/vaultwarden-backup for more information
@@ -53,8 +53,8 @@ services:
     #labels:
     #  com.centurylinklabs.watchtower.monitor-only: true
     volumes:
-      - /mnt/docker-volumes/vaultwarden/data:/data/
-      - /mnt/docker-volumes/vaultwarden/backup:/myBackup
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/data:/data/
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/backup:/myBackup
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:

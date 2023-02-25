@@ -20,8 +20,8 @@ services:
       interval: 30s
       timeout: 3s
     volumes:
-      - /mnt/docker-volumes/nginx-proxy-manager/data:/data
-      - /mnt/docker-volumes/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx-proxy-manager/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
 networks:
   npm_proxy:

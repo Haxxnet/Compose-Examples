@@ -8,7 +8,7 @@ services:
     ports:
       - 8080:2368
     volumes:
-      - /mnt/docker-volumes/ghost/content:/var/lib/ghost/content
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/content:/var/lib/ghost/content
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
@@ -37,7 +37,7 @@ services:
     container_name: ghost_db
     restart: always
     volumes:
-      - /mnt/docker-volumes/ghost/mysql:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/mysql:/var/lib/mysql
     #ports:
     #  - "13928:3306"
     environment:

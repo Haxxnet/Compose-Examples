@@ -18,4 +18,4 @@ services:
       - PGID=1000
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/adguard-home-sync:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/adguard-home-sync:/config

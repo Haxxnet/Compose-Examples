@@ -12,8 +12,8 @@ services:
     ports:
       - 3000:3000 # WEB UI
     volumes:
-      - /mnt/docker-volumes/wikijs/config:/config
-      - /mnt/docker-volumes/wikijs/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wikijs/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wikijs/data:/data
     links:
       - db
       
@@ -26,4 +26,4 @@ services:
     image: postgres:13.4-bullseye
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/wikijs/database:/var/lib/postgresql/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wikijs/database:/var/lib/postgresql/data

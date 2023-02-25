@@ -31,7 +31,7 @@ services:
       # - DNS_SERVER_FORWARDERS=1.1.1.1, 8.8.8.8 #Comma separated list of forwarder addresses.
       # - DNS_SERVER_FORWARDER_PROTOCOL=Tcp #Forwarder protocol options: Udp, Tcp, Tls, Https, HttpsJson.
     volumes:
-      - /mnt/docker-volumes/technitium/config:/etc/dns/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/technitium/config:/etc/dns/config
     restart: unless-stopped
     labels:
       - traefik.enable=true

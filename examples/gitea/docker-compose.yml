@@ -13,7 +13,7 @@ services:
     image: gitea/gitea:latest
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/gitea/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitea/data:/data
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.gitea.rule=Host(`git.example.com`)

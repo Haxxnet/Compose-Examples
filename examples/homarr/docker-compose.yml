@@ -8,7 +8,7 @@ services:
       - PASSWORD=MySecureLoginPassword
       - TZ="Europe/Berlin"
     volumes:
-      - /mnt/docker-volumes/homarr/configs:/app/data/configs
-      #- /mnt/docker-volumes/homarr/icons:/app/public/icons # optional for custom icons
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homarr/configs:/app/data/configs
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homarr/icons:/app/public/icons # optional for custom icons
     ports:
       - '7575:7575'

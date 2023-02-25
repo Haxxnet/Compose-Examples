@@ -14,7 +14,7 @@ services:
       - DB_PASS=USERPW1
       - DB_DATABASE=bookstackapp
     volumes:
-      - /mnt/docker-volumes/bookstack/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bookstack/config:/config
     restart: unless-stopped
     ports:
       - 8099:80
@@ -34,5 +34,5 @@ services:
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=USERPW1
     volumes:
-      - /mnt/docker-volumes/bookstack/mariadb-config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bookstack/mariadb-config:/config
     restart: unless-stopped

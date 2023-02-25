@@ -8,5 +8,5 @@ services:
     ports:
       - 53842:53842
     volumes:
-      - /mnt/docker-volumes/gokapi/data:/app/data
-      - /mnt/docker-volumes/gokapi/config:/app/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gokapi/data:/app/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gokapi/config:/app/config

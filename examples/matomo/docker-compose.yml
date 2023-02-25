@@ -7,8 +7,8 @@ services:
     ports:
       - 8099:80
     volumes:
-      - /mnt/docker-volumes/matomo/apache/apache2.conf:/etc/apache2/apache2.conf:ro
-      - /mnt/docker-volumes/matomo/html:/var/www/html
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/matomo/apache/apache2.conf:/etc/apache2/apache2.conf:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/matomo/html:/var/www/html
     environment:
       - MATOMO_DATABASE_HOST=matomo_db
       #- VIRTUAL_HOST=matomo.example.com
@@ -38,4 +38,4 @@ services:
       - ./db.env
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/matomo/database:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/matomo/database:/var/lib/mysql

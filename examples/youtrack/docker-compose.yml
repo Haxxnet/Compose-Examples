@@ -10,10 +10,10 @@ services:
     ports:
       - 8080:8080 # web ui
     volumes:
-      - /mnt/docker-volumes/youtrack/data:/opt/youtrack/data
-      - /mnt/docker-volumes/youtrack/conf:/opt/youtrack/conf
-      - /mnt/docker-volumes/youtrack/logs:/opt/youtrack/logs
-      - /mnt/docker-volumes/youtrack/backups:/opt/youtrack/backups
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/data:/opt/youtrack/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/conf:/opt/youtrack/conf
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/logs:/opt/youtrack/logs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/backups:/opt/youtrack/backups
     deploy:
       placement:
         constraints:

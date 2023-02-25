@@ -23,6 +23,6 @@ services:
     #  - traefik.http.routers.duplicati.middlewares=local-ipwhitelist@file
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/duplicati/backups:/backups
-      - /mnt/docker-volumes/duplicati/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/backups:/backups
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/config:/config
       - /path/to/my/data/to/backup:/source # change this

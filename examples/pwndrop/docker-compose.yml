@@ -12,4 +12,4 @@ services:
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /mnt/docker-volumes/pwndrop/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/pwndrop/config:/config

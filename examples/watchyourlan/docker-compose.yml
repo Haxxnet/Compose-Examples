@@ -6,7 +6,7 @@ services:
     network_mode: "host"
     restart: unless-stopped
     volumes:
-    - /mnt/docker-volumes/watchyourlan:/data
+    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/watchyourlan:/data
     environment:
       TZ: Europe/Berlin                 # required: needs your TZ for correct time
       IFACE: "ens18"                    # required: 1 or more interface

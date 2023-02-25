@@ -1,4 +1,3 @@
----
 version: "2.1"
 services:
   paperless-ngx:
@@ -11,8 +10,8 @@ services:
       #- PAPERLESS_URL=https://docs.example.com # uncomment and adjust if behind reverse proxy
       #- REDIS_URL= #optional
     volumes:
-      - /mnt/docker-volumes/paperless-ngx/config:/config
-      - /mnt/docker-volumes/paperless-ngx/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/data:/data
     ports:
       - 8000:8000
     restart: unless-stopped

@@ -11,6 +11,6 @@ services:
     image: linuxserver/papermerge:latest
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/papermerge/importer_dir:/mnt/media/importer_dir
-      - /mnt/docker-volumes/papermerge/config:/config
-      - /mnt/docker-volumes/papermerge/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/papermerge/importer_dir:/mnt/media/importer_dir
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/papermerge/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/papermerge/data:/data

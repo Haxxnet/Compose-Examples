@@ -5,7 +5,7 @@ services:
     hostname: hemmelig
     init: true
     volumes:
-      - /mnt/docker-volumes/hemmelig/files:/var/tmp/hemmelig/upload/files
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hemmelig/files:/var/tmp/hemmelig/upload/files
     environment:
       - SECRET_REDIS_HOST=hemmelig-redis  # Override this for your redis host address
       - SECRET_LOCAL_HOSTNAME=0.0.0.0     # The local hostname for the fastify instance
@@ -42,7 +42,7 @@ services:
     init: true
     # Enable to make redis data persistent
     volumes:
-      - /mnt/docker-volumes/hemmelig/redis/:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hemmelig/redis/:/data
     command: redis-server --appendonly yes
     restart: always
     stop_grace_period: 1m

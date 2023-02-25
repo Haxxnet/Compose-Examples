@@ -35,7 +35,7 @@ services:
     image: docker.io/bitnami/mongodb:${MONGODB_VERSION:-4.4}
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/rocketchat/mongodb:/bitnami/mongodb
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rocketchat/mongodb:/bitnami/mongodb
     environment:
       MONGODB_REPLICA_SET_MODE: primary
       MONGODB_REPLICA_SET_NAME: ${MONGODB_REPLICA_SET_NAME:-rs0}

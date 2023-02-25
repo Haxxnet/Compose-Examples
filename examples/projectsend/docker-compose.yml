@@ -9,8 +9,8 @@ services:
       - TZ=Europe/Berlin
       - MAX_UPLOAD=5000
     volumes:
-      - /mnt/docker-volumes/projectsend/config:/config
-      - /mnt/docker-volumes/projectsend/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/projectsend/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/projectsend/data:/data
     ports:
       - 8080:80 # WEB UI
     restart: unless-stopped
@@ -23,7 +23,7 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/projectsend/database:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/projectsend/database:/var/lib/mysql
     environment:
       # the projectsend setup ui will ask for a database hostname; specify "database", as this is the container hostname
       - MYSQL_DATABASE=projectsend # use this name during projectsend database setup

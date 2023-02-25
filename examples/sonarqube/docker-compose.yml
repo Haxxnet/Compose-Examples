@@ -11,9 +11,9 @@ services:
       - sonar.jdbc.password=sonar
       - sonar.search.javaAdditionalOpts=-Dbootstrap.system_call_filter=false
     volumes:
-      - /mnt/docker-volumes/sonarqube/logs:/opt/sonarqube/logs
-      - /mnt/docker-volumes/sonarqube/data:/opt/sonarqube/data
-      - /mnt/docker-volumes/sonarqube/extensions:/opt/sonarqube/extensions
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarqube/logs:/opt/sonarqube/logs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarqube/data:/opt/sonarqube/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarqube/extensions:/opt/sonarqube/extensions
 
   db:
     image: postgres:13.1

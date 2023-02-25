@@ -3,7 +3,7 @@ goaccess:
     container_name: goaccess
     restart: always
     volumes:
-        - /mnt/docker-volumes/nginx-proxy-manager/data/logs:/opt/log:ro
+        - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx-proxy-manager/data/logs:/opt/log:ro
     environment:
         - PUID=1000
         - PGID=1000

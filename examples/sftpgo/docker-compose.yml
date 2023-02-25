@@ -22,7 +22,7 @@ services:
       SFTPGO_COMMON_DEFENDER__THRESHOLD: 5  
       SFTPGO_COMMON_DEFENDER__OBSERVATION_TIME: 15
     volumes:
-      - /mnt/docker-volumes/sftpgo/data:/srv/sftpgo
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sftpgo/data:/srv/sftpgo
   mysql:
     image: mysql:latest
     restart: always
@@ -32,4 +32,4 @@ services:
       MYSQL_PASSWORD: sftpgo # please change
       MYSQL_ROOT_PASSWORD: MySecureRootDatabasePassword
     volumes:
-      - /mnt/docker-volumes/sftpgo/mysql:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sftpgo/mysql:/var/lib/mysql

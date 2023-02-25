@@ -6,7 +6,7 @@ services:
         ports:
             - 8765:80
         volumes:
-            - /mnt/docker-volumes/speedtest-tracker/config:/config
+            - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/speedtest-tracker/config:/config
         environment:
             - TZ=Europe/Berlin
             - PGID=1000

@@ -8,7 +8,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /mnt/docker-volumes/changedetection/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/changedetection/config:/config
     ports:
       - 5000:5000
     restart: unless-stopped

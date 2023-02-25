@@ -13,8 +13,8 @@ services:
       - 3000:3000 # WEB UI; 
     volumes:
       - .env:/src/.env:ro
-      - /mnt/docker-volumes/mirotalk/app:/src/app:ro
-      - /mnt/docker-volumes/mirotalk/public:/src/public:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/mirotalk/app:/src/app:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/mirotalk/public:/src/public:ro
     #labels:
       #- traefik.enable=true
       #- traefik.http.routers.mirotalk.rule=Host(`meet.example.com`) # pls adjust

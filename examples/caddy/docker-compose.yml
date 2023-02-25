@@ -10,6 +10,6 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /mnt/docker-volumes/caddy/CaddyFile:/etc/caddy/Caddyfile
-      - /mnt/docker-volumes/caddy/data:/data
-      - /mnt/docker-volumes/caddy/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/caddy/CaddyFile:/etc/caddy/Caddyfile
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/caddy/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/caddy/config:/config

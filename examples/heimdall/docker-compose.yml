@@ -13,4 +13,4 @@ services:
     image: linuxserver/heimdall:latest
     restart: unless-stopped
     volumes:
-      - /mnt/docker-volumes/heimdall:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/heimdall:/config

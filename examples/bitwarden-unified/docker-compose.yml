@@ -13,7 +13,7 @@ services:
     ports:
       - "8888:8080"
     volumes:
-      - /mnt/docker-volumes/bitwarden-unified/data:/etc/bitwarden
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bitwarden-unified/data:/etc/bitwarden
 
   db:
     environment:
@@ -25,4 +25,4 @@ services:
     container_name: bitwarden_unified_db
     restart: always
     volumes:
-      - /mnt/docker-volumes/bitwarden-unified/mariadb:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bitwarden-unified/mariadb:/var/lib/mysql

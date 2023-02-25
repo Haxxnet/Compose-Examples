@@ -9,7 +9,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - /mnt/docker-volumes/nextcloud/database:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/database:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=test #SQL root Passwort eingeben
       - MYSQL_PASSWORD=nextcloud #SQL Benutzer Passwort eingeben
@@ -44,8 +44,8 @@ services:
         REDIS_HOST: nextcloud-redis
         REDIS_HOST_PASSWORD: nextcloud # Redis Passwort von oben wieder eingeben
     volumes:
-      - /mnt/docker-volumes/nextcloud/data:/var/www/html/data
-      - /mnt/docker-volumes/nextcloud/app:/var/www/html
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/data:/var/www/html/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/app:/var/www/html
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.nextcloud.rule=(Host(`cloud.example.com`)) # pls change

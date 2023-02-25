@@ -8,7 +8,7 @@ services:
     dns:
       - 192.168.178.100 # specify your internal dns server for proper dns lookups; especially if you are using https and hostnames
     volumes:
-      - /mnt/docker-volumes/drone/data:/var/lib/drone
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/drone/data:/var/lib/drone
       #- /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - DRONE_DEBUG=true

@@ -3,9 +3,9 @@ services:
     gvm:
         image: securecompliance/gvm
         volumes:
-          - /mnt/docker-volumes/greenbone/database:/opt/database
-          - /mnt/docker-volumes/greenbone/gvm:/var/lib/gvm
-          - /mnt/docker-volumes/greenbone/plugins:/var/lib/openvas/plugins
+          - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/greenbone/database:/opt/database
+          - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/greenbone/gvm:/var/lib/gvm
+          - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/greenbone/plugins:/var/lib/openvas/plugins
         environment:
           - USERNAME="admin"
           - PASSWORD="admin"

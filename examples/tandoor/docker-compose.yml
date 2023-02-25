@@ -5,7 +5,7 @@ services:
     container_name: tandoor_db
     image: postgres:11-alpine
     volumes:
-      - /mnt/docker-volumes/tandoor/postgresql:/var/lib/postgresql/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/postgresql:/var/lib/postgresql/data
     env_file:
       - ./.env
 
@@ -18,9 +18,9 @@ services:
     env_file:
       - ./.env
     volumes:
-      - /mnt/docker-volumes/tandoor/staticfiles:/opt/recipes/staticfiles
-      - /mnt/docker-volumes/tandoor/nginx_config:/opt/recipes/nginx/conf.d
-      - /mnt/docker-volumes/tandoor/mediafiles:/opt/recipes/mediafiles
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/staticfiles:/opt/recipes/staticfiles
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/nginx_config:/opt/recipes/nginx/conf.d
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/mediafiles:/opt/recipes/mediafiles
     depends_on:
       - db_recipes
     labels:

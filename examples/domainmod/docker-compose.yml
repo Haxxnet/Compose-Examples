@@ -17,7 +17,7 @@ services:
       - DOMAINMOD_USER=domainmod
       - DOMAINMOD_PASSWORD=password1
     volumes:
-      - /mnt/docker-volumes/domainmod/app:/var/www/html
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/domainmod/app:/var/www/html
     ports:
       - 8080:80
     restart: unless-stopped
@@ -34,7 +34,7 @@ services:
       - MYSQL_PASSWORD=password1
       - MYSQL_ROOT_PASSWORD=password2
     volumes:
-      - /mnt/docker-volumes/domainmod/database:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/domainmod/database:/config
     #ports:
     #  - 3306
     restart: unless-stopped

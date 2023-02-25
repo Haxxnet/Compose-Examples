@@ -11,4 +11,4 @@ services:
       #- KEEP_APP_RUNNING=0 # default; optional
       - TZ=Europe/Berlin
     #volumes:
-    #  - /mnt/docker-volumes/torbrowser/data:/app/Browser/TorBrowser/Data/Tor # optional, just to speed up container recreation
+    #  - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/torbrowser/data:/app/Browser/TorBrowser/Data/Tor # optional, just to speed up container recreation

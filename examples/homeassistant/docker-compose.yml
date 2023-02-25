@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /mnt/docker-volumes/homeassistant/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homeassistant/config:/config
     #ports:
     #  - 8123:8123 #optional
     #devices:

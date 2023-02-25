@@ -7,7 +7,7 @@ services:
     ports:
       - 8989:8989
     volumes:
-      - /mnt/docker-volumes/droppy/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/droppy/config:/config
       - /path/to/my/data/for/sharing:/files # path to shared files
     environment:
       - UID=1000

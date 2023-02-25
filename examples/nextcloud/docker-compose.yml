@@ -9,8 +9,8 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /mnt/docker-volumes/nextcloud/config:/config
-      - /mnt/docker-volumes/nextcloud/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/data:/data
     ports:
       - 9443:443
     restart: unless-stopped

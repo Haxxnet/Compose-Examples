@@ -6,8 +6,8 @@ services:
     hostname: dashy
     image: lissy93/dashy
     volumes:
-      - /mnt/docker-volumes/dashy/config/config.yml:/app/public/conf.yml
-      - /mnt/docker-volumes/dashy/icons:/app/public/item-icons
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/dashy/config/config.yml:/app/public/conf.yml
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/dashy/icons:/app/public/item-icons
     environment:
       - NODE_ENV=production
       - UID=1000

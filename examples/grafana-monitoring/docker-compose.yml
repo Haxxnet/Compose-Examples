@@ -25,7 +25,7 @@ services:
     volumes:
       - /var/log:/var/log:ro # let promtail access the docker host's log files
       - ./volume-data/promtail:/etc/promtail # place promtail-config.yml
-      #- /mnt/docker-volumes/traefik/logs:/var/log/traefik # let promtail access your traefik reverse logs
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/var/log/traefik # let promtail access your traefik reverse logs
     restart: unless-stopped
     command: -config.file=/etc/promtail/promtail-config.yml
     #networks:

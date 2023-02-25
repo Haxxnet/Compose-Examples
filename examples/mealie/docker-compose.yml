@@ -14,7 +14,7 @@ services:
     ports:
       - "9925:3000" # adjust to your liking 
     volumes:
-      - /mnt/docker-volumes/mealie/data:/app/data/
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/mealie/data:/app/data/
     #networks:
     #   - proxy
     #labels:
@@ -34,7 +34,7 @@ services:
         limits:
           memory: 512M # Setting a memory limit will improve idle performance.
     volumes:
-      - /mnt/docker-volumes/mealie/data:/app/data/
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/mealie/data:/app/data/
     #networks:
     #  - proxy
     environment:

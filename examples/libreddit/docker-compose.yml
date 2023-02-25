@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  libreddit-web:
+    image: libreddit/libreddit
+    container_name: libreddit
+    hostname: libreddit
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.libreddit.rule=Host(`libreddit.example.com`)
+    #  - traefik.http.services.libreddit.loadbalancer.server.port=8080
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.libreddit.middlewares=local-ipwhitelist@file,basic-auth@file      

@@ -12,7 +12,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /mnt/docker-volumes/onedev:/opt/onedev
+      -  ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/onedev:/opt/onedev
     environment:
       - initial_user=1dev # only used for init, may change
       - initial_password=onedev # only used for init, may change

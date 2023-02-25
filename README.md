@@ -87,6 +87,7 @@ docker compose up
 - [WatchYourLAN](examples/watchyourlan) - Lightweight network IP scanner with web GUI.
 - [Network-Multitool](examples/network-multitool) - Multi-arch multitool for container network troubleshooting.
 - [Home Assistant](examples/homeassistant) - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.
+- [dockcheck-web](examples/dockcheck-web) - A webpage showing available image updates for your running containers.
 
 ### Recipe Managers
 - [Tandoor](examples/tandoor) - Django application to manage, tag and search recipes using either built-in models or external storage providers hosting PDFs, Images or other files.

@@ -15,6 +15,8 @@ services:
       - "9925:3000" # adjust to your liking 
     volumes:
       - /mnt/docker-volumes/mealie/data:/app/data/
+    #networks:
+    #   - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.mealie.rule=Host(`mealie.example.com`)
@@ -33,6 +35,8 @@ services:
           memory: 512M # Setting a memory limit will improve idle performance.
     volumes:
       - /mnt/docker-volumes/mealie/data:/app/data/
+    #networks:
+    #  - proxy
     environment:
     # Set Backend ENV Variables Here
       - ALLOW_SIGNUP=true # disable after setting up your accounts!
@@ -43,3 +47,7 @@ services:
       - WEB_CONCURRENCY=1
       - BASE_URL=https://mealie.example.com # adjust this!
     restart: unless-stopped
+
+#networks:
+#  proxy:
+#    external: true

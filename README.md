@@ -130,6 +130,7 @@ docker compose up
 - [SonarQube](examples/sonarqube) - SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs and code smells on 29 programming languages.
 - [Fail2ban](examples/fail2ban) - Fail2ban is an intrusion prevention software framework. Written in the Python programming language, it is designed to prevent against brute-force attacks.
 - [Tor-Browser](examples/tor-browser) - Running a Tor browser instance on any headless server.
+- [Firefox](examples/firefox) - Run Firefox on a remote server.
 
 ### Internet of Things / Smart Home
 - [Home Assistant](examples/homeassistant) - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.
@@ -158,6 +159,9 @@ docker compose up
 - [Rocket.Chat](examples/rocketchat) - Rocket.Chat is an open-source fully customizable communications platform developed in JavaScript for organizations with high standards of data protection.
 - [Answer](examples/answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
 - [Excalidraw](examples/excalidraw) - Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.
+- [Libreddit](examples/libreddit) - An alternative private front-end to Reddit.
+- [Nitter](examples/nitter) - A free and open source alternative Twitter front-end focused on privacy and performance. (Uses redis for cache)
+- [Invidious](examples/invidious) - An open source alternative front-end to YouTube. (Uses postgres for users)
 
 ### Project Management
 - [JetBrains YouTrack](examples/youtrack) - YouTrack is a proprietary, commercial browser-based bug tracker, issue tracking system and project management software developed by JetBrains.

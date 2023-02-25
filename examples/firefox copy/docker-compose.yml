@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  firefox:
+    image: lscr.io/linuxserver/firefox:latest
+    restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined # optional
+    environment:
+      # - PUID=1000 # optional
+      # - PGID=1000 # optional
+      - TZ=Etc/UTC
+    volumes:
+      - /mnt/docker-volumes/firefox/config:/config
+    ports:
+      - 3000:3000

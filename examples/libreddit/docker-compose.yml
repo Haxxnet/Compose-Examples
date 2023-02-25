@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  web:
+    image: libreddit/libreddit:latest
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "--tries=1", "http://localhost:8080/settings"]
+      interval: 5m
+      timeout: 3s

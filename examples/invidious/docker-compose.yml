@@ -1,0 +1,46 @@
+version: "3.3"
+
+services:
+  invidious:
+    image: quay.io/invidious/invidious:latest
+    # image: quay.io/invidious/invidious:latest-arm64 # ARM64/AArch64 devices
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment: # contents of https://github.com/iv-org/invidious/blob/master/config/config.example.yml
+      INVIDIOUS_CONFIG: |
+        db:
+          dbname: invidious
+          user: toor
+          password: therealpassword12345
+          host: invidious-db
+          port: 5432
+        check_tables: true
+        # external_port:
+        # domain:
+        # https_only: false
+        # statistics_enabled: false
+    healthcheck:
+      test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 2
+    logging:
+      options:
+        max-size: "1G"
+        max-file: "4"
+    depends_on:
+      - invidious-db
+  invidious-db:
+    image: docker.io/library/postgres:14
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/invidious/postgres:/var/lib/postgresql/data
+      - /mnt/docker-volumes/invidious/postgres/config/sql:/config/sql
+      - ./init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh
+    environment:
+      POSTGRES_DB: invidious
+      POSTGRES_USER: toor
+      POSTGRES_PASSWORD: therealpassword12345
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]

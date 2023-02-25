@@ -1,14 +1,45 @@
-version: "3"
+version: "3.7"
 
 services:
-  mealie:
-    container_name: mealie
+  mealie-frontend:
+    image: hkotel/mealie:frontend-v1.0.0beta-5
+    container_name: mealie-frontend
+    hostname: mealie-frontend
+    depends_on:
+      - mealie-api
     environment:
-      - DB_TYPE=sqlite
-      - PRODUCTION=true
-    hostname: mealie
-    image: hkotel/mealie:latest
+    # Set Frontend ENV Variables Here
+      - API_URL=http://mealie-api:9000
     restart: unless-stopped
+    ports:
+      - "9925:3000" # adjust to your liking 
     volumes:
-      - /mnt/docker-volumes/mealie:/app/data
-    working_dir: /app
+      - /mnt/docker-volumes/mealie/data:/app/data/
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.mealie.rule=Host(`mealie.example.com`)
+    #  - traefik.http.services.mealie.loadbalancer.server.port=3000
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.mealie.middlewares=local-ipwhitelist@file,basic-auth@file      
+
+  mealie-api:
+    image: hkotel/mealie:api-v1.0.0beta-5
+    container_name: mealie-api
+    hostname: mealie-api
+    deploy:
+      resources:
+        limits:
+          memory: 512M # Setting a memory limit will improve idle performance.
+    volumes:
+      - /mnt/docker-volumes/mealie/data:/app/data/
+    environment:
+    # Set Backend ENV Variables Here
+      - ALLOW_SIGNUP=true # disable after setting up your accounts!
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - MAX_WORKERS=1
+      - WEB_CONCURRENCY=1
+      - BASE_URL=https://mealie.example.com # adjust this!
+    restart: unless-stopped

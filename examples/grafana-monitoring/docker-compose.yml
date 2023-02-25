@@ -7,7 +7,7 @@ services:
     hostname: loki
     container_name: loki
     volumes:
-      - ./volume-data/loki:/etc/loki # see example-configs and place loki-config.yml
+      - ./volume-data/loki:/etc/loki # place loki-config.yml
     ports:
       - "127.0.0.1:3100:3100"
     restart: unless-stopped
@@ -24,7 +24,7 @@ services:
     hostname: promtail
     volumes:
       - /var/log:/var/log:ro # let promtail access the docker host's log files
-      - ./volume-data/promtail:/etc/promtail # see example-configs and place promtail-config.yml
+      - ./volume-data/promtail:/etc/promtail # place promtail-config.yml
       #- /mnt/docker-volumes/traefik/logs:/var/log/traefik # let promtail access your traefik reverse logs
     restart: unless-stopped
     command: -config.file=/etc/promtail/promtail-config.yml
@@ -38,8 +38,8 @@ services:
     restart: unless-stopped
     volumes:
       - ./volume-data/influxdb/data:/var/lib/influxdb
-      - ./volume-data/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro # see example-configs and place infuxdb.conf
-      - ./volume-data/influxdb/init:/docker-entrypoint-initdb.d # see example-configs and place create-database.iql
+      - ./volume-data/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro # place infuxdb.conf
+      - ./volume-data/influxdb/init:/docker-entrypoint-initdb.d # place create-database.iql for database init
     environment:
       - INFLUXDB_ADMIN_USER=admin
       - INFLUXDB_ADMIN_PASSWORD=SuperDuperAdminPW
@@ -58,7 +58,7 @@ services:
     depends_on:
       - influxdb
     volumes:
-      - ./volume-data/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro # see example-configs and place telegraf.conf
+      - ./volume-data/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro # place telegraf.conf
       - /:/hostfs:ro
       - /etc:/hostfs/etc:ro
       - /proc:/hostfs/proc:ro

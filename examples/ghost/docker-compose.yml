@@ -24,6 +24,8 @@ services:
       #mail__options__auth__user: blog@example.com
       #mail__options__auth__pass: MyStrongSmtpLoginPassword
       #mail__from: Ghost Blog <blog@example.com>
+    #networks:
+    #  - proxy      
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.ghost.rule=Host(`blog.example.com`)
@@ -45,3 +47,9 @@ services:
       MYSQL_DATABASE: ghost
       MYSQL_USER: ghost
       MYSQL_PASSWORD: MyStrongDatabasePassword
+    #networks:
+    #  - proxy
+    
+#networks:
+#  proxy:
+#    external: true

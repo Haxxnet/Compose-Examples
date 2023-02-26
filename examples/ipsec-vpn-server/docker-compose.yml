@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  vpn:
+    image: hwdsl2/ipsec-vpn-server
+    hostname: ipsec-vpn-server
+    container_name: ipsec-vpn-server
+    environment:
+      - VPN_IPSEC_PSK=3gAW0sDYI2ARSMQIQRa2xpIHb42JS+ImsiHdf3jbTl8 # set a secure psk; e.g. via `openssl rand -base64 32`
+      - VPN_USER=vpn
+      - VPN_PASSWORD=Cy7jRPIZGVK7dbAF5v # set a secure psk; e.g. via `openssl rand -base64 16`
+      #- VPN_ADDL_USERS=additional_username_1 additional_username_2 # usernames must be separated by spaces, no duplicates allowed
+      #- VPN_ADDL_PASSWORDS=additional_password_1 additional_password_2 # passwords must be separated by spaces
+      #- VPN_ADDL_IP_ADDRS=192.168.42.2 192.168.42.3 # assign static IPs to VPN clients; IKEv2 mode does NOT support this feature
+      - VPN_DNS_SRV1=1.1.1.1 # use custom primary dns server
+      - VPN_DNS_SRV2=1.0.0.1 # use custom secondary dns server
+      - VPN_CLIENT_NAME=vpnclient # default is vpnclient
+      #- VPN_DNS_NAME=vpn.example.com # optionally define dns name
+      #- VPN_PUBLIC_IP=103.10.199.1 # optionally define public IP address; this variable has no effect for IKEv2 mode
+      #- VPN_PROTECT_CONFIG=yes # optionally protect client config files using a random password
+      #- VPN_IKEV2_ONLY=yes # disable both IPsec/L2TP and IPsec/XAuth modes; only use IKEv2
+      #- VPN_DISABLE_IPSEC_L2TP=yes # disable IPsec/L2TP mode
+      #- VPN_DISABLE_IPSEC_XAUTH=yes # disable IPsec/XAuth ("Cisco IPsec") mode
+    restart: always
+    ports:
+      - "500:500/udp"
+      - "4500:4500/udp"
+    privileged: true
+    volumes:
+      -  ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ipsec-vpn-server/data:/etc/ipsec.d # required to enable IKEv2
+      - /lib/modules:/lib/modules:ro # required to pass kernel modules

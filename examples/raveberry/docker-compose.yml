@@ -1,0 +1,179 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    container_name: raveberry-db
+    environment:
+      - POSTGRES_DB=raveberry
+      - POSTGRES_USER=raveberry
+      - POSTGRES_PASSWORD=raveberry
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/raveberry/data:/var/lib/postgresql/data
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+
+  redis:
+    image: redis
+    container_name: raveberry-redis
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+
+  celery:
+    image: raveberry/raveberry
+    container_name: raveberry-celery
+    volumes:
+      - songs-cache:/Music/raveberry
+      # used for visualization
+      - /tmp/.X11-unix:/tmp/.X11-unix # X server to open a window
+      - /dev/dri:/dev/dri # graphics card for hardware acceleration
+      - "/run/user/${UID:-1000}/pulse:/run/pulse" # pulse access to get audio data
+    depends_on:
+      - db
+      - redis
+    environment:
+      - PYTHONOPTIMIZE=1
+      - ADMIN_PASSWORD
+      - MOD_PASSWORD
+      - REMOTE_URL
+      - SPOTIFY_USERNAME
+      - SPOTIFY_PASSWORD
+      - SPOTIFY_CLIENT_ID
+      - SPOTIFY_CLIENT_SECRET
+      - SOUNDCLOUD_AUTH_TOKEN
+      - JAMENDO_CLIENT_ID
+      - DOCKER=1
+      - POSTGRES_HOST
+      - POSTGRES_PORT
+      - REDIS_HOST
+      - REDIS_PORT
+      - MOPIDY_HOST
+      - MOPIDY_PORT
+      - ICECAST_HOST
+      - ICECAST_PORT
+    #networks:
+    #  - proxy
+    command: /usr/local/bin/celery -A core.tasks worker -O fair -c 6
+    restart: unless-stopped
+
+  icecast:
+    image: raveberry/raveberry-icecast
+    container_name: raveberry-icecast
+    environment:
+      - ICECAST_ADMIN_PASSWORD
+      - STREAM_USERNAME
+      - STREAM_PASSWORD
+      - STREAM_NOAUTH
+    #networks:
+    #  - proxy
+    # uncomment this port mapping if you need to access icecast's web interface
+    #ports:
+    #  - 8000:8000
+    # use a custom icecast config with this mapping
+    #volumes:
+    #  - /path/to/icecast.xml:/etc/icecast.xml
+    restart: unless-stopped
+
+  mopidy:
+    image: raveberry/raveberry-mopidy
+    container_name: raveberry-mopidy
+    # run with the same id as host user in order to access pulseaudio
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      - MOPIDY_OUTPUT
+      - SPOTIFY_USERNAME
+      - SPOTIFY_PASSWORD
+      - SPOTIFY_CLIENT_ID
+      - SPOTIFY_CLIENT_SECRET
+      - SOUNDCLOUD_AUTH_TOKEN
+      - JAMENDO_CLIENT_ID
+    volumes:
+      - songs-cache:/Music/raveberry
+      # Comment this line if pulse does not work.
+      - "/run/user/${UID:-1000}/pulse:/run/pulse"
+      # to customize mopidy config, mount a custom config file with this line
+      # - /path/to/mopidy.conf:/config/mopidy.conf
+    depends_on:
+      - icecast
+    #networks:
+    #  - proxy
+    restart: unless-stopped
+    # Use these three lines to use alsa if pulse is not working.
+    #user: root
+    #devices:
+    #  - "/dev/snd:/dev/snd"
+
+  daphne:
+    image: raveberry/raveberry
+    container_name: raveberry-daphne
+    expose:
+      - 9000
+    volumes:
+      - songs-cache:/Music/raveberry
+    depends_on:
+      - db
+      - redis
+      - celery
+      - mopidy
+    environment:
+      - PYTHONOPTIMIZE=1
+      - ADMIN_PASSWORD
+      - MOD_PASSWORD
+      - REMOTE_URL
+      - SPOTIFY_USERNAME
+      - SPOTIFY_PASSWORD
+      - SPOTIFY_CLIENT_ID
+      - SPOTIFY_CLIENT_SECRET
+      - SOUNDCLOUD_AUTH_TOKEN
+      - JAMENDO_CLIENT_ID
+      - DOCKER=1
+      - POSTGRES_HOST
+      - POSTGRES_PORT
+      - REDIS_HOST
+      - REDIS_PORT
+      - MOPIDY_HOST
+      - MOPIDY_PORT
+      - ICECAST_HOST
+      - ICECAST_PORT
+    #networks:
+    #  - proxy
+    restart: unless-stopped
+
+  nginx:
+    image: raveberry/raveberry-nginx
+    container_name: raveberry-nginx
+    #ports:
+    #  - 9870:80
+    environment:
+      - DAPHNE_HOST
+      - DAPHNE_PORT
+      - ICECAST_HOST
+      - ICECAST_PORT
+    #networks:
+    #  - proxy
+    depends_on:
+      - daphne
+    restart: unless-stopped
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.raveberry.rule=Host(`raveberry.example.com`)
+    #  - traefik.http.services.raveberry.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.raveberry.middlewares=local-ipwhitelist@file
+
+volumes:
+  songs-cache:
+    # If you want to access downloaded files on your host system,
+    # uncomment the following lines and choose a folder.
+    # Make sure the folder is writable by UID 33 (eg chmod -R o+rw folder)
+    #driver_opts:
+    #  type: 'none'
+    #  o: 'bind'
+    #  device: '/path/to/folder/'
+
+#networks:
+#  proxy:
+#    external: true

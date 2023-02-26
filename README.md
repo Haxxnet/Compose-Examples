@@ -100,6 +100,7 @@ docker compose up
 - [Papermerge](examples/papermerge) - Free and open source document management system with OCR designed for scanned documents, digital archives, pdf, tiff, jpeg.
 - [Paperless NGX](examples/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
 - [Stash](examples/stash) - Stash is a self-hosted webapp written in Go which organizes and serves your porn.
+- [Raveberry](examples/raveberry) - A multi-user music server with a focus on participation.
 
 ### Pastebins
 - [PrivateBin](examples/privatebin) - PrivateBin is a minimalist, opensource online pastebin/discussion board where the server has zero knowledge of hosted data.

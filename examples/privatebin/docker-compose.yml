@@ -10,9 +10,9 @@ services:
       - 8080:8080
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/data:/srv/data # volume for persisted data pastes
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/configs/config.php:/srv/cfg/conf.php:ro # volume for custom privatebin config
-      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/configs/nginx.conf:/etc/nginx/nginx.conf:ro # custom nginx container config to increase file upload size
-      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/configs/php.ini:/etc/php81/conf.d/00-docker.ini:ro # custom php container config to increase file upload size
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/configs/config.php:/srv/cfg/conf.php:ro # volume for custom privatebin config; please place the config.php file here
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/configs/nginx.conf:/etc/nginx/nginx.conf:ro # optional; custom nginx container config to increase file upload size
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/configs/php.ini:/etc/php81/conf.d/00-docker.ini:ro # optional; custom php container config to increase file upload size
     restart: always
     #labels:
     #  - traefik.enable=true

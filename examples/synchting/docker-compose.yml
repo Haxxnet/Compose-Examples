@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  syncthing:
+    image: syncthing/syncthing
+    container_name: syncthing
+    hostname: syncthing
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/synchting:/var/syncthing # your path on where to store synched files
+    ports:
+      - 8384:8384 # Web UI
+      #- 22000:22000/tcp # TCP file transfers
+      #- 22000:22000/udp # QUIC file transfers
+      #- 21027:21027/udp # Receive local discovery broadcasts
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.syncthing.rule=Host(`synchting.example.com`)
+    #  - traefik.http.services.syncthing.loadbalancer.server.port=8384   
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.syncthing.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

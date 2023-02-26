@@ -1,0 +1,16 @@
+version: "2.1"
+
+services:
+  pairdrop:
+    image: lscr.io/linuxserver/pairdrop:latest
+    container_name: pairdrop
+    hostname: pairdrop
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - RATE_LIMIT=false #optional
+      - WS_FALLBACK=false #optional
+    ports:
+      - 3215:3000
+    restart: unless-stopped

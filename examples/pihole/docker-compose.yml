@@ -16,8 +16,8 @@ services:
       WEBPASSWORD: 'MySecureLoginPasswordForWebApp'
     # Volumes store your data between container upgrades
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/pihole/data:/etc/pihole
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/pihole/dnsmasq:/etc/dnsmasq.d
+      - ${DOCKER_VOLUME_STORAGE}:-/mnt/docker-volumes}/pihole/data:/etc/pihole
+      - ${DOCKER_VOLUME_STORAGE}:-/mnt/docker-volumes}/pihole/dnsmasq:/etc/dnsmasq.d
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
       - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed

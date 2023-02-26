@@ -2,7 +2,10 @@ version: "3"
 
 services:
   vaultwarden:
+    image: vaultwarden/server:latest
     container_name: vaultwarden
+    hostname: vaultwarden
+    restart: unless-stopped
     dns:
       - 1.1.1.1
     environment:
@@ -21,10 +24,10 @@ services:
       - TZ=Europe/Berlin
       - LOG_LEVEL=error
       - EXTENDED_LOGGING=true
-    hostname: vaultwarden
     ports:
       - 8888:80
-    image: vaultwarden/server:latest
+    #networks:
+    #  - proxy
     #labels:
     #  - com.centurylinklabs.watchtower.monitor-only=true
     #  - traefik.enable=true
@@ -35,7 +38,6 @@ services:
     #  - traefik.http.routers.vaultwarden-ws.rule=Host(`bitwarden.example.com`) && Path(`/notifications/hub`)
     #  - traefik.http.routers.vaultwarden-ws.service=vaultwarden-ws
     #  - traefik.http.services.vaultwarden-ws.loadbalancer.server.port=3012
-    restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/data:/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/logs:/data/logs
@@ -43,10 +45,10 @@ services:
   # this service will backup your vaultwarden instance corretly
   # see https://github.com/Bruceforce/vaultwarden-backup for more information
   vaultwarden-backup:
+    image: bruceforce/vaultwarden-backup:latest
     container_name: vaultwarden-backup
     hostname: vaultwarden-backup
-    image: bruceforce/vaultwarden-backup:latest
-    restart: on-failure
+    restart: always
     init: true
     depends_on:
       - vaultwarden
@@ -57,6 +59,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/backup:/myBackup
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+    #networks:
+    #  - proxy
     environment:
       - TIMESTAMP=true
       - DELETE_AFTER=30
@@ -65,3 +69,7 @@ services:
       - TZ=Europe/Berlin
       - BACKUP_DIR=/myBackup
       - CRON_TIME=50 3 * * * # see https://crontab.guru/
+
+#networks:
+#  proxy:
+#    external: true

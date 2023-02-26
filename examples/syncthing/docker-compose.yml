@@ -9,7 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/synchting:/var/syncthing # your path on where to store synched files
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/syncthing:/var/syncthing # your path on where to store synched files
     ports:
       - 8384:8384 # Web UI
       #- 22000:22000/tcp # TCP file transfers

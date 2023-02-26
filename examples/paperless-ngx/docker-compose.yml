@@ -67,8 +67,10 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.paperless-ngx.middlewares=local-ipwhitelist@file,basic-auth@file
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=10000000000
-    #  - traefik.http.middlewares.test-compress.compress=true
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
     
 #networks:
 #  proxy:

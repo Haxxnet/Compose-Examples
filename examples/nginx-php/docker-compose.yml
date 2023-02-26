@@ -9,7 +9,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/nginx-conf:/etc/nginx/conf.d
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/logs:/var/log/nginx
     links:
-        - php
+      - php
     container_name: nginx
     restart: unless-stopped
     #labels:

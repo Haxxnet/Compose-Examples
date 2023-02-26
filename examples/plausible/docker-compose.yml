@@ -8,8 +8,10 @@ services:
   plausible_db:
     # supported versions are 12, 13, and 14
     image: postgres:14-alpine
+    container_name: plausible-db    
     restart: always
-    container_name: plausible-db
+    #networks:
+    #  - proxy    
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/database/:/var/lib/postgresql/data
     environment:
@@ -19,6 +21,8 @@ services:
     container_name: plausible-events-db
     image: clickhouse/clickhouse-server:22.6-alpine
     restart: always
+    #networks:
+    #  - proxy    
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/event-data:/var/lib/clickhouse
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro
@@ -41,6 +45,8 @@ services:
       - 8000:8000 # WEB UI
     env_file:
       - plausible-conf.env
+    #networks:
+    #  - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.plausible.rule=Host(`plausible.example.com`)
@@ -48,3 +54,7 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
     #  # - traefik.http.routers.plausible.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

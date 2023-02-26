@@ -45,7 +45,7 @@ docker compose up
 - [Heimdall](examples/heimdall) - Heimdall is an elegant solution to organise all your web applications.
 
 ### Password Management
-- [Vaultwarden](examples/vaultwarden) - Lightweight Bitwarden server API implementation written in Rust.
+- [Vaultwarden](examples/vaultwarden) - Lightweight Bitwarden server API implementation written in Rust. Unlocks paid Bitwarden features such as 2FA.
 - [Bitwarden Unified](examples/bitwarden-unified) - Official Bitwarden deployment option (beta) targeting selfhosters by providing a resource-efficient, single Docker image with multiple database support. 
 
 ### Reverse Proxies

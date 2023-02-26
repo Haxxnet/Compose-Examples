@@ -1,24 +1,72 @@
-version: "2.1"
+version: "3.4"
+
 services:
-  paperless-ngx:
-    image: lscr.io/linuxserver/paperless-ngx:latest
-    container_name: paperless-ngx
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-      #- PAPERLESS_URL=https://docs.example.com # uncomment and adjust if behind reverse proxy
-      #- REDIS_URL= #optional
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/config:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/data:/data
-    ports:
-      - 8000:8000
+  broker:
+    image: docker.io/library/redis:7
+    container_name: paperless-ngx-redis
     restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/redis:/data
+    #networks:
+    #  - proxy      
+
+  db:
+    image: docker.io/library/postgres:13
+    container_name: paperless-ngx-db
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: paperless
+    #networks:
+    #  - proxy      
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless-ngx-web
+    restart: unless-stopped
+    depends_on:
+      - db
+      - broker
+    ports:
+      - "8910:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/data:/usr/src/paperless/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/media:/usr/src/paperless/media
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/export:/usr/src/paperless/export
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBHOST: db
+      USERMAP_UID: 1000
+      USERMAP_GID: 1000
+      PAPERLESS_AUTO_LOGIN_USERNAME: admin
+      PAPERLESS_ADMIN_USER: admin
+      PAPERLESS_ADMIN_MAIL: admin@example.com
+      PAPERLESS_ADMIN_PASSWORD: MySuperStrongLoginPassword # change
+      PAPERLESS_SECRET_KEY: 6eKz1nYhNmpf8w3HoMeCdnIoUqCF8Q1aif3BGks74pU # adjust this key if you plan to make paperless available publicly
+      PAPERLESS_URL: http://127.0.0.1:8910 # adjust; also sets ALLOWED_HOSTS, CORS_ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS
+      PAPERLESS_ALLOWED_HOSTS: localhost,paperless.example.com,127.0.0.1:8910 # comma separated list; add your domain name
+      PAPERLESS_TIME_ZONE: Europe/Berlin
+      PAPERLESS_OCR_LANGUAGE: eng # default language to use for OCR
+      # The container already installs English, German, Italian, Spanish and French
+      # You may want additional languages to install for text recognition;
+      #PAPERLESS_OCR_LANGUAGES: tur ces 
+    #networks:
+    #  - proxy
     #labels:
     #  - traefik.enable=true
-    #  - traefik.http.routers.paperless-ngx.rule=Host(`docs.example.com`)
+    #  - traefik.http.routers.paperless-ngx.rule=Host(`paperless.example.com`)
     #  - traefik.http.services.paperless-ngx.loadbalancer.server.port=8000
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.paperless-ngx.middlewares=local-ipwhitelist@file    
+    #  - traefik.http.routers.paperless-ngx.middlewares=local-ipwhitelist@file,basic-auth@file
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=10000000000
+    #  - traefik.http.middlewares.test-compress.compress=true    

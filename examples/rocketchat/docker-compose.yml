@@ -25,7 +25,7 @@ services:
       ROOT_URL: ${ROOT_URL:-http://localhost:${HOST_PORT:-3000}}
       PORT: ${PORT:-3000}
       DEPLOY_METHOD: docker
-      DEPLOY_PLATFORM: ${DEPLOY_PLATFORM}
+      DEPLOY_PLATFORM: ${DEPLOY_PLATFORM:-linux}
     depends_on:
       - mongodb
 

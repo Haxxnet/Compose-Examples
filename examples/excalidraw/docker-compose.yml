@@ -12,8 +12,8 @@ services:
       disable: true
     environment:
       - NODE_ENV=production
-    networks:
-      - proxy
+    #networks:
+    #  - proxy
     #volumes:
     #  - ./:/opt/node_app/app:delegated
     #  - ./package.json:/opt/node_app/package.json
@@ -27,6 +27,6 @@ services:
     #  # Part for local lan services only; disable to expose externally
     #  - traefik.http.routers.excalidraw.middlewares=local-ipwhitelist@file
 
-networks:
-  proxy:
-   external: true
+#networks:
+#  proxy:
+#   external: true

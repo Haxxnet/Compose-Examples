@@ -2,8 +2,14 @@ name: CI
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - 'README.md'
+      - 'examples/**/README.md'
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - 'README.md'
+      - 'examples/**/README.md'    
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

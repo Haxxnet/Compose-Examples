@@ -14,6 +14,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/conf:/opt/youtrack/conf
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/logs:/opt/youtrack/logs
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/backups:/opt/youtrack/backups
+    #networks:
+    #  - proxy
     deploy:
       placement:
         constraints:
@@ -25,3 +27,7 @@ services:
       #  - traefik.http.services.youtrack.loadbalancer.server.port=8080
       #  # Part for local lan services only; disable to expose externally
       #  - traefik.http.routers.youtrack.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

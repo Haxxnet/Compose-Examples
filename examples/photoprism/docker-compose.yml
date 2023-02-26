@@ -2,7 +2,9 @@ version: "3"
 
 services:
   photoprism:
+    image: photoprism/photoprism:latest  
     container_name: photoprism
+    hostname: photoprism
     environment:
       - PHOTOPRISM_ADMIN_PASSWORD=MySecureLoginPasswordForPhotoprism
       - PHOTOPRISM_DEBUG=false
@@ -14,7 +16,6 @@ services:
       - PHOTOPRISM_DATABASE_DRIVER=sqlite
     ports:
       - 2342:2342
-    image: photoprism/photoprism:latest
     restart: unless-stopped
     volumes:
       - /path/to/my/locally/stored/media/files:/photoprism/originals

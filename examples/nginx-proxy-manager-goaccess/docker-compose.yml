@@ -1,4 +1,7 @@
-goaccess:
+version: "3"
+
+services:
+  goaccess:
     image: xavierh/goaccess-for-nginxproxymanager:latest
     container_name: goaccess
     restart: always

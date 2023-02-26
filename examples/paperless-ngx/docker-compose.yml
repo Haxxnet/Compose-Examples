@@ -69,4 +69,8 @@ services:
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.paperless-ngx.middlewares=local-ipwhitelist@file,basic-auth@file
     #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=10000000000
-    #  - traefik.http.middlewares.test-compress.compress=true    
+    #  - traefik.http.middlewares.test-compress.compress=true
+    
+#networks:
+#  proxy:
+#    external: true

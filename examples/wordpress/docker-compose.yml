@@ -37,6 +37,10 @@ services:
     #  - traefik.enable=true
     #  - traefik.http.routers.wordpress.rule=Host(`blog.example.com`) # please adjust
     #  - traefik.http.services.wordpress.loadbalancer.server.port=80
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.wordpress.middlewares=local-ipwhitelist@file

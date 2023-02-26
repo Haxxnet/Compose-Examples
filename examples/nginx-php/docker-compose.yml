@@ -8,8 +8,6 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/nginx-conf:/etc/nginx/conf.d
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/logs:/var/log/nginx
-    links:
-      - php
     container_name: nginx
     restart: unless-stopped
     #labels:
@@ -19,6 +17,7 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
     #  #- traefik.http.routers.nginx.middlewares=error-pages-middleware@docker
+  
   php:
     image: php:8-fpm-alpine
     hostname: php

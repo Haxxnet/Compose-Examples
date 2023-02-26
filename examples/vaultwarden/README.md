@@ -5,4 +5,4 @@
 
 # Notes
 
-Disable open user registration after setting up your account. You can find the option as environment variable in the compose file.
+Disable open user registration after setting up your account. This can be done via the `/admin` web panel, if enabled, or by adjusting the `config.json` file.

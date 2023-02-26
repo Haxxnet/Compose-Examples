@@ -7,7 +7,7 @@
     <a target="_blank" href="https://github.com/Haxxnet/Compose-Examples/stargazers"><img src="https://img.shields.io/github/stars/Haxxnet/Compose-Examples.svg?style=social&label=Star" /></a>
     <a target="_blank" href="https://github.com/Haxxnet/Compose-Examples/network/members"><img src="https://img.shields.io/github/forks/Haxxnet/Compose-Examples.svg?style=social&label=Fork" /></a>
     <a target="_blank" href="https://github.com/Haxxnet/Compose-Examples/watchers"><img src="https://img.shields.io/github/watchers/Haxxnet/Compose-Examples.svg?style=social&label=Watch" /></a><p>
-       <a target="_blank" href="https://img.shields.io/github/directory-file-count/Haxxnet/Compose-Examples/examples?label=Compose%20Examples&style=for-the-badge"><img src="https://img.shields.io/github/directory-file-count/Haxxnet/Compose-Examples/examples?label=Compose%20Examples&style=for-the-badge.svg" /></a><br>
+       <a target="_blank" href="https://github.com/Haxxnet/Compose-Examples/tree/main/examples"><img src="https://img.shields.io/github/directory-file-count/Haxxnet/Compose-Examples/examples?label=Compose%20Examples&style=for-the-badge.svg" /></a><br>
     <a target="_blank" href="https://github.com/l4rm4nd"><img src="https://img.shields.io/badge/maintainer-LRVT-orange" /></a>
     <a target="_blank" href="https://GitHub.com/Haxxnet/Compose-Examples/graphs/contributors/"><img src="https://img.shields.io/github/contributors/Haxxnet/Compose-Examples.svg" /></a>
     <a target="_blank" href="https://github.com/Haxxnet/Compose-Examples/actions"><img src="https://github.com/Haxxnet/Compose-Examples/actions/workflows/validator.yml/badge.svg" /></a><br>

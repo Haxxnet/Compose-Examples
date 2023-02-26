@@ -1,3 +1,3 @@
 # References
 
-https://github.com/dorianim/money-balancer
+- https://github.com/dorianim/money-balancer

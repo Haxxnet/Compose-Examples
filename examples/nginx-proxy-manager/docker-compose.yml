@@ -7,8 +7,8 @@ services:
       - TZ=Europe/Berlin
     hostname: npm
     user: 0:1000
-    networks:
-      - npm_proxy
+    #networks:
+    #  - npm_proxy
     image: jc21/nginx-proxy-manager:latest
     ports:
       - 443:443/tcp # HTTPS
@@ -23,6 +23,6 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx-proxy-manager/data:/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
-networks:
-  npm_proxy:
-    external: true
+#networks:
+#  npm_proxy:
+#    external: true

@@ -47,7 +47,6 @@ services:
       PAPERLESS_DBHOST: db
       USERMAP_UID: 1000
       USERMAP_GID: 1000
-      PAPERLESS_AUTO_LOGIN_USERNAME: admin
       PAPERLESS_ADMIN_USER: admin
       PAPERLESS_ADMIN_MAIL: admin@example.com
       PAPERLESS_ADMIN_PASSWORD: MySuperStrongLoginPassword # change

@@ -27,6 +27,6 @@ jobs:
           for f in $(find ${PWD}/examples -name '*docker-compose*.yml'); \
           do \
           readlink -f $f && \
-          docker compose -f $(readlink -f $f) config; \
+          docker compose -f $(readlink -f $f) config --quiet; \
           done
         if: always()

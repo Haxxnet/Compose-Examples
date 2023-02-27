@@ -48,7 +48,7 @@ docker compose up
 ### Password Management
 - [Vaultwarden](examples/vaultwarden) - Lightweight Bitwarden server API implementation written in Rust. Unlocks paid Bitwarden features such as 2FA.
 - [Bitwarden Unified](examples/bitwarden-unified) - Official Bitwarden deployment option (beta) targeting selfhosters by providing a resource-efficient, single Docker image with multiple database support.
-- [Passbolt CE](examples/passbolt) - Passbolt CE open source password manager for teams based on GPG
+- [Passbolt CE](examples/passbolt) - Passbolt CE open source password manager for teams based on GPG.
 
 ### Reverse Proxies
 - [Traefik](examples/traefik) - Traefik is a modern HTTP reverse proxy and load balancer made to deploy microservices with ease. It supports several backends (Docker, Swarm, Mesos/Marathon, …) to manage its configuration automatically and dynamically.

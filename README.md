@@ -101,7 +101,6 @@ docker compose up
 - [Papermerge](examples/papermerge) - Free and open source document management system with OCR designed for scanned documents, digital archives, pdf, tiff, jpeg.
 - [Paperless NGX](examples/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
 - [Stash](examples/stash) - Stash is a self-hosted webapp written in Go which organizes and serves your porn.
-- [Syncthing](examples/syncthing) - Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
 
 ### Music
 - [Raveberry](examples/raveberry) - A multi-user music server with a focus on participation.
@@ -149,9 +148,10 @@ docker compose up
 - [Domainmod](examples/domainmod) - DomainMOD is an open source application used to manage your domains and other internet assets in a central location.
 - [Snipe-IT](examples/snipe-it) - Snipe-IT is a free, open source IT asset management system written in PHP.
 
-### Backups
+### Backups & Synching
 - [Duplicati](examples/duplicati) - Duplicati is a backup client that securely stores encrypted, incremental, compressed remote backups of local files on cloud storage services and remote file servers.
 - [Duplicacy](examples/duplicacy) - A lock-free deduplication cloud backup tool.
+- [Syncthing](examples/syncthing) - Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
 
 ### Wiki & Knowledge Base
 - [Bookstack](examples/bookstack) - BookStack is a free and open-source wiki software aimed for a simple, self-hosted, and easy-to-use platform.

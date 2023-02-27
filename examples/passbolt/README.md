@@ -1,6 +1,6 @@
 # References
 
-- https://www.passbolt.com
+- https://www.passbolt.com/ce/docker
 
 # Notes
 

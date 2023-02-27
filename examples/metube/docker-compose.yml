@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  metube:
+    image: alexta69/metube
+    container_name: metube
+    hostname: metube
+    restart: unless-stopped
+    ports:
+      - "8081:8081" # web ui
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/metube/downloads:/downloads
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.metube.rule=Host(`metube.example.com`)
+    #  - traefik.http.services.metube.loadbalancer.server.port=8081    
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.metube.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

@@ -150,6 +150,7 @@ docker compose up
 ### Asset Management
 - [Domainmod](examples/domainmod) - DomainMOD is an open source application used to manage your domains and other internet assets in a central location.
 - [Snipe-IT](examples/snipe-it) - Snipe-IT is a free, open source IT asset management system written in PHP.
+- [UpSnap](examples/upsnap) - A simple wake on lan app written with SvelteKit, Go, PocketBase and nmap.
 
 ### Backups & Syncing
 - [Duplicati](examples/duplicati) - Duplicati is a backup client that securely stores encrypted, incremental, compressed remote backups of local files on cloud storage services and remote file servers.

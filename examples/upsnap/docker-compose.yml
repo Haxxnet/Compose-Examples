@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  upsnap:
+    image: ghcr.io/seriousm4x/upsnap:3
+    container_name: upsnap
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/upsnap/data:/app/pb_data
+    environment:
+      - TZ=Europe/Berlin # Set container timezone for cron schedules
+      - UPSNAP_INTERVAL=@every 10s # Sets the interval in which the devices are pinged
+      - UPSNAP_SCAN_RANGE=192.168.178.0/24 # Scan range is used for device discovery on local network
+      - UPSNAP_WEBSITE_TITLE=UpSnap # Custom website title
+    entrypoint: /bin/sh -c "./upsnap serve --http 0.0.0.0:5000"
+    healthcheck:
+      test: curl -fs "http://localhost:5000/api/health" || exit 1
+      interval: 10s
+    #entrypoint: /bin/sh -c "apk update && apk add --no-cache <YOUR_PACKAGE> && rm -rf /var/cache/apk/* && ./upsnap serve --http 0.0.0.0:8090"

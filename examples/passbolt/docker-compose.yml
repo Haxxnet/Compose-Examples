@@ -27,6 +27,13 @@ services:
       DATASOURCES_DEFAULT_USERNAME: "passbolt"
       DATASOURCES_DEFAULT_PASSWORD: "P4ssb0lt"
       DATASOURCES_DEFAULT_DATABASE: "passbolt"
+      #EMAIL_DEFAULT_FROM_NAME: "Passbolt CE"
+      #EMAIL_DEFAULT_FROM: "passbolt@gmail.com"
+      #EMAIL_TRANSPORT_DEFAULT_HOST: smtp.gmail.com
+      #EMAIL_TRANSPORT_DEFAULT_PORT: 587
+      #EMAIL_TRANSPORT_DEFAULT_USERNAME: "smtp_user"
+      #EMAIL_TRANSPORT_DEFAULT_PASSWORD: "smtp_pass"
+      #EMAIL_TRANSPORT_DEFAULT_TLS: true # or false; default null
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/passbolt/gpg:/etc/passbolt/gpg
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/passbolt/jwt:/etc/passbolt/jwt

@@ -47,11 +47,12 @@ docker compose up
 
 ### Password Management
 - [Vaultwarden](examples/vaultwarden) - Lightweight Bitwarden server API implementation written in Rust. Unlocks paid Bitwarden features such as 2FA.
-- [Bitwarden Unified](examples/bitwarden-unified) - Official Bitwarden deployment option (beta) targeting selfhosters by providing a resource-efficient, single Docker image with multiple database support. 
+- [Bitwarden Unified](examples/bitwarden-unified) - Official Bitwarden deployment option (beta) targeting selfhosters by providing a resource-efficient, single Docker image with multiple database support.
+- [Passbolt CE](examples/passbolt) - Passbolt CE open source password manager for teams based on GPG.
 
 ### Reverse Proxies
 - [Traefik](examples/traefik) - Traefik is a modern HTTP reverse proxy and load balancer made to deploy microservices with ease. It supports several backends (Docker, Swarm, Mesos/Marathon, …) to manage its configuration automatically and dynamically.
-- [Nginx Proxy Manager](examples/nginx-proxy-manager) - Nginx Proxy Manager is an easy way to accomplish reverse proxying hosts with SSL termination. 
+- [Nginx Proxy Manager](examples/nginx-proxy-manager) - Nginx Proxy Manager is an easy way to accomplish reverse proxying hosts with SSL termination.
 - [Caddy](examples/caddy) - The Caddy web server is an extensible, cross-platform, open-source web server written in Go. Caddy obtains and renews TLS certificates for your sites automatically.
 
 ### Virtual Private Network (VPN)
@@ -62,7 +63,7 @@ docker compose up
 - ~~[Firezone](https://github.com/firezone/firezone)~~ - Self-hosted secure remote access gateway that supports the WireGuard protocol. It offers a Web GUI, 1-line install script, multi-factor auth (MFA), and SSO.
 
 ### Domain Name Service (DNS)
-- [AdGuard Home](examples/adguard-home) - AdGuard Home is a network-wide software for blocking ads and tracking. 
+- [AdGuard Home](examples/adguard-home) - AdGuard Home is a network-wide software for blocking ads and tracking.
 - [AdGuard Home Sync](examples/adguard-home-sync) - Synchronize AdGuardHome config to replica instances.
 - [Technitium DNS](examples/technitium-dns) - An open source authoritative as well as recursive DNS server that can be used for self hosting a DNS server for privacy & security.
 - [Pihole](examples/pihole) - Pi-hole is a Linux network-level advertisement and Internet tracker blocking application which acts as a DNS sinkhole and optionally a DHCP server, intended for use on a private network.
@@ -72,7 +73,7 @@ docker compose up
 - [Gitea](examples/gitea) - Community managed fork of Gogs, lightweight code hosting solution.
 - [Drone](examples/drone) - Drone is a continuous delivery system built on container technology. Drone uses a simple YAML build file, to define and execute build pipelines inside Docker containers.
 - [Gitlab Community](examples/gitlab-ce) -  Self Hosted Git repository management, code reviews, issue tracking, activity feeds and wikis.
-- [Code-Server](examples/code-server) - VS Code in the browser, hosted on a remote server. 
+- [Code-Server](examples/code-server) - VS Code in the browser, hosted on a remote server.
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
 - [Onedev](examples/onedev) - Self-hosted Git Server with CI/CD and Kanban.
 - [n8n](examples/n8n) - Free and source-available fair-code licensed workflow automation tool. Easily automate tasks across different services.
@@ -164,7 +165,7 @@ docker compose up
 ### Finance
 - [TRSync](examples/trsync) - Django web frontend for pytr to download all Trade Republic depot data.
 - [Money-Balancer](examples/money-balancer) - A simple application for managing debt with your friends!
-- [Firefly III](examples/firefly-iii) - A self-hosted manager for your personal finances. 
+- [Firefly III](examples/firefly-iii) - A self-hosted manager for your personal finances.
 
 ### Communication and Social
 - [Mirotalk P2P](examples/mirotalk) - Simple, Secure, Fast Real-Time Video Conferences Up to 4k and 60fps, compatible with all browsers and platforms.

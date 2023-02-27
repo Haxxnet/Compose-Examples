@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  db:
+    image: mariadb:10.3
+    container_name: passbolt-db
+    hostname: passbolt-db
+    restart: unless-stopped
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_DATABASE: "passbolt"
+      MYSQL_USER: "passbolt"
+      MYSQL_PASSWORD: "P4ssb0lt"
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/passbolt/mariadb:/var/lib/mysql
+
+  passbolt:
+    image: passbolt/passbolt:latest-ce # alternatively, you can use the rootless image passbolt/passbolt:latest-ce-non-root
+    container_name: passbolt
+    hostname: passbolt
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      APP_FULL_BASE_URL: http://127.0.0.1:8543 # adjust http/https and add your hostname or domain
+      DATASOURCES_DEFAULT_HOST: "db"
+      DATASOURCES_DEFAULT_USERNAME: "passbolt"
+      DATASOURCES_DEFAULT_PASSWORD: "P4ssb0lt"
+      DATASOURCES_DEFAULT_DATABASE: "passbolt"
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/passbolt/gpg:/etc/passbolt/gpg
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/passbolt/jwt:/etc/passbolt/jwt
+    command: ["/usr/bin/wait-for.sh", "-t", "0", "db:3306", "--", "/docker-entrypoint.sh"]
+    ports:
+      - 8543:80 # HTTP
+      - 8432:443 # HTTPS
+    # - 8543:8080 # alternative port mappings if rootless image is used
+    # - 8432:4433 # alternative port mappings if rootless image is used

@@ -68,7 +68,7 @@ services:
       - GID=1000
       - TZ=Europe/Berlin
       - BACKUP_DIR=/myBackup
-      - CRON_TIME=50 3 * * * # see https://crontab.guru/
+      - CRON_TIME=50 3 * * * # see https://crontab.guru/, define without quotes!
 
 #networks:
 #  proxy:

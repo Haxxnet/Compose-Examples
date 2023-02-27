@@ -95,18 +95,18 @@ docker compose up
 - [Tandoor](examples/tandoor) - Django application to manage, tag and search recipes using either built-in models or external storage providers hosting PDFs, Images or other files.
 - [Mealie](examples/mealie) - Material design inspired recipe manager with category and tag management, shopping-lists, meal-planner, and site customizations. Mealie is focused on simple user interactions to keep the whole family using the app.
 
-### Media Management
+### Media Management (Photos, Music, Videos)
 - [Immich](examples/immich) - Self-hosted photo and video backup solution directly from your mobile phone. Alternative to Google Photos.
 - [Photoprism](examples/photoprism) - Personal photo management powered by Go and Google TensorFlow. Browse, organize, and share your personal photo collection, using the latest technologies to automatically tag and find pictures.
-- [Papermerge](examples/papermerge) - Free and open source document management system with OCR designed for scanned documents, digital archives, pdf, tiff, jpeg.
-- [Paperless NGX](examples/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
 - [Stash](examples/stash) - Stash is a self-hosted webapp written in Go which organizes and serves your porn.
-- [Syncthing](examples/syncthing) - Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
-
-### Music
 - [Raveberry](examples/raveberry) - A multi-user music server with a focus on participation.
 - [Deemix](examples/deemix) - deemix is a barebone deezer downloader library built from the ashes of Deezloader Remix.
 - [MeTube](examples/metube) - Web GUI for youtube-dl (using the yt-dlp fork) with playlist support. Allows you to download videos and audio only from YouTube and dozens of other sites.
+- [Syncthing](examples/syncthing) - Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
+
+### Document Management Systems (DMS)
+- [Paperless NGX](examples/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
+- [Papermerge](examples/papermerge) - Free and open source document management system with OCR designed for scanned documents, digital archives, pdf, tiff, jpeg.
 
 ### Pastebins
 - [PrivateBin](examples/privatebin) - PrivateBin is a minimalist, opensource online pastebin/discussion board where the server has zero knowledge of hosted data.
@@ -150,9 +150,10 @@ docker compose up
 - [Domainmod](examples/domainmod) - DomainMOD is an open source application used to manage your domains and other internet assets in a central location.
 - [Snipe-IT](examples/snipe-it) - Snipe-IT is a free, open source IT asset management system written in PHP.
 
-### Backups
+### Backups & Synching
 - [Duplicati](examples/duplicati) - Duplicati is a backup client that securely stores encrypted, incremental, compressed remote backups of local files on cloud storage services and remote file servers.
 - [Duplicacy](examples/duplicacy) - A lock-free deduplication cloud backup tool.
+- [Syncthing](examples/syncthing) - Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
 
 ### Wiki & Knowledge Base
 - [Bookstack](examples/bookstack) - BookStack is a free and open-source wiki software aimed for a simple, self-hosted, and easy-to-use platform.

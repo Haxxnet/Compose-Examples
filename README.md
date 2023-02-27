@@ -143,6 +143,7 @@ docker compose up
 - [Tor-Browser](examples/tor-browser) - Running a Tor browser instance on any headless server.
 - [Firefox](examples/firefox) - Firefox by linuxserver.io allows you to run the popular Firefox web broser on a remote server.
 - [Libreddit](examples/libreddit) - Libreddit is a portmanteau of "libre" (meaning freedom) and "Reddit". It is a private front-end like Invidious but for Reddit. Browse the coldest takes of r/unpopularopinion without being tracked.
+- [FusionAuth](examples/fusionauth) - FusionAuth is a self-hostable OIDC, OAuth and SAML server. It also offers MFA, social sign-on, login workflows, user management and single sign-on.
 
 ### Internet of Things / Smart Home / IT Automation
 - [Home Assistant](examples/homeassistant) - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.

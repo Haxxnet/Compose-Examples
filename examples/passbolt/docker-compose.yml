@@ -22,7 +22,7 @@ services:
     depends_on:
       - db
     environment:
-      APP_FULL_BASE_URL: https://passbolt.example.com # adjust
+      APP_FULL_BASE_URL: http://127.0.0.1:8543 # adjust http/https and add your hostname or domain
       DATASOURCES_DEFAULT_HOST: "db"
       DATASOURCES_DEFAULT_USERNAME: "passbolt"
       DATASOURCES_DEFAULT_PASSWORD: "P4ssb0lt"
@@ -32,7 +32,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/passbolt/jwt:/etc/passbolt/jwt
     command: ["/usr/bin/wait-for.sh", "-t", "0", "db:3306", "--", "/docker-entrypoint.sh"]
     ports:
-      - 80:80
-      - 443:443
-    # - 80:8080 # alternative port mappings if rootless image is used
-    # - 443:4433 # alternative port mappings if rootless image is used
+      - 8543:80 # HTTP
+      - 8432:443 # HTTPS
+    # - 8543:8080 # alternative port mappings if rootless image is used
+    # - 8432:4433 # alternative port mappings if rootless image is used

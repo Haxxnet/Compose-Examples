@@ -112,7 +112,7 @@ docker compose up
 - [PrivateBin](examples/privatebin) - PrivateBin is a minimalist, opensource online pastebin/discussion board where the server has zero knowledge of hosted data.
 - [Hemmelig](examples/hemmelig) - Keep your sensitive information out of chat logs, emails, and more with encrypted secrets. Free encrypted secret sharing for everyone!
 
-### File Sharing
+### File Sharing / Storage
 - [Nextcloud](examples/nextcloud) - Access and share your files, calendars, contacts, mail and more from any device, on your terms.
 - [Seafile](examples/seafile) - File hosting and sharing solution primary for teams and organizations.
 - [SFTPGo](examples/sftpgo) - Fully featured and highly configurable SFTP server with optional HTTP/S, FTP/S and WebDAV support - S3, Google Cloud Storage, Azure Blob.
@@ -121,6 +121,7 @@ docker compose up
 - [Pwndrop](examples/pwndrop) - pwndrop is a self-deployable file hosting service for sending out red teaming payloads or securely sharing your private files over HTTP and WebDAV.
 - [Droppy](examples/droppy) (deprecated) - droppy is a self-hosted file storage server with a web interface and capabilities to edit files and view media directly in the browser. It is particularly well-suited to be run on low-end hardware like the Raspberry Pi.
 - [PairDrop](examples/pairdrop) - PairDrop is a sublime alternative to AirDrop that works on all platforms. Send images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices.
+- [Minio](examples/minio) - MinIO is an object storage server, compatible with Amazon S3 cloud storage service, mainly used for storing unstructured data (such as photos, videos, log files, etc.).
 
 ### Publishing, Writing, Blogging, Hosting
 - [Ghost](examples/ghost) - Ghost is a free and open source blogging platform written in JavaScript and distributed under the MIT License, designed to simplify the process of online publishing for individual bloggers as well as online publications.

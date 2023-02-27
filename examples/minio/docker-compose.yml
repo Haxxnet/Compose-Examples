@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  minio-s3:
+    image: bitnami/minio:2023
+    container_name: minio
+    hostname: minio
+    environment:
+      - MINIO_ROOT_USER=minio # change this
+      - MINIO_ROOT_PASSWORD=XscUJuDQP4WuWA55vfXNrc7 # change this
+    ports:
+      - 9001:9001/tcp
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/minio/data:/data
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.minio.rule=Host(`s3.example.com`)
+    #  - traefik.http.services.minio.loadbalancer.server.port=9001
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.minio.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

@@ -1,7 +1,10 @@
 version: '3.9'
+
 services:
   db:
     image: mariadb:10.3
+    container_name: passbolt-db
+    hostname: passbolt-db
     restart: unless-stopped
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "true"
@@ -12,14 +15,14 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/passbolt/mariadb:/var/lib/mysql
 
   passbolt:
-    image: passbolt/passbolt:latest-ce
-    #Alternatively you can use rootless:
-    #image: passbolt/passbolt:latest-ce-non-root
+    image: passbolt/passbolt:latest-ce # alternatively, you can use the rootless image passbolt/passbolt:latest-ce-non-root
+    container_name: passbolt
+    hostname: passbolt
     restart: unless-stopped
     depends_on:
       - db
     environment:
-      APP_FULL_BASE_URL: https://passbolt.local
+      APP_FULL_BASE_URL: https://passbolt.example.com # adjust
       DATASOURCES_DEFAULT_HOST: "db"
       DATASOURCES_DEFAULT_USERNAME: "passbolt"
       DATASOURCES_DEFAULT_PASSWORD: "P4ssb0lt"
@@ -31,6 +34,5 @@ services:
     ports:
       - 80:80
       - 443:443
-    #Alternatively for non-root images:
-    # - 80:8080
-    # - 443:4433
+    # - 80:8080 # alternative port mappings if rootless image is used
+    # - 443:4433 # alternative port mappings if rootless image is used

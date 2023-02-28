@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  nzbget:
+    image: lscr.io/linuxserver/nzbget:latest
+    container_name: nzbget
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nzbget/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nzbget/downloads:/downloads
+    ports:
+      - 6789:6789
+    restart: unless-stopped

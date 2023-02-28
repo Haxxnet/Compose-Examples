@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+    pms-docker:
+        container_name: plex
+        environment:
+            - TZ=America/Chicago
+            - PLEX_CLAIM=claim-dvmURANy9Z7MbJhmY7V7
+        volumes:
+            - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plex/config:/config'
+            - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plex/transcode:/transcode'
+            - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plex/media:/data'
+        image: plexinc/pms-docker
+        restart: unless-stopped
+        ports:
+            - '32400:32400'

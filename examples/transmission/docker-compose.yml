@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/transmission/data:/config'
+      - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/transmission/downloads:/downloads'
+      - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/transmission/watch:/watch'
+    ports:
+      - 9091:9091
+    restart: unless-stopped

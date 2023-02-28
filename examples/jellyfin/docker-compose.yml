@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+    jellyfin:
+        container_name: jellyfin
+        volumes:
+            - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jellyfin/config:/config'
+            - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jellyfin/cache:/cache'
+            - '${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jellyfin/media:/media'
+        network_mode: host
+        image: 'jellyfin/jellyfin:latest'
+        restart: unless-stopped

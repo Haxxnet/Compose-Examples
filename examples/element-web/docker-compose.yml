@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+    element-web:
+        container_name: element-web
+        ports:
+            - '80:80'
+        image: 'vectorim/element-web'
+        restart: unless-stopped

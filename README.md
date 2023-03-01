@@ -140,6 +140,7 @@ docker compose up
 - [Answer](examples/answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
 - [Obsidian-Gitsync-Perlite](https://github.com/l4rm4nd/Obsidian-Gitsync-Perlite) - Continuously sync Obsidian markdown notes from GitHub and publish it for the webs.
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
+- [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 
 ### Analytics
 - [Matomo](examples/matomo) - Matomo is the leading Free/Libre open analytics platform.
@@ -173,6 +174,7 @@ docker compose up
 - [Answer](examples/answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
 - [Obsidian-Gitsync-Perlite](https://github.com/l4rm4nd/Obsidian-Gitsync-Perlite) - Continuously sync Obsidian markdown notes from GitHub and publish it for the webs.
+- [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 
 ### Finance
 - [TRSync](examples/trsync) - Django web frontend for pytr to download all Trade Republic depot data.
@@ -190,3 +192,9 @@ docker compose up
 
 ## Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)
+
+## Join the community!
+
+<a href="https://github.com/Haxxnet/Compose-Examples/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Haxxnet/Compose-Examples" />
+</a>

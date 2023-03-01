@@ -1,4 +1,5 @@
 version: "2.1"
+
 services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
@@ -6,7 +7,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Chicago
+      - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/prowlarr/config:/config
     ports:

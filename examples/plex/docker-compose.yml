@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+    pms-docker:
+        image: plexinc/pms-docker
+        container_name: plex
+        environment:
+            - TZ=Europe/Berlin
+            - PLEX_CLAIM=claim-dvmURANy9Z7MbJhmY7V7 # pls adjust
+        volumes:
+            - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plex/config:/config
+            - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plex/transcode:/transcode
+            - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plex/media:/data
+        restart: unless-stopped
+        ports:
+            - '32400:32400'

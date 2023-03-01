@@ -1,0 +1,17 @@
+version: "2.1"
+
+services:
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lidarr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lidarr/music:/music
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lidarr/downloads:/downloads # Should be the same as the download client's folder
+    ports:
+      - 8686:8686
+    restart: unless-stopped

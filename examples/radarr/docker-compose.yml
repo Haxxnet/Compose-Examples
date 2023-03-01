@@ -1,0 +1,17 @@
+version: "2.1"
+
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/radarr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/radarr/movies:/movies
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/radarr/downloads:/downloads # Should be the same as the download client's folder
+    ports:
+      - 7878:7878
+    restart: unless-stopped

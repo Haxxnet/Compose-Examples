@@ -1,3 +1,3 @@
 # References
 
-- https://hub.docker.com/r/benbusby/whoogle-search
+- https://github.com/benbusby/whoogle-search/blob/main/docker-compose.yml

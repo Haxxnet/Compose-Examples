@@ -10,7 +10,7 @@ You have to put the configuration files from the directory `config` here to your
 
 The do the following:
 
-1. Adjust the configuration.yml to your needs. Especially replace exmaple.com with your own domain name. Add all your to be protected subdomains to the access_control area.
+1. Adjust the configuration.yml to your needs. Especially replace exmaple.com with your own domain name. Add all your to be protected subdomains to the access_control area. Replace all secrets with your secure strings (may use `openssl rand -base64 35` to generate a secure, random string).
 2. Adjust users_database.yml and add your user accounts. You can create new password hashes via `docker run --rm authelia/authelia:latest authelia crypto hash generate argon2 --password 'ExamplePassword'`
 3. Adjust your Traefik dynamic configuration and add authelia as middleaware. See [here](../traefik/fileConfig.yml) for an example configuration file.
 4. Finally, add authelia as middleware for each container to protect. I recommend using labels. Note that authelia should always be listed first.

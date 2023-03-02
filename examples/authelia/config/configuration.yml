@@ -57,7 +57,7 @@ session:
     host: authelia-redis
     port: 6379
     # This secret can also be set using the env variables AUTHELIA_SESSION_REDIS_PASSWORD_FILE
-    password: SuperSecureRedisAuthPassword # must be the same as in the docker-compose.yml defined for the redis services
+    password: SuperSecureRedisAuthPassword # must be the same as in the docker-compose.yml defined for the redis service
 
 regulation:
   max_retries: 3

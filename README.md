@@ -161,7 +161,7 @@ docker compose up
 - [Tor-Browser](examples/tor-browser) - Running a Tor browser instance on any headless server.
 - [Firefox](examples/firefox) - Firefox by linuxserver.io allows you to run the popular Firefox web broser on a remote server.
 - [Libreddit](examples/libreddit) - Libreddit is a portmanteau of "libre" (meaning freedom) and "Reddit". It is a private front-end like Invidious but for Reddit. Browse the coldest takes of r/unpopularopinion without being tracked.
-- [Bibliogram](examples/bibliogram) - Bibliogram is a private front-end frontend to Instagram, similar to Invidous.
+- [Bibliogram](examples/bibliogram) (deprecated) - Bibliogram is a private front-end frontend to Instagram, similar to Invidous.
 - [Nitter](examples/nitter) - Nitter is an alternative front-end to Twitter, and was inspired by Invidious.
 
 ### Internet of Things / Smart Home / IT Automation

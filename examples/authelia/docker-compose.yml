@@ -24,6 +24,7 @@ services:
   redis:
     image: redis:alpine
     container_name: authelia-redis
+    command: redis-server --requirepass SuperSecureRedisAuthPassword # also reflect this in the authelia config file
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authelia/redis:/data
     networks:

@@ -1,0 +1,23 @@
+version: "3.0"
+
+services:
+  memos:
+    image: neosmemo/memos:latest
+    container_name: memos
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/memos/data:/var/opt/memos
+    ports:
+      - 5230:5230
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.memos.rule=Host(`memosservice.example.com`)
+    #  - traefik.http.services.memos.loadbalancer.server.port=5230
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.memos.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

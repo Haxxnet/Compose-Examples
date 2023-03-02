@@ -1413,7 +1413,7 @@
         {
           "targetBlank": true,
           "title": "Link",
-          "url": "https://bitwarden.lrvt.de"
+          "url": "https://example.com"
         }
       ],
       "options": {
@@ -1795,7 +1795,7 @@
         {
           "targetBlank": true,
           "title": "Link",
-          "url": "https://bitwarden.lrvt.de"
+          "url": "https://example.com"
         }
       ],
       "options": {

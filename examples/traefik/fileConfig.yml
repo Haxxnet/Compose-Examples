@@ -44,7 +44,7 @@ http:
     # Only Allow Local networks
     local-ipwhitelist:
       ipWhiteList:
-        sourceRange: 
+        sourceRange:
           - 127.0.0.1/32 # localhost
           - 10.0.0.0/8 # private class A
           - 172.16.0.0/12 # private class B
@@ -77,7 +77,18 @@ http:
         stsSeconds: 63072000 # HTTP-Strict-Transport-Security (HSTS)
         stsPreload: true # HTTP-Strict-Transport-Security (HSTS)
         #contentSecurityPolicy: "block-all-mixed-content" # Content-Security-Policy (CSP)
-        
+
+    # Authelia guard
+    authelia:
+      forwardauth:
+        address: http://authelia:9091/api/verify?rd=https://auth.example.com/  # replace example.com with your domain name
+        trustForwardHeader: true
+        authResponseHeaders:
+          - Remote-User
+          - Remote-Groups
+          - Remote-Name
+          - Remote-Email
+
     # rate limiting
     rate-limit:
       rateLimit:

@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  authelia:
+    image: authelia/authelia
+    container_name: authelia
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authelia/config:/config
+    networks:
+      - proxy
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.authelia.rule=Host(`auth.example.com`)'  # replace with your domain name
+      - 'traefik.http.routers.authelia.entrypoints=https'
+      - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/authz/forward-auth?authelia_url=https://auth.example.com'  # replace with your domain name
+      - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
+      - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'  # yamllint disable-line rule:line-length
+    expose:
+      - 9091
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+
+  redis:
+    image: redis:alpine
+    container_name: authelia-redis
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authelia/redis:/data
+    networks:
+      - proxy
+    expose:
+      - 6379
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+
+networks:
+   proxy:
+      external: true

@@ -64,6 +64,14 @@ regulation:
   find_time: 120
   ban_time: 300
 
+# yubikey support
+webauthn:
+  disable: false
+  display_name: Authelia
+  attestation_conveyance_preference: indirect
+  user_verification: preferred
+  timeout: 60s
+
 storage:
   encryption_key: a_very_important_secret # Now required
   local:

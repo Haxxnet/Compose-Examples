@@ -11,7 +11,7 @@ version: "3.8"
 services:
   proxy:
     image: reallibrephotos/librephotos-proxy:${tag}
-    container_name: proxy
+    container_name: librephotos-proxy
     restart: unless-stopped
     volumes:
       - ${scanDirectory}:/data
@@ -24,7 +24,7 @@ services:
 
   db:
     image: postgres:13
-    container_name: db
+    container_name: librephotos-db
     restart: unless-stopped
     environment:
       - POSTGRES_USER=${dbUser}
@@ -46,7 +46,7 @@ services:
 
   backend:
     image: reallibrephotos/librephotos:${tag}
-    container_name: backend
+    container_name: librephotos-backend
     restart: unless-stopped
     volumes:
       - ${scanDirectory}:/data
@@ -81,7 +81,7 @@ services:
 
   redis:
     image: redis:6
-    container_name: redis
+    container_name: librephotos-redis
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]

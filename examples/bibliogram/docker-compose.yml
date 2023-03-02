@@ -1,0 +1,10 @@
+version: '3.4'
+services:
+  bibliogram:
+    image: schklom/bibliogram
+    container_name: bibliogram
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bibliogram/config.js:/app/config.js:ro
+    ports:
+      - '10407:10407'
+    restart: unless-stopped

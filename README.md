@@ -115,6 +115,8 @@ docker compose up
 - [Prowlarr](examples/prowlarr) - Prowlarr is an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports management of both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Lidarr, Mylar3, Radarr, Readarr, and Sonarr offering complete management of your indexers with no per app Indexer setup required (we do it all).
 - [Radarr](examples/radarr) - Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.
 - [Sonarr](examples/sonarr) - Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
+- [Ombi](examples/ombi) - Ombi is a tool that enables users to manage requests for movies and TV shows on their Plex server. It provides an easy-to-use interface for users to request new content, leave notes and report issues. Ombi also offers notification and newsletter features, making it easier for server owners to manage user requests and share new content updates.
+- [LibrePhotos](examples/librephotos) - A self-hosted open source photo management service, with face recognition, geolocation, and more.
 
 ### Document Management Systems (DMS)
 - [Paperless NGX](examples/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
@@ -157,6 +159,8 @@ docker compose up
 - [Tor-Browser](examples/tor-browser) - Running a Tor browser instance on any headless server.
 - [Firefox](examples/firefox) - Firefox by linuxserver.io allows you to run the popular Firefox web broser on a remote server.
 - [Libreddit](examples/libreddit) - Libreddit is a portmanteau of "libre" (meaning freedom) and "Reddit". It is a private front-end like Invidious but for Reddit. Browse the coldest takes of r/unpopularopinion without being tracked.
+- [Bibliogram](examples/bibliogram) - Bibliogram is a private front-end frontend to Instagram, similar to Invidous.
+- [Nitter](examples/nitter) - Nitter is an alternative front-end to Twitter, and was inspired by Invidious.
 
 ### Internet of Things / Smart Home / IT Automation
 - [Home Assistant](examples/homeassistant) - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.

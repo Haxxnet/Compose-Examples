@@ -12,7 +12,7 @@ services:
       - 'traefik.enable=true'
       - 'traefik.http.routers.authelia.rule=Host(`auth.example.com`)'  # replace with your domain name
       - 'traefik.http.routers.authelia.entrypoints=https'
-      - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/authz/forward-auth?authelia_url=https://auth.example.com'  # replace with your domain name
+      - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.example.com'  # replace with your domain name
       - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
       - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'  # yamllint disable-line rule:line-length
     expose:

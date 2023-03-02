@@ -6,7 +6,7 @@
 
 # Notes
 
-You have to put the configuration files in the directory `config` to your Docker volume bind mount.
+You have to put the configuration files from the directory `config` here to your Docker volume bind mount.
 
 The do the following:
 

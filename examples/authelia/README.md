@@ -20,3 +20,5 @@ The do the following:
       - traefik.enable=true
       - traefik.http.routers.protected-service.middlewares=authelia@file,local-ipwhitelist@file
 ````
+
+Note: You can also use the docker provider `authelia@docker` instead of the file provider `authelia@file`.

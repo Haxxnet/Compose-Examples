@@ -130,6 +130,8 @@ docker compose up
 - [Nextcloud](examples/nextcloud) - Access and share your files, calendars, contacts, mail and more from any device, on your terms.
 - [Seafile](examples/seafile) - File hosting and sharing solution primary for teams and organizations.
 - [SFTPGo](examples/sftpgo) - Fully featured and highly configurable SFTP server with optional HTTP/S, FTP/S and WebDAV support - S3, Google Cloud Storage, Azure Blob.
+- [Filebrowser](examples/filebrowser) - filebrowser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files.
+- [FileRun](examples/filerun) - FileRun is a self-hosted File Sync and Share web-based application. It is a full featured web based file manager with an easy to use user interface.
 - [Gokapi](examples/gokapi) - Lightweight selfhosted Firefox Send alternative without public upload. AWS S3 supported.
 - [Projectsend](examples/projectsend) - ProjectSend is a free, open source software that lets you share files with your clients, focused on ease of use and privacy. It supports clients groups, system users roles, statistics, multiple languages, detailed logs and much more!
 - [Pwndrop](examples/pwndrop) - pwndrop is a self-deployable file hosting service for sending out red teaming payloads or securely sharing your private files over HTTP and WebDAV.

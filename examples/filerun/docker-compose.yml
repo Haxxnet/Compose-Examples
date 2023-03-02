@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  db:
+    image: mariadb:10.1
+    container_name: filerun-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
+      - MYSQL_USER=your_filerun_username
+      - MYSQL_PASSWORD=your_filerun_password
+      - MYSQL_DATABASE=your_filerun_database
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filerun/db:/var/lib/mysql
+
+  filerun:
+    image: filerun/filerun
+    container_name: filerun
+    environment:
+      - FR_DB_HOST=db
+      - FR_DB_PORT=3306
+      - FR_DB_USER=your_filerun_username
+      - FR_DB_PASS=your_filerun_password
+      - FR_DB_NAME=your_filerun_database
+    depends_on:
+      - db
+    links:
+      - db:db
+    ports:
+      - 8080:80
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filerun/html:/var/www/html
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filerun/files:/user-files

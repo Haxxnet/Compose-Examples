@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  filebrowser:
+    image: hurlenko/filebrowser
+    container_name: filebrowser
+    user: 1000:1000 # adjust to your needs
+    ports:
+      - 8080:8080
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/config:/config
+    environment:
+      - FB_BASEURL=/filebrowser
+    restart: unless-stopped

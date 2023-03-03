@@ -54,9 +54,12 @@ docker compose up
 - [Traefik](examples/traefik) - Traefik is a modern HTTP reverse proxy and load balancer made to deploy microservices with ease. It supports several backends (Docker, Swarm, Mesos/Marathon, …) to manage its configuration automatically and dynamically.
 - [Nginx Proxy Manager](examples/nginx-proxy-manager) - Nginx Proxy Manager is an easy way to accomplish reverse proxying hosts with SSL termination.
 - [Caddy](examples/caddy) - The Caddy web server is an extensible, cross-platform, open-source web server written in Go. Caddy obtains and renews TLS certificates for your sites automatically.
+- ~~[oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy)~~ - A reverse proxy that provides authentication with Google, Azure, OpenID Connect and many more identity providers.
 
 ### Identity Providers / Single Sign On (SSO) / 2FA
 - [Authelia](examples/authelia) - Authelia is an open-source authentication and authorization server providing two-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for reverse proxies by allowing, denying, or redirecting requests. Recommended to combine with [Traefik](examples/traefik).
+- ~~[Authentik](https://goauthentik.io/docs/providers/proxy/forward_auth#traefik)~~ - authentik is an open-source Identity Provider focused on flexibility and versatility. You can use authentik in an existing environment to add support for new protocols. authentik is also a great solution for implementing signup/recovery/etc in your application, so you don't have to deal with it.
+- ~~[Keycloak](https://github.com/keycloak/keycloak)~~ - Keycloak is an open-source Identity and Access Management (IAM) solution for modern applications and services.
 
 ### Virtual Private Network (VPN)
 - [wg-easy](examples/wg-easy) - The easiest way to install & manage WireGuard on any Linux host. All-in-one deployment of a WireGuard VPN network service + web management UI.

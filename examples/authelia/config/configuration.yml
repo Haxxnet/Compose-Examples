@@ -23,6 +23,16 @@ totp:
 #  # This secret can also be set using the env variables AUTHELIA_DUO_API_SECRET_KEY_FILE
 #  secret_key: 1234567890abcdefghifjkl
 
+password_policy:
+  standard:
+    enabled: true
+    min_length: 16
+    max_length: 0
+    require_uppercase: true
+    require_lowercase: true
+    require_number: true
+    require_special: true
+
 authentication_backend:
   file:
     path: /config/users_database.yml

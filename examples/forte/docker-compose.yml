@@ -28,12 +28,10 @@ services:
         #    - traefik.http.routers.forte.rule=Host(`forte.example.com`)
         #    - traefik.http.services.forte.loadbalancer.server.port=3000
         #    - traefik.docker.network=proxy
-        #    # Part for optional traefik middlewares
-        #    - traefik.http.routers.forte.middlewares=local-ipwhitelist@file
         #    - traefik.http.middlewares.cors.headers.customResponseHeaders.Access-Control-Allow-Origin=https://forte.buzl.uk
         #    - traefik.http.middlewares.cors.headers.customFrameOptionsValue=forte.buzl.uk
         #    - traefik.http.middlewares.cors.headers.customResponseHeaders.Cross-Origin-Resource-Policy=cross-origin
-        #    - traefik.http.routers.forte.middlewares=cors
+        #    - traefik.http.routers.forte.middlewares=cors,local-ipwhitelist@file
 
     postgres:
         image: kaangiray26/postgres:2.0

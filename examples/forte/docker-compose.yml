@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+    app:
+        image: kaangiray26/forte:2.8
+        container_name: forte
+        restart: on-failure
+        #ports:
+        #    - "3000:3000"
+        depends_on:
+            postgres:
+                condition: service_healthy
+        environment:
+            mode: public
+            port: 3000
+            NODE_ENV: production     # Set Node Environment
+            POSTGRES_HOST: postgres  # Postgres Host/IP
+            POSTGRES_PORT: 5432      # Postgres Database Port
+            POSTGRES_DB: forte       # Set Postgres Database Name
+            POSTGRES_USER: forte     # Set Postgres Username
+            POSTGRES_PASSWORD: forte # Set Postgres Password
+        volumes:
+            - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/forte/library:/library # your music library to import from
+        #networks:
+        #    - proxy
+        #labels:
+        #    - traefik.enable=true
+        #    - traefik.http.routers.forte.rule=Host(`forte.example.com`)
+        #    - traefik.http.services.forte.loadbalancer.server.port=3000
+        #    - traefik.docker.network=proxy
+        #    # Part for optional traefik middlewares
+        #    - traefik.http.routers.forte.middlewares=local-ipwhitelist@file
+        #    - traefik.http.middlewares.cors.headers.customResponseHeaders.Access-Control-Allow-Origin=https://forte.buzl.uk
+        #    - traefik.http.middlewares.cors.headers.customFrameOptionsValue=forte.buzl.uk
+        #    - traefik.http.middlewares.cors.headers.customResponseHeaders.Cross-Origin-Resource-Policy=cross-origin
+        #    - traefik.http.routers.forte.middlewares=cors
+
+    postgres:
+        image: kaangiray26/postgres:2.0
+        container_name: forte-db
+        restart: always
+        environment:
+            POSTGRES_DB: forte       # Set Postgres Database Name
+            POSTGRES_USER: forte     # Set Postgres Username
+            POSTGRES_PASSWORD: forte # Set Postgres Password
+        volumes:
+            - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/forte/db:/var/lib/postgresql/data
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready -U forte" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        #networks:
+        #    - proxy
+
+#networks:
+#   proxy:
+#     external: true

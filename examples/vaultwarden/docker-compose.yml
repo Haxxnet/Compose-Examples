@@ -11,6 +11,8 @@ services:
     environment:
       #- ADMIN_TOKEN=MySecureAdminTokenPasswordForAdminArea
       #- SIGNUPS_ALLOWED=false
+      #- SIGNUPS_VERIFY=true
+      #- INVITATIONS_ALLOWED=true # only admins and orga owners
       #- globalSettings__mail__replyToEmail=bitwarden@example.com
       #- globalSettings__mail__smtp__host=smtp.gmail.com
       #- globalSettings__mail__smtp__username=bitwarden@example.com

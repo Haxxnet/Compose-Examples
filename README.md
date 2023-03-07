@@ -109,7 +109,7 @@ docker compose up
 - [Stash](examples/stash) - Stash is a self-hosted webapp written in Go which organizes and serves your porn.
 - [Raveberry](examples/raveberry) - A multi-user music server with a focus on participation.
 - [Deemix](examples/deemix) - deemix is a barebone deezer downloader library built from the ashes of Deezloader Remix.
-- [Forte](examples/forte) - Self-hosted, music streaming platform.
+- [Forte](examples/forte) - forte is a self-hosted music platform. You can either connect to a forte server or create your own server for your friends & family. However, it is also very convenient to use forte on your local machine as a stand-alone music player. Supports group streaming sessions.
 - [MeTube](examples/metube) - Web GUI for youtube-dl (using the yt-dlp fork) with playlist support. Allows you to download videos and audio only from YouTube and dozens of other sites.
 - [Syncthing](examples/syncthing) - Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
 - [Transmission](examples/transmission) - Transmission is a fast, easy, and free BitTorrent client.

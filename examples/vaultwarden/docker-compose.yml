@@ -10,13 +10,13 @@ services:
       - 1.1.1.1
     environment:
       #- ADMIN_TOKEN=MySecureAdminTokenPasswordForAdminArea
+      #- SIGNUPS_ALLOWED=false
       #- globalSettings__mail__replyToEmail=bitwarden@example.com
       #- globalSettings__mail__smtp__host=smtp.gmail.com
       #- globalSettings__mail__smtp__username=bitwarden@example.com
       #- globalSettings__mail__smtp__password=MyStrongSmtpLoginPassword
       #- globalSettings__mail__smtp__ssl=true
       #- globalSettings__mail__smtp__port=587
-      - globalSettings__disableUserRegistration=false
       - LOG_FILE=/data/logs/access.log
       - WEBSOCKET_ENABLED=true
       - ROCKET_ENV=prod

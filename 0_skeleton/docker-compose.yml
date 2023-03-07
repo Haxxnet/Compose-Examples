@@ -32,7 +32,7 @@ services:
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.CHANGEME.middlewares=authelia@file,local-ipwhitelist@file,basic-auth@file
+    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,authelia@file,basic-auth@file
 
 #networks:
 #  proxy:

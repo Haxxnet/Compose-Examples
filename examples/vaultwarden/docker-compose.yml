@@ -16,7 +16,7 @@ services:
       #- globalSettings__mail__smtp__password=MyStrongSmtpLoginPassword
       #- globalSettings__mail__smtp__ssl=true
       #- globalSettings__mail__smtp__port=587
-      - globalSettings__disableUserRegistration=true
+      - globalSettings__disableUserRegistration=false
       - LOG_FILE=/data/logs/access.log
       - WEBSOCKET_ENABLED=true
       - ROCKET_ENV=prod

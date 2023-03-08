@@ -1,5 +1,5 @@
 <div align="center" width="100%">
-    <h2>Awesome Docker Compose Examples</h2>
+    <h1>Awesome Docker Compose Examples</h1>
     <p>Various Docker Compose examples of selfhosted FOSS and proprietary projects.</p>
     <a target="_blank" href="https://github.com/docker/compose"><img src="https://badgen.net/badge/icon/docker%20compose?icon=docker&label" /></a>
     <a target="_blank" href="https://www.reddit.com/r/selfhosted"><img src="https://badgen.net/badge/icon/r%2fselfhosted?icon=reddit&label&color=red" /></a><p>

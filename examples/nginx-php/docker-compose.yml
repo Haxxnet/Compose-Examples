@@ -10,6 +10,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/logs:/var/log/nginx
     container_name: nginx
     restart: unless-stopped
+    ports:
+      - 8080:80
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.nginx.rule=Host(`nginx.example.com`)

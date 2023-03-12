@@ -5,8 +5,8 @@ services:
     image: nginx:latest
     hostname: nginx
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/nginx-conf:/etc/nginx/conf.d
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www # place your files for web here
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/nginx-conf:/etc/nginx/conf.d # place provided nginx.conf here
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/logs:/var/log/nginx
     container_name: nginx
     restart: unless-stopped
@@ -24,7 +24,7 @@ services:
     image: php:8-fpm-alpine
     hostname: php
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www # must be same path to www-data as above
     container_name: php
     restart: unless-stopped
     working_dir: /var/www

@@ -28,3 +28,5 @@ services:
     container_name: php
     restart: unless-stopped
     working_dir: /var/www
+    expose:
+      - 9000

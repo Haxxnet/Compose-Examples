@@ -6,9 +6,9 @@ services:
     hostname: adguard
     image: adguard/adguardhome:latest
     ports:
-      - 53:53/tcp
-      - 8080:80/tcp
-      - 53:53/udp
+      - 8080:80/tcp # WEB UI
+      - 53:53/udp # DNS UDP
+      - 53:53/tcp # DNS TCP
     restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/adguard-home/work:/opt/adguardhome/work

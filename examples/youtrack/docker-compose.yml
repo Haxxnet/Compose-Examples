@@ -20,7 +20,7 @@ services:
       placement:
         constraints:
           - node.labels.youtrack.data == true
-      #labels:
+    #labels:
       #  - traefik.enable=true
       #  - traefik.docker.network=proxy
       #  - traefik.http.routers.youtrack.rule=Host(`projects.example.com`)

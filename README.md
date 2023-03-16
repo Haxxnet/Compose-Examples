@@ -207,6 +207,7 @@ docker compose up
 
 ### Project Management
 - [JetBrains YouTrack](examples/youtrack) - YouTrack is a proprietary, commercial browser-based bug tracker, issue tracking system and project management software developed by JetBrains.
+- [Leantime](examples/leantime) - Leantime is an open source project management system for small teams and startups written in PHP, Javascript using MySQL.
 
 ## Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)

@@ -1,0 +1,56 @@
+version: '3.3'
+
+services:
+  leantime_db:
+    image: mysql:8.0
+    container_name: leantime-mysql
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/mysql:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: '321.qwerty'
+      MYSQL_DATABASE: 'leantime'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: '321.qwerty'
+    command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    #networks:
+    #  - proxy
+
+  leantime:
+    image: leantime/leantime:latest
+    container_name: leantime
+    restart: unless-stopped
+    environment:
+      #LEAN_APP_URL: 'https://domain.com/leantime'                     # Only needed for subdirectory setup; protocol (http or https) and base URL , trailing slash not needed
+      LEAN_SITENAME: 'Leantime'                                         # Name of your site, can be changed later
+      LEAN_DB_HOST: 'leantime_db'                                    # Database host, derived from container_name in leantime_db container
+      LEAN_DB_USER: 'admin'
+      LEAN_DB_PASSWORD: '321.qwerty'
+      LEAN_DB_DATABASE: 'leantime'
+      LEAN_DEFAULT_TIMEZONE: 'Europe/Berlin'                            # Set default server timezone
+      LEAN_SESSION_PASSWORD: 'GD8Fozemg3AqM9my86TTfgTeGPXXkPF7'         # Salting sessions. Replace with a strong password
+      LEAN_SESSION_EXPIRATION: 28800                                    # How many seconds after inactivity should we logout?  28800seconds = 8hours
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/public_data:/var/www/html/public/userfiles
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/data:/var/www/html/userfiles
+    ports:
+      - "8080:80"                                                       # The port to expose and access Leantime
+    depends_on:
+      - leantime_db                                                     # Don't start Leantime unless leantime_db is running
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.leantime.rule=Host(`leantime.example.com`)
+    #  - traefik.http.services.leantime.loadbalancer.server.port=80
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.leantime.middlewares=local-ipwhitelist@file,authelia@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

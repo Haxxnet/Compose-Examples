@@ -37,7 +37,7 @@ services:
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
     
-  typesense:
+  immich-typesense:
     container_name: immich-typesense
     image: typesense/typesense:0.24.0
     environment:

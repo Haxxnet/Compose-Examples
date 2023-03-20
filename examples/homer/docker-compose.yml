@@ -6,6 +6,8 @@ services:
     container_name: homer
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homer:/www/assets
+    ports:
+      - "8080:8080"
     restart: unless-stopped
     environment:
       - UID=1000

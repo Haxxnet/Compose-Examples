@@ -13,6 +13,8 @@ services:
       - UID=1000
       - GID=1000
     restart: unless-stopped
+    ports:
+      - 4000:80    
     healthcheck:
       test: ['CMD', 'node', '/app/services/healthcheck']
       interval: 1m30s

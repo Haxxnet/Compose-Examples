@@ -52,15 +52,12 @@ services:
   #immich-machine-learning:
   #  image: altran1502/immich-machine-learning:release
   #  container_name: immich-ml
-  #  entrypoint: ["/bin/sh", "./entrypoint.sh"]
   #  volumes:
   #    - ${UPLOAD_LOCATION}:/usr/src/app/upload
   #  env_file:
   #    - .env
   #  environment:
   #    - NODE_ENV=production
-  #  depends_on:
-  #    - immich-database
   #  restart: unless-stopped
   #  labels:
   #    - "com.centurylinklabs.watchtower.enable=true"

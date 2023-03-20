@@ -34,6 +34,17 @@ services:
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
+    
+  typesense:
+    container_name: immich-typesense
+    image: typesense/typesense:0.24.0
+    environment:
+      - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}
+      - TYPESENSE_DATA_DIR=/data
+    logging:
+      driver: none
+    volumes:
+      - ${TYPESENSE_LOCATION}:/data 
 
   #immich-machine-learning:
   #  image: altran1502/immich-machine-learning:release

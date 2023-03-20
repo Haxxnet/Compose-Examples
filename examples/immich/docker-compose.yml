@@ -54,6 +54,7 @@ services:
   #  container_name: immich-ml
   #  volumes:
   #    - ${UPLOAD_LOCATION}:/usr/src/app/upload
+  #    - model-cache:/cache
   #  env_file:
   #    - .env
   #  environment:
@@ -111,3 +112,6 @@ services:
     #  # Part for local lan services only
     #  - traefik.http.routers.immich.middlewares=local-ipwhitelist@file
     #  - "com.centurylinklabs.watchtower.enable=true"
+    
+#volumes:
+#  model-cache:

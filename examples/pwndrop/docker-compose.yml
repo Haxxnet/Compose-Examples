@@ -10,6 +10,8 @@ services:
       - SECRET_PATH=pwndrop # secret path your admin mgmt interface will be
     image: linuxserver/pwndrop:latest
     restart: unless-stopped
+    ports:
+      - 8080:8080
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/pwndrop/config:/config

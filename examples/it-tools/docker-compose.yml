@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  it-tools:
+    image: corentinth/it-tools
+    container_name: it-tools
+    hostname: it-tools
+    restart: unless-stopped
+    ports:
+      - 8080:80/tcp
+    #networks:
+    #  - proxy # or use dev for testing purposes
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.it-tools.rule=Host(`tools.example.com`)
+    #  - traefik.http.services.it-tools.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy # or use dev for testing purposes
+    ##  # Part for optional traefik middlewares
+    #  - traefik.http.routers.it-tools.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy: # or use dev for testing purposes
+#    external: true

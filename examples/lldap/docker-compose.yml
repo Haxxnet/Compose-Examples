@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  lldap:
+    image: nitnelave/lldap:stable
+    container_name: lldap
+    hostname: lldap
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lldap/data:/data # For the config file, server private key and the sqlite database.
+    environment:
+      - LLDAP_JWT_SECRET=CHANGEME
+      - LLDAP_LDAP_USER_PASS=CHANGEME
+      - LLDAP_LDAP_BASE_DN=dc=example,dc=com
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    ports:
+      - 3890:3890 # LDAP
+      - 17170:17170 # WEB UI
+    #expose:
+    #  - 17170
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.lldap.rule=Host(`lldap.example.com`)
+    #  - traefik.http.services.lldap.loadbalancer.server.port=17170

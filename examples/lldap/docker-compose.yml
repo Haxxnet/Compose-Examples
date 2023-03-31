@@ -17,9 +17,15 @@ services:
     ports:
       - 3890:3890 # LDAP
       - 17170:17170 # WEB UI
+    #networks:
+    #  - proxy
     #expose:
     #  - 17170
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.lldap.rule=Host(`lldap.example.com`)
     #  - traefik.http.services.lldap.loadbalancer.server.port=17170
+
+#networks:
+#  proxy:
+#    external: true

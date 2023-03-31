@@ -6,9 +6,18 @@ services:
     hostname: adguard
     image: adguard/adguardhome:latest
     ports:
-      - 8080:80/tcp # WEB UI
-      - 53:53/udp # DNS UDP
-      - 53:53/tcp # DNS TCP
+      - 3000:3000/tcp # only required during initial setup
+      - 8080:80/tcp # web interface after setup
+      - 53:53/tcp # dns
+      - 53:53/udp # dns
+      # - 67:67/udp # dhcp
+      # - 68:68/tcp # dhcp
+      # - 68:68/udp # dhcp
+      # - 784:784/udp # dns-over-quic
+      # - 853:853/tcp # dns over tls
+      # - 853:853/udp # dns over tls
+      # - 5443:5443/tcp # dnscrypt
+      # - 5443:5443/udp # dnscrypt
     restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/adguard-home/work:/opt/adguardhome/work

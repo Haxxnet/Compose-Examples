@@ -18,7 +18,7 @@ services:
     #networks:
     #  - proxy
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rocketchat/uploads:/app/uploads    
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rocketchat/uploads:/app/uploads # only use if you enable filesystem upload in the admin area; see https://docs.rocket.chat/use-rocket.chat/workspace-administration/settings/file-upload#storage-type
     environment:
       MONGO_URL: "${MONGO_URL:-\
         mongodb://${MONGODB_ADVERTISED_HOSTNAME:-mongodb}:${MONGODB_INITIAL_PRIMARY_PORT_NUMBER:-27017}/\

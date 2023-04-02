@@ -17,6 +17,8 @@ services:
     #  - traefik.http.routers.rocketchat.middlewares=local-ipwhitelist@file
     #networks:
     #  - proxy
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rocketchat/uploads:/app/uploads    
     environment:
       MONGO_URL: "${MONGO_URL:-\
         mongodb://${MONGODB_ADVERTISED_HOSTNAME:-mongodb}:${MONGODB_INITIAL_PRIMARY_PORT_NUMBER:-27017}/\

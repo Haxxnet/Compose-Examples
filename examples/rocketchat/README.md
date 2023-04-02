@@ -4,7 +4,7 @@
 
 # Notes
 
-The mongodb container will likely throw a permission error when bein started for the first time.
+The mongodb container will likely throw a permission error when being started for the first time.
 
 ````
 error: 'An error occurred when creating an index for collection "users: getaddrinfo EAI_AGAIN mongodb',

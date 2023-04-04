@@ -6,8 +6,8 @@ services:
     init: true
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hemmelig/files:/var/tmp/hemmelig/upload/files
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hemmelig/database:/home/node/hemmelig/database/
     environment:
-      - SECRET_REDIS_HOST=hemmelig-redis  # Override this for your redis host address
       - SECRET_LOCAL_HOSTNAME=0.0.0.0     # The local hostname for the fastify instance
       - SECRET_PORT=3000                  # The port number for the fastify instance
       - SECRET_HOST=                      # Used for i.e. set cors to your domain name
@@ -19,8 +19,6 @@ services:
       - SECRET_MAX_TEXT_SIZE=256          # The max text size for the secret. Is set in kb. i.e. 256 for 256kb
     ports:
       - "3000:3000"
-    depends_on:
-      - redis
     restart: always
     stop_grace_period: 1m
     healthcheck:
@@ -34,19 +32,3 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.hemmelig.middlewares=local-ipwhitelist@file,basic-auth@file  
-
-  redis:
-    image: redis
-    container_name: hemmelig-redis
-    hostname: hemmelig-redis
-    init: true
-    # Enable to make redis data persistent
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hemmelig/redis/:/data
-    command: redis-server --appendonly yes
-    restart: always
-    stop_grace_period: 1m
-    healthcheck:
-      test: "redis-cli ping | grep PONG || exit 1"
-      timeout: 5s
-      retries: 1

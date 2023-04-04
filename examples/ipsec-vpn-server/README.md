@@ -12,6 +12,7 @@ docker cp ipsec-vpn-server:/etc/ipsec.d/vpnclient.p12 ./
 docker logs ipsec-vpn-server
 
 # elevated powershell; import the VPN profile into Windows using the password from docker logs above
+# if you have not chosen to use a randomly created password (env var VPN_PROTECT_CONFIG=yes), then use a blank entry and just hit enter
 certutil.exe -f -importpfx .\vpnclient.p12 NoExport
 
 # elevated powershell; set additional reg key to harden IKEv2 key exchange

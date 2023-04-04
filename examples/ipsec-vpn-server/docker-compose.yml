@@ -17,8 +17,8 @@ services:
       #- VPN_CLIENT_NAME=vpnclient # optionally set your first vpn client name; default is vpnclient
       #- VPN_DNS_NAME=vpn.example.com # optionally define dns name
       #- VPN_PUBLIC_IP=103.10.199.1 # optionally define public IP address; this variable has no effect for IKEv2 mode
-      #- VPN_PROTECT_CONFIG=yes # optionally protect client config files using a random password
-      #- VPN_IKEV2_ONLY=yes # disable both IPsec/L2TP and IPsec/XAuth modes; only use IKEv2
+      - VPN_PROTECT_CONFIG=yes # optionally protect client config files using a random password
+      - VPN_IKEV2_ONLY=yes # disable both IPsec/L2TP and IPsec/XAuth modes; only use IKEv2
       #- VPN_DISABLE_IPSEC_L2TP=yes # disable IPsec/L2TP mode
       #- VPN_DISABLE_IPSEC_XAUTH=yes # disable IPsec/XAuth ("Cisco IPsec") mode
     restart: always

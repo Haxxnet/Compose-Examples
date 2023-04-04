@@ -6,9 +6,9 @@ services:
     hostname: ipsec-vpn-server
     container_name: ipsec-vpn-server
     environment:
-      - VPN_IPSEC_PSK=3gAW0sDYI2ARSMQIQRa2xpIHb42JS+ImsiHdf3jbTl8 # set a secure psk; e.g. via `openssl rand -base64 32`
-      - VPN_USER=vpn # define your vpn username
-      - VPN_PASSWORD=Cy7jRPIZGVK7dbAF5v # set a secure vpn password; e.g. via `openssl rand -base64 16`
+      #- VPN_IPSEC_PSK=3gAW0sDYI2ARSMQIQRa2xpIHb42JS+ImsiHdf3jbTl8 # set a secure psk; e.g. via `openssl rand -base64 32`; only necessary if not IKEv2 only
+      #- VPN_USER=vpn # define your vpn username; only necessary if not IKEv2 only
+      #- VPN_PASSWORD=Cy7jRPIZGVK7dbAF5v # set a secure vpn password; e.g. via `openssl rand -base64 16`; only necessary if not IKEv2 only
       #- VPN_ADDL_USERS=additional_username_1 additional_username_2 # add additional users; usernames must be separated by spaces, no duplicates allowed
       #- VPN_ADDL_PASSWORDS=additional_password_1 additional_password_2 # define pws for additional users; passwords must be separated by spaces
       #- VPN_ADDL_IP_ADDRS=192.168.42.2 192.168.42.3 # assign static IPs to clients; IKEv2 mode does NOT support this feature

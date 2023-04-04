@@ -4,6 +4,10 @@
 
 # Notes
 
+> IKEv2 mode has improvements over IPsec/L2TP and IPsec/XAuth ("Cisco IPsec"), and does not require an IPsec PSK, username or password.
+
+--> Therefore, IKEv2 only was chosen as preset via the environment variables of the provided docker-compose.yml.
+
 ````
 # copy IKEv2 VPN profile from docker container onto host
 docker cp ipsec-vpn-server:/etc/ipsec.d/vpnclient.p12 ./

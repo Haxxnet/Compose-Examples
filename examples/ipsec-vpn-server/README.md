@@ -27,4 +27,8 @@ REG ADD HKLM\SYSTEM\CurrentControlSet\Services\RasMan\Parameters /v NegotiateDH2
 powershell -command "Add-VpnConnection -ServerAddress 'vpn.example.com' -Name 'IKEVPN' -TunnelType IKEv2 -AuthenticationMethod MachineCertificate -EncryptionLevel Required -PassThru"
 
 powershell -command "Set-VpnConnectionIPsecConfiguration -ConnectionName 'IKEVPN' -AuthenticationTransformConstants GCMAES128 -CipherTransformConstants GCMAES128 -EncryptionMethod AES256 -IntegrityCheckMethod SHA256 -PfsGroup None -DHGroup Group14 -PassThru -Force"
+
+# force Windows to use the IKE VPN DNS servers by adjusting the metric level
+# see https://superuser.com/a/966833
+netsh int ip set interface interface="IKEVPN" metric=1
 ````

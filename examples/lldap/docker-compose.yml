@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   lldap:
-    image: nitnelave/lldap:stable
+    image: lldap/lldap:stable
     container_name: lldap
     hostname: lldap
     volumes:

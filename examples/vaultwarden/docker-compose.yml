@@ -9,7 +9,7 @@ services:
     dns:
       - 1.1.1.1
     environment:
-      #- ADMIN_TOKEN=MySecureAdminTokenPasswordForAdminArea
+      #- ADMIN_TOKEN=$$argon2id$$v=19$$m=19456,t=2,p=1$$UUZxK1FZMkZoRHFQRlVrTXZvS0E3bHpNQW55c2dBN2NORzdsa0Nxd1JhND0$$cUoId+JBUsJutlG4rfDZayExfjq4TCt48aBc9qsc3UI # see https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page#secure-the-admin_token
       #- SIGNUPS_ALLOWED=false
       #- SIGNUPS_VERIFY=true
       #- INVITATIONS_ALLOWED=true # only admins and orga owners

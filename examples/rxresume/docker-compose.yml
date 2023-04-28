@@ -1,0 +1,99 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: rxresume-db
+    restart: always
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rxresume/postgresql:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      start_period: 15s
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - proxy
+
+  server:
+    image: amruthpillai/reactive-resume:server-latest
+    container_name: rxresume-server
+    restart: always
+    expose:
+      - 3100
+    depends_on:
+      - postgres
+    environment:
+      - PUBLIC_URL=https://resume.example.com
+      - PUBLIC_SERVER_URL=https://resume.example.com/api # only change the subdomain, leave /api as is
+      - SERVER_URL=https://resume.example.com/api # only change the subdomain, leave /api as is
+      - PUBLIC_GOOGLE_CLIENT_ID=
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - SECRET_KEY=change-me-to-something-secure
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_SSL_CERT=
+      - JWT_SECRET=change-me-to-something-secure
+      - JWT_EXPIRY_TIME=604800
+      - GOOGLE_CLIENT_SECRET=
+      - GOOGLE_API_KEY=
+      - MAIL_FROM_NAME=Reactive Resume
+      - MAIL_FROM_EMAIL=noreply@rxresu.me
+      - MAIL_HOST=
+      - MAIL_PORT=
+      - MAIL_USERNAME=
+      - MAIL_PASSWORD=
+      - STORAGE_BUCKET=
+      - STORAGE_REGION=
+      - STORAGE_ENDPOINT=
+      - STORAGE_URL_PREFIX=
+      - STORAGE_ACCESS_KEY=
+      - STORAGE_SECRET_KEY=
+      - PDF_DELETION_TIME=
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rxresume-server.rule=Host(`resume.example.com`) && PathPrefix(`/api`) # only change the subdomain, leave /api as is
+      - traefik.http.services.rxresume-server.loadbalancer.server.port=3100
+      - traefik.docker.network=proxy
+      # Part for optional traefik middlewares
+      - traefik.http.routers.rxresume-server.middlewares=path-strip # may add local-ipwhitelist@file for access control
+      - traefik.http.middlewares.path-strip.stripprefix.prefixes=/api 
+      - traefik.http.middlewares.path-strip.stripprefix.forceSlash=false
+
+  client:
+    image: amruthpillai/reactive-resume:client-latest
+    container_name: rxresume-client
+    restart: always
+    expose:
+      - 3000
+    depends_on:
+      - server
+    environment:
+      - PUBLIC_URL=https://resume.example.com
+      - PUBLIC_SERVER_URL=https://resume.example.com/api # only change the subdomain, leave /api as is
+      - SERVER_URL=https://resume.example.com/api # only change the subdomain, leave /api as is
+      - PUBLIC_GOOGLE_CLIENT_ID=
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rxresume-client.rule=Host(`resume.example.com`)
+      - traefik.http.services.rxresume-client.loadbalancer.server.port=3000
+      - traefik.docker.network=proxy
+      # Part for optional traefik middlewares
+      #- traefik.http.routers.rxresume-client.middlewares=local-ipwhitelist@file # may enable this middleware for access control
+
+networks:
+  proxy:
+    external: true

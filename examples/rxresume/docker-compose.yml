@@ -31,9 +31,9 @@ services:
     depends_on:
       - postgres
     environment:
-      - PUBLIC_URL=https://resume.example.com
-      - PUBLIC_SERVER_URL=https://resume.example.com/api # only change the subdomain, leave /api as is
-      - SERVER_URL=https://resume.example.com/api # only change the subdomain, leave /api as is
+      - PUBLIC_URL=http://resume.example.com
+      - PUBLIC_SERVER_URL=http://resume.example.com/api # only change the subdomain, leave /api as is
+      - SERVER_URL=http://resume.example.com/api # only change the subdomain, leave /api as is
       - PUBLIC_GOOGLE_CLIENT_ID=
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -82,9 +82,9 @@ services:
     depends_on:
       - server
     environment:
-      - PUBLIC_URL=https://resume.example.com
-      - PUBLIC_SERVER_URL=https://resume.example.com/api # only change the subdomain, leave /api as is
-      - SERVER_URL=https://resume.example.com/api # only change the subdomain, leave /api as is
+      - PUBLIC_URL=http://resume.example.com
+      - PUBLIC_SERVER_URL=http://resume.example.com/api # only change the subdomain, leave /api as is
+      - SERVER_URL=http://resume.example.com/api # only change the subdomain, leave /api as is
       - PUBLIC_GOOGLE_CLIENT_ID=
     networks:
       - proxy
@@ -95,6 +95,27 @@ services:
       - traefik.docker.network=proxy
       # Part for optional traefik middlewares
       #- traefik.http.routers.rxresume-client.middlewares=local-ipwhitelist@file # may enable this middleware for access control
+      
+  traefik:
+    image: traefik:v2.10.1
+    container_name: rxresume-traefik
+    restart: unless-stopped
+    command:
+      - "--log.level=INFO"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - 80:80
+      - 8080:8080
+    environment:
+      - VIRTUAL_HOST=resume.example.com
+      - VIRTUAL_PORT=80
+    networks:
+      - proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro      
 
 networks:
   proxy:

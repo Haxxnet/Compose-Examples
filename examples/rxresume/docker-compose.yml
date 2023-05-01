@@ -75,6 +75,8 @@ services:
     image: amruthpillai/reactive-resume:client-latest
     container_name: rxresume-client
     restart: always
+    #extra_hosts:
+    #  - "resume.example.com:10.10.0.100" # optionally change to your server's IP address where traefik if PDF export keeps failing
     expose:
       - 3000
     depends_on:

@@ -35,7 +35,6 @@ services:
     environment:
       - PUBLIC_URL=http://resume.example.com
       - PUBLIC_SERVER_URL=http://resume.example.com/api # only change the subdomain, leave /api as is
-      - SERVER_URL=http://resume.example.com/api # only change the subdomain, leave /api as is
       - PUBLIC_GOOGLE_CLIENT_ID=
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -86,7 +85,6 @@ services:
     environment:
       - PUBLIC_URL=http://resume.example.com
       - PUBLIC_SERVER_URL=http://resume.example.com/api # only change the subdomain, leave /api as is
-      - SERVER_URL=http://resume.example.com/api # only change the subdomain, leave /api as is
       - PUBLIC_GOOGLE_CLIENT_ID=
     networks:
       - proxy

@@ -1,0 +1,68 @@
+x-deploy: &default-deploy
+  restart_policy:
+    condition: unless-stopped
+    delay: 5s
+    window: 120s
+  update_config:
+    order: start-first
+
+version: "3.7"
+
+services:
+
+  firezone:
+    image: firezone/firezone
+    container_name: firezone-web
+    ports:
+      - 51820:51820/udp
+    env_file:
+      # This should contain a list of env vars for configuring Firezone.
+      # See https://docs.firezone.dev/reference/env-vars for more info.
+      - ${FZ_INSTALL_DIR:-.}/.env
+    volumes:
+      # IMPORTANT: Persists WireGuard private key and other data. If
+      # /var/firezone/private_key exists when Firezone starts, it is
+      # used as the WireGuard private. Otherwise, one is generated.
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/firezone:/var/firezone
+    labels:
+     - traefik.enable=true
+     - traefik.docker.network=dev
+     - traefik.http.routers.firezone_https.rule=Host(`firezone.example.com`)
+     - traefik.http.routers.firezone_https.tls=true
+     - traefik.http.services.firezone.loadbalancer.server.port=13000
+    cap_add:
+      # Needed for WireGuard and firewall support.
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      # Needed for masquerading and NAT.
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv4.ip_forward=1
+      - net.ipv6.conf.all.forwarding=1
+    depends_on:
+      - postgres
+    networks:
+      - dev
+
+    deploy:
+      <<: *default-deploy
+
+  postgres:
+    image: postgres:15
+    container_name: firezone-db
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-firezone}
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?err}
+    networks:
+      - dev
+    deploy:
+      <<: *default-deploy
+      update_config:
+        order: stop-first
+
+networks:
+  dev:
+    external: true

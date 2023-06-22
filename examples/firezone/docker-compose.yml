@@ -30,6 +30,7 @@ services:
      - traefik.http.routers.firezone_https.rule=Host(`firezone.example.com`)
      - traefik.http.routers.firezone_https.tls=true
      - traefik.http.services.firezone.loadbalancer.server.port=13000
+     #- traefik.http.routers.firezone.middlewares=local-ipwhitelist@file
     cap_add:
       # Needed for WireGuard and firewall support.
       - NET_ADMIN

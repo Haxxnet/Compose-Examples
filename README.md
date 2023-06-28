@@ -105,6 +105,7 @@ docker compose up
 ### Tools & Helpers
 - [Network-Multitool](examples/network-multitool) - Multi-arch multitool for container network troubleshooting.
 - [IT-Tools](examples/it-tools) - Collection of handy online tools for developers, with great UX.
+- [Monkeytype](examples/monkeytype) - The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.
 - ~~[GCHQ CyberChef](https://gchq.github.io/CyberChef/)~~ - The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis.
 
 ### Recipe Managers
@@ -163,6 +164,7 @@ docker compose up
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 - [Reactive-Resume](examples/rxresume) - A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever.
+- [Monkeytype](examples/monkeytype) - The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.
 
 ### Analytics
 - [Matomo](examples/matomo) - Matomo is the leading Free/Libre open analytics platform.

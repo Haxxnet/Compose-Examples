@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  monkeytype:
+    image: themythologist/monkeytype:frontend-latest
+    container_name: monkeytype
+    hostname: monkeytype
+    restart: unless-stopped
+    ports:
+      - 5000:5000/tcp
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.monkeytype.rule=Host(`monkeytype.example.com`)
+    #  - traefik.http.services.monkeytype.loadbalancer.server.port=5000   
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.monkeytype.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

@@ -142,6 +142,7 @@ docker compose up
 - [Hemmelig](examples/hemmelig) - Keep your sensitive information out of chat logs, emails, and more with encrypted secrets. Free encrypted secret sharing for everyone!
 
 ### File Sharing / Storage
+- [ownCloud OCIS](examples/owncloud-ocis) - ownCloud Infinite Scale (oCIS) is the new file sync & share platform written in Golang that will be the foundation of your data management platform.
 - [Nextcloud](examples/nextcloud) - Access and share your files, calendars, contacts, mail and more from any device, on your terms.
 - [Seafile](examples/seafile) - File hosting and sharing solution primary for teams and organizations.
 - [SFTPGo](examples/sftpgo) - Fully featured and highly configurable SFTP server with optional HTTP/S, FTP/S and WebDAV support - S3, Google Cloud Storage, Azure Blob.

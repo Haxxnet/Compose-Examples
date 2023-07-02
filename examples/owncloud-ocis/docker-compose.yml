@@ -1,0 +1,44 @@
+---
+version: "3.7"
+
+services:
+
+  ocis:
+    image: owncloud/ocis:latest
+    container_name: owncloud-ocis
+    hostname: owncloud-ocis
+    restart: unless-stopped
+    entrypoint:
+      - /bin/sh
+    # run ocis init to initialize a configuration file with random secrets
+    # it will fail on subsequent runs, because the config file already exists
+    # therefore we ignore the error and then start the ocis server
+    command: ["-c", "ocis init || true; ocis server"]
+    environment:
+     OCIS_URL: https://cloud.example.com # adjust to your domain
+      PROXY_TLS: "false" # do not use SSL; required if you use a reverse proxy with SSL support in front
+      OCIS_INSECURE: "true" # required if you use a reverse proxy with SSL support in front
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/owncloud-ocis/config:/etc/ocis
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/owncloud-ocis/data:/var/lib/ocis
+    ports:
+      - 9200:9200/tcp
+    #expose:
+    #  - 9200
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.ocis.rule=Host(`cloud.example.com`)
+    #  - traefik.http.services.ocis.loadbalancer.server.port=9200
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
+    #  - traefik.docker.network=dev
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.ocis.middlewares=local-ipwhitelist@file
+    #networks:
+    #  - dev
+
+#networks:
+#  dev:
+#    external: true

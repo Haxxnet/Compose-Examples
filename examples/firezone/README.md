@@ -15,4 +15,4 @@ docker compose run --rm firezone bin/create-or-reset-admin
 docker compose up -d
 ````
 
-Note: This compose setup requires an already existing dockerized Traefik reverse proxy. Alternatively, remove the Traefik labels and directly use TCP/13000 (HTTP).
+Note: It is recommended to run the Firezone web panel behind a reverse proxy (e.g. Traefik) if you want to expose it. Alternatively, keep it running on http://127.0.0.1:13000.

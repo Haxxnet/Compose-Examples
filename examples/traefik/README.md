@@ -8,8 +8,21 @@
 
 # Notes
 
-1. Put the provided `traefik.yml` (static) and `fileConfig.yml` (dynamic) configuration files to your volume bind mount (here `/mnt/docker-volumes/traefik`). 
-2. Add your Cloudflare API token as environment variable to the `docker-compose.yml` file and define your Cloudflare email address in the `traefik.yml` file.
-3. Adjust the static and dynamic configuration files to your needs. Especially replace the `example.com` strings with your domain name.
+Spawning up a Traefik reverse proxy can be done in various ways. 
+
+There are options to outsorce the traefik configuration into YAML configuration files. Alternatively, the configuration parameters can be defined directly as command definitions, which are applied during runtime of the Traefik container. 
 
 Optionally configure logrotation on your Docker host server if you've enabled Traefik access logs. See `logrotate_example.txt` as example.
+
+### Spawning up Traefik with outsourced configuration files
+
+1. Put the provided `traefik.yml` (static) and `fileConfig.yml` (dynamic) configuration files to your volume bind mount (here `/mnt/docker-volumes/traefik`). 
+2. Add your Cloudflare API token as environment variable to the `docker-compose.yml` file and define your Cloudflare email address in the `traefik.yml` file.
+3. Adjust the static and dynamic configuration files to your needs. Especially replace the `example.com` strings with your domain name in the `traefik.yml` static configuration file. Also adjust the authelia and basic auth definitions in the `fileConfig.yml` dynamic configuration file with secure values and your domain names.
+
+### Spawning up Traefik with configuration command definitions
+
+1. Use the `docker-compose-command-config.yml` example as a reference point.
+2. Put the provided `fileConfig.yml` (dynamic) configuration file to your volume bind mount (here `/mnt/docker-volumes/traefik`).
+3. Add your Cloudflare API token as environment variable in the compose file. Define your Cloudflare email address in the command definitions of the compose file. May adjust to your preferred certresolver. The example given is for Cloudflare.
+4. Adjust the dynamic configuration file `fileConfig.yml` to your needs. Especially adjust the authelia and basic auth definitions with secure values and your domain names.

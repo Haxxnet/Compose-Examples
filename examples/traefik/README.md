@@ -10,9 +10,9 @@
 
 Spawning up a Traefik reverse proxy can be done in various ways. 
 
-There are options to outsorce the traefik configuration into YAML configuration files. Alternatively, the configuration parameters can be defined directly as command definitions, which are applied during runtime of the Traefik container. 
+There are options to outsource the Traefik configuration into static and dynamic YAML configuration files. Alternatively, the configuration parameters can be defined directly as command definitions, which are applied during runtime of the Traefik container. We've provided both options as Docker Compose examples.
 
-Optionally configure logrotation on your Docker host server if you've enabled Traefik access logs. See `logrotate_example.txt` as example.
+Please remember to configure logrotation on your Docker host server if you've enabled Traefik access logs. See `logrotate_example.txt` as example. The logs will increase in size and may cause disk space issues, if not handled properly.
 
 ### Spawning up Traefik with outsourced configuration files
 

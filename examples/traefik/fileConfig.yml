@@ -54,7 +54,7 @@ http:
     security-headers:
       headers:
         customResponseHeaders: # field names are case-insensitive
-          X-Robots-Tag: "all,noarchive,nosnippet,notranslate,noimageindex"
+          #X-Robots-Tag: "all,noarchive,nosnippet,notranslate,noimageindex"
           Server: "" # prevent version disclosure
           X-Powered-By: "" # prevent version disclosure
           X-Forwarded-Proto: "https"

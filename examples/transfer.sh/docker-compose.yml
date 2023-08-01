@@ -1,0 +1,34 @@
+version: '3.3'
+
+services:
+  transfer:
+    image: dutchcoders/transfer.sh:latest-noroot
+    container_name: transfer
+    hostname: transfer
+    restart: unless-stopped
+    ports:
+      - 8080:8080/tcp
+    expose:
+      - 8080
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/transfer:/tmp
+    command:
+      - --provider=local
+      - --basedir=/tmp/
+    #networks:
+    #  - dev # or use dev for testing purposes
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.transfer.rule=Host(`transfer.example.com`)
+    #  - traefik.http.services.transfer.loadbalancer.server.port=8080
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.transfer.middlewares=local-ipwhitelist@file
+
+#networks:
+#  dev: # or use dev for testing purposes
+#    external: true

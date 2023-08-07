@@ -155,6 +155,7 @@ docker compose up
 - [PairDrop](examples/pairdrop) - PairDrop is a sublime alternative to AirDrop that works on all platforms. Send images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices.
 - [MinIO](examples/minio) - MinIO is an object storage server, compatible with Amazon S3 cloud storage service, mainly used for storing unstructured data (such as photos, videos, log files, etc.).
 - [Transfer.sh](examples/transfer.sh) - Easy and fast file sharing from the command-line.
+- [Transfer.zip](examples/transfer.zip) - Transfer files securely and E2E encrypted (AES-256 GCM) between browsers using WebRTC P2P.
 
 ### Publishing, Writing, Blogging, Hosting
 - [Ghost](examples/ghost) - Ghost is a free and open source blogging platform written in JavaScript and distributed under the MIT License, designed to simplify the process of online publishing for individual bloggers as well as online publications.

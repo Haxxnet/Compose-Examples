@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+  web-server:
+    #build: web-server
+    image: l4rm4nd/transferzip:web-server
+    hostname: web-server
+    container_name: transferzip-web
+    restart: unless-stopped
+    expose:
+      - 80
+    depends_on:
+      - signaling-server
+    ports:
+      - 9001:80
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.transferzip.rule=Host(`transfer.example.com`)
+    #  - traefik.http.services.transferzip.loadbalancer.server.port=80
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.transferzip.middlewares=local-ipwhitelist@file,authelia@file,basic-auth@file      
+
+  signaling-server:
+    #build: signaling-server
+    image: l4rm4nd/transferzip:signaling-server
+    hostname: signaling-server
+    container_name: transferzip-signaling
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true    

@@ -18,6 +18,8 @@ services:
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
+    #networks:
+    #  - proxy
 
   immich-microservices:
     container_name: immich-microservices
@@ -36,6 +38,8 @@ services:
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
+    #networks:
+    #  - proxy    
     
   immich-typesense:
     container_name: immich-typesense
@@ -47,21 +51,25 @@ services:
       - ${TYPESENSE_LOCATION}:/data 
     restart: unless-stopped
     #labels:
-    #  - "com.centurylinklabs.watchtower.enable=true"      
+    #  - "com.centurylinklabs.watchtower.enable=true"
+    #networks:
+    #  - proxy    
 
-  #immich-machine-learning:
-  #  image: altran1502/immich-machine-learning:release
-  #  container_name: immich-ml
-  #  volumes:
-  #    - ${UPLOAD_LOCATION}:/usr/src/app/upload
-  #    - model-cache:/cache
-  #  env_file:
-  #    - .env
-  #  environment:
-  #    - NODE_ENV=production
-  #  restart: unless-stopped
+  immich-machine-learning:
+    image: altran1502/immich-machine-learning:release
+    container_name: immich-ml
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - model-cache:/cache
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
   #  labels:
   #    - "com.centurylinklabs.watchtower.enable=true"
+  #  networks:
+  #    - proxy  
 
   immich-web:
     image: altran1502/immich-web:release
@@ -72,6 +80,8 @@ services:
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
+    #networks:
+    #  - proxy    
 
   immich-redis:
     container_name: immich-redis
@@ -79,6 +89,8 @@ services:
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
+    #networks:
+    #  - proxy    
 
   immich-database:
     container_name: immich-database
@@ -95,6 +107,8 @@ services:
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
+    #networks:
+    #  - proxy    
 
   immich-proxy:
     container_name: immich-proxy
@@ -104,6 +118,8 @@ services:
     depends_on:
       - immich-server
     restart: unless-stopped
+    #networks:
+    #  - proxy    
     #labels:
     #  - traefik.enable=false
     #  - traefik.http.routers.immich.rule=Host(`immich.example.com`)
@@ -113,5 +129,9 @@ services:
     #  - traefik.http.routers.immich.middlewares=local-ipwhitelist@file
     #  - "com.centurylinklabs.watchtower.enable=true"
     
-#volumes:
-#  model-cache:
+volumes:
+  model-cache:
+
+#networks:
+#  proxy:
+#    external: true

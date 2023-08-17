@@ -32,11 +32,11 @@ services:
       - --entrypoints.https.http.tls.certresolver=myresolver # define default cert resolver
       - --entrypoints.https.http.tls.domains[0].main=example.com # define main domain, change to your domain
       - --entrypoints.https.http.tls.domains[0].sans=*.example.com # define sans domain, change to your domain
-      - --certificatesresolvers.myresolver.acme.email=mycloudflareemail@domain.tld # define your cloudflare email address
+      - --certificatesresolvers.myresolver.acme.email=myemail@domain.tld # define your email address
       - --certificatesresolvers.myresolver.acme.dnschallenge=true # enable dns challenge to obtain wildcard certificates
       - --certificatesresolvers.myresolver.acme.dnschallenge.provider=cloudflare # define provider for certificates
       - --certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme.json # define acme path for certificate information
-      - --certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53 # define cloudflare dns servers as the resolver
+      - --certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53 # define dns servers for your resolver, here cloudflare
       ####################################################
       - --log.level=INFO # enable log level
       - --accesslog=true # enable access logs
@@ -66,7 +66,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/logs # bind mount volume for persistent traefik logs
     restart: always # always restart traefik
     extra_hosts:
-      - host.docker.internal:172.17.0.1 # define internal ip; helps for proxying to home assistant
+      - host.docker.internal:172.17.0.1 # define internal ip; helps traefik to resolve containers running in host network mode
 
   whoami:
     image: traefik/whoami

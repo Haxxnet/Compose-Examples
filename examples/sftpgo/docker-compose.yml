@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     ports:
       - 8888:8080 # HTTP
+      #- 2022:2022" # SFTP
       #- 8443:443" # HTTPS
       #- 5007:5007 # WEBDAV
     environment:

@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+
+  database:
+    image: postgres:13.4-alpine
+    container_name: hedgedoc-db
+    environment:
+      - POSTGRES_USER=hedgedoc
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=hedgedoc
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hedgedoc/database:/var/lib/postgresql/data
+    restart: always
+    #networks:
+    #  - proxy
+
+  app:
+    image: quay.io/hedgedoc/hedgedoc:1.9.9
+    container_name: hedgedoc-app
+    environment:
+      - CMD_DB_URL=postgres://hedgedoc:password@database:5432/hedgedoc
+      - CMD_DOMAIN=collab.example.com
+      - CMD_URL_ADDPORT=false
+      - CMD_PROTOCOL_USESSL=true
+      - CMD_SESSION_SECRET="discolor-subtitle-seducing-result-ceramics" # define secret
+      - CMD_ALLOW_EMAIL_REGISTER="false" # disallow registration
+      - CMD_EMAIL="false" # disallow login; only guest notes
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hedgedoc/uploads:/hedgedoc/public/uploads
+    ports:
+      - 3000:3000/tcp
+    expose:
+      - 3000
+    restart: always
+    depends_on:
+      - database
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.hedgedoc.rule=Host(`collab.example.com`)
+    #  - traefik.http.services.hedgedoc.loadbalancer.server.port=3000
+    #  - traefik.http.routers.hedgedoc.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

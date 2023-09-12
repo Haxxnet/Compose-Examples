@@ -141,7 +141,7 @@ docker compose up
 - [PrivateBin](examples/privatebin) - PrivateBin is a minimalist, opensource online pastebin/discussion board where the server has zero knowledge of hosted data.
 - [Hemmelig](examples/hemmelig) - Keep your sensitive information out of chat logs, emails, and more with encrypted secrets. Free encrypted secret sharing for everyone!
 
-### File Sharing / Storage
+### File Sharing / Storage / Collaboration
 - [ownCloud OCIS](examples/owncloud-ocis) - ownCloud Infinite Scale (oCIS) is the new file sync & share platform written in Golang that will be the foundation of your data management platform.
 - [Nextcloud](examples/nextcloud) - Access and share your files, calendars, contacts, mail and more from any device, on your terms.
 - [Seafile](examples/seafile) - File hosting and sharing solution primary for teams and organizations.
@@ -156,6 +156,7 @@ docker compose up
 - [MinIO](examples/minio) - MinIO is an object storage server, compatible with Amazon S3 cloud storage service, mainly used for storing unstructured data (such as photos, videos, log files, etc.).
 - [Transfer.sh](examples/transfer.sh) - Easy and fast file sharing from the command-line.
 - [Transfer.zip](examples/transfer.zip) - Transfer files securely and E2E encrypted (AES-256 GCM) between browsers using WebRTC Peer2peer.
+- [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
 
 ### Publishing, Writing, Blogging, Hosting
 - [Ghost](examples/ghost) - Ghost is a free and open source blogging platform written in JavaScript and distributed under the MIT License, designed to simplify the process of online publishing for individual bloggers as well as online publications.
@@ -168,6 +169,7 @@ docker compose up
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 - [Reactive-Resume](examples/rxresume) - A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever.
 - [Monkeytype](examples/monkeytype) - The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.
+- [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
 
 ### Analytics
 - [Matomo](examples/matomo) - Matomo is the leading Free/Libre open analytics platform.
@@ -204,6 +206,7 @@ docker compose up
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
 - [Obsidian-Gitsync-Perlite](https://github.com/l4rm4nd/Obsidian-Gitsync-Perlite) - Continuously sync Obsidian markdown notes from GitHub and publish it for the webs.
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
+- [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
 
 ### Finance
 - [TRSync](examples/trsync) - Django web frontend for pytr to download all Trade Republic depot data.

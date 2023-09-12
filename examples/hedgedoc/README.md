@@ -1,3 +1,3 @@
 # References
 
-- https://github.com/hedgedoc/hedgedocn
+- https://github.com/hedgedoc/hedgedoc

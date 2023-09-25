@@ -22,7 +22,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/owncloud-ocis/config:/etc/ocis
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/owncloud-ocis/data:/var/lib/ocis
     ports:
-      - 9200
+      - 9200:9200
     expose:
       - 9200
     #labels:

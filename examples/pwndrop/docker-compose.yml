@@ -2,16 +2,35 @@ version: "3"
 
 services:
   pwndrop:
+    image: linuxserver/pwndrop:latest
     container_name: pwndrop
     environment:
       - PUID=1000
-      - PGID=100
+      - PGID=1000
       - TZ=Europe/Berlin
       - SECRET_PATH=pwndrop # secret path your admin mgmt interface will be
-    image: linuxserver/pwndrop:latest
     restart: unless-stopped
     ports:
       - 8080:8080
+    expose:
+      - 8080
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/pwndrop/config:/config
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.pwndrop.rule=Host(`pwndrop.example.com`)
+    #  - traefik.http.services.pwndrop.loadbalancer.server.port=8080
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.pwndrop.middlewares=local-ipwhitelist@file,authelia@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

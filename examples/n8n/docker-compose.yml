@@ -37,7 +37,7 @@ services:
       - n8n-db
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/storage:/home/node/.n8n
-    command: n8n start --tunnel
+    #command: n8n start --tunnel
     depends_on:
       n8n-db:
         condition: service_healthy

@@ -18,6 +18,8 @@ services:
       POSTGRES_PASSWORD: ${PG_PASS:-authentik}
       POSTGRES_USER: ${PG_USER:-authentik}
       POSTGRES_DB: ${PG_DB:-authentik}
+    env_file:
+      - .env      
     networks:
       - authentik-internal
 
@@ -55,6 +57,8 @@ services:
     expose:
       - 9000
       - 9443
+    env_file:
+      - .env      
     depends_on:
       - postgresql
       - redis
@@ -87,6 +91,11 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/certs:/certs
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/media:/media
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/custom-templates:/templates
+    env_file:
+      - .env
+    depends_on:
+      - postgresql
+      - redis      
     networks:
       - authentik-internal
 

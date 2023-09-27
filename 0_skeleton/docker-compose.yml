@@ -11,6 +11,8 @@ services:
     restart: unless-stopped
     ports:
       - 8080:8080/tcp
+    expose:
+      - 8080
     volumes:
       #- /etc/localtime:/etc/localtime:ro
       #- /etc/timezone:/etc/timezone:ro
@@ -34,7 +36,7 @@ services:
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,authelia@file,basic-auth@file
+    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,authelia@docker
 
 #networks:
 #  proxy:

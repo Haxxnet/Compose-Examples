@@ -48,7 +48,7 @@ services:
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS:-authentik}
-      AUTHENTIK_SECRET_KEY: urgent-briskness-dispense-happy-charity
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:-authentiksupersecretkey}
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/media:/media
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/custom-templates:/templates
@@ -82,7 +82,7 @@ services:
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS:-authentik}
-      AUTHENTIK_SECRET_KEY: urgent-briskness-dispense-happy-charity
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:-authentiksupersecretkey}
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/certs:/certs
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/media:/media

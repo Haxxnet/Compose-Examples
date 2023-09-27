@@ -11,6 +11,12 @@ services:
       - portainer_data:/data
     ports:
       - 9443:9443
+    expose:
+      - 9443
+      - 9000
+      - 8000
+    #networks:
+    #  - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.portainer.rule=Host(`portainer.example.com`)
@@ -18,6 +24,10 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
     #  - traefik.http.routers.portainer.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true    
 
 volumes:
   portainer_data:

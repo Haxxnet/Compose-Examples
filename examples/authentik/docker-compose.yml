@@ -3,7 +3,7 @@ version: "3.4"
 services:
 
   postgresql:
-    image: docker.io/library/postgres:12-alpine
+    image: docker.io/library/postgres:15-alpine
     container_name: authentik-psql
     restart: unless-stopped
     healthcheck:

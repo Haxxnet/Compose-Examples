@@ -57,8 +57,9 @@ languagedefault = "en"
 
 ; (optional) URL shortener address to offer after a new paste is created
 ; it is suggested to only use this with self-hosted shorteners as this will leak
-; the pastes encryption key
+; the pastes encryption key. Ensure to set basepath above if you use YOURLS.
 ; urlshortener = "https://shortener.example.com/api?link="
+; urlshortener = "${basepath}shortenviayourls?link="
 
 ; (optional) Let users create a QR code for sharing the paste URL with one click.
 ; It works both when a new paste is created and when you view a paste.
@@ -206,3 +207,20 @@ dir = PATH "data"
 ;usr = "privatebin"
 ;pwd = "Z3r0P4ss"
 ;opt[12] = true    ; PDO::ATTR_PERSISTENT
+
+[yourls]
+; When using YOURLS as a "urlshortener" config item:
+; - By default, "urlshortener" will point to the YOURLS API URL, with or without
+;   credentials, and will be visible in public on the PrivateBin web page.
+;   Only use this if you allow short URL creation without credentials.
+; - Alternatively, using the parameters in this section ("signature" and
+;   "apiurl"), "urlshortener" needs to point to the base URL of your PrivateBin
+;   instance with "shortenviayourls?link=" appended. For example:
+;   urlshortener = "${basepath}shortenviayourls?link="
+;   This URL will in turn call YOURLS on the server side, using the URL from
+;   "apiurl" and the "access signature" from the "signature" parameters below.
+
+; (optional) the "signature" (access key) issued by YOURLS for the using account
+; signature = ""
+; (optional) the URL of the YOURLS API, called to shorten a PrivateBin URL
+; apiurl = "https://yourls.example.com/yourls-api.php"

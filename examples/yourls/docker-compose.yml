@@ -1,0 +1,49 @@
+version: '3.1'
+
+services:
+
+  yourls:
+    image: yourls:latest
+    container_name: yourls
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    expose:
+      - 80
+    environment:
+      YOURLS_SITE: https://myyourls.example.com # please adjust to your domain
+      YOURLS_USER: yourls-admin # please adjust
+      YOURLS_PASS: very-secury-admin-password # please adjust
+      YOURLS_DB_HOST: mysql
+      YOURLS_DB_USER: yourls
+      YOURLS_DB_NAME: yourls
+      YOURLS_DB_PASS: very-secure-database-password # please adjust
+    volumes:
+      - ./security.conf:/etc/apache2/conf-enabled/security.conf:ro      
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.yourls.rule=Host(`s.ptf.one`)
+    #  - traefik.http.services.yourls.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,authelia@docker     
+
+  mysql:
+    image: mysql:latest
+    container_name: yourls-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: yourls
+      MYSQL_USER: yourls
+      MYSQL_PASSWORD: very-secure-database-password # please adjust
+      MYSQL_ROOT_PASSWORD: very-secure-database-root-password # please adjust
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/yourls/mysql:/var/lib/mysql
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

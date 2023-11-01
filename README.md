@@ -132,6 +132,7 @@ docker compose up
 - [Sonarr](examples/sonarr) - Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 - [Ombi](examples/ombi) - Ombi is a tool that enables users to manage requests for movies and TV shows on their Plex server. It provides an easy-to-use interface for users to request new content, leave notes and report issues. Ombi also offers notification and newsletter features, making it easier for server owners to manage user requests and share new content updates.
 - [LibrePhotos](examples/librephotos) - A self-hosted open source photo management service, with face recognition, geolocation, and more.
+- [Chevereto](examples/chevereto) - Ultimate image sharing software. Create your very own personal image hosting website in just minutes.
 
 ### Document Management Systems (DMS)
 - [Paperless NGX](examples/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.

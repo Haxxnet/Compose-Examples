@@ -1,0 +1,57 @@
+version: "3.7"
+
+services:
+  chevereto:
+    image: ghcr.io/chevereto/chevereto:latest
+    container_name: chevereto
+    init: true
+    restart: unless-stopped
+    volumes:
+      - chevereto:/var/www/html/images
+    ports:
+      - 8999:80
+    expose:
+      - 80
+    environment:
+      CHEVERETO_DB_HOST: mariadb
+      CHEVERETO_DB_USER: chevereto
+      CHEVERETO_DB_PASS: chevereto
+      CHEVERETO_DB_PORT: 3306
+      CHEVERETO_DB_NAME: chevereto
+      CHEVERETO_ASSET_STORAGE_TYPE: local
+      CHEVERETO_ASSET_STORAGE_URL: /images/_assets
+      CHEVERETO_ASSET_STORAGE_BUCKET: /var/www/html/images/_assets
+      CHEVERETO_HEADER_CLIENT_IP: X-Forwarded-For # only enable this if run begind reverse proxy
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.chevereto.rule=Host(`chevereto.example.com`)
+    #  - traefik.http.services.chevereto.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  - traefik.http.routers.chevereto.middlewares=authentik@docker
+
+  mariadb:
+    image: mariadb
+    container_name: chevereto_mariadb
+    restart: unless-stopped
+    init: true
+    environment:
+      MYSQL_DATABASE: chevereto
+      MYSQL_USER: chevereto
+      MYSQL_PASSWORD: chevereto
+      MARIADB_ROOT_PASSWORD: chevereto
+    volumes:
+      - chevereto_mariadb:/var/lib/mysql
+    #networks:
+    #  - proxy
+
+# volumes are recommended due to weird www-data permission in chevereto container
+volumes:
+  chevereto: {}
+  chevereto_mariadb: {}
+
+#networks:
+#  proxy:
+#    external: true

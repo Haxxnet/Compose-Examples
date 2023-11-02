@@ -21,7 +21,7 @@ services:
       CHEVERETO_ASSET_STORAGE_TYPE: local
       CHEVERETO_ASSET_STORAGE_URL: /images/_assets
       CHEVERETO_ASSET_STORAGE_BUCKET: /var/www/html/images/_assets
-      # only enable the next env if chevereto is run begind a reverse proxy
+      # only enable the next env if chevereto is run behind a reverse proxy
       # adjust to the corresponding http header of your reverse proxy, where a user's real IP is propagated
       # see https://github.com/chevereto/chevereto/issues/44
       #CHEVERETO_HEADER_CLIENT_IP: X-Forwarded-For 

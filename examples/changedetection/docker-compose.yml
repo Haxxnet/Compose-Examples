@@ -13,7 +13,7 @@ services:
       - 5000:5000
     restart: unless-stopped
     #networks:
-       - proxy
+    #  - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.changedetection.rule=Host(`changedetection.example.com`)

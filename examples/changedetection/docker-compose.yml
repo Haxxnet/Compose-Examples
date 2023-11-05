@@ -12,6 +12,8 @@ services:
     ports:
       - 5000:5000
     restart: unless-stopped
+    #networks:
+       - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.changedetection.rule=Host(`changedetection.example.com`)
@@ -19,3 +21,7 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only; disable to expose externally
     #  - traefik.http.routers.changedetection.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

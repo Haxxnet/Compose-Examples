@@ -26,6 +26,7 @@ services:
     #  - proxy
     #labels:
     #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
     #  - traefik.http.routers.CHANGEME.rule=Host(`service.example.com`)
     #  - traefik.http.services.CHANGEME.loadbalancer.server.port=8080
     #  - traefik.http.services.CHANGEME.loadbalancer.server.scheme=https # optional, but sometines necessary when proxying to https services
@@ -34,7 +35,6 @@ services:
     #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
     #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
-    #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,authelia@docker
 

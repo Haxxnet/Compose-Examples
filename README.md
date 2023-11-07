@@ -160,7 +160,7 @@ docker compose up
 - [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
 - [YOURLS](examples/yourls) - The de-facto standard self hosted URL shortener in PHP.
 
-### Publishing, Writing, Blogging, Hosting
+### Publishing, Writing, Blogging, Hosting, E-Commerce
 - [Ghost](examples/ghost) - Ghost is a free and open source blogging platform written in JavaScript and distributed under the MIT License, designed to simplify the process of online publishing for individual bloggers as well as online publications.
 - [WordPress](examples/wordpress) - WordPress is a free and open-source content management system written in hypertext preprocessor language and paired with a MySQL or MariaDB database with supported HTTPS.
 - [Nginx + PHP](examples/nginx-php) - Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. Combined with PHP, a general-purpose scripting language geared toward web development, server-side functions can be implemented for the webs.
@@ -172,6 +172,7 @@ docker compose up
 - [Reactive-Resume](examples/rxresume) - A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever.
 - [Monkeytype](examples/monkeytype) - The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.
 - [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
+- [EverShop](examples/evershop) - EverShop is a GraphQL Based and React ecommerce platform with essential commerce features. Built with React, modular and fully customizable.
 
 ### Analytics
 - [Matomo](examples/matomo) - Matomo is the leading Free/Libre open analytics platform.

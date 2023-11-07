@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+
+  app:
+    image: evershop/evershop:latest
+    container_name: evershop
+    restart: always
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_PASSWORD: postgres
+      DB_USER: postgres
+      DB_NAME: postgres
+    depends_on:
+      - database
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.evershop.rule=Host(`shop.example.com`)
+    #  - traefik.http.services.evershop.loadbalancer.server.port=3000
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.evershop.middlewares=local-ipwhitelist@file,authelia@docker 
+
+  database:
+    image: postgres:16
+    container_name: evershop-db
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/evershop/psqldata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    expose:
+      - 5432
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

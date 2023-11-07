@@ -21,7 +21,7 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
     #  # - traefik.http.routers.privatebin.middlewares=local-ipwhitelist@file
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=1000000000 # necessary to enable large file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=1000000000 # necessary to enable large file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=2000000000 # necessary to enable large file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=2000000000 # necessary to enable large file uploads

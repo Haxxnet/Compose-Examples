@@ -15,7 +15,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bitwarden-unified/data:/etc/bitwarden
 
   bitwarden-unified-db:
-    image: postgres:latest
+    image: postgres:alpine3.18
     container_name: bitwarden_unified_db
     restart: always
     environment:

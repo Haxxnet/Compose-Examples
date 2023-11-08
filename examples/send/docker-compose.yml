@@ -26,6 +26,26 @@ services:
       - DEFAULT_DOWNLOADS=10      
       - MAX_DOWNLOADS=10 # Maximum number of downloads (defaults to 100)
       - MAX_FILE_SIZE=2684354560 # Maximum upload file size in bytes (defaults to 2147483648 aka 2GB)
+      # ----------------------------------------------------------------------------------
+      # Custom Branding; see https://github.com/timvisee/send/blob/master/server/config.js
+      # ----------------------------------------------------------------------------------
+      #- CUSTOM_TITLE=Send
+      #- CUSTOM_DESCRIPTION=Encrypt and send files with a link that automatically expires to ensure your important documents don’t stay online forever.
+      #- CUSTOM_FOOTER_TEXT=
+      #- CUSTOM_FOOTER_URL=
+      #- CUSTOM_LOCALE=
+      #- UI_CUSTOM_ASSETS_ANDROID_CHROME_192PX=
+      #- UI_CUSTOM_ASSETS_ANDROID_CHROME_512PX=
+      #- UI_CUSTOM_ASSETS_APPLE_TOUCH_ICON=
+      #- UI_CUSTOM_ASSETS_FAVICON_16PX=
+      #- UI_CUSTOM_ASSETS_FAVICON_32PX=
+      #- UI_CUSTOM_ASSETS_ICON=
+      #- UI_CUSTOM_ASSETS_SAFARI_PINNED_TAB=
+      #- UI_CUSTOM_ASSETS_FACEBOOK=
+      #- UI_CUSTOM_ASSETS_TWITTER=
+      #- UI_CUSTOM_ASSETS_WORDMARK=
+      #- UI_CUSTOM_CSS=
+      # ----------------------------------------------------------------------------------
     #networks:
     #  - proxy
     #labels:

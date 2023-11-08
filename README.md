@@ -159,6 +159,7 @@ docker compose up
 - [Transfer.zip](examples/transfer.zip) - Transfer files securely and E2E encrypted (AES-256 GCM) between browsers using WebRTC Peer2peer.
 - [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
 - [YOURLS](examples/yourls) - The de-facto standard self hosted URL shortener in PHP.
+- [Send](examples/send) - Simple, private file sharing with encryption. A fork of Mozilla's Firefox Send.
 
 ### Publishing, Writing, Blogging, Hosting, E-Commerce
 - [Ghost](examples/ghost) - Ghost is a free and open source blogging platform written in JavaScript and distributed under the MIT License, designed to simplify the process of online publishing for individual bloggers as well as online publications.

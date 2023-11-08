@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+
+  send:
+    image: registry.gitlab.com/timvisee/send:latest
+    container_name: send-app
+    restart: unless-stopped
+    ports:
+      - 1234:1234
+    expose:
+      - 1234
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/send/uploads:/uploads
+    environment:
+      - BASE_URL=send.ptf.one # The HTTPS URL where traffic will be served
+      - PORT=1234
+      - REDIS_HOST=redis
+      # For local uploads storage
+      - FILE_DIR=/uploads
+      # To customize upload limits
+      - EXPIRE_TIMES_SECONDS=3600,86400,604800,2592000,31536000 # Expire time options to show in UI dropdown, e.g. 3600,86400,604800,2592000,31536000
+      - DEFAULT_EXPIRE_SECONDS=604800 # Default expire time in UI (defaults to 86400)
+      - MAX_EXPIRE_SECONDS=31536000 # Maximum upload expiry time in seconds (defaults to 604800 aka 7 days)
+      - DOWNLOAD_COUNTS=1,2,5,10,50 # Download limit options to show in UI dropdown, e.g. 10,1,2,5,10,15,25,50,100,1000
+      - DEFAULT_DOWNLOADS=10      
+      - MAX_DOWNLOADS=10 # Maximum number of downloads (defaults to 100)
+      - MAX_FILE_SIZE=2684354560 # Maximum upload file size in bytes (defaults to 2147483648 aka 2GB)
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.send.rule=Host(`send.example.com`)
+    #  - traefik.http.services.send.loadbalancer.server.port=1234
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+
+  redis:
+    image: redis:alpine
+    container_name: send-redis
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/send/redis:/data
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

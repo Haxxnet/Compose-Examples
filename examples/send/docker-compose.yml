@@ -45,6 +45,8 @@ services:
       #- UI_CUSTOM_ASSETS_TWITTER=
       #- UI_CUSTOM_ASSETS_WORDMARK=
       #- UI_CUSTOM_CSS=
+      #- UI_COLOR_PRIMARY=0a84ff
+      #- UI_COLOR_ACCENT=003eaa
       # ----------------------------------------------------------------------------------
     #networks:
     #  - proxy

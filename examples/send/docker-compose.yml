@@ -12,7 +12,9 @@ services:
       - 1234
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/send/uploads:/uploads
+      #- ./logo.png:/app/dist/mylogo.png:ro # pass custom logo into the container
     environment:
+      - NODE_ENV=production # default is development
       - BASE_URL=https://send.example.com # The HTTPS URL where traffic will be served; protocol handler (http/https) is mandatory
       - PORT=1234
       - REDIS_HOST=redis
@@ -34,16 +36,16 @@ services:
       #- CUSTOM_FOOTER_TEXT=
       #- CUSTOM_FOOTER_URL=
       #- CUSTOM_LOCALE=
-      #- UI_CUSTOM_ASSETS_ANDROID_CHROME_192PX=
-      #- UI_CUSTOM_ASSETS_ANDROID_CHROME_512PX=
-      #- UI_CUSTOM_ASSETS_APPLE_TOUCH_ICON=
-      #- UI_CUSTOM_ASSETS_FAVICON_16PX=
-      #- UI_CUSTOM_ASSETS_FAVICON_32PX=
-      #- UI_CUSTOM_ASSETS_ICON=
-      #- UI_CUSTOM_ASSETS_SAFARI_PINNED_TAB=
-      #- UI_CUSTOM_ASSETS_FACEBOOK=
-      #- UI_CUSTOM_ASSETS_TWITTER=
-      #- UI_CUSTOM_ASSETS_WORDMARK=
+      #- UI_CUSTOM_ASSETS_ANDROID_CHROME_192PX=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_ANDROID_CHROME_512PX=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_APPLE_TOUCH_ICON=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_FAVICON_16PX=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_FAVICON_32PX=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_ICON=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_SAFARI_PINNED_TAB=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_FACEBOOK=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_TWITTER=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
+      #- UI_CUSTOM_ASSETS_WORDMARK=mylogo.png # use a custom logo; if NODE_ENV=production you must use an internal image; otherwise any http(s) url works too
       #- UI_CUSTOM_CSS=
       #- UI_COLOR_PRIMARY=0a84ff
       #- UI_COLOR_ACCENT=003eaa

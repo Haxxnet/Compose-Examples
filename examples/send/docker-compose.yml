@@ -3,7 +3,8 @@ version: "3"
 services:
 
   send:
-    image: registry.gitlab.com/timvisee/send:latest
+    image: registry.gitlab.com/timvisee/send:latest # official image
+    #image: l4rm4nd/send:latest # image of a fork with darkmode only
     container_name: send-app
     restart: unless-stopped
     ports:

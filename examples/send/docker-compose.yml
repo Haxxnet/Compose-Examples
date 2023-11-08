@@ -13,7 +13,7 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/send/uploads:/uploads
     environment:
-      - BASE_URL=send.ptf.one # The HTTPS URL where traffic will be served
+      - BASE_URL=https://send.example.com # The HTTPS URL where traffic will be served; protocol handler (http/https) is mandatory
       - PORT=1234
       - REDIS_HOST=redis
       # For local uploads storage

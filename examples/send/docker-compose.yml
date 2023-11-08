@@ -47,6 +47,9 @@ services:
       #- UI_CUSTOM_CSS=
       #- UI_COLOR_PRIMARY=0a84ff
       #- UI_COLOR_ACCENT=003eaa
+      #- SEND_FOOTER_CLI_URL=https://github.com/timvisee/ffsend
+      #- SEND_FOOTER_DMCA_URL=
+      #- SEND_FOOTER_SOURCE_URL=https://github.com/timvisee/send
       # ----------------------------------------------------------------------------------
     #networks:
     #  - proxy

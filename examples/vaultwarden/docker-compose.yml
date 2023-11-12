@@ -2,7 +2,7 @@ version: "3"
 
 services:
   vaultwarden:
-    image: vaultwarden/server:latest
+    image: vaultwarden/server:latest-alpine
     container_name: vaultwarden
     hostname: vaultwarden
     restart: unless-stopped

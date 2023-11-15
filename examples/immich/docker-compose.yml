@@ -45,6 +45,7 @@ services:
     
   immich-typesense:
     container_name: immich-typesense
+    hostname: typesense
     image: typesense/typesense:0.24.1
     environment:
       - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}

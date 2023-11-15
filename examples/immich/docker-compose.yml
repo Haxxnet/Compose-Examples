@@ -70,10 +70,10 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
-  #  labels:
-  #    - "com.centurylinklabs.watchtower.enable=true"
-  #  networks:
-  #    - proxy  
+    #labels:
+    #  - "com.centurylinklabs.watchtower.enable=true"
+    #networks:
+    #  - proxy 
 
   immich-web:
     image: altran1502/immich-web:release

@@ -4,9 +4,10 @@ services:
   immich-server:
     container_name: immich-server
     image: altran1502/immich-server:release
-    entrypoint: ["/bin/sh", "./start-server.sh"]
+    command: [ "start.sh", "immich" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
     environment:
@@ -24,9 +25,10 @@ services:
   immich-microservices:
     container_name: immich-microservices
     image: altran1502/immich-server:release
-    entrypoint: ["/bin/sh", "./start-microservices.sh"]
+    command: [ "start.sh", "microservices" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
     environment:
@@ -43,10 +45,12 @@ services:
     
   immich-typesense:
     container_name: immich-typesense
-    image: typesense/typesense:0.24.0
+    image: typesense/typesense:0.24.1
     environment:
       - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}
       - TYPESENSE_DATA_DIR=/data
+      # remove this to get debug messages
+      - GLOG_minloglevel=1
     volumes:
       - ${TYPESENSE_LOCATION}:/data 
     restart: unless-stopped
@@ -85,7 +89,7 @@ services:
 
   immich-redis:
     container_name: immich-redis
-    image: redis:6.2
+    image: redis:6.2-alpine
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
@@ -94,7 +98,7 @@ services:
 
   immich-database:
     container_name: immich-database
-    image: postgres:14
+    image: postgres:14-alpine
     env_file:
       - .env
     environment:

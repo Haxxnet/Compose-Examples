@@ -41,8 +41,14 @@ services:
     #  - traefik.enable=true
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.hedgedoc.rule=Host(`collab.example.com`)
+    #  - traefik.http.routers.hedgedoc.service=hedgedoc
     #  - traefik.http.services.hedgedoc.loadbalancer.server.port=3000
     #  - traefik.http.routers.hedgedoc.middlewares=local-ipwhitelist@file
+    #  # prevent unauthorized access to the /metrics endpoint
+    #  - traefik.http.routers.hedgedoc-metrics.rule=Host(`collab.example.com`) && PathPrefix(`/metrics`)
+    #  - traefik.http.routers.hedgedoc-metrics.service=hedgedoc
+    #  - traefik.http.services.hedgedoc-metrics.loadbalancer.server.port=3000
+    #  - traefik.http.routers.hedgedoc-metrics.middlewares=local-ipwhitelist@file    
 
 #networks:
 #  proxy:

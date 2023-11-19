@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+
+  grampsweb:
+    image: ghcr.io/gramps-project/grampsweb:latest
+    container_name: gramps-web
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    expose:
+      - 5000
+    environment:
+      GRAMPSWEB_TREE: "Gramps Web"  # will create a new tree if not exists
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gramps/users:/app/users  # persist user database
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gramps/indexdir:/app/indexdir  # persist search index
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gramps/thumbnail_cache:/app/thumbnail_cache  # persist thumbnails
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gramps/cache:/app/cache  # persist export and report caches
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gramps/secret:/app/secret  # persist flask secret
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gramps/database:/root/.gramps/grampsdb  # persist Gramps database
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gramps/media:/app/media  # persist media files
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gramps/tmp:/tmp
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.gramps.rule=Host(`family.lrvt.de`)
+    #  - traefik.http.services.gramps.loadbalancer.server.port=5000
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.gramps.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

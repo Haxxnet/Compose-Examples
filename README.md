@@ -229,6 +229,10 @@ docker compose up
 - [JetBrains YouTrack](examples/youtrack) - YouTrack is a proprietary, commercial browser-based bug tracker, issue tracking system and project management software developed by JetBrains.
 - [Leantime](examples/leantime) - Leantime is an open source project management system for small teams and startups written in PHP, Javascript using MySQL.
 
+### Genealogy
+- [webtrees](examples/webtrees) - webtrees is the web's leading online collaborative genealogy application. It allows you to view and edit your genealogy on your selfhosted website.
+- [Gramps-Web](examples/gramps-web) - Gramps Web is a web app for collaborative genealogy. It is based on and interoperable with Gramps, the leading open source genealogy desktop application.
+
 ## Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)
 

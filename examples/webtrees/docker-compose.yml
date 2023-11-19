@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+
+  app:
+    image: nathanvaughn/webtrees:latest
+    container_name: webtrees
+    depends_on:
+      - db
+    environment:
+      PRETTY_URLS: "1"
+      HTTPS: "0"
+      HTTPS_REDIRECT: "0"
+      LANG: "en-US"
+      BASE_URL: "https://family.example.com" # please adjust to your FQDN URL
+      DB_TYPE: "mysql"
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      DB_USER: "webtrees"
+      DB_PASS: "badpassword"
+      DB_NAME: "webtrees"
+      DB_PREFIX: "wt_"
+      PUID: "1000"
+      PGID: "1000"
+    ports:
+      - 8080:80
+    expose:
+      - 80
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/webtrees/data:/var/www/webtrees/data/
+    #networks:
+    #  - proxy
+    #  - webtrees-default
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.webtrees.rule=Host(`family.lrvt.de`)
+    #  - traefik.http.services.webtrees.loadbalancer.server.port=80
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.webtrees.middlewares=local-ipwhitelist@file
+
+  db:
+    image: mariadb:latest
+    container_name: webtrees-db
+    environment:
+      MARIADB_DATABASE: "webtrees"
+      MARIADB_USER: "webtrees"
+      MARIADB_ROOT_PASSWORD: "badpassword"
+      MARIADB_PASSWORD: "badpassword"
+    restart: unless-stopped
+    volumes:
+       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/webtrees/db:/var/lib/mysql
+    #networks:
+    #  - webtrees-default
+
+#networks:
+#  proxy:
+#    external: true
+#  webtrees-default:
+#    external: false

@@ -121,7 +121,7 @@ services:
     container_name: immich-proxy
     image: altran1502/immich-proxy:v1.87.0
     ports:
-      - 8080:8080 # WEB UI via proxy; do not remove this proxy service, use it! Even if you have your own reverse proxy.
+      - 2283:8080 # WEB UI via proxy; do not remove this proxy service, use it! Even if you have your own reverse proxy.
     depends_on:
       - immich-server
     restart: unless-stopped

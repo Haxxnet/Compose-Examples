@@ -3,7 +3,7 @@ version: "3.8"
 services:
   immich-server:
     container_name: immich-server
-    image: altran1502/immich-server:release
+    image: altran1502/immich-server:v1.87.0
     command: [ "start.sh", "immich" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -24,7 +24,7 @@ services:
 
   immich-microservices:
     container_name: immich-microservices
-    image: altran1502/immich-server:release
+    image: altran1502/immich-server:v1.87.0
     command: [ "start.sh", "microservices" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -61,7 +61,7 @@ services:
     #  - proxy    
 
   immich-machine-learning:
-    image: altran1502/immich-machine-learning:release
+    image: altran1502/immich-machine-learning:v1.87.0
     container_name: immich-ml
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -77,7 +77,7 @@ services:
     #  - proxy 
 
   immich-web:
-    image: altran1502/immich-web:release
+    image: altran1502/immich-web:v1.87.0
     container_name: immich-web
     entrypoint: ["/bin/sh", "./entrypoint.sh"]
     env_file:
@@ -117,7 +117,7 @@ services:
 
   immich-proxy:
     container_name: immich-proxy
-    image: altran1502/immich-proxy:release
+    image: altran1502/immich-proxy:v1.87.0
     ports:
       - 8080:8080 # WEB UI via proxy; do not remove this proxy service, use it! Even if you have your own reverse proxy.
     depends_on:

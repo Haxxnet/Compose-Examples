@@ -1,3 +1,5 @@
+# stack for immich <= v1.87.0
+
 version: "3.8"
 
 services:

@@ -34,8 +34,13 @@ services:
       - no-new-privileges:true
     pids_limit: 200
     read_only: ${MATTERMOST_CONTAINER_READONLY}
+    ports:
+      - 8065:8056/tcp # mattermost http
+      #- 8443:8443/tcp # mattermost calls
+      #- 8443:8443/udp # mattermost calls
     expose:
       - 8065
+      - 8443
     tmpfs:
       - /tmp
     volumes:

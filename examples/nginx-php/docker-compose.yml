@@ -25,6 +25,7 @@ services:
     hostname: php
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www # must be same path to www-data as above
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/php/custom-php.ini:/usr/local/etc/php/conf.d/php.ini:ro
     container_name: php
     restart: unless-stopped
     working_dir: /var/www

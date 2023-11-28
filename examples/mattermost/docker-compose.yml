@@ -1,0 +1,77 @@
+version: "2.4"
+
+services:
+  postgres:
+    image: postgres:${POSTGRES_IMAGE_TAG}
+    container_name: mattermost-db
+    restart: ${RESTART_POLICY}
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+    volumes:
+      - ${POSTGRES_DATA_PATH}:/var/lib/postgresql/data
+    environment:
+      # timezone inside container
+      - TZ
+      # necessary Postgres options/variables
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    #networks:
+    #  - mattermost_default
+
+  mattermost:
+    image: mattermost/${MATTERMOST_IMAGE}:${MATTERMOST_IMAGE_TAG}
+    container_name: mattermost
+    depends_on:
+      - postgres
+    restart: ${RESTART_POLICY}
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 200
+    read_only: ${MATTERMOST_CONTAINER_READONLY}
+    expose:
+      - 8065
+    tmpfs:
+      - /tmp
+    volumes:
+      - ${MATTERMOST_CONFIG_PATH}:/mattermost/config:rw
+      - ${MATTERMOST_DATA_PATH}:/mattermost/data:rw
+      - ${MATTERMOST_LOGS_PATH}:/mattermost/logs:rw
+      - ${MATTERMOST_PLUGINS_PATH}:/mattermost/plugins:rw
+      - ${MATTERMOST_CLIENT_PLUGINS_PATH}:/mattermost/client/plugins:rw
+      - ${MATTERMOST_BLEVE_INDEXES_PATH}:/mattermost/bleve-indexes:rw
+    environment:
+      # timezone inside container
+      - TZ
+      # necessary Mattermost options/variables (see env.example)
+      - MM_SQLSETTINGS_DRIVERNAME
+      - MM_SQLSETTINGS_DATASOURCE
+      # necessary for bleve
+      - MM_BLEVESETTINGS_INDEXDIR
+      # additional settings
+      - MM_SERVICESETTINGS_SITEURL
+    #networks:
+    #  - proxy
+    #  - mattermost_default
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.mattermost.rule=Host(`mattermost.example.com`)
+    #  - traefik.http.services.mattermost.loadbalancer.server.port=8065
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.mattermost.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true
+#  mattermost_default:
+#    external: false

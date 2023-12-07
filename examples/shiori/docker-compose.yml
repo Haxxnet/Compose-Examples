@@ -1,0 +1,32 @@
+version: "2.1"
+
+services:
+
+  shiori:
+    image: nicholaswilde/shiori:latest
+    container_name: shiori
+    environment:
+      - TZ=Europe/Berlin
+      - PUID=1000
+      - PGID=1000
+      - SHIORI_DIR=/data
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/shiori/data:/data
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.shiori.rule=Host(`shiori.example.com`)
+    #  - traefik.http.services.shiori.loadbalancer.server.port=8080
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.shiori.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

@@ -133,7 +133,10 @@ docker compose up
 - [Ombi](examples/ombi) - Ombi is a tool that enables users to manage requests for movies and TV shows on their Plex server. It provides an easy-to-use interface for users to request new content, leave notes and report issues. Ombi also offers notification and newsletter features, making it easier for server owners to manage user requests and share new content updates.
 - [LibrePhotos](examples/librephotos) - A self-hosted open source photo management service, with face recognition, geolocation, and more.
 - [Chevereto](examples/chevereto) - Ultimate image sharing software. Create your very own personal image hosting website in just minutes.
+
+### Bookmarks and Link Sharing
 - [Archivebox](examples/archivebox) - ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view websites offline.
+- [Shiori](examples/shiori) - Simple bookmark manager and website archiver built with Go.
 
 ### Document Management Systems (DMS)
 - [Paperless NGX](examples/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
@@ -204,7 +207,6 @@ docker compose up
 - [Duplicati](examples/duplicati) - Duplicati is a backup client that securely stores encrypted, incremental, compressed remote backups of local files on cloud storage services and remote file servers.
 - [Duplicacy](examples/duplicacy) - A lock-free deduplication cloud backup tool.
 - [Syncthing](examples/syncthing) - Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers.
-- [Archivebox](examples/archivebox) - ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view websites offline.
 
 ### Wiki & Knowledge Base
 - [Bookstack](examples/bookstack) - BookStack is a free and open-source wiki software aimed for a simple, self-hosted, and easy-to-use platform.

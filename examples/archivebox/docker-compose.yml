@@ -1,0 +1,72 @@
+version: "3.9"
+
+services:
+  archivebox:
+    image: archivebox/archivebox:dev
+    container_name: archivebox
+    command: server --quick-init 0.0.0.0:8000
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    expose:
+      - 8000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/archivebox/data:/data # archivebox application data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/archivebox/crontabs:/var/spool/cron/crontabs # archivebox crontab data for scheduled runs
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/archivebox/source-code:/app/archivebox # bind mounts the archivebox source code for development
+    environment:
+      # see https://docs.archivebox.io/en/master/Configuration.html for more details
+      - ADMIN_USERNAME=archivebox # your initial username
+      - ADMIN_PASSWORD=archivebox # your initial password
+      - ALLOWED_HOSTS=*
+      - PUBLIC_INDEX=False
+      - PUBLIC_SNAPSHOTS=False
+      - PUBLIC_ADD_VIEW=False
+      - PUID=1000
+      - PGID=1000
+      - SEARCH_BACKEND_ENGINE=sonic
+      - SEARCH_BACKEND_HOST_NAME=sonic
+      - SEARCH_BACKEND_PASSWORD=deport-silver-showcase-pusher-radiantly
+      - MEDIA_MAX_SIZE=750m
+      - TIMEOUT=60
+      - CHECK_SSL_VALIDITY=False
+      - SAVE_ARCHIVE_DOT_ORG=False
+    #networks:
+    #  - proxy
+    #  - archivebox_default
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.archivebox.rule=Host(`archive.exmple.com`)
+    #  - traefik.http.services.archivebox.loadbalancer.server.port=8000
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.archivebox.middlewares=local-ipwhitelist@file
+
+
+### Example: To run the Sonic full-text search backend, first download the config file to sonic.cfg
+#   $ curl -O https://raw.githubusercontent.com/ArchiveBox/ArchiveBox/master/etc/sonic.cfg
+# After starting, backfill any existing Snapshots into the full-text index:
+#   $ docker-compose run archivebox update --index-only
+
+  sonic:
+    image: valeriansaliou/sonic:latest
+    container_name: archivebox-sonic
+    expose:
+      - 1491
+    environment:
+      - SEARCH_BACKEND_PASSWORD=deport-silver-showcase-pusher-radiantly
+    volumes:
+      # Example: To run the Sonic full-text search backend, first download the config file to sonic.cfg
+      # curl https://raw.githubusercontent.com/ArchiveBox/ArchiveBox/master/etc/sonic.cfg -o /mnt/docker-volumes/archivebox/sonic/sonic.cfg
+      # After starting, backfill any existing Snapshots into the full-text index:
+      # $ docker-compose run archivebox update --index-only
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/archivebox/sonic/sonic.cfg:/etc/sonic.cfg:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/archivebox/sonic/store:/var/lib/sonic/store
+    #networks:
+    #  - archivebox_default
+
+#networks:
+#  proxy:
+#    external: true
+#  archivebox_default:
+#    external: false

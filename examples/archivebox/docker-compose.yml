@@ -30,6 +30,18 @@ services:
       - MEDIA_MAX_SIZE=750m
       - TIMEOUT=60
       - CHECK_SSL_VALIDITY=False
+      - SAVE_TITLE=False
+      - SAVE_FAVICON=False
+      - SAVE_WGET=False
+      - SAVE_WARC=False
+      - SAVE_PDF=True
+      - SAVE_SCREENSHOT=True
+      - SAVE_DOM=True
+      - SAVE_SINGLEFILE=True
+      - SAVE_READABILITY=False
+      - SAVE_GIT=False
+      - SAVE_MEDIA=True
+      - SUBMIT_ARCHIVE_DOT_ORG=False
       - SAVE_ARCHIVE_DOT_ORG=False
     #networks:
     #  - proxy

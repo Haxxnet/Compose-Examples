@@ -47,7 +47,6 @@ services:
     depends_on:
       - immich-redis
       - immich-database
-      - immich-typesense
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"

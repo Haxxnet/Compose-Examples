@@ -1,4 +1,4 @@
-# stack for immich >= v1.88.0
+# stack for immich >= v1.88.0 <= 1.91.0
 
 version: "3.8"
 

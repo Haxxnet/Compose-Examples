@@ -29,8 +29,9 @@ services:
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.CHANGEME.rule=Host(`service.example.com`)
     #  - traefik.http.services.CHANGEME.loadbalancer.server.port=8080
-    #  - traefik.http.services.CHANGEME.loadbalancer.server.scheme=https # optional, but sometines necessary when proxying to https services
-    #  - traefik.http.services.CHANGEME.loadbalancer.serverstransport=insecureTransport@file # optional, but sometines necessary when proxying to https services
+    #  # Optional part when proxying to service that already provide ssl/tls  
+    #  - traefik.http.services.CHANGEME.loadbalancer.server.scheme=https
+    #  - traefik.http.services.CHANGEME.loadbalancer.serverstransport=insecureTransport@file
     #  # Optional part for file upload max sizes
     #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
     #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000

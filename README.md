@@ -73,7 +73,7 @@ docker compose up
 - [IPSec VPN Server](examples/ipsec-vpn-server) - Docker image to run an IPsec VPN server, with IPsec/L2TP, Cisco IPsec and IKEv2.
 - [Firezone](examples/firezone) - Self-hosted secure remote access gateway that supports the WireGuard protocol. It offers a Web GUI, 1-line install script, multi-factor auth (MFA), and SSO.
 - ~~[Netbird](https://github.com/netbirdio/netbird)~~ - Quickly connect your computers, servers, cloud instances, and IoT devices into a secure private network. No configuration required.
-- [Headscale](example/headscale) - An open source, self-hosted implementation of the Tailscale control server.
+- [Headscale](examples/headscale) - An open source, self-hosted implementation of the Tailscale control server.
 
 ### Domain Name Service (DNS)
 - [AdGuard Home](examples/adguard-home) - AdGuard Home is a network-wide software for blocking ads and tracking.

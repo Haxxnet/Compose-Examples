@@ -16,13 +16,14 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/headscale/data:/var/lib/headscale/
     labels:
       - traefik.enable=true
+      - traefik.http.routers.headscale-rtr.rule=Host(`headscale.example.com`) && PathPrefix(`/`)
+      - traefik.http.services.headscale-svc.loadbalancer.server.port=8080
+      # Optional part for file upload max sizes
       - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
       - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
       - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
       - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
-      - traefik.http.routers.headscale-rtr.rule=Host(`headscale.example.com`) && PathPrefix(`/`)
-      - traefik.http.services.headscale-svc.loadbalancer.server.port=8080
-
+      
   headscale-ui:
     image: ghcr.io/gurucomputing/headscale-ui:latest
     pull_policy: always
@@ -36,14 +37,16 @@ services:
     #  - 1.1.1.1
     labels:
       - traefik.enable=true
+      - traefik.http.routers.headscale-ui-rtr.rule=Host(`headscale.example.de`) && PathPrefix(`/web`)
+      - traefik.http.services.headscale-ui-svc.loadbalancer.server.port=80
+      # Optional part for traefik middlewares; protect the headscale ui interface; access from local lan only
+      - traefik.http.routers.headscale-ui-rtr.middlewares=local-ipwhitelist@file
+      # Optional part for file upload max sizes
       - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
       - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
       - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
       - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
-      - traefik.http.routers.headscale-ui-rtr.rule=Host(`headscale.example.de`) && PathPrefix(`/web`)
-      - traefik.http.services.headscale-ui-svc.loadbalancer.server.port=80
-      - traefik.http.routers.headscale-ui-rtr.middlewares=local-ipwhitelist@file
-
+      
 networks:
    proxy:
       external: true

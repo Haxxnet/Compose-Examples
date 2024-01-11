@@ -5,7 +5,7 @@
 
 # Notes
 
-Please adjust the `docker-compose.yml` as well as `config.yaml` and adjust the `example.com` domain name.
+Please adjust the `docker-compose.yml` as well as `config.yaml` and adjust the `example.com` domain name. Also put the provided `config.yaml` into the corresponding config bind volume mount.
 
 Afterwards spawn the container stack with `docker compose up` and visit `https://<your-domain>.<tld>/web`
 

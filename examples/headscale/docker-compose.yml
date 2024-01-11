@@ -9,8 +9,8 @@ services:
     command: headscale serve
     expose:
       - 8080
-    #networks:
-    #  - proxy
+    networks:
+      - proxy
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/headscale/config:/etc/headscale
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/headscale/data:/var/lib/headscale/

@@ -32,8 +32,8 @@ services:
     restart: unless-stopped
     expose:
       - 80
-    dns:
-      - 192.168.178.99
+    #dns:
+    #  - 1.1.1.1
     labels:
       - traefik.enable=true
       - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads

@@ -103,7 +103,6 @@ providers:
     network: proxy # Add Your Docker Network Name Here
     # Default host rule to containername.domain.example
     defaultRule: "Host(`{{ index .Labels \"com.docker.compose.service\"}}.example.com`)" # change 'example.com' to your proxy domain
-    swarmModeRefreshSeconds: 15s
     exposedByDefault: false
 
 # Use letsencrypt to generate ssl certificates

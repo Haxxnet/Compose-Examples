@@ -110,11 +110,11 @@ providers:
 certificatesResolvers:
   myresolver:
     acme:
-      email: <CF-EMAIL-ADDRESS>  # change to your provider account email address. The API token is defined in the docker-compose.yml as environment variable
+      email: example@example.com  # the email address used for ssl certificate registration
       storage: /etc/traefik/acme.json
       dnsChallenge:
         provider: cloudflare
-        # Used to make sure the dns challenge is propagated to the rights dns servers
+        # Used to make sure the dns challenge is propagated to the right dns servers
         resolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"

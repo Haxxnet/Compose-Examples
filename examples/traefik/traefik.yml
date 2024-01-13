@@ -80,7 +80,7 @@ entryPoints:
     http:
       tls:
         # Generate a wildcard domain certificate
-        certResolver: letsencrypt
+        certResolver: myresolver
         domains:
           - main: example.com # change this to your proxy domain
             sans:
@@ -108,7 +108,7 @@ providers:
 
 # Use letsencrypt to generate ssl certificates
 certificatesResolvers:
-  letsencrypt:
+  myresolver:
     acme:
       email: <CF-EMAIL-ADDRESS>  # change to your provider account email address. The API token is defined in the docker-compose.yml as environment variable
       storage: /etc/traefik/acme.json

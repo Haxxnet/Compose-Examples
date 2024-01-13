@@ -15,7 +15,8 @@ services:
       - proxy
     environment:
       - TZ=Europe/Berlin
-      - CF_DNS_API_TOKEN=MyCloudflareApiToken # change this
+      - CF_DNS_API_TOKEN=MyCloudflareApiToken # change this if you use Cloudflare
+      - CLOUDFLARE_EMAIL=example@googlemail.com # change this if you use Cloudflare
     labels:
       - traefik.enable=true
       - traefik.http.routers.api.rule=Host(`traefik.example.com`) # Define the subdomain for the traefik dashboard.

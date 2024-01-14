@@ -40,8 +40,8 @@ services:
     restart: always
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/mysql:/var/lib/mysql
-    #ports:
-    #  - "13928:3306"
+    expose:
+      - 3306
     environment:
       MYSQL_ROOT_PASSWORD: AnotherStrongDatabasePasswordForRootUser
       MYSQL_DATABASE: ghost

@@ -35,7 +35,7 @@ services:
       - TZ=Europe/Berlin
       - MYSQL_DATABASE=${DB_NAME:-ghost}
       - MYSQL_USER=${DB_USER:-ghost}
-      - MYSQL_PASSWORD=${DB_PASS:-DatabasePassword1234}
+      - MYSQL_PASSWORD=${DB_USER_PASS:-DatabasePassword1234}
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/mariadb/config:/config
     restart: unless-stopped

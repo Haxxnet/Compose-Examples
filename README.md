@@ -42,6 +42,37 @@ docker compose up
 
 ## 🐳 Project List
 
+### Table of Contents (ToC)
+
+- [Analytics](#analytics)
+- [Archiving and Digital Preservation (DP)](#archiving-and-digital-preservation-dp)
+- [Asset Management](#asset-management)
+- [Audio and Video Management](#audio-and-video-management)
+- [Automation and Monitoring](#automation-and-monitoring)
+- [Backups](#backups)
+- [Blogging Platforms and Homepages](#blogging-platforms-and-homepages)
+- [Communication - Social Networks, Forums and Video Conferencing](#communication---social-networks-forums-and-video-conferencing)
+- [Document Management](#document-management)
+- [Domain Name Service (DNS)](#domain-name-service-dns)
+- [E-commerce](#e-commerce)
+- [File Transfer & Synchronization](#file-transfer--synchronization)
+- [Genealogy](#genealogy)
+- [Identity Management - Single Sign-On (SSO) & LDAP](#identity-management---single-sign-on-sso--ldap)
+- [Miscellaneous](#miscellaneous)
+- [Money, Budgeting & Management](#money-budgeting--management)
+- [Note-taking & Editors](#note-taking--editors)
+- [Password Managers](#password-managers)
+- [Pastebins](#pastebins)
+- [Personal Dashboards](#personal-dashboards)
+- [Photo and Video Galleries](#photo-and-video-galleries)
+- [Proxy](#proxy)
+- [Recipe Management](#recipe-management)
+- [Security & Privacy](#security--privacy)
+- [Software Development - Project Management, DevOps](#software-development---project-management-devops)
+- [URL Shorteners](#url-shorteners)
+- [Virtual Private Network (VPN)](#virtual-private-network-vpn)
+- [Wikis & Knowledge Base](#wikis--knowledge-base)
+
 ### Personal Dashboards
 
 **[`^        back to top        ^`](#-project-list)**

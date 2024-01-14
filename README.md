@@ -166,6 +166,7 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [n8n](examples/n8n) - Free and source-available fair-code licensed workflow automation tool. Easily automate tasks across different services.
 - [Home Assistant](examples/homeassistant) - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.
 - [Portainer](examples/portainer-ee) - Portainer is a lightweight management UI which allows you to easily manage your different Docker environments (Docker hosts or Swarm clusters).
+- [Dockge](https://github.com/louislam/dockge/blob/master/compose.yaml) - A fancy, easy-to-use and reactive self-hosted docker compose.yaml stack-oriented manager.
 - [Uptimekuma](examples/uptimekuma) - Uptime Kuma is an easy-to-use self-hosted monitoring tool.
 - [Changedetection](examples/changedetection) - Self-hosted tool for staying up-to-date with web-site content changes.
 - [Grafana+Loki+Promtail+InfluxDB+Telegraf](examples/grafana-monitoring) - Grafana is the open source analytics & monitoring solution for every database. Combined with other open-source tools like Loki, Promtail, InfluxDB and Telegraf, monitoring data can be aggregated, normalized, filtered, parsed and finally visualized within a web dashboard.

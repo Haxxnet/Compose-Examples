@@ -115,7 +115,7 @@ A [proxy](https://en.wikipedia.org/wiki/Proxy_server) is a server application th
 
 - [Authelia](examples/authelia) - Authelia is an open-source authentication and authorization server providing two-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for reverse proxies by allowing, denying, or redirecting requests. Recommended to combine with [Traefik](examples/traefik).
 - [Authentik](examples/authentik) - Authentik is an open-source Identity Provider focused on flexibility and versatility.
-- ~~[Keycloak](https://github.com/keycloak/keycloak)~~ - Keycloak is an open-source Identity and Access Management (IAM) solution for modern applications and services.
+- [Keycloak]([https://github.com/keycloak/keycloak](https://github.com/keycloak/keycloak-containers/tree/main/docker-compose-examples)) - Keycloak is an open-source Identity and Access Management (IAM) solution for modern applications and services.
 - [lldap](examples/lldap) - lldap is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication. It integrates with many backends, from KeyCloak to Authelia to Nextcloud and more.
 
 ### Virtual Private Network (VPN)

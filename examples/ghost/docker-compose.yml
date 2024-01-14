@@ -14,7 +14,7 @@ services:
       database__client: ${DB_CLIENT:-mysql}
       database__connection__host: ${DB_HOST:-database}
       database__connection__user: ${DB_USER:-ghost}
-      database__connection__password: ${DB_ROOT_PASS:-DatabasePassword1234}
+      database__connection__password: ${DB_USER_PASS:-DatabasePassword1234}
       database__connection__database: ${DB_NAME:-ghost}
       # url: https://blog.example.com # change this for production
       NODE_ENV: production

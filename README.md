@@ -253,6 +253,7 @@ A [pastebin](https://en.wikipedia.org/wiki/Pastebin) is a type of online content
 **[`^        back to top        ^`](#-project-list)**
 
 - [ownCloud OCIS](examples/owncloud-ocis) - ownCloud Infinite Scale (oCIS) is the new file sync & share platform written in Golang that will be the foundation of your data management platform.
+- [ownCloud](https://doc.owncloud.com/server/next/admin_manual/installation/docker/#docker-compose) - ownCloud is an open-source file sync, share and content collaboration software that lets teams work on data easily from anywhere, on any device.
 - [Nextcloud](examples/nextcloud) - Access and share your files, calendars, contacts, mail and more from any device, on your terms.
 - [Seafile](examples/seafile) - File hosting and sharing solution primary for teams and organizations.
 - [SFTPGo](examples/sftpgo) - Fully featured and highly configurable SFTP server with optional HTTP/S, FTP/S and WebDAV support - S3, Google Cloud Storage, Azure Blob.

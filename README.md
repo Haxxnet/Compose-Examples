@@ -265,7 +265,7 @@ A [pastebin](https://en.wikipedia.org/wiki/Pastebin) is a type of online content
 
 - [YOURLS](examples/yourls) - The de-facto standard self hosted URL shortener in PHP.
 
-### Blogging Platforms
+### Blogging Platforms and Homepages
 
 **[`^        back to top        ^`](#-project-list)**
 
@@ -273,6 +273,7 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 
 - [Ghost](examples/ghost) - Ghost is a free and open source blogging platform written in JavaScript and distributed under the MIT License, designed to simplify the process of online publishing for individual bloggers as well as online publications.
 - [WordPress](examples/wordpress) - WordPress is a free and open-source content management system written in hypertext preprocessor language and paired with a MySQL or MariaDB database with supported HTTPS.
+- [Nginx + PHP](examples/nginx-php) - Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. Combined with PHP, a general-purpose scripting language geared toward web development, server-side functions can be implemented for the webs.
 
 ### Communication - Social Networks, Forums and Video Conferencing
 
@@ -353,6 +354,15 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [webtrees](examples/webtrees) - webtrees is the web's leading online collaborative genealogy application. It allows you to view and edit your genealogy on your selfhosted website.
 - [Gramps-Web](examples/gramps-web) - Gramps Web is a web app for collaborative genealogy. It is based on and interoperable with Gramps, the leading open source genealogy desktop application.
 
+### Asset Management
+
+**[`^        back to top        ^`](#-project-list)**
+
+[Asset management](https://en.wikipedia.org/wiki/Asset_management) is a systematic approach to the governance and realization of all value for which a group or entity is responsible.
+
+- [Domainmod](examples/domainmod) - DomainMOD is an open source application used to manage your domains and other internet assets in a central location.
+- [Snipe-IT](examples/snipe-it) - Snipe-IT is a free, open source IT asset management system written in PHP.
+
 ### Miscellaneous
 
 **[`^        back to top        ^`](#-project-list)**
@@ -360,13 +370,8 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 Software that does not fit in another section.
 
 - [Monkeytype](examples/monkeytype) - The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.
-- [Reactive-Resume](examples/rxresume) - A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever.
-- [Nginx + PHP](examples/nginx-php) - Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. Combined with PHP, a general-purpose scripting language geared toward web development, server-side functions can be implemented for the webs.
-- [Domainmod](examples/domainmod) - DomainMOD is an open source application used to manage your domains and other internet assets in a central location.
-- [Snipe-IT](examples/snipe-it) - Snipe-IT is a free, open source IT asset management system written in PHP.
 - [Network-Multitool](examples/network-multitool) - Multi-arch multitool for container network troubleshooting.
 - [IT-Tools](examples/it-tools) - Collection of handy online tools for developers, with great UX.
-- ~~[GCHQ CyberChef](https://gchq.github.io/CyberChef/)~~ - The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis.
 
 ## 🌟 Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)

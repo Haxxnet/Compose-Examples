@@ -11,19 +11,19 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/content:/var/lib/ghost/content
     environment:
       # see https://ghost.org/docs/config/#configuration-options
-      database__client: mysql
-      database__connection__host: database
-      database__connection__user: ghost_dbuser
-      database__connection__password: SecureDatabasePassword
-      database__connection__database: ghost
-      url: https://blog.example.com
+      database__client: ${DB_CLIENT:-mysql}
+      database__connection__host: ${DB_HOST:-database}
+      database__connection__user:  ${DB_USER:-ghost}
+      database__connection__password: ${DB_PASS:-DatabasePassword1234}
+      database__connection__database: ${DB_NAME:-ghost}
+      #url: https://blog.example.com # change this for production
       NODE_ENV: production
       #mail__transport: SMTP
-      #mail__options__host: smtp.google.com
-      #mail__options__port: 587
-      #mail__options__auth__user: blog@example.com
-      #mail__options__auth__pass: SecureSmtpPassword
-      #mail__from: My Blog <blog@example.com>
+      #mail__options__host: ${SMTP_HOST:-smtp.google.com}
+      #mail__options__port: ${SMTP_PORT:-587}
+      #mail__options__auth__user: ${SMTP_USER:-blog@example.com}
+      #mail__options__auth__pass: ${SMTP_PASS:-SMTPPassword}
+      #mail__from: ${SMTP_MAIL_FROM:-Ghost}
 
   database:
     image: linuxserver/mariadb
@@ -31,11 +31,11 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MYSQL_ROOT_PASSWORD=SecureDatabaseRootPassword
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS:-DatabasePassword1234}
       - TZ=Europe/Berlin
-      - MYSQL_DATABASE=ghost
-      - MYSQL_USER=ghost_dbuser
-      - MYSQL_PASSWORD=SecureDatabasePassword
+      - MYSQL_DATABASE=${DB_NAME:-ghost}
+      - MYSQL_USER=${DB_USER:-ghost}
+      - MYSQL_PASSWORD=${DB_PASS:-DatabasePassword1234}
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/mariadb/config:/config
     restart: unless-stopped

@@ -15,7 +15,7 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/database/:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=${PSQL_PASS:-password}
 
   plausible_events_db:
     container_name: plausible-events-db
@@ -44,7 +44,7 @@ services:
     ports:
       - 8000:8000 # WEB UI
     env_file:
-      - plausible-conf.env
+      - .env
     #networks:
     #  - proxy
     #labels:

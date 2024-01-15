@@ -5,15 +5,16 @@ services:
     container_name: npm
     environment:
       - TZ=Europe/Berlin
+      - PUID=1000 # see https://nginxproxymanager.com/advanced-config/
+      - PGID=1000 # see https://nginxproxymanager.com/advanced-config/
     hostname: npm
-    user: 0:1000
     #networks:
     #  - npm_proxy
     image: jc21/nginx-proxy-manager:latest
     ports:
-      - 443:443/tcp # HTTPS
-      - 81:81/tcp # MGMT UI
       - 80:80/tcp # HTTP
+      - 443:443/tcp # HTTPS
+      - 81:81/tcp # MGMT UI, do not expose publicly
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/bin/check-health"]

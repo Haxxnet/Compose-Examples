@@ -404,6 +404,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 A request bin service allows one to collect and inspect HTTP requests. It may be used to create mock API endpoints or troubleshoot HTTP requests. Also used by security professionals to verify security vulnerabilities like Server Side Request Forgery (SSRF) and others.
 
 - [RequestBin](examples/requestbin) - RequestBin gives you a unique URL that collects HTTP requests for debugging and development purposes.
+- [Webhook.site](examples/webhook.site) - Easily test HTTP webhooks with this handy tool that displays requests instantly.
 - [Request-Baskets](https://github.com/darklynx/request-baskets) - HTTP requests collector to test webhooks, notifications, REST clients and more.
 - [Mockbin](https://github.com/Kong/mockbin) - Mock, Test & Track HTTP Requests and Response for Microservices.
 

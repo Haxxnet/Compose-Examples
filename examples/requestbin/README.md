@@ -1,0 +1,9 @@
+# References
+
+- https://github.com/l4rm4nd/Requestbin
+
+# Notes
+
+This is revived fork of the discontinued RequestBin repository at https://github.com/RonTt/Requestbin.
+
+Note that the repository is not actively maintained. It still works though.

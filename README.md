@@ -67,6 +67,7 @@ docker compose up
 - [Photo and Video Galleries](#photo-and-video-galleries)
 - [Proxy](#proxy)
 - [Recipe Management](#recipe-management)
+- [Request Bins](#request-bins)
 - [Security & Privacy](#security--privacy)
 - [Software Development - Project Management, DevOps](#software-development---project-management-devops)
 - [URL Shorteners](#url-shorteners)
@@ -395,6 +396,16 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 
 - [Domainmod](examples/domainmod) - DomainMOD is an open source application used to manage your domains and other internet assets in a central location.
 - [Snipe-IT](examples/snipe-it) - Snipe-IT is a free, open source IT asset management system written in PHP.
+
+### Request Bins
+
+**[`^        back to top        ^`](#-project-list)**
+
+A request bin service allows one to collect and inspect HTTP requests. It may be used to create mock API endpoints or troubleshoot HTTP requests. Also used by security professionals to verify security vulnerabilities like Server Side Request Forgery (SSRF) and others.
+
+- [RequestBin](examples/requestbin) - RequestBin gives you a unique URL that collects HTTP requests for debugging and development purposes.
+- [Request-Baskets](https://github.com/darklynx/request-baskets) - HTTP requests collector to test webhooks, notifications, REST clients and more.
+- [Mockbin](https://github.com/Kong/mockbin) - Mock, Test & Track HTTP Requests and Response for Microservices.
 
 ### Miscellaneous
 

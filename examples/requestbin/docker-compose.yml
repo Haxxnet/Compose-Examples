@@ -1,0 +1,40 @@
+version: "3.3"
+
+services:
+  app:
+    image: l4rm4nd/requestbin:latest
+    hostname: requestbin
+    container_name: requestbin
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    expose:
+      - 8000
+    environment:
+        REALM: prod
+        REDIS_URL: "//redis:6379"
+    links:
+      - redis
+    #networks:
+    #  - dev
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=dev
+    #  - traefik.http.routers.requestbin.rule=Host(`bin.example.com`)
+    #  - traefik.http.services.requestbin.loadbalancer.server.port=8000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.requestbin.middlewares=local-ipwhitelist@file,authelia@docker
+
+  redis:
+    image: redis:alpine
+    hostname: redis
+    container_name: requestbin_redis
+    restart: unless-stopped
+    #volumes:
+    #  - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/requestbin/redis:/data
+    #networks:
+    #  - dev
+
+#networks:
+#  dev:
+#    external: true

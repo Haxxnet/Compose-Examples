@@ -11,7 +11,7 @@ services:
       - PASSWORD=MyStrongPasswordForWebUi # change this
       - WG_DEFAULT_DNS=1.1.1.1,8.8.8.8 # add your local dns like pihole
     hostname: wireguard-easy
-    image: docker.io/weejewel/wg-easy:latest
+    image: ghcr.io/wg-easy/wg-easy
     ports:
       - 51820:51820/udp #VPN
       - 51821:51821/tcp #WEBGUI

@@ -7,11 +7,7 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/mysql:/var/lib/mysql
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: '321.qwerty'
-      MYSQL_DATABASE: 'leantime'
-      MYSQL_USER: 'admin'
-      MYSQL_PASSWORD: '321.qwerty'
+    env_file: ./.env
     command: --character-set-server=UTF8MB4 --collation-server=UTF8MB4_unicode_ci
     #networks:
     #  - proxy
@@ -20,16 +16,7 @@ services:
     image: leantime/leantime:latest
     container_name: leantime
     restart: unless-stopped
-    environment:
-      #LEAN_APP_URL: 'https://domain.com/leantime'                     # Only needed for subdirectory setup; protocol (http or https) and base URL , trailing slash not needed
-      LEAN_SITENAME: 'Leantime'                                         # Name of your site, can be changed later
-      LEAN_DB_HOST: 'leantime_db'                                    # Database host, derived from container_name in leantime_db container
-      LEAN_DB_USER: 'admin'
-      LEAN_DB_PASSWORD: '321.qwerty'
-      LEAN_DB_DATABASE: 'leantime'
-      LEAN_DEFAULT_TIMEZONE: 'Europe/Berlin'                            # Set default server timezone
-      LEAN_SESSION_PASSWORD: 'GD8Fozemg3AqM9my86TTfgTeGPXXkPF7'         # Salting sessions. Replace with a strong password
-      LEAN_SESSION_EXPIRATION: 28800                                    # How many seconds after inactivity should we logout?  28800seconds = 8hours
+    env_file: ./.env
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/public_data:/var/www/html/public/userfiles
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/data:/var/www/html/userfiles

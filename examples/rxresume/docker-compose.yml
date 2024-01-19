@@ -1,5 +1,8 @@
 version: "3.8"
 
+# This docker compose example targets rxresume < 4.0
+# For a newer version, please see https://github.com/AmruthPillai/Reactive-Resume/tree/main/tools/compose
+
 services:
   postgres:
     image: postgres:alpine

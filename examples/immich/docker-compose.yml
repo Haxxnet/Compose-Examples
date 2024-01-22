@@ -29,6 +29,11 @@ services:
     #  - traefik.http.routers.immich.rule=Host(`immich.example.com`)
     #  - traefik.http.services.immich.loadbalancer.server.port=3001
     #  - traefik.docker.network=proxy
+    #  # Optional part for file upload max sizes
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
     #  # Part for local lan services only
     #  - traefik.http.routers.immich.middlewares=local-ipwhitelist@file
     #  - "com.centurylinklabs.watchtower.enable=true"    

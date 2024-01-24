@@ -9,13 +9,9 @@ services:
     image: traefik:2.10
     container_name: traefik
     command:
-      - --global.checkNewVersion=true # check for updates
-      - --global.sendAnonymousUsage=false # do not send anonymous statistics
       - --providers.docker=true # enable docker provider
       - --providers.docker.network=proxy # define default network to monitor for docker provider
       - --providers.docker.exposedbydefault=false # do not expose docker hosts per default
-      - --providers.docker.swarmModeRefreshSeconds=15s # defeine swarm mode fresh seconds
-      - --providers.providersThrottleDuration=2s # define throttle duration
       - --providers.file.watch=true # monitor file provider for changes
       - --providers.file.filename=/etc/traefik/fileConfig.yml # location of the dynamic configuration
       - --entrypoints.http.address=:80 # entrypoint for unencrypted http

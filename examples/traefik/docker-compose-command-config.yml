@@ -29,6 +29,8 @@ services:
       - --entrypoints.https.http.tls.domains[0].main=example.com # define main domain, change to your domain
       - --entrypoints.https.http.tls.domains[0].sans=*.example.com # define sans domain, change to your domain
       - --certificatesresolvers.myresolver.acme.email=myemail@domain.tld # define your email address
+      #- --certificatesresolvers.myresolver.acme.httpchallenge=true # use http challenge
+      #- --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=http # define entrypoint for http challenge
       - --certificatesresolvers.myresolver.acme.dnschallenge=true # enable dns challenge to obtain wildcard certificates
       - --certificatesresolvers.myresolver.acme.dnschallenge.provider=cloudflare # define provider for certificates
       - --certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme.json # define acme path for certificate information

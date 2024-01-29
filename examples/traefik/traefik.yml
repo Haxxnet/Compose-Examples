@@ -111,7 +111,9 @@ certificatesResolvers:
     acme:
       email: example@example.com  # the email address used for ssl certificate registration
       storage: /etc/traefik/acme.json
-      dnsChallenge:
+      #httpChallenge: # acme http challenge; requires port 80 and proper dns entries
+      #  entryPoint: http # specify the entry point for the HTTP challenge (adjust if needed)
+      dnsChallenge: # acme dns challenge; requires api token of dns provider
         provider: cloudflare
         # Used to make sure the dns challenge is propagated to the right dns servers
         resolvers:

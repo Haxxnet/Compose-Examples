@@ -58,7 +58,7 @@ http:
           Server: "" # prevent version disclosure
           X-Powered-By: "" # prevent version disclosure
           X-Forwarded-Proto: "https"
-          #Permissions-Policy: "geolocation=(self), midi=(self), camera=(self), usb=(self), magnetometer=(self), accelerometer=(self), gyroscope=(self), microphone=(self)"
+          #Permissions-Policy: "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), gamepad=(), geolocation=(), gyroscope=(), hid=(), identity-credentials-get=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), otp-credentials=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), storage-access=(), usb=(), web-share=(), window-management=(), xr-spatial-tracking=()"
           #Cross-Origin-Embedder-Policy: "unsafe-none"
           #Cross-Origin-Opener-Policy: "same-origin"
           #Cross-Origin-Resource-Policy: "same-site"
@@ -76,7 +76,7 @@ http:
         stsIncludeSubdomains: true # HTTP-Strict-Transport-Security (HSTS)
         stsSeconds: 63072000 # HTTP-Strict-Transport-Security (HSTS)
         stsPreload: true # HTTP-Strict-Transport-Security (HSTS)
-        #contentSecurityPolicy: "block-all-mixed-content" # Content-Security-Policy (CSP)
+        #contentSecurityPolicy: "default-src 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content" # Content-Security-Policy (CSP)
 
     # Authelia guard
     authelia:

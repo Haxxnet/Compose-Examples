@@ -30,6 +30,6 @@ Afterwards, you can spawn up the Docker stack as follows:
 docker compose up -d
 ````
 
-The Guacamole login is available at http://<YOUR-IP>:8080/guacamole.
+The Guacamole login is available at `http://<YOUR-IP>:8080/guacamole`.
 
 The default username is `guacadmin`. The default password is `guacadmin`.

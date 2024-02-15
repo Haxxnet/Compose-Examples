@@ -71,7 +71,7 @@ docker compose up
 - [Security & Privacy](#security--privacy)
 - [Software Development - Project Management, DevOps](#software-development---project-management-devops)
 - [URL Shorteners](#url-shorteners)
-- [Virtual Private Network (VPN)](#virtual-private-network-vpn--remote-access)
+- [Virtual Private Network (VPN) & Remote Access](#virtual-private-network-vpn--remote-access)
 - [Wikis & Knowledge Base](#wikis--knowledge-base)
 
 ### Personal Dashboards

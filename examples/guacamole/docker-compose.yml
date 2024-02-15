@@ -54,7 +54,7 @@ services:
     #labels:
     #  - traefik.enable=true
     #  - traefik.docker.network=proxy
-    #  - traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`)
+    #  - traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`) && PathPrefix(`/guacamole`)
     #  - traefik.http.services.guacamole.loadbalancer.server.port=8080
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.guacamole.middlewares=local-ipwhitelist@file,authelia@docker

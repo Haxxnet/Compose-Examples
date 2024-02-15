@@ -33,8 +33,8 @@ services:
     container_name: guacamole-ui
     restart: always
     depends_on:
-    - guacd
-    - postgres
+      - guacd
+      - postgres
     environment:
       - GUACD_HOSTNAME=guacd
       - POSTGRES_DATABASE=guacamole_db

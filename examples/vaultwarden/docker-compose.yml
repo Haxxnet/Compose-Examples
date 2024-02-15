@@ -37,9 +37,6 @@ services:
     #  - traefik.http.routers.vaultwarden.rule=Host(`bitwarden.example.com`)
     #  - traefik.http.routers.vaultwarden.service=vaultwarden
     #  - traefik.http.services.vaultwarden.loadbalancer.server.port=80
-    #  - traefik.http.routers.vaultwarden-ws.rule=Host(`bitwarden.example.com`) && Path(`/notifications/hub`)
-    #  - traefik.http.routers.vaultwarden-ws.service=vaultwarden-ws
-    #  - traefik.http.services.vaultwarden-ws.loadbalancer.server.port=3012
     #  - traefik.http.routers.vaultwarden-admin.rule=Host(`bitwarden.example.com`) && Path(`/admin`)
     #  - traefik.http.routers.vaultwarden-admin.service=vaultwarden
     #  - traefik.http.services.vaultwarden-admin.loadbalancer.server.port=80

@@ -15,13 +15,13 @@ docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --postgresql > 
 Please go ahead and place this init file in the corresponding Docker Volume Bind Mount.
 
 ````
-mkdir -p /mnt/docker-volumes}/guacamole/psql/init
+mkdir -p /mnt/docker-volumes/guacamole/psql/init
 
 # move init file from this repo to the new location
-mv initdb.sql /mnt/docker-volumes}/guacamole/psql/init/.
+mv initdb.sql /mnt/docker-volumes/guacamole/psql/init/.
 
 # alternatively, create it dynamically and place it to the new location
-docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --postgresql > /mnt/docker-volumes}/guacamole/psql/init/initdb.sql
+docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --postgresql > /mnt/docker-volumes/guacamole/psql/init/initdb.sql
 ````
 
 Afterwards, you can spawn up the Docker stack as follows:

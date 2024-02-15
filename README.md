@@ -321,7 +321,6 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 - [Answer](examples/answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
 - [Mirotalk P2P](examples/mirotalk) - Simple, Secure, Fast Real-Time Video Conferences Up to 4k and 60fps, compatible with all browsers and platforms.
 - [Reactive-Resume](examples/rxresume) - A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever.
-- [element-web](examples/element-web) - A glossy Matrix collaboration client for the web. 
 
 ### E-commerce
 

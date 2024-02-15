@@ -119,7 +119,7 @@ A [proxy](https://en.wikipedia.org/wiki/Proxy_server) is a server application th
 - [Keycloak](https://github.com/keycloak/keycloak-containers/tree/main/docker-compose-examples) - Keycloak is an open-source Identity and Access Management (IAM) solution for modern applications and services.
 - [lldap](examples/lldap) - lldap is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication. It integrates with many backends, from KeyCloak to Authelia to Nextcloud and more.
 
-### Virtual Private Network (VPN)
+### Virtual Private Network (VPN) & Remote Access
 
 **[`^        back to top        ^`](#-project-list)**
 
@@ -131,6 +131,7 @@ A [VPN](https://en.wikipedia.org/wiki/Virtual_private_network) is a mechanism fo
 - [Firezone](examples/firezone) - Self-hosted secure remote access gateway that supports the WireGuard protocol. It offers a Web GUI, 1-line install script, multi-factor auth (MFA), and SSO.
 - ~~[Netbird](https://github.com/netbirdio/netbird)~~ - Quickly connect your computers, servers, cloud instances, and IoT devices into a secure private network. No configuration required.
 - [Headscale](examples/headscale) - An open source, self-hosted implementation of the Tailscale control server.
+- [Guacamole](examples/guacamole) - Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, SSH and RDP.
 
 ### Domain Name Service (DNS)
 

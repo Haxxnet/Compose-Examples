@@ -1,0 +1,64 @@
+version: '2.0'
+
+services:
+
+  guacd:
+    image: guacamole/guacd
+    container_name: guacamole-guacd
+    restart: always
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/guacd/drive:/drive:rw
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/guacd/record:/record:rw
+    #networks:
+    #  - proxy
+
+  postgres:
+    image: postgres:15.2-alpine
+    container_name: guacamole-db
+    restart: always
+    environment:
+      - PGDATA=/var/lib/postgresql/data/guacamole
+      - POSTGRES_DB=guacamole_db
+      - POSTGRES_PASSWORD=ChooseYourOwnPasswordHere1234
+      - POSTGRES_USER=guacamole_user
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/psql/init:/docker-entrypoint-initdb.d:z
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/psql/data:/var/lib/postgresql/data:Z
+    #networks:
+    #  - proxy
+
+  # guacamole
+  guacamole:
+    image: guacamole/guacamole
+    container_name: guacamole-ui
+    restart: always
+    depends_on:
+    - guacd
+    - postgres
+    environment:
+      - GUACD_HOSTNAME=guacd
+      - POSTGRES_DATABASE=guacamole_db
+      - POSTGRES_HOSTNAME=postgres
+      - POSTGRES_PASSWORD=ChooseYourOwnPasswordHere1234
+      - POSTGRES_USER=guacamole_user
+    links:
+      - guacd
+    ports:
+      # Guacamole is on :8080/guacamole, not /.
+      # Default login is guacadmin:guacadmin
+      - 8080:8080/tcp 
+    expose:
+      - 8080
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`)
+    #  - traefik.http.services.guacamole.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.guacamole.middlewares=local-ipwhitelist@file,authelia@docker
+
+#networks:
+#  proxy:
+#    external: true

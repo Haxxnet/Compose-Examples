@@ -35,6 +35,6 @@ services:
       - MYSQL_ROOT_PASSWORD=password2
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/domainmod/database:/config
-    #ports:
-    #  - 3306
+    expose:
+      - 3306
     restart: unless-stopped

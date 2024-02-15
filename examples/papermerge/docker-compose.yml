@@ -1,0 +1,85 @@
+version: '3.7'
+
+services:
+
+  app:
+    image: eugenci/papermerge:2.0.0
+    container_name: papermerge-app
+    restart: unless-stopped
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - redis
+      - worker
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/papermerge/media_root:/opt/media
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.production
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_DB=dbname
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.papermerge.rule=Host(`papermerge.example.com`)
+    #  - traefik.http.services.papermerge.loadbalancer.server.port=8000
+    #  # Optional part for file upload max sizes
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.papermerge.middlewares=local-ipwhitelist@file,authelia@docker      
+
+  db:
+    image: postgres:12.3-alpine
+    container_name: papermerge-db
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/papermerge/psql-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_DB=dbname
+    #networks:
+    #  - proxy
+
+  redis:
+    container_name: papermerge-redis
+    image: redis:6-alpine
+    restart: unless-stopped
+    expose:
+      - 6379
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/papermerge/redis-data:/data
+    #networks:
+    #  - proxy
+
+  worker:
+    image: eugenci/papermerge-worker:v2.0.0
+    container_name: papermerge-worker
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/papermerge/media_root:/opt/media
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.production
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_DB=dbname
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true      

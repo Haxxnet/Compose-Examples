@@ -8,7 +8,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - APP_URL=https://wiki.example.com # change this
+      - APP_URL=http://127.0.0.1:8099 # change this to your prod url with https
       - DB_HOST=bookstack_db
       - DB_USER=bookstack
       - DB_PASS=USERPW1

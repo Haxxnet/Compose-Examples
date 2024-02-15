@@ -17,10 +17,10 @@ Please go ahead and place this init file in the corresponding Docker Volume Bind
 ````
 mkdir -p /mnt/docker-volumes/guacamole/psql/init
 
-# move init file from this repo to the new location
+# Option 1: move init file from this repo to the new location
 mv initdb.sql /mnt/docker-volumes/guacamole/psql/init/.
 
-# alternatively, create it dynamically and place it to the new location
+# Option2: create it dynamically and place it to the new location
 docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --postgresql > /mnt/docker-volumes/guacamole/psql/init/initdb.sql
 ````
 

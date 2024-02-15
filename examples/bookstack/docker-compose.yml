@@ -20,6 +20,20 @@ services:
       - 8099:80
     depends_on:
       - bookstack_db
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.bookstack.rule=Host(`bookstack.example.com`)
+    #  - traefik.http.services.bookstack.loadbalancer.server.port=80
+    #  # Optional part for file upload max sizes
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.bookstack.middlewares=local-ipwhitelist@file,authelia@docker    
 
   bookstack_db:
     image: linuxserver/mariadb
@@ -36,3 +50,9 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bookstack/mariadb-config:/config
     restart: unless-stopped
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true  

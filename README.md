@@ -37,8 +37,8 @@ cd <container-of-interest>
 docker compose up
 ````
 
-> **Note**:
-> The samples are intended for use in local development environments such as project setups, tinkering with software stacks, etc. These samples may be deployed in production environments or exposed to the Internet but please adhere to general hardening and security guidelines. Adjust all default credentials, use a separate `.env` file or platform for secrets management, implement a backup process and have a tested disaster recovery plan. Use a reverse proxy to stream-line your web service exposure and provide an encrypted HTTPS communication channel with trusted SSL certificates.
+> [!WARNING]
+> The samples are intended for local development environments such as project setups, tinkering with software stacks, etc. These samples may be deployed in production environments or exposed to the Internet but please adhere to general hardening and security guidelines. Adjust all default credentials, use a separate `.env` file or platform for secret management, implement a backup process and have a tested disaster recovery plan. Use a reverse proxy to stream-line your web service exposure and provide an encrypted HTTPS communication channel with trusted SSL certificates.
 
 ## 🐳 Project List
 

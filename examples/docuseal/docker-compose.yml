@@ -7,7 +7,6 @@ services:
     container_name: docuseal
     restart: unless-stopped
     environment:
-      - FORCE_SSL=${HOST}
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/docuseal/data:/data

@@ -56,7 +56,7 @@ docker compose up
 - [Domain Name Service (DNS)](#domain-name-service-dns)
 - [E-commerce](#e-commerce)
 - [File Transfer & Synchronization](#file-transfer--synchronization)
-- [Games and Control Panels](#games-and-control-panels)
+- [Games and Control Panels](#games-and-control-servers)
 - [Genealogy](#genealogy)
 - [Identity Management - Single Sign-On (SSO) & LDAP](#identity-management---single-sign-on-sso--ldap)
 - [Miscellaneous](#miscellaneous)

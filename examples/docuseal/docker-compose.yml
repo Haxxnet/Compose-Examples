@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+
+  app:
+    image: docuseal/docuseal:latest
+    container_name: docuseal
+    restart: unless-stopped
+    environment:
+      - FORCE_SSL=${HOST}
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/docuseal/data:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.docuseal.rule=Host(`docuseal.example.com`)
+    #  - traefik.http.services.docuseal.loadbalancer.server.port=3000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.docuseal.middlewares=local-ipwhitelist@file,authelia@docker
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: docuseal-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=docuseal
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/docuseal/pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    expose:
+      - 5432
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

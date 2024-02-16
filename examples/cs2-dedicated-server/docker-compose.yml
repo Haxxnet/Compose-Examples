@@ -14,7 +14,7 @@ services:
       - CS2_PORT=27015                              # (CS2 server listen port tcp_udp)
       - CS2_SERVER_HIBERNATE=0                      # (Put server in a low CPU state when there are no players. 0 - hibernation disabled, 1 - hibernation enabled)
       - CS2_LAN=0                                   # (0 - LAN mode disabled, 1 - LAN Mode enabled)
-      - CS2_RCONPW=cruelly-sequel                   #  (RCON password)
+      - CS2_RCONPW=cruelly-sequel-dejected          #  (RCON password)
       - CS2_PW=sake-earthly-lair                    # (CS2 server password)
       - CS2_MAXPLAYERS=10                           # (Max players)
       # Game modes

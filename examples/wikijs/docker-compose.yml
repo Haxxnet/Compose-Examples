@@ -10,13 +10,13 @@ services:
     container_name: wikijs
     restart: unless-stopped
     ports:
-      - 3000:3000 # WEB UI
+      - 8888:3000 # WEB UI
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wikijs/config:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wikijs/data:/data
     links:
       - db
-      
+
   db:
     environment:
       - POSTGRES_PASSWORD=MySecureDatabasePassword

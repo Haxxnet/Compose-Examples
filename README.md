@@ -56,6 +56,7 @@ docker compose up
 - [Domain Name Service (DNS)](#domain-name-service-dns)
 - [E-commerce](#e-commerce)
 - [File Transfer & Synchronization](#file-transfer--synchronization)
+- [Games and Control Panels](#games-and-control-panels)
 - [Genealogy](#genealogy)
 - [Identity Management - Single Sign-On (SSO) & LDAP](#identity-management---single-sign-on-sso--ldap)
 - [Miscellaneous](#miscellaneous)
@@ -408,6 +409,15 @@ A request bin service allows one to collect and inspect HTTP requests. It may be
 - [Webhook.site](examples/webhook.site) - Easily test HTTP webhooks with this handy tool that displays requests instantly.
 - [Request-Baskets](https://github.com/darklynx/request-baskets) - HTTP requests collector to test webhooks, notifications, REST clients and more.
 - [Mockbin](https://github.com/Kong/mockbin) - Mock, Test & Track HTTP Requests and Response for Microservices.
+
+### Games and Control Servers
+
+**[`^        back to top        ^`](#-project-list)**
+
+Multiplayer game servers, browser games and utilities for managing game servers.
+
+- [cs2-dedicated-server](examples/cs2-dedicated-server) - CS2 Dedicated Server Docker Image with an RCON web-based control panel.
+
 
 ### Miscellaneous
 

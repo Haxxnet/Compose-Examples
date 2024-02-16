@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+
+  cs2-server:
+    image: joedwards32/cs2
+    container_name: cs2-dedicated-server
+    restart: unless-stopped
+    environment:
+      # Server configuration
+      - SRCDS_TOKEN=<YOUR-GAME-SERVER-TOKEN>        # Game Server Token from https://steamcommunity.com/dev/managegameservers
+      - CS2_SERVERNAME=MY-CS2-SERVER                # (Set the visible name for your private server)
+      - CS2_CHEATS=0                                # (0 - disable cheats, 1 - enable cheats)
+      - CS2_PORT=27015                              # (CS2 server listen port tcp_udp)
+      - CS2_SERVER_HIBERNATE=0                      # (Put server in a low CPU state when there are no players. 0 - hibernation disabled, 1 - hibernation enabled)
+      - CS2_LAN=0                                   # (0 - LAN mode disabled, 1 - LAN Mode enabled)
+      - CS2_RCONPW=cruelly-sequel                   #  (RCON password)
+      - CS2_PW=sake-earthly-lair                    # (CS2 server password)
+      - CS2_MAXPLAYERS=10                           # (Max players)
+      # Game modes
+      - CS2_GAMEALIAS=competitive   # (Game type, e.g. casual, competitive, deathmatch. See https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers)
+      - CS2_GAMETYPE=0              # (Used if CS2_GAMEALIAS not defined. See https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers)
+      - CS2_GAMEMODE=1              # (Used if CS2_GAMEALIAS not defined. See https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers)
+      - CS2_MAPGROUP=mg_active      # (Map pool)
+      - CS2_STARTMAP=de_dust2       # (Start map)
+      # Bots
+      - CS2_BOT_DIFFICULTY=0              # (0 - easy, 1 - normal, 2 - hard, 3 - expert)
+      - CS2_BOT_QUOTA=0                   # (Number of bots)
+      - CS2_BOT_QUOTA_MODE=competitive    # (fill, competitive)
+      # TV
+      - TV_AUTORECORD=0             # Automatically records all games as CSTV demos: 0=off, 1=on.
+      - TV_ENABLE=0                 # Activates CSTV on server: 0=off, 1=on.
+      - TV_PORT=27020               # Host SourceTV port
+      - TV_PW=changeme              # CSTV password for clients
+      - TV_RELAY_PW=changeme        # CSTV password for relay proxies
+      - TV_MAXRATE=0                # World snapshots to broadcast per second. Affects camera tickrate.
+      - TV_DELAY=0                  # Max CSTV spectator bandwidth rate allowed, 0 == unlimited
+    volumes:
+      - cs2:/home/steam/cs2-dedicated/
+    ports:
+      - 27015:27015/tcp         # TCP
+      - 27015:27015/udp         # UDP
+      #- 27020:27020/udp        # UDP
+
+  cs2-rconpanel:
+    image: soren90/rcon-panel
+    container_name: cs2-rcon-panel
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+
+volumes:
+  cs2:

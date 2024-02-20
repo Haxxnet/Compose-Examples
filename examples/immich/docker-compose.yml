@@ -85,7 +85,7 @@ services:
 
   immich-database:
     container_name: immich-database
-    image: tensorchord/pgvecto-rs:pg14-v0.1.11
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0
     env_file:
       - .env
     environment:

@@ -3,7 +3,7 @@ version: "3.8"
 services:
   immich-server:
     container_name: immich-server
-    image: altran1502/immich-server:v.1.94.1
+    image: altran1502/immich-server:v1.94.1
     command: [ "start.sh", "immich" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload

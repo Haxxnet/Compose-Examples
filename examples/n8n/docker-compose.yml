@@ -1,24 +1,25 @@
 version: '3.8'
 
 services:
+
   n8n-db:
-    image: mariadb:10.7
+    image: postgres:11-alpine
     container_name: n8n-db
-    hostname: n8n-db
     restart: unless-stopped
     environment:
-      - MARIADB_ROOT_PASSWORD
-      - MARIADB_DATABASE
-      - MARIADB_USER
-      - MARIADB_PASSWORD
-      - MARIADB_MYSQL_LOCALHOST_USER=true
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_NON_ROOT_USER
+      - POSTGRES_NON_ROOT_PASSWORD
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/database:/var/lib/mysql
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/database:/var/lib/postgresql/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/init-database.sh:/docker-entrypoint-initdb.d/init-data.sh:ro
     healthcheck:
-      test: "/usr/bin/mysql --user=${MARIADB_USER} --password=${MARIADB_PASSWORD} --execute 'SELECT 1;'"
-      interval: 10s
+      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 10      
 
   n8n:
     image: n8nio/n8n
@@ -26,18 +27,17 @@ services:
     hostname: n8n
     restart: unless-stopped
     environment:
-      - DB_TYPE=mariadb
-      - DB_MYSQLDB_HOST=n8n-db
-      - DB_MYSQLDB_DATABASE=${MARIADB_DATABASE}
-      - DB_MYSQLDB_USER=${MARIADB_USER}
-      - DB_MYSQLDB_PASSWORD=${MARIADB_PASSWORD}
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=n8n-db
+      - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
+      - DB_POSTGRESDB_USER=${POSTGRES_NON_ROOT_USER}
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD}
     ports:
       - 5678:5678
     links:
       - n8n-db
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/storage:/home/node/.n8n
-    #command: n8n start --tunnel
     depends_on:
       n8n-db:
         condition: service_healthy

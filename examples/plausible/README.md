@@ -23,7 +23,9 @@ Plausible's Clickhouse event database will grow over time. There is no retention
 However, it is possible to manually define a `TTL`, which will automatically prune event data that hit a specific age. Note that the example commands below will set the retention time to 356 days. So event or session data, older than 365 days (1 year), will automatically be pruned from the database.
 
 > [!WARNING]
-> By running the below commands you will configure a retention time. This can cause data loss and impact the statistics shown in the Plausible dashboard. Please run wisely and choose your preferred retention time. The example uses 365 days, so you can inspect website statistics back to 1 year.
+> By running the below commands you will configure a retention time. This can cause data loss and impact the statistics shown in the Plausible dashboard. Please run wisely and choose your preferred retention time. 
+>
+> The example uses 365 days, so you can inspect website statistics back to 1 year. For Plausible v1 the table names are called `events` and `sessions` without `_v2`.
 
 ````
 # exec into the running docker container

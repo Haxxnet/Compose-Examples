@@ -1,7 +1,8 @@
 version: '3.6'
+
 services:
   db:
-    image: mariadb:10.5
+    image: mariadb:10.11
     container_name: seafile-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=db_dev  # Requested, set the root's password of MySQL service.
@@ -9,13 +10,17 @@ services:
     restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/seafile/db:/var/lib/mysql  # Requested, specifies the path to MySQL data persistent store.
-
+    #networks:
+    #  - proxy
+    
   memcached:
-    image: memcached:1.6
+    image: memcached:1.6.18
     container_name: seafile-memcached
     entrypoint: memcached -m 256
     restart: unless-stopped
-
+    #networks:
+    #  - proxy
+    
   seafile:
     image: seafileltd/seafile-mc:latest
     container_name: seafile
@@ -28,7 +33,7 @@ services:
     environment:
       - DB_HOST=db
       - DB_ROOT_PASSWD=db_dev  # Requested, the value shuold be root's password of MySQL service.
-      - TIME_ZONE=Etc/UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
+      - TIME_ZONE=Europe/Berlin  # Optional, default is UTC. Should be uncomment and set to your local time zone.
       - SEAFILE_ADMIN_EMAIL=john.doe@example.com # Specifies Seafile admin user, default is 'me@example.com'.
       - SEAFILE_ADMIN_PASSWORD=MySecureLoginPassword # Specifies Seafile admin password, default is 'asecret'.
       - SEAFILE_SERVER_LETSENCRYPT=false   # Whether to use https or not.
@@ -36,3 +41,21 @@ services:
     depends_on:
       - db
       - memcached
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.seafile.rule=Host(`seafile.example.com`)
+    #  - traefik.http.services.seafile.loadbalancer.server.port=80
+    #  # Optional part for file upload max sizes
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.seafile.middlewares=local-ipwhitelist@file,authelia@docker
+
+#networks:
+#  proxy:
+#    external: true

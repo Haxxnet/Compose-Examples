@@ -113,6 +113,7 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.qbittorrent.middlewares=local-ipwhitelist@file
 
+  # image used to manage media and stream it
   emby:
     image: lscr.io/linuxserver/emby:latest
     container_name: arr-suite-emby

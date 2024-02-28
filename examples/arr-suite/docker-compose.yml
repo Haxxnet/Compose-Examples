@@ -124,7 +124,7 @@ services:
       - 8787/tcp # web ui
     ports:
       - 8787:8787/tcp # web ui
-    restart: unless-stopped    
+    restart: unless-stopped
     #networks:
     #  - proxy
     #labels:
@@ -134,7 +134,22 @@ services:
     #  - traefik.http.services.readarr.loadbalancer.server.port=8787
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.readarr.middlewares=local-ipwhitelist@file
-    
+
+  # image used to bypass cloudflare for prowlarr
+  flaresolverr:
+    image: flaresolverr/flaresolverr:latest
+    container_name: arr-suite-flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=Europe/Berlin
+    expose:
+      - 8191/tcp # listening port for selenium
+    restart: unless-stopped
+    #networks:
+    #  - proxy    
+
   # image used to download stuff
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest

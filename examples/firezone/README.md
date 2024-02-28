@@ -16,3 +16,8 @@ docker compose up -d
 ````
 
 Note: It is recommended to run the Firezone web panel behind a reverse proxy (e.g. Traefik) if you want to expose it. Alternatively, keep it running on http://127.0.0.1:13000.
+
+> [!WARNING]
+> Firezone v0.7 has reached End-of-Life on 31st January 2024.
+>
+> It undergoes a complete redesign (zero-knowledge, cloud) for v1.0 and won't provide any updates for the v0.7 (legacy) branch anymore. More information can be found [here](https://www.firezone.dev/blog/firezone-1-0).

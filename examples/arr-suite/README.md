@@ -38,7 +38,7 @@ You can follow this Youtube tutorial on how to setup the arr applications:
 
 https://www.youtube.com/watch?v=LD8-Qr3B2-o
 
-**Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers IP. No need for port mappings or defining your Docker servers IP address. Use Docker networks!
+**Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. Use Docker networks!
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/8915f9f3-081f-41d2-9c5e-bdf9553e09c2)
 

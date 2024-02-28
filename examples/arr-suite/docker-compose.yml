@@ -202,8 +202,10 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config # emby data storage location; can grow very large
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/tv-shows:/data/tvshows # media goes here
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/movies:/data/movies # media goes here
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/tv-shows:/data/tvshows # media for tv shows
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/movies:/data/movies # media for movies
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/music:/data/music # media for music
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/books:/data/books # media for books
       #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs
     expose:
       - 8096/tcp # http web ui

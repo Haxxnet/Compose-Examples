@@ -49,7 +49,7 @@ https://www.youtube.com/watch?v=LD8-Qr3B2-o
 
 ## Traefik + Emby + HTTP Headers
 
-During the setup of Emby in a web browser (HTTPS via Traefik) you may notice errors in the developer console, which prevents the web page from loading properly.
+During the setup of Emby in a web browser (HTTPS via Traefik) you may notice errors in the developer console, which prevent the web page from loading properly.
 
 Those errors occur, if you have configured secure HTTP response headers such as X-Content-Type-Options with the directive "nosniff".
 

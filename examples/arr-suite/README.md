@@ -37,7 +37,20 @@ Docker stack consisting of various arr-services like:
 - Emby
   - Used to manage your media libraries and stream it from various devices
  
-Combine with a reverse proxy like Traefik.
+The following bind mount volumes are defined:
+
+- `/arr-suite/configs/<container-name>`
+  - holds the config files of an arr container
+- `/arr-suite/tv-shows`
+  - will hold your downloaded tv shows
+- `/arr-suite/movies`
+  - will hold your downloaded movies
+- `/arr-suite/music`
+  - will hold your downloaded music
+- `/arr-suite/books`
+  - will hold your downloaded books
+- `/arr-suite/download`
+  - will hold your downloadeds by Qbittorrent
 
 ## Setup
 
@@ -50,6 +63,8 @@ https://www.youtube.com/watch?v=LD8-Qr3B2-o
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/8915f9f3-081f-41d2-9c5e-bdf9553e09c2)
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/94de5802-3b26-420b-bb1d-ac82cd5a5cfb)
+
+![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/19a26a74-dae0-4381-9614-46d20f912542)
 
 ## Traefik + Emby + HTTP Headers
 

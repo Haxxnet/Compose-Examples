@@ -209,6 +209,7 @@ A [gallery](https://en.wikipedia.org/wiki/Gallery_Software) is software that hel
 
 Software to manage audio and video material.
 
+- [Arr-Suite](examples/arr-suite) - Docker stack consisting of Prowlarr, Sonarr, Radarr, Lidarr, Qbittorrent, Requestrr and Emby.
 - [Raveberry](examples/raveberry) - A multi-user music server with a focus on participation.
 - [Deemix](examples/deemix) - deemix is a barebone deezer downloader library built from the ashes of Deezloader Remix.
 - [Forte](examples/forte) - forte is a self-hosted music platform. You can either connect to a forte server or create your own server for your friends & family. However, it is also very convenient to use forte on your local machine as a stand-alone music player. Supports group streaming sessions.
@@ -223,7 +224,6 @@ Software to manage audio and video material.
 - [Radarr](examples/radarr) - Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.
 - [Sonarr](examples/sonarr) - Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 - [Ombi](examples/ombi) - Ombi is a tool that enables users to manage requests for movies and TV shows on their Plex server. It provides an easy-to-use interface for users to request new content, leave notes and report issues. Ombi also offers notification and newsletter features, making it easier for server owners to manage user requests and share new content updates.
-- [Arr-Suite](examples/arr-suite) - Docker stack consisting of Prowlarr, Sonarr, Radarr, Qbittorrent and Emby.
 
 ### Archiving and Digital Preservation (DP)
 

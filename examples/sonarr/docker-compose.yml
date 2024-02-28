@@ -2,7 +2,7 @@ version: "2.1"
 
 services:
   sonarr:
-    image: cr.hotio.dev/hotio/sonarr
+    image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     environment:
       - PUID=1000
@@ -10,7 +10,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarr/config:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarr/tv:/data/tv
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarr/tv:/tv
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarr/downloads:/downloads # Should be the same as the download client's folder
     ports:
       - 8989:8989

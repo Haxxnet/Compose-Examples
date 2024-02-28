@@ -167,31 +167,6 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.qbittorrent.middlewares=local-ipwhitelist@file
 
-  # image used for end clients to request movies and tv shows
-  requestrr:
-    image: lscr.io/linuxserver/requestrr:latest
-    container_name: arr-suite-requestrr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/requestrr:/config
-    expose:
-      - 4545/tcp # web ui
-    ports:
-      - 4545:4545/tcp # web ui
-    restart: unless-stopped
-    #networks:
-    #  - proxy
-    #labels:
-    #  - traefik.enable=true
-    #  - traefik.docker.network=proxy
-    #  - traefik.http.routers.requestrr.rule=Host(`requestrr.example.com`)
-    #  - traefik.http.services.requestrr.loadbalancer.server.port=4545
-    #  # Optional part for traefik middlewares
-    #  - traefik.http.routers.requestrr.middlewares=local-ipwhitelist@file
-
   # image used to manage media and stream it
   emby:
     image: lscr.io/linuxserver/emby:latest

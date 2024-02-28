@@ -5,6 +5,7 @@
 - https://docs.linuxserver.io/images/docker-radarr/
 - https://docs.linuxserver.io/images/docker-lidarr/
 - https://docs.linuxserver.io/images/docker-readarr/
+- https://github.com/FlareSolverr/FlareSolverr
 - https://docs.linuxserver.io/images/docker-qbittorrent/
 - https://docs.linuxserver.io/images/docker-emby/
 
@@ -27,6 +28,8 @@ Docker stack consisting of various arr-services like:
   - Used for music
 - Readarr
   - Used for books
+- Flareresolverr
+  - Used to bypass Cloudflare for prowlarr 
 - Qbittorrent
   - Used as download client, preferably behind VPN (e.g. socks5)
   - A temporary password for the `admin` user will be printed to the container log on startup. Change it immediately to a static one that does not change again.

@@ -104,10 +104,37 @@ services:
     #  - traefik.enable=true
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.lidarr.rule=Host(`lidarr.example.com`)
-    #  - traefik.http.services.lidarr.loadbalancer.server.port=8080
+    #  - traefik.http.services.lidarr.loadbalancer.server.port=8686
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.lidarr.middlewares=local-ipwhitelist@file
 
+  # image used to scan for books
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: arr-suite-readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/readarr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/books:/books
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of downloads on disk
+    expose:
+      - 8787/tcp # web ui
+    ports:
+      - 8787:8787/tcp # web ui
+    restart: unless-stopped    
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.readarr.rule=Host(`readarr.example.com`)
+    #  - traefik.http.services.readarr.loadbalancer.server.port=8787
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.readarr.middlewares=local-ipwhitelist@file
+    
   # image used to download stuff
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest

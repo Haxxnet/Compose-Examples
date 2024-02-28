@@ -17,20 +17,20 @@
 Docker stack consisting of various arr-services like:
 
 - Prowlarr
-  - Used to index torrent links from the internet
+  - Used as indexer for torrent links
 - Sonarr
-  - Used to scan for tv shows
+  - Used for tv shows
 - Radarr
-  - Used to scan for movies
+  - Used for movies
 - Qbittorrent
-  - Used to download movies, tv shows, media in general
-  - A temporary password for the `admin` user will be printed to the container log on startup
+  - Used as download client, preferably behind VPN (e.g. socks5)
+  - A temporary password for the `admin` user will be printed to the container log on startup. Change it immediately to a static one that does not change again.
 - Requestrr
   - Used to request movies and tv-shows by end clients 
 - Emby
-  - Used to manage media and stream it
+  - Used to manage your media libraries and stream it from various devices
  
-Combine with a reverse proxy like Traefik and maybe also a VPN.
+Combine with a reverse proxy like Traefik.
 
 ## Setup
 

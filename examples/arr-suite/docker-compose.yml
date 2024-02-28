@@ -1,0 +1,152 @@
+version: "3.6"
+
+services:
+
+  # image used to index torrent links from the internet
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: arr-suite-prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/prowlarr/config:/config # database and Prowlarr configs
+    expose:
+      - 9696/tcp # web ui
+    ports:
+      - 9696:9696/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.prowlarr.rule=Host(`prowlarr.example.com`)
+    #  - traefik.http.services.prowlarr.loadbalancer.server.port=9696
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.prowlarr.middlewares=local-ipwhitelist@file
+
+  # image used to scan for tv shows
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: arr-suite-sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/sonarr/config:/config # database and Radarr configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/sonarr/tv:/tv # location of Movie library on disk
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/qbittorrent/downloads:/downloads # location of download managers output directory (here qbittorrent)
+    expose:
+      - 8989/tcp # web ui
+    ports:
+      - 8989:8989/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.sonarr.rule=Host(`sonarr.example.com`)
+    #  - traefik.http.services.sonarr.loadbalancer.server.port=8989
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.sonarr.middlewares=local-ipwhitelist@file
+
+  # image used to scan for movies
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: arr-suite-radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/radarr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/radarr/movies:/movies
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/radarr/downloads:/downloads # Should be the same as the download client's folder
+    expose:
+      - 7878/tcp # web ui
+    ports:
+      - 7878:7878/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.radarr.rule=Host(`radarr.example.com`)
+    #  - traefik.http.services.radarr.loadbalancer.server.port=7878
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.radarr.middlewares=local-ipwhitelist@file
+
+  # image used to download stuff
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: arr-suite-qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/qbittorrent/config:/config # contains all relevant configuration files
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/qbittorrent/downloads:/downloads # location of downloads on disk
+    expose:
+      - 8080/tcp # web ui
+      - 6881/tcp # tcp connection port
+      - 6881/udp # udp connection port
+    ports:
+      - 8080:8080/tcp # web ui
+      - 6881:6881/tcp # tcp connection port
+      - 6881:6881/udp # udp connection port
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.example.com`)
+    #  - traefik.http.services.qbittorrent.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.qbittorrent.middlewares=local-ipwhitelist@file
+
+  emby:
+    image: lscr.io/linuxserver/emby:latest
+    container_name: arr-suite-emby
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/library:/config # emby data storage location; can grow very large
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/tvshows:/data/tvshows # media goes here
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/movies:/data/movies # media goes here
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs
+    expose:
+      - 8096/tcp # http web ui
+      - 8920/tcp # https web ui
+    ports:
+      - 8096:8096/tcp # http web ui
+    #devices:
+    #  - /dev/dri:/dev/dri #optional
+    #  - /dev/vchiq:/dev/vchiq #optional
+    #  - /dev/video10:/dev/video10 #optional
+    #  - /dev/video11:/dev/video11 #optional
+    #  - /dev/video12:/dev/video12 #optional
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.emby.rule=Host(`emby.example.com`)
+    #  - traefik.http.services.emby.loadbalancer.server.port=8096
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.emby.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

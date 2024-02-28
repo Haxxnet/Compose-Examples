@@ -23,6 +23,7 @@ Docker stack consisting of various arr-services like:
   - Used to scan for movies
 - Qbittorrent
   - Used to download movies, tv shows, media in general
+  - A temporary password for the `admin` user will be printed to the container log on startup
 - Emby
   - Used to manage media and stream it
  

@@ -7,6 +7,8 @@ services:
         ports:
             - 8191:8191
         environment:
-            - LOG_LEVEL=info
+            - LOG_LEVEL=${LOG_LEVEL:-info}
+            - LOG_HTML=${LOG_HTML:-false}
+            - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
             - TZ=Europe/Berlin
         restart: unless-stopped

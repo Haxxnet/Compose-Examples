@@ -29,7 +29,8 @@ Docker stack consisting of various arr-services like:
 - Readarr
   - Used for books
 - Flaresolverr
-  - Used to bypass Cloudflare for prowlarr 
+  - Used to bypass Cloudflare for prowlarr
+  - You must add it at prowlarr as indexer with the tag `flaresolverr`
 - Qbittorrent
   - Used as download client, preferably behind VPN (e.g. socks5)
   - A temporary password for the `admin` user will be printed to the container log on startup. Change it immediately to a static one that does not change again.

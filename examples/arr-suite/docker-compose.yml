@@ -81,6 +81,33 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.radarr.middlewares=local-ipwhitelist@file
 
+  # image used to scan for music
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: arr-suite-lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/lidarr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/music:/music
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of download managers output directory (here qbittorrent)
+    expose:
+      - 8686/tcp # web ui
+    ports:
+      - 8686:8686/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.lidarr.rule=Host(`lidarr.example.com`)
+    #  - traefik.http.services.lidarr.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.lidarr.middlewares=local-ipwhitelist@file
+
   # image used to download stuff
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest

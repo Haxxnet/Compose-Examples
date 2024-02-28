@@ -47,4 +47,12 @@ https://www.youtube.com/watch?v=LD8-Qr3B2-o
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/94de5802-3b26-420b-bb1d-ac82cd5a5cfb)
 
+## Traefik + Emby + HTTP Headers
 
+During the setup of Emby in a web browser (HTTPS via Traefik) you may notice errors in the developer console, which prevents the web page from loading properly.
+
+Those errors occur, if you have configured secure HTTP response headers such as X-Content-Type-Options with the directive "nosniff".
+
+To complete the web-based setup, you either have to temporarely disable the HTTP header or browse the Emby instance without Traefik as reverse proxy. 
+
+After the setup was completed, the errors are gone and you can use Emby regularly with Traefik, HTTPS and any X-Content-Type-Options header configuration.

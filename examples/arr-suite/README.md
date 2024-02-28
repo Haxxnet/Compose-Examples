@@ -4,6 +4,7 @@
 - https://docs.linuxserver.io/images/docker-sonarr/
 - https://docs.linuxserver.io/images/docker-radarr/
 - https://docs.linuxserver.io/images/docker-qbittorrent/
+- https://docs.linuxserver.io/deprecated_images/docker-requestrr/
 - https://docs.linuxserver.io/images/docker-emby/
 
 # Notes
@@ -24,6 +25,8 @@ Docker stack consisting of various arr-services like:
 - Qbittorrent
   - Used to download movies, tv shows, media in general
   - A temporary password for the `admin` user will be printed to the container log on startup
+- Requestrr
+  - Used to request movies and tv-shows by end clients 
 - Emby
   - Used to manage media and stream it
  

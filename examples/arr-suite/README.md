@@ -28,7 +28,7 @@ Docker stack consisting of various arr-services like:
   - Used for music
 - Readarr
   - Used for books
-- Flareresolverr
+- Flaresolverr
   - Used to bypass Cloudflare for prowlarr 
 - Qbittorrent
   - Used as download client, preferably behind VPN (e.g. socks5)

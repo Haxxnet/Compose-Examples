@@ -2,23 +2,26 @@ version: '3'
 
 services:
     app:
-        image: kaangiray26/forte:2.8
+        image: kaangiray26/forte:4.3
         container_name: forte
         restart: on-failure
-        #ports:
-        #    - "3000:3000"
+        ports:
+            - 3000:3000
         depends_on:
             postgres:
                 condition: service_healthy
         environment:
-            mode: public
-            port: 3000
+            port: 3000               # Set Port
+            version: "4.3"           # Set Version
+            verbose: false           # Verbose Logging
+            custom_about: false      # For your own about page
+            hostname: localhost      # Set Hostname
             NODE_ENV: production     # Set Node Environment
             POSTGRES_HOST: postgres  # Postgres Host/IP
-            POSTGRES_PORT: 5432      # Postgres Database Port
-            POSTGRES_DB: forte       # Set Postgres Database Name
             POSTGRES_USER: forte     # Set Postgres Username
             POSTGRES_PASSWORD: forte # Set Postgres Password
+            POSTGRES_PORT: 5432      # Postgres Database Port
+            POSTGRES_DB: forte       # Set Postgres Database Name
         volumes:
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/forte/library:/library # your music library to import from
         #networks:

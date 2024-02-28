@@ -3,6 +3,7 @@
 - https://docs.linuxserver.io/images/docker-prowlarr/
 - https://docs.linuxserver.io/images/docker-sonarr/
 - https://docs.linuxserver.io/images/docker-radarr/
+- https://docs.linuxserver.io/images/docker-lidarr/
 - https://docs.linuxserver.io/images/docker-qbittorrent/
 - https://docs.linuxserver.io/deprecated_images/docker-requestrr/
 - https://docs.linuxserver.io/images/docker-emby/
@@ -22,6 +23,8 @@ Docker stack consisting of various arr-services like:
   - Used for tv shows
 - Radarr
   - Used for movies
+- Lidarr
+  - Used for music    
 - Qbittorrent
   - Used as download client, preferably behind VPN (e.g. socks5)
   - A temporary password for the `admin` user will be printed to the container log on startup. Change it immediately to a static one that does not change again.

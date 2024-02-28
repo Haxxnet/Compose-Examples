@@ -50,7 +50,7 @@ The following bind mount volumes are defined:
 - `/arr-suite/books`
   - will hold your downloaded books
 - `/arr-suite/download`
-  - will hold your downloadeds by Qbittorrent
+  - will hold your downloaded by Qbittorrent
 
 ## Setup
 

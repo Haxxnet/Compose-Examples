@@ -209,7 +209,7 @@ A [gallery](https://en.wikipedia.org/wiki/Gallery_Software) is software that hel
 
 Software to manage audio and video material.
 
-- [Arr-Suite](examples/arr-suite) - Docker stack consisting of Prowlarr, Sonarr, Radarr, Lidarr, Readarr, Qbittorrent, Requestrr and Emby.
+- [Arr-Suite](examples/arr-suite) - Docker stack consisting of Prowlarr, Sonarr, Radarr, Lidarr, Readarr, Qbittorrent and Emby.
 - [Raveberry](examples/raveberry) - A multi-user music server with a focus on participation.
 - [Deemix](examples/deemix) - deemix is a barebone deezer downloader library built from the ashes of Deezloader Remix.
 - [Forte](examples/forte) - forte is a self-hosted music platform. You can either connect to a forte server or create your own server for your friends & family. However, it is also very convenient to use forte on your local machine as a stand-alone music player. Supports group streaming sessions.

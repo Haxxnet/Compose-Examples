@@ -4,6 +4,7 @@
 - https://docs.linuxserver.io/images/docker-sonarr/
 - https://docs.linuxserver.io/images/docker-radarr/
 - https://docs.linuxserver.io/images/docker-lidarr/
+- https://docs.linuxserver.io/images/docker-readarr/
 - https://docs.linuxserver.io/images/docker-qbittorrent/
 - https://docs.linuxserver.io/deprecated_images/docker-requestrr/
 - https://docs.linuxserver.io/images/docker-emby/
@@ -24,7 +25,9 @@ Docker stack consisting of various arr-services like:
 - Radarr
   - Used for movies
 - Lidarr
-  - Used for music    
+  - Used for music
+- Readarr
+  - User for books
 - Qbittorrent
   - Used as download client, preferably behind VPN (e.g. socks5)
   - A temporary password for the `admin` user will be printed to the container log on startup. Change it immediately to a static one that does not change again.
@@ -37,7 +40,7 @@ Combine with a reverse proxy like Traefik.
 
 ## Setup
 
-You can follow this Youtube tutorial on how to setup the arr applications:
+You can follow this Youtube tutorial on how to setup most of the arr applications:
 
 https://www.youtube.com/watch?v=LD8-Qr3B2-o
 

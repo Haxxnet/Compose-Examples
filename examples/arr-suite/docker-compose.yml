@@ -11,7 +11,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/prowlarr/config:/config # database and Prowlarr configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config # database and Prowlarr configs
     expose:
       - 9696/tcp # web ui
     ports:
@@ -36,7 +36,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/sonarr/config:/config # database and Radarr configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/sonarr:/config # database and Radarr configs
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/tv-shows:/tv # location of Movie library on disk
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of download managers output directory (here qbittorrent)
     expose:
@@ -63,7 +63,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/radarr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/movies:/movies
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of download managers output directory (here qbittorrent)
     expose:
@@ -90,7 +90,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/lidarr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/lidarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/music:/music
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of download managers output directory (here qbittorrent)
     expose:
@@ -117,7 +117,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/readarr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/readarr:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/books:/books
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of downloads on disk
     expose:
@@ -146,7 +146,7 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/qbittorrent/config:/config # contains all relevant configuration files
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrent:/config # contains all relevant configuration files
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of downloads on disk
     expose:
       - 8080/tcp # web ui
@@ -176,7 +176,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/requestrr/config:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/requestrr:/config
     expose:
       - 4545/tcp # web ui
     ports:
@@ -201,7 +201,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/library:/config # emby data storage location; can grow very large
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config # emby data storage location; can grow very large
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/tv-shows:/data/tvshows # media goes here
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/movies:/data/movies # media goes here
       #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs

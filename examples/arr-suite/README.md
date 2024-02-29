@@ -7,6 +7,7 @@
 - https://docs.linuxserver.io/images/docker-readarr/
 - https://github.com/FlareSolverr/FlareSolverr
 - https://docs.linuxserver.io/images/docker-qbittorrent/
+  - https://github.com/MarkusMcNugen/docker-qBittorrentvpn 
 - https://docs.linuxserver.io/images/docker-emby/
 
 # Notes
@@ -34,6 +35,9 @@ Docker stack consisting of various arr-services like:
 - Qbittorrent
   - Used as download client, preferably behind VPN (e.g. socks5)
   - A temporary password for the `admin` user will be printed to the container log on startup. Change it immediately to a static one that does not change again.
+- [optional] Qbittorrent with OpenVPN killswitch
+  - Spawns an OpenVPN connection with iptables killswitch to hide your IP to safely download ISOs.
+  - Default user will be `admin` with the password `adminadmin`. Change it immediately to a static one that does not change again.
 - Emby
   - Used to manage your media libraries and stream it from various devices
  
@@ -51,6 +55,8 @@ The following bind mount volumes are defined:
   - will hold your downloaded books
 - `/arr-suite/download`
   - will hold your downloaded by Qbittorrent
+ 
+Note: You can replace the normal qbittorrent container with the commented one supporting OpenVPN kill switch. If so, you have to put your OpenVPN config, certificate and creds into the `/arr-suite/configs/qbittorrentvpn/openvpn/` directory. More information can be found [here](https://github.com/MarkusMcNugen/docker-qBittorrentvpn?tab=readme-ov-file#how-to-use-openvpn). Afterwards add the new qbittorrent as downloading client to your arr containers by using your Docker server's host IP address.
 
 ## Setup
 

@@ -45,16 +45,8 @@ The following bind mount volumes are defined:
 
 - `/arr-suite/configs/<container-name>`
   - holds the config files of an arr container
-- `/arr-suite/tv-shows`
-  - will hold your downloaded tv shows
-- `/arr-suite/movies`
-  - will hold your downloaded movies
-- `/arr-suite/music`
-  - will hold your downloaded music
-- `/arr-suite/books`
-  - will hold your downloaded books
-- `/arr-suite/download`
-  - will hold your downloaded by Qbittorrent
+- `/arr-suite/media/`
+  - will hold your media files such as movies, music, books, tv-shows, qbittorrent downloads etc.
  
 Note: You can replace the normal qbittorrent container with the commented one supporting OpenVPN kill switch. If so, you have to put your OpenVPN config, certificate and creds into the `/arr-suite/configs/qbittorrentvpn/openvpn/` directory. More information can be found [here](https://github.com/MarkusMcNugen/docker-qBittorrentvpn?tab=readme-ov-file#how-to-use-openvpn). Afterwards add the new qbittorrent as downloading client to your arr containers by using your Docker server's host IP address.
 

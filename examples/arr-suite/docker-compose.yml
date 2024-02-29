@@ -37,8 +37,8 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/sonarr:/config # database and Radarr configs
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/tv-shows:/tv # location of Movie library on disk
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of download managers output directory (here qbittorrent)
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/tv-shows:/tv # location of Movie library on disk
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/downloads # location of download managers output directory (here qbittorrent)
     expose:
       - 8989/tcp # web ui
     ports:
@@ -64,8 +64,8 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/movies:/movies
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of download managers output directory (here qbittorrent)
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/movies:/movies
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/downloads # location of download managers output directory (here qbittorrent)
     expose:
       - 7878/tcp # web ui
     ports:
@@ -91,8 +91,8 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/lidarr:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/music:/music
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of download managers output directory (here qbittorrent)
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/music:/music
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/downloads # location of download managers output directory (here qbittorrent)
     expose:
       - 8686/tcp # web ui
     ports:
@@ -118,8 +118,8 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/readarr:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/books:/books
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of downloads on disk
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/books:/books
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/downloads # location of downloads on disk
     expose:
       - 8787/tcp # web ui
     ports:
@@ -162,7 +162,7 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrent:/config # contains all relevant configuration files
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of downloads on disk
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/downloads # location of downloads on disk
     expose:
       - 8080/tcp # web ui
       - 6881/tcp # tcp connection port
@@ -191,7 +191,7 @@ services:
   #    - net.ipv6.conf.all.disable_ipv6=0
   #  volumes:
   #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrentvpn:/config # contains all relevant configuration files; put your vpn config into the openvpn dir
-  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of downloads on disk
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/downloads # location of downloads on disk
   #    - /etc/localtime:/etc/localtime:ro
   #  environment:
   #    - VPN_ENABLED=yes
@@ -229,10 +229,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config # emby data storage location; can grow very large
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/tv-shows:/data/tvshows # media for tv shows
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/movies:/data/movies # media for movies
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/music:/data/music # media for music
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/books:/data/books # media for books
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # media goes here
       #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs
     expose:
       - 8096/tcp # http web ui

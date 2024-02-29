@@ -182,6 +182,43 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.qbittorrent.middlewares=local-ipwhitelist@file
 
+  # image used to download stuff over openvpn (e.g. mullvad)
+  #qbittorrentvpn:
+  #  image: markusmcnugen/qbittorrentvpn
+  #  container_name: arr-suite-qbittorrentvpn
+  #  privileged: true
+  #  sysctls:
+  #    - net.ipv6.conf.all.disable_ipv6=0
+  #  volumes:
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrentvpn:/config # contains all relevant configuration files; put your vpn config into the openvpn dir
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/downloads:/downloads # location of downloads on disk
+  #    - /etc/localtime:/etc/localtime:ro
+  #  environment:
+  #    - VPN_ENABLED=yes
+  #    - LAN_NETWORK=192.168.1.0/24
+  #    - NAME_SERVERS=8.8.8.8,8.8.4.4
+  #    - WEBUI_PORT_ENV=8080
+  #    - UMASK=002
+  #    - PUID=1000
+  #    - PGID=1000
+  #    - INCOMING_PORT_ENV=8999
+  #  expose:
+  #    - 8080/tcp
+  #    - 8999/tcp
+  #    - 8999/udp
+  #  ports:
+  #    - 8080:8080/tcp # map web ui for prowlarr and co.
+  #  restart: unless-stopped
+  #  networks:
+  #    - proxy
+  #  labels:
+  #    - traefik.enable=true
+  #    - traefik.docker.network=proxy
+  #    - traefik.http.routers.qbittorrentvpn.rule=Host(`qbittorrentvpn.example.com`)
+  #    - traefik.http.services.qbittorrentvpn.loadbalancer.server.port=8080
+  #    # Optional part for traefik middlewares
+  #    - traefik.http.routers.qbittorrentvpn.middlewares=local-ipwhitelist@file
+
   # image used to manage media and stream it
   emby:
     image: lscr.io/linuxserver/emby:latest

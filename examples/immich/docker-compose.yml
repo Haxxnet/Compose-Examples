@@ -3,7 +3,7 @@ version: "3.8"
 services:
   immich-server:
     container_name: immich-server
-    image: altran1502/immich-server:v1.95.1
+    image: altran1502/immich-server:v1.97.0
     command: [ "start.sh", "immich" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -38,7 +38,7 @@ services:
 
   immich-microservices:
     container_name: immich-microservices
-    image: altran1502/immich-server:v1.95.1
+    image: altran1502/immich-server:v1.97.0
     command: [ "start.sh", "microservices" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -57,7 +57,7 @@ services:
     #  - proxy 
 
   immich-machine-learning:
-    image: altran1502/immich-machine-learning:v1.95.1
+    image: altran1502/immich-machine-learning:v1.97.0
     container_name: immich-ml
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload

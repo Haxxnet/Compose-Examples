@@ -419,6 +419,7 @@ Multiplayer game servers, browser games and utilities for managing game servers.
 
 - [cs2-dedicated-server](examples/cs2-dedicated-server) - CS2 Dedicated Server Docker Image with an RCON web-based control panel.
 - [posio](examples/posio) - A multiplayer geography game using Websockets.
+- [Monkeytype](examples/monkeytype) - The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.
 
 ### Miscellaneous
 
@@ -426,7 +427,6 @@ Multiplayer game servers, browser games and utilities for managing game servers.
 
 Software that does not fit in another section.
 
-- [Monkeytype](examples/monkeytype) - The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.
 - [Network-Multitool](examples/network-multitool) - Multi-arch multitool for container network troubleshooting.
 - [IT-Tools](examples/it-tools) - Collection of handy online tools for developers, with great UX.
 

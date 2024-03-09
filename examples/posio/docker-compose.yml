@@ -9,8 +9,8 @@ services:
       - 5000:5000/tcp
     expose:
       - 5000/tcp
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/posio/data:/posio
+    #volumes:
+    #  - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/posio/data:/app # optional
     environment:
       - POSIO_SETTINGS=/app/posio/config.py
       - FLASK_APP=/app/posio/game_master.py

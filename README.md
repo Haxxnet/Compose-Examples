@@ -418,7 +418,7 @@ A request bin service allows one to collect and inspect HTTP requests. It may be
 Multiplayer game servers, browser games and utilities for managing game servers.
 
 - [cs2-dedicated-server](examples/cs2-dedicated-server) - CS2 Dedicated Server Docker Image with an RCON web-based control panel.
-
+- [posio](examples/posio) - A multiplayer geography game using Websockets.
 
 ### Miscellaneous
 

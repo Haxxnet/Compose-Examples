@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  posio:
+    image: l4rm4nd/posio:latest
+    container_name: posio
+    restart: unless-stopped
+    ports:
+      - 5000:5000/tcp
+    expose:
+      - 5000/tcp
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/posio/data:/posio
+    environment:
+      - POSIO_SETTINGS=/app/posio/config.py
+      - FLASK_APP=/app/posio/game_master.py
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.posio.rule=Host(`posio.example.com`)
+    #  - traefik.http.services.posio.loadbalancer.server.port=5000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.posio.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

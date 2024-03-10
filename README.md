@@ -154,7 +154,7 @@ A [VPN](https://en.wikipedia.org/wiki/Virtual_private_network) is a mechanism fo
 
 Tools and software for [software project management](https://en.wikipedia.org/wiki/Software_project_management).
 
-- [JetBrains YouTrack](examples/youtrack) - YouTrack is a proprietary, commercial browser-based bug tracker, issue tracking system and project management software developed by JetBrains.
+- [JetBrains YouTrack](examples/jetbrains-youtrack) - YouTrack is a proprietary, commercial browser-based bug tracker, issue tracking system and project management software developed by JetBrains.
 - [Leantime](examples/leantime) - Leantime is an open source project management system for small teams and startups written in PHP, Javascript using MySQL.
 - [Gitea](examples/gitea) - Community managed fork of Gogs, lightweight code hosting solution.
 - [Drone](examples/drone) - Drone is a continuous delivery system built on container technology. Drone uses a simple YAML build file, to define and execute build pipelines inside Docker containers.

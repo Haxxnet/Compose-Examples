@@ -36,8 +36,10 @@ cd <container-of-interest>
 # read the notes, comments and adjust compose + volumes + configs
 docker compose up
 ````
+> [!TIP]  
+> You can find an online web version of this GitHub repository [here](https://haxxnet.github.io/Compose-Examples/).
 
-> [!WARNING]
+> [!CAUTION]
 > The samples are intended for local development environments such as project setups, tinkering with software stacks, etc. These samples may be deployed in production environments or exposed to the Internet but please adhere to general hardening and security guidelines. Adjust all default credentials, use a separate `.env` file or platform for secret management, implement a backup process and have a tested disaster recovery plan. Use a reverse proxy to stream-line your web service exposure and provide an encrypted HTTPS communication channel with trusted SSL certificates.
 
 ## 🐳 Project List

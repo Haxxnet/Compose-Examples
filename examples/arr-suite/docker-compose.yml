@@ -158,7 +158,7 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrent:/config # contains all relevant configuration files
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/downloads # location of downloads on disk
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of downloads on disk
     expose:
       - 8080/tcp # web ui
       - 6881/tcp # tcp connection port
@@ -187,7 +187,7 @@ services:
   #    - net.ipv6.conf.all.disable_ipv6=0
   #  volumes:
   #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrentvpn:/config # contains all relevant configuration files; put your vpn config into the openvpn dir
-  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/downloads # location of downloads on disk
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of downloads on disk
   #    - /etc/localtime:/etc/localtime:ro
   #  environment:
   #    - VPN_ENABLED=yes

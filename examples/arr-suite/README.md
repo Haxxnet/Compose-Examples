@@ -9,6 +9,7 @@
 - https://docs.linuxserver.io/images/docker-qbittorrent/
   - https://github.com/MarkusMcNugen/docker-qBittorrentvpn 
 - https://docs.linuxserver.io/images/docker-emby/
+- https://docs.linuxserver.io/images/docker-jellyfin (alternative option to emby)
 
 # Notes
 
@@ -38,7 +39,7 @@ Docker stack consisting of various arr-services like:
 - [optional] Qbittorrent with OpenVPN killswitch
   - Spawns an OpenVPN connection with iptables killswitch to hide your IP to safely download ISOs.
   - Default user will be `admin` with the password `adminadmin`. Change it immediately to a static one that does not change again.
-- Emby
+- Emby / Jellyfin
   - Used to manage your media libraries and stream it from various devices
  
 The following bind mount volumes are defined:

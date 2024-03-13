@@ -226,7 +226,7 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config # emby data storage location; can grow very large
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # media goes here
-      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/emby/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs
     expose:
       - 8096/tcp # http web ui
       - 8920/tcp # https web ui
@@ -248,6 +248,39 @@ services:
     #  - traefik.http.services.emby.loadbalancer.server.port=8096
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.emby.middlewares=local-ipwhitelist@file
+
+  # image used to manage media and stream it
+  #jellyfin:
+  #  image: lscr.io/linuxserver/jellyfin:latest
+  #  container_name: arr-suite-jellyfin
+  #  environment:
+  #    - PUID=1000
+  #    - PGID=1000
+  #    - TZ=Europe/Berlin
+  #  volumes:
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/jellyfin:/config # emby data storage location; can grow very large
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # media goes here
+  #    #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/jellyfin/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs
+  #  expose:
+  #    - 8096/tcp # http web ui
+  #  ports:
+  #    - 8096:8096/tcp # http web ui
+  #  #devices:
+  #  #  - /dev/dri:/dev/dri #optional
+  #  #  - /dev/vchiq:/dev/vchiq #optional
+  #  #  - /dev/video10:/dev/video10 #optional
+  #  #  - /dev/video11:/dev/video11 #optional
+  #  #  - /dev/video12:/dev/video12 #optional
+  #  restart: unless-stopped
+  #  #networks:
+  #  #  - proxy
+  #  #labels:
+  #  #  - traefik.enable=true
+  #  #  - traefik.docker.network=proxy
+  #  #  - traefik.http.routers.jellyfin.rule=Host(`jellyfin.example.com`)
+  #  #  - traefik.http.services.jellyfin.loadbalancer.server.port=8096
+  #  #  # Optional part for traefik middlewares
+  #  #  - traefik.http.routers.jellyfin.middlewares=local-ipwhitelist@file    
 
 #networks:
 #  proxy:

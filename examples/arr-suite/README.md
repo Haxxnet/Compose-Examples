@@ -58,13 +58,6 @@ https://www.youtube.com/watch?v=LD8-Qr3B2-o
 
 **Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. Use Docker networks!
 
-> [!WARNING]
-> We configured qbittorrent to use the non-default path `/media/downloads` for downloads.
->
-> Please define this location path in the qbittorrent admin panel too!
-
-![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/278b800d-2b6b-45cb-a44c-7f56def7f9d3)
-
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/8915f9f3-081f-41d2-9c5e-bdf9553e09c2)
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/94de5802-3b26-420b-bb1d-ac82cd5a5cfb)

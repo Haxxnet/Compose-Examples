@@ -96,7 +96,8 @@ notifier:
   #   username: test
   #   # This secret can also be set using the env variables AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE
   #   password: password
-  #   address: address: smtp://smtp.gmail.com:465
+  #   host: smtp.gmail.com
+  #   port: 465
   #   sender: "MySender <admin@example.com>"
   filesystem:
     filename: /config/notifications.txt

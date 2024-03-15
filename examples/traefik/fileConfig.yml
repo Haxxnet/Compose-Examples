@@ -79,15 +79,15 @@ http:
         #contentSecurityPolicy: "default-src 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content" # Content-Security-Policy (CSP)
 
     # Authelia guard
-    authelia:
-      forwardauth:
-        address: http://authelia:9091/api/verify?rd=https://auth.example.com/  # replace example.com with your domain name
-        trustForwardHeader: true
-        authResponseHeaders:
-          - Remote-User
-          - Remote-Groups
-          - Remote-Name
-          - Remote-Email
+    #authelia:
+    #  forwardauth:
+    #    address: http://authelia:9091/api/authz/forward-auth # replace example.com with your domain name
+    #    trustForwardHeader: true
+    #    authResponseHeaders:
+    #      - Remote-User
+    #      - Remote-Groups
+    #      - Remote-Name
+    #      - Remote-Email
 
     # rate limiting
     rate-limit:

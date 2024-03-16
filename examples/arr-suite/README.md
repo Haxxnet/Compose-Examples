@@ -7,7 +7,7 @@
 - https://docs.linuxserver.io/images/docker-readarr/
 - https://github.com/FlareSolverr/FlareSolverr
 - https://docs.linuxserver.io/images/docker-qbittorrent/
-  - https://github.com/MarkusMcNugen/docker-qBittorrentvpn 
+- https://hub.docker.com/r/qmcgaw/gluetun
 - https://docs.linuxserver.io/images/docker-emby/
 - https://docs.linuxserver.io/images/docker-jellyfin (alternative option to emby)
 
@@ -34,11 +34,10 @@ Docker stack consisting of various arr-services like:
   - Used to bypass Cloudflare for prowlarr
   - You must add it at prowlarr as indexer with the tag `flaresolverr`
 - Qbittorrent
-  - Used as download client, preferably behind VPN (e.g. socks5)
+  - Used as download client; run behind gluetun vpn killswitch container
   - A temporary password for the `admin` user will be printed to the container log on startup. Change it immediately to a static one that does not change again.
-- [optional] Qbittorrent with OpenVPN killswitch
-  - Spawns an OpenVPN connection with iptables killswitch to hide your IP to safely download ISOs.
-  - Default user will be `admin` with the password `adminadmin`. Change it immediately to a static one that does not change again.
+- Gluetun
+  - Used for establishing an openvpn/wireguard killswitch vpn connection for qbittorrent
 - Emby / Jellyfin
   - Used to manage your media libraries and stream it from various devices
  
@@ -48,8 +47,6 @@ The following bind mount volumes are defined:
   - holds the config files of an arr container
 - `/arr-suite/media/`
   - will hold your media files such as movies, music, books, tv-shows, qbittorrent downloads etc.
- 
-Note: You can replace the normal qbittorrent container with the commented one supporting OpenVPN kill switch. If so, you have to put your OpenVPN config, certificate and creds into the `/arr-suite/configs/qbittorrentvpn/openvpn/` directory. More information can be found [here](https://github.com/MarkusMcNugen/docker-qBittorrentvpn?tab=readme-ov-file#how-to-use-openvpn). Afterwards add the new qbittorrent as downloading client to your arr containers by using your Docker server's host IP address.
 
 ## Setup
 

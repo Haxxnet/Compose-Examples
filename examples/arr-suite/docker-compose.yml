@@ -146,27 +146,23 @@ services:
     #networks:
     #  - proxy    
 
-  # image used to download stuff
-  qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:latest
-    container_name: arr-suite-qbittorrent
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-      - WEBUI_PORT=8080
-      - TORRENTING_PORT=6881
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrent:/config # contains all relevant configuration files
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of downloads on disk
-    expose:
-      - 8080/tcp # web ui
-      - 6881/tcp # tcp connection port
-      - 6881/udp # udp connection port
+  # image used for vpn killswitch network
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: arr-suite-gluetun
+    cap_add:
+      - NET_ADMIN
     ports:
-      - 8080:8080/tcp # web ui
-      - 6881:6881/tcp # tcp connection port
-      - 6881:6881/udp # udp connection port
+      - 8080:8080 # qbittorrent http web ui
+    environment:
+      # see https://github.com/qdm12/gluetun-wiki for more details
+      # example envs based on https://github.com/qdm12/gluetun-wiki/blob/main/setup/providers/mullvad.md
+      - VPN_SERVICE_PROVIDER=mullvad # define the vpn provider
+      - VPN_TYPE=wireguard # define the vpn protocol to use
+      - WIREGUARD_PRIVATE_KEY=wOEI9rqqbDwnN8/Bpp22sVz48T71vJ4fYmFWujulwUU= # define your wireguard private key here
+      - WIREGUARD_ADDRESSES=10.64.222.21/32 # define the ipv4 vpn network subnet here
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/gluetun:/gluetun
     restart: unless-stopped
     #networks:
     #  - proxy
@@ -178,42 +174,22 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.qbittorrent.middlewares=local-ipwhitelist@file
 
-  # image used to download stuff over openvpn (e.g. mullvad)
-  #qbittorrentvpn:
-  #  image: markusmcnugen/qbittorrentvpn
-  #  container_name: arr-suite-qbittorrentvpn
-  #  privileged: true
-  #  sysctls:
-  #    - net.ipv6.conf.all.disable_ipv6=0
-  #  volumes:
-  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrentvpn:/config # contains all relevant configuration files; put your vpn config into the openvpn dir
-  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of downloads on disk
-  #    - /etc/localtime:/etc/localtime:ro
-  #  environment:
-  #    - VPN_ENABLED=yes
-  #    - LAN_NETWORK=192.168.1.0/24
-  #    - NAME_SERVERS=8.8.8.8,8.8.4.4
-  #    - WEBUI_PORT_ENV=8080
-  #    - UMASK=002
-  #    - PUID=1000
-  #    - PGID=1000
-  #    - INCOMING_PORT_ENV=8999
-  #  expose:
-  #    - 8080/tcp
-  #    - 8999/tcp
-  #    - 8999/udp
-  #  ports:
-  #    - 8080:8080/tcp # map web ui for prowlarr and co.
-  #  restart: unless-stopped
-  #  networks:
-  #    - proxy
-  #  labels:
-  #    - traefik.enable=true
-  #    - traefik.docker.network=proxy
-  #    - traefik.http.routers.qbittorrentvpn.rule=Host(`qbittorrentvpn.example.com`)
-  #    - traefik.http.services.qbittorrentvpn.loadbalancer.server.port=8080
-  #    # Optional part for traefik middlewares
-  #    - traefik.http.routers.qbittorrentvpn.middlewares=local-ipwhitelist@file
+  # image used to download stuff; run over gluetun network (vpn killswitch)
+  qbittorrent:
+    image: ghcr.io/linuxserver/qbittorrent
+    container_name: arr-suite-qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - WEBUI_PORT=8080
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrent:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads
+    depends_on:
+      - gluetun
+    network_mode: container:arr-suite-gluetun # use the gluetun container network (vpn killswitch)
+    restart: unless-stopped
 
   # image used to manage media and stream it
   emby:

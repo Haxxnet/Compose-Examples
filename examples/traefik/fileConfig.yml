@@ -43,7 +43,7 @@ http:
   middlewares:
     # Only Allow Local networks
     local-ipwhitelist:
-      ipWhiteList:
+      ipAllowList:
         sourceRange:
           - 127.0.0.1/32 # localhost
           - 10.0.0.0/8 # private class A

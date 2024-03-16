@@ -4,7 +4,7 @@ services:
 
   # image used to index torrent links from the internet
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest
+    image: linuxserver/prowlarr:latest
     container_name: arr-suite-prowlarr
     environment:
       - PUID=1000
@@ -29,7 +29,7 @@ services:
 
   # image used to scan for tv shows
   sonarr:
-    image: lscr.io/linuxserver/sonarr:latest
+    image: linuxserver/sonarr:latest
     container_name: arr-suite-sonarr
     environment:
       - PUID=1000
@@ -55,7 +55,7 @@ services:
 
   # image used to scan for movies
   radarr:
-    image: lscr.io/linuxserver/radarr:latest
+    image: linuxserver/radarr:latest
     container_name: arr-suite-radarr
     environment:
       - PUID=1000
@@ -81,7 +81,7 @@ services:
 
   # image used to scan for music
   lidarr:
-    image: lscr.io/linuxserver/lidarr:latest
+    image: linuxserver/lidarr:latest
     container_name: arr-suite-lidarr
     environment:
       - PUID=1000
@@ -107,7 +107,7 @@ services:
 
   # image used to scan for books
   readarr:
-    image: lscr.io/linuxserver/readarr:develop
+    image: linuxserver/readarr:develop
     container_name: arr-suite-readarr
     environment:
       - PUID=1000
@@ -176,7 +176,7 @@ services:
 
   # image used to download stuff; run over gluetun network (vpn killswitch)
   qbittorrent:
-    image: ghcr.io/linuxserver/qbittorrent:latest
+    image: linuxserver/qbittorrent:latest
     container_name: arr-suite-qbittorrent
     environment:
       - PUID=1000
@@ -193,7 +193,7 @@ services:
 
   # image used to manage media and stream it
   emby:
-    image: lscr.io/linuxserver/emby:latest
+    image: linuxserver/emby:latest
     container_name: arr-suite-emby
     environment:
       - PUID=1000
@@ -227,7 +227,7 @@ services:
 
   # image used to manage media and stream it
   #jellyfin:
-  #  image: lscr.io/linuxserver/jellyfin:latest
+  #  image: linuxserver/jellyfin:latest
   #  container_name: arr-suite-jellyfin
   #  environment:
   #    - PUID=1000

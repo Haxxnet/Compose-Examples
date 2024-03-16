@@ -18,6 +18,9 @@
 >
 >  Use this docker stack responsibly!
 
+> [!CAUTION]
+> This setup makes use of gluetun to obtain a vpn killswitch network. This requires a vpn provider like mullvad or others.
+
 Docker stack consisting of various arr-services like:
 
 - Prowlarr
@@ -38,6 +41,7 @@ Docker stack consisting of various arr-services like:
   - A temporary password for the `admin` user will be printed to the container log on startup. Change it immediately to a static one that does not change again.
 - Gluetun
   - Used for establishing an openvpn/wireguard killswitch vpn connection for qbittorrent
+  - Requires an active subscription for a vpn provider (e.g. Mullvad)
 - Emby / Jellyfin
   - Used to manage your media libraries and stream it from various devices
  
@@ -54,7 +58,7 @@ You can follow this Youtube tutorial on how to setup most of the arr application
 
 https://www.youtube.com/watch?v=LD8-Qr3B2-o
 
-**Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. Use Docker networks!
+**Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. Use Docker networks! The only exception is qbittorrent, which uses the vpn killswitch network of the gluetun container. Here, the gluetun container will expose qbittorrent's web ui on TCP/8080.
 
 > [!WARNING]
 > We configured qbittorrent to use the non-default path `/media/downloads` for downloads.

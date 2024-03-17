@@ -49,6 +49,8 @@ http:
           - 10.0.0.0/8 # private class A
           - 172.16.0.0/12 # private class B
           - 192.168.0.0/16 # private class C
+        #ipstrategy: # enable this when cloudflare proxy in use
+        #  depth: 1 # enable this when cloudflare proxy in use
 
     # Security headers
     security-headers:

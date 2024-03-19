@@ -135,6 +135,7 @@ A [proxy](https://en.wikipedia.org/wiki/Proxy_server) is a server application th
 A [VPN](https://en.wikipedia.org/wiki/Virtual_private_network) is a mechanism for creating a secure connection between a computing device and a computer network, or between two networks, using an insecure communication medium such as the public Internet.
 
 - [wg-easy](examples/wg-easy) - The easiest way to install & manage WireGuard on any Linux host. All-in-one deployment of a WireGuard VPN network service + web management UI.
+- [wg-gen-web](examples/wg-gen-web/) - Simple Web based configuration generator for WireGuard. Provide more powerful features.
 - [WireGuard](examples/wireguard) - WireGuard by Linuxserver.io is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography.
 - [IPSec VPN Server](examples/ipsec-vpn-server) - Docker image to run an IPsec VPN server, with IPsec/L2TP, Cisco IPsec and IKEv2.
 - [Firezone](examples/firezone) - Self-hosted secure remote access gateway that supports the WireGuard protocol. It offers a Web GUI, 1-line install script, multi-factor auth (MFA), and SSO.

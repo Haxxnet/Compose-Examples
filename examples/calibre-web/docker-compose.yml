@@ -1,0 +1,19 @@
+version: "2.1"
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    # When using volumes (-v flags), permissions issues can arise between the host OS and the container, 
+    # we avoid this issue by allowing you to specify the user PUID and group PGID.
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai # specify a timezone to use,
+      - DOCKER_MODS=linuxserver/mods:universal-calibre # optional
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1 # optional
+    volumes:
+      - ./data:/config # Where calibre-web stores the internal database and config.
+      - ./library:/books # 	Where your preexisting calibre database is located.
+    ports:
+      - 8083:8083
+    restart: unless-stopped

@@ -1,19 +1,34 @@
 version: "2.1"
+
 services:
+
   calibre-web:
     image: lscr.io/linuxserver/calibre-web:latest
     container_name: calibre-web
-    # When using volumes (-v flags), permissions issues can arise between the host OS and the container, 
-    # we avoid this issue by allowing you to specify the user PUID and group PGID.
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Shanghai # specify a timezone to use,
+      - TZ=Euope/Berlin # specify a timezone to use,
       - DOCKER_MODS=linuxserver/mods:universal-calibre # optional
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1 # optional
     volumes:
-      - ./data:/config # Where calibre-web stores the internal database and config.
-      - ./library:/books # 	Where your preexisting calibre database is located.
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/calibre-web/config:/config # where calibre-web stores the internal database and config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/calibre-web/books:/books # 	where your pre-existing calibre database is located
     ports:
       - 8083:8083
+    expose:
+      - 8083
     restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.calibre.rule=Host(`calibre.example.com`)
+    #  - traefik.http.services.calibre.loadbalancer.server.port=8083
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.calibre.middlewares=local-ipwhitelist@file,authelia@docker
+
+#networks:
+#  proxy:
+#    external: true

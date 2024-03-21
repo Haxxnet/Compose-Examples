@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   blog:
-    image: ghost:5
+    image: ghost:5-alpine
     container_name: ghost
     restart: always
     ports:

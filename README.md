@@ -252,6 +252,7 @@ A [document management system](https://en.wikipedia.org/wiki/Document_management
 - [Paperless NGX](examples/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
 - [Papermerge](examples/papermerge) - Free and open source document management system with OCR designed for scanned documents, digital archives, pdf, tiff, jpeg.
 - [DocuSeal](examples/docuseal) - Create, fill, and sign digital documents (alternative to DocuSign).
+- [alist](examples/alist/) - A file list/WebDAV program that supports multiple storages and provides functions such as network disk hosting and file preview.
 
 ### Pastebins
 

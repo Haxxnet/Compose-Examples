@@ -4,8 +4,6 @@ services:
     image: vx3r/wg-gen-web:latest
     container_name: wg-gen-web-demo
     restart: unless-stopped
-    expose:
-      - "8080/tcp"
     environment:
       - WG_CONF_DIR=/data
       - WG_INTERFACE_NAME=wg0.conf
@@ -14,18 +12,22 @@ services:
       - SMTP_USERNAME=no-reply@gmail.com
       - SMTP_PASSWORD=******************
       - SMTP_FROM=Wg Gen Web <no-reply@gmail.com>
-      - OAUTH2_PROVIDER_NAME=github
-      - OAUTH2_PROVIDER=https://github.com
-      - OAUTH2_CLIENT_ID=******************
-      - OAUTH2_CLIENT_SECRET=******************
-      - OAUTH2_REDIRECT_URL=https://wg-gen-web-demo.127-0-0-1.fr
     volumes:
-      - /etc/wireguard:/data
-  wg-json-api: # optional
-    image: james/wg-api:latest
-    container_name: wg-json-api
-    restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
-    network_mode: "host"
-    command: wg-api --device wg0 --listen <API_LISTEN_IP>:8182
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/etc/wireguard/data:/data
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.evershop.rule=Host(`shop.example.com`)
+    #  - traefik.http.services.evershop.loadbalancer.server.port=3000
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.evershop.middlewares=local-ipwhitelist@file,authelia@docker
+
+#networks:
+#  proxy:
+#    external: true

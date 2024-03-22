@@ -1,7 +1,6 @@
 version: "2.1"
 
 services:
-
   calibre-web:
     image: lscr.io/linuxserver/calibre-web:latest
     container_name: calibre-web
@@ -12,8 +11,8 @@ services:
       - DOCKER_MODS=linuxserver/mods:universal-calibre # optional
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1 # optional
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/calibre-web/config:/config # where calibre-web stores the internal database and config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/calibre-web/books:/books # 	where your pre-existing calibre database is located
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/calibre-web/config:/config  # where calibre-web stores the internal database and config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/calibre-web/books:/books    # where your pre-existing calibre database is located
     ports:
       - 8083:8083
     expose:

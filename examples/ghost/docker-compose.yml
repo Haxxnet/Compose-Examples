@@ -22,7 +22,7 @@ services:
       database__connection__user: ${DB_USER:-ghost}
       database__connection__password: ${DB_USER_PASS:-DatabasePassword1234}
       database__connection__database: ${DB_NAME:-ghost}
-      url: https://blog.example.com # change this for production
+      url: http://127.0.0.1:2368 # adjust to your domain and correct protocol handler + port
       #NODE_ENV: developmnent # default is production already
       #mail__transport: SMTP
       #mail__options__host: ${SMTP_HOST:-smtp.google.com}

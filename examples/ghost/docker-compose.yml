@@ -47,7 +47,7 @@ services:
     healthcheck:
       test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$DB_ROOT_PASS' ]
       timeout: 20s
-      retries: 10    
+      retries: 10
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/mysql:/var/lib/mysql
     expose:

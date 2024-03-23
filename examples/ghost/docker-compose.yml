@@ -6,8 +6,13 @@ services:
     image: ghost:5-alpine
     container_name: ghost
     restart: always
+    depends_on:
+      database:
+        condition: service_healthy
+    expose:
+      - 2368
     ports:
-      - 8080:2368
+      - 2368:2368
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/content:/var/lib/ghost/content
     environment:
@@ -39,6 +44,10 @@ services:
     image: mysql:8
     container_name: ghost_db
     restart: always
+    healthcheck:
+      test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$DB_ROOT_PASS' ]
+      timeout: 20s
+      retries: 10    
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/mysql:/var/lib/mysql
     expose:

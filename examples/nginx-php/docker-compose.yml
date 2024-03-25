@@ -2,7 +2,7 @@ version: "3"
 
 services:
   web:
-    image: nginx:latest
+    image: nginx:stable-alpine
     hostname: nginx
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www # place your files for web here

@@ -1,0 +1,33 @@
+version: '3.6'
+services:
+  wg-gen-web-demo:
+    image: vx3r/wg-gen-web:latest
+    container_name: wg-gen-web-demo
+    restart: unless-stopped
+    environment:
+      - WG_CONF_DIR=/data
+      - WG_INTERFACE_NAME=wg0.conf
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USERNAME=no-reply@gmail.com
+      - SMTP_PASSWORD=******************
+      - SMTP_FROM=Wg Gen Web <no-reply@gmail.com>
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/etc/wireguard/data:/data
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.evershop.rule=Host(`shop.example.com`)
+    #  - traefik.http.services.evershop.loadbalancer.server.port=3000
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.evershop.middlewares=local-ipwhitelist@file,authelia@docker
+
+#networks:
+#  proxy:
+#    external: true

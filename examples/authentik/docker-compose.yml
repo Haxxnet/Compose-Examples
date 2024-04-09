@@ -40,7 +40,7 @@ services:
       - authentik-internal
 
   authentik-proxy:
-    image: ghcr.io/goauthentik/server:2023.8
+    image: ghcr.io/goauthentik/server:2024.2
     container_name: authentik
     restart: unless-stopped
     command: server
@@ -75,7 +75,7 @@ services:
       - traefik.http.middlewares.authentik.forwardauth.authResponseHeaders=X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid,X-authentik-jwt,X-authentik-meta-jwks,X-authentik-meta-outpost,X-authentik-meta-provider,X-authentik-meta-app,X-authentik-meta-version
 
   worker:
-    image: ghcr.io/goauthentik/server:2023.8
+    image: ghcr.io/goauthentik/server:2024.2
     container_name: authentik-worker
     restart: unless-stopped
     command: worker

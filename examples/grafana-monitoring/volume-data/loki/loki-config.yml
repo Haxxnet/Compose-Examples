@@ -22,6 +22,7 @@ limits_config:
    retention_period: 360h
    max_query_series: 100000
    max_query_parallelism: 2
+   split_queries_by_interval: 0
 
 schema_config:
   configs:
@@ -34,7 +35,6 @@ schema_config:
         period: 24h
 
 query_range:
-  split_queries_by_interval: 0
   parallelise_shardable_queries: false
 
 querier:

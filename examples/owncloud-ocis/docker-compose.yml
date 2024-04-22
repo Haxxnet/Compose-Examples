@@ -15,7 +15,7 @@ services:
     # therefore we ignore the error and then start the ocis server
     command: ["-c", "ocis init || true; ocis server"]
     environment:
-      - OCIS_URL=https://cloud.example.com # adjust to your domain
+      - OCIS_URL=https://localhost:9200 # adjust to your FQDN domain; https required
       - PROXY_TLS=true # disable if you use a reverse proxy with SSL support in front
       - OCIS_INSECURE=true # required if you use a reverse proxy with SSL support in front
     volumes:

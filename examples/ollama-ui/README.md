@@ -6,24 +6,17 @@
 
 # Notes
 
-You can spawn ollama first and then download the [respective LLM models](https://ollama.com/library) via docker exec. Alternatively, spawn the whole stack directly and download LLM models within Open WebUI using a browser.
+You can spawn Ollama first and then download the [respective LLM models](https://ollama.com/library) via docker exec. Alternatively, spawn the whole stack directly and download LLM models within Open WebUI using a browser.
 
 ````
-# spawn ollama
-docker compose up -d ollama
+# spawn ollama and ui
+docker compose up -d
 
-# download an llm model via docker exec
+# (optional) download an llm model via docker exec
 docker exec ollama ollama run llama3:8b
 ````
 
-Afterwards, we can spawn Open WebUI and register our first user account:
-
-````
-# spawn ui
-docker compose up -d ui
-````
-
-Finally, we may want to disable open user registration for Open WebUI by uncommenting the env `ENABLE_SIGNUP` variable and restarting the container.
+Afterwards, we can browse Open WebUI on `http://127.0.0.1:8080` and register our first user account. You may want to disable open user registration later on by uncommenting the env `ENABLE_SIGNUP` variable and restarting the Open WebUI container.
 
 > [!TIP]
 >

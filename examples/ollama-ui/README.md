@@ -6,7 +6,7 @@
 
 # Notes
 
-You should spawn ollama first and download the respective LLM models:
+You should spawn ollama first and download the [respective LLM models](https://ollama.com/library):
 
 ````
 # spawn ollama

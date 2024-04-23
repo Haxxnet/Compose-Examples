@@ -61,6 +61,7 @@ docker compose up
 - [Games and Control Panels](#games-and-control-servers)
 - [Genealogy](#genealogy)
 - [Identity Management - Single Sign-On (SSO) & LDAP](#identity-management---single-sign-on-sso--ldap)
+- [LLM & AI](#llm--ai)
 - [Miscellaneous](#miscellaneous)
 - [Money, Budgeting & Management](#money-budgeting--management)
 - [Note-taking & Editors](#note-taking--editors)
@@ -121,6 +122,15 @@ A [proxy](https://en.wikipedia.org/wiki/Proxy_server) is a server application th
 - [Authentik](examples/authentik) - Authentik is an open-source Identity Provider focused on flexibility and versatility.
 - [Keycloak](https://github.com/keycloak/keycloak-containers/tree/main/docker-compose-examples) - Keycloak is an open-source Identity and Access Management (IAM) solution for modern applications and services.
 - [lldap](examples/lldap) - lldap is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication. It integrates with many backends, from KeyCloak to Authelia to Nextcloud and more.
+
+### Large Language Models & AI
+
+**[`^        back to top        ^`](#-project-list)**
+
+A [Large Language Model (LLM)](https://en.wikipedia.org/wiki/Large_language_model) is a language model notable for its ability to achieve general-purpose language generation and other natural language processing tasks such as classification. LLMs can be used for text generation, a form of generative [AI](https://en.wikipedia.org/wiki/Artificial_intelligence), by taking an input text and repeatedly predicting the next token or word.
+
+- [Ollama + Open WebUI](examples/ollama-ui) - Get up and running with Llama 3, Mistral, Gemma, and other large language models using Ollama. Using an interactive, user-friendly WebUI via Open WebUI (formerly known as Ollama WebUI).
+- [Serge](examples/serge) - A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
 
 ### Virtual Private Network (VPN) & Remote Access
 

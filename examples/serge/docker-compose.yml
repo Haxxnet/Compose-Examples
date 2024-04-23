@@ -1,0 +1,26 @@
+services:
+
+  serge:
+    image: ghcr.io/serge-chat/serge:main
+    container_name: serge
+    restart: unless-stopped
+    ports:
+      - 8008
+    expose:
+      - 8008
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/serge/weights:/usr/src/app/weights
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/serge/datadb:/data/db/
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.serge.rule=Host(`serge.example.com`)
+    #  - traefik.http.services.serge.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.serge.middlewares=local-ipwhitelist@file,authelia@docker
+
+#networks:
+#  proxy:
+#    external: true

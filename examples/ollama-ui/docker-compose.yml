@@ -1,0 +1,39 @@
+services:
+
+  ui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: ollama-ui
+    restart: always
+    ports:
+      - 8080
+    expose:
+      - 8080
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ollama/open-webui:/app/backend/data
+    environment:
+      #- "ENABLE_SIGNUP=false"
+      - "OLLAMA_BASE_URL=http://ollama:11434"
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.ollama-ui.rule=Host(`ai.example.com`)
+    #  - traefik.http.services.ollama-ui.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.ollama-ui.middlewares=local-ipwhitelist@file,authelia@docker
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: always
+    expose:
+      - 11434
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ollama/data:/root/.ollama
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

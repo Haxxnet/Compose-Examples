@@ -6,13 +6,13 @@
 
 # Notes
 
-You should spawn ollama first and download the [respective LLM models](https://ollama.com/library):
+You can spawn ollama first and then download the [respective LLM models](https://ollama.com/library) via docker exec. Alternatively, spawn the whole stack directly and download LLM models within Open WebUI using a browser.
 
 ````
 # spawn ollama
 docker compose up -d ollama
 
-# download an llm model
+# download an llm model via docker exec
 docker exec ollama ollama run llama3:8b
 ````
 

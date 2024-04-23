@@ -61,7 +61,7 @@ docker compose up
 - [Games and Control Panels](#games-and-control-servers)
 - [Genealogy](#genealogy)
 - [Identity Management - Single Sign-On (SSO) & LDAP](#identity-management---single-sign-on-sso--ldap)
-- [LLM & AI](#llm--ai)
+- [LLM & AI](#large-language-models--ai)
 - [Miscellaneous](#miscellaneous)
 - [Money, Budgeting & Management](#money-budgeting--management)
 - [Note-taking & Editors](#note-taking--editors)

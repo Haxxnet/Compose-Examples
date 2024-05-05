@@ -6,7 +6,7 @@ version: '3.8'
 
 services:
   traefik:
-    image: traefik:2.10
+    image: traefik:2.11
     container_name: traefik
     command:
       - --providers.docker=true # enable docker provider

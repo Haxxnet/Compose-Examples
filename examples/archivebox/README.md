@@ -11,4 +11,7 @@ Place the config file in the bind volume mount path for sonic.
 
 The default username and password are: archivebox
 
-Please read the [official storage requirements](https://github.com/ArchiveBox/ArchiveBox#storage-requirements) if your ArchiveBox instance is running slow, sluggish or times out. TLDR: Do not store the Docker volume data on a network storage like SMB/NFS.
+> [!CAUTION]
+> Please read the [official storage requirements](https://github.com/ArchiveBox/ArchiveBox#storage-requirements) if your ArchiveBox instance is running slow, sluggish or times out.
+>
+> **TLDR**: Do not store the Docker volume data on a network storage like SMB/NFS.

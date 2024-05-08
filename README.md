@@ -401,7 +401,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 [Genealogy software](https://en.wikipedia.org/wiki/Genealogy_software) used to record, organize, and publish genealogical data.
 
 - [webtrees](examples/webtrees) - webtrees is the web's leading online collaborative genealogy application. It allows you to view and edit your genealogy on your selfhosted website.
-- [Gramps-Web](examples/gramps-web) - Gramps Web is a web app for collaborative genealogy. It is based on and interoperable with Gramps, the leading open source genealogy desktop application.
+- [Gramps-Web](examples/gramps) - Gramps Web is a web app for collaborative genealogy. It is based on and interoperable with Gramps, the leading open source genealogy desktop application.
 
 ### Asset Management
 

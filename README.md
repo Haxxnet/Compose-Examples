@@ -190,7 +190,6 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [Goaccess](examples/nginx-proxy-manager-goaccess) - Real-time web log analyzer and interactive viewer that visualizes various logs of popular reverse proxies such as Nginx, Nginx Proxy Manager and Traefik.
 - [WatchYourLAN](examples/watchyourlan) - Lightweight network IP scanner with web GUI.
 - [Watchtower](examples/watchtower) - A container-based solution for automating Docker container base image updates.
-- [dockcheck-web](examples/dockcheck-web) - A webpage showing available image updates for your running containers.
 - [Unify Network Application](examples/unify-network-application) - The Unifi-network-application software is a powerful, enterprise wireless software engine ideal for high-density client deployments requiring low latency and high uptime performance.
 - [UpSnap](examples/upsnap) - A simple wake on lan app written with SvelteKit, Go, PocketBase and nmap.
 

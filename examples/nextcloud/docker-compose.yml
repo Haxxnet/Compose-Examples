@@ -14,6 +14,8 @@ services:
     ports:
       - 9443:443
     restart: unless-stopped
+    #networks:
+    #  - proxy    
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.nextcloud.rule=(Host(`cloud.example.com`))

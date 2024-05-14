@@ -1,5 +1,3 @@
----
-version: "2.1"
 services:
   nextcloud:
     image: linuxserver/nextcloud:latest
@@ -11,6 +9,8 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/config:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/data:/data
+    expose:
+      - 9443
     ports:
       - 9443:443
     restart: unless-stopped
@@ -20,6 +20,7 @@ services:
     #  - traefik.http.services.nextcloud.loadbalancer.server.port=443
     #  - traefik.http.services.nextcloud.loadbalancer.server.scheme=https
     #  - traefik.http.services.nextcloud.loadbalancer.serverstransport=insecureTransport@file
+    #  - traefik.http.routers.nextcloud.middlewares=local-ipwhitelist@file,authelia@docker
     #  - traefik.docker.network=proxy
     #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav
     #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/
@@ -27,3 +28,7 @@ services:
     #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
     #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads
+
+#networks:
+#  proxy:
+#    external: true

@@ -17,14 +17,18 @@ services:
       - MYSQL_USER=nextcloud #SQL Nutzername
       - MYSQL_INITDB_SKIP_TZINFO=1
       - MARIADB_AUTO_UPGRADE=1
-  
+    #networks:
+    #  - proxy
+
   nextcloud-redis:
     image: redis:alpine
     container_name: nextcloud-redis
     hostname: nextcloud-redis
     restart: unless-stopped
     command: redis-server --requirepass nextcloud # Redis Passwort eingeben
-  
+    #networks:
+    #  - proxy
+
   nextcloud-app:
     image: nextcloud
     container_name: nextcloud-app
@@ -46,12 +50,15 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/data:/var/www/html/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/app:/var/www/html
+    #networks:
+    #  - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.nextcloud.rule=(Host(`cloud.example.com`)) # pls change
     #  - traefik.http.services.nextcloud.loadbalancer.server.port=80
     #  - traefik.http.services.nextcloud.loadbalancer.server.scheme=https
-    #  - traefik.http.services.nextcloud.loadbalancer.serverstransport=insecureTransport@file    
+    #  - traefik.http.services.nextcloud.loadbalancer.serverstransport=insecureTransport@file
+    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,authelia@docker
     #  - traefik.docker.network=proxy
     #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav
     #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/
@@ -61,3 +68,7 @@ services:
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads
     #  # Part for local lan services only
     #  #- traefik.http.routers.privatebin.middlewares=basic-auth@file,local-ipwhitelist@file,security-headers@file
+
+#networks:
+#  proxy:
+#    external: true

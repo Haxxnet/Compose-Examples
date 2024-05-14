@@ -32,7 +32,8 @@ services:
     #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
     #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
     #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000    
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  - traefik.http.routers.ocis.middlewares=local-ipwhitelist@file,authelia@docker
     #  - traefik.docker.network=dev
     #  # disallow listing version details via /status.php endpoint
     #  - traefik.http.routers.ocis-version-disclosure.rule=Host(`cloud.example.com`) && Path(`/status.php`)

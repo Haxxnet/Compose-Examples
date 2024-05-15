@@ -23,6 +23,11 @@ $CONFIG = array (
     0 => 'nextcloud.example.com',
     1 => 'nextcloud.anotherdomain.com',
   ),
+  'trusted_proxies' => 
+  array (
+    0 => '10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16',
+  ),
+  'maintenance_window_start' => 1,
   'dbtype' => 'sqlite3',
   ...
 );

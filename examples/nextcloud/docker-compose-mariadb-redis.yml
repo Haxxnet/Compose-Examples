@@ -57,12 +57,6 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD:-nextcloud}
       - REDIS_HOST=${REDIS_HOST:-nextcloud-redis}
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD:-nextcloud}
-    healthcheck:
-      test: ["CMD-SHELL", "curl -Ss http://localhost/status.php | grep '\"installed\":true' || exit 1"]
-      interval: 2m
-      retries: 10
-      start_period: 10m
-      timeout: 5s
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/data:/var/www/html/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/app:/var/www/html

@@ -67,3 +67,21 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/data:/var/www/html/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/app:/var/www/html
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.nextcloud.rule=(Host(`cloud.example.com`)) # pls change
+    #  - traefik.http.services.nextcloud.loadbalancer.server.port=80
+    #  - traefik.http.routers.nextcloud.middlewares=local-ipwhitelist@file,authelia@docker
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav
+    #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads
+
+#networks:
+#  proxy:
+#    external: true

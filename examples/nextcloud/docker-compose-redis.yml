@@ -37,6 +37,8 @@ services:
     container_name: nextcloud-app
     hostname: nextcloud-app
     restart: unless-stopped
+    expose: 
+      - 80
     ports:
       - 8080:80
     depends_on:
@@ -45,16 +47,16 @@ services:
     environment:
         PUID: 1000
         PGID: 1000        
-        OVERWRITEPROTOCOL: https
-        OVERWRITECLIURL: https://cloud.example.com # pls change
-        OVERWRITEHOST: cloud.example.com # pls change
-        TRUSTED_PROXIES: 172.18.0.2/16
+        #OVERWRITEPROTOCOL: http # switch to https if using a reverse proxy
+        #OVERWRITECLIURL: http://127.0.0.1:8080 # adjust protocol and ip/domain
+        #OVERWRITEHOST: 127.0.0.1:8080 # adjust ip/domain
+        #TRUSTED_PROXIES: 172.18.0.2/16 # enable if run behind reverse proxy
         MYSQL_HOST: nextcloud-db
         MYSQL_DATABASE: nextcloud
         MYSQL_USER: nextcloud
         MYSQL_PASSWORD: nextcloud
         REDIS_HOST: nextcloud-redis
-        REDIS_HOST_PASSWORD: nextcloud # Redis Passwort von oben wieder eingeben
+        REDIS_HOST_PASSWORD: nextcloud
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/data:/var/www/html/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/app:/var/www/html

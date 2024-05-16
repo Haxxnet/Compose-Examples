@@ -17,7 +17,7 @@ The relevant nextcloud configuration file to define this is located at:
 /<your-volume-path>/nextcloud/app/config/
 ````
 
-Adjust the PHP file and put in your subdomains as well as trusted proxy IPs. 
+Adjust the PHP file and put in your subdomains at `trusted_domains` as well as trusted proxy IPs at `trusted_proxies`. Also set `overwriteprotocol` to `https` and may define a maintenance window via `maintenance_window_start`.
 
 Something like this:
 
@@ -32,10 +32,11 @@ $CONFIG = array (
   ),
   'trusted_proxies' => 
   array (
-    0 => ['10.0.0.0/8'],
-    1 => ['172.16.0.0/12'],
-    2 => ['192.168.0.0/16'],
+    0 => '10.0.0.0/8',
+    1 => '172.16.0.0/12',
+    2 => '192.168.0.0/16',
   ),
+  'overwriteprotocol' => 'https',
   'maintenance_window_start' => 1,
   ...
 );

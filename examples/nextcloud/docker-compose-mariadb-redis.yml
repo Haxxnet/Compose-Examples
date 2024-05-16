@@ -46,7 +46,6 @@ services:
       - nextcloud-db
       - nextcloud-redis
     environment:
-      - TRUSTED_PROXIES=${NC_TRUSTED_PROXIES:-127.0.0.1/32}
       - PUID=${NC_PUID:-1000}
       - PGID=${NC_PGID:-1000}
       - OVERWRITEPROTOCOL=${NC_OVERWRITEPROTOCOL:-http}

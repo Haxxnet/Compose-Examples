@@ -50,7 +50,7 @@ services:
         #OVERWRITEPROTOCOL: http # switch to https if using a reverse proxy
         #OVERWRITECLIURL: http://127.0.0.1:8080 # adjust protocol and ip/domain
         #OVERWRITEHOST: 127.0.0.1:8080 # adjust ip/domain
-        #TRUSTED_PROXIES: 172.18.0.2/16 # enable if run behind reverse proxy
+        #TRUSTED_PROXIES: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16 # enable if run behind reverse proxy
         MYSQL_HOST: nextcloud-db
         MYSQL_DATABASE: nextcloud
         MYSQL_USER: nextcloud

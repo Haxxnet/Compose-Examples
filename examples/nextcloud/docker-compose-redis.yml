@@ -17,6 +17,9 @@ services:
       - MYSQL_USER=nextcloud #SQL Nutzername
       - MYSQL_INITDB_SKIP_TZINFO=1
       - MARIADB_AUTO_UPGRADE=1
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin      
     #networks:
     #  - proxy
 
@@ -33,7 +36,6 @@ services:
     image: nextcloud
     container_name: nextcloud-app
     hostname: nextcloud-app
-    user: 1000:1000
     restart: unless-stopped
     ports:
       - 8080:80
@@ -41,10 +43,16 @@ services:
       - nextcloud-db
       - nextcloud-redis
     environment:
-        TRUSTED_PROXIES: 172.18.0.2/16
+        PUID: 1000
+        PGID: 1000        
         OVERWRITEPROTOCOL: https
         OVERWRITECLIURL: https://cloud.example.com # pls change
         OVERWRITEHOST: cloud.example.com # pls change
+        TRUSTED_PROXIES: 172.18.0.2/16
+        MYSQL_HOST: nextcloud-db
+        MYSQL_DATABASE: nextcloud
+        MYSQL_USER: nextcloud
+        MYSQL_PASSWORD: nextcloud
         REDIS_HOST: nextcloud-redis
         REDIS_HOST_PASSWORD: nextcloud # Redis Passwort von oben wieder eingeben
     volumes:

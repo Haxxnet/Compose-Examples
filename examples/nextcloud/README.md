@@ -48,3 +48,4 @@ $CONFIG = array (
   ...
 );
 ````
+After adjusting, restart the Nextcloud container.

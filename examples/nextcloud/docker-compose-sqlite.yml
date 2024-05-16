@@ -10,7 +10,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/config:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/data:/data
     expose:
-      - 9443
+      - 443
     ports:
       - 9443:443
     restart: unless-stopped

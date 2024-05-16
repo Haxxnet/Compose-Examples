@@ -1,5 +1,5 @@
 services:
-  
+
   nextcloud-db:
     image: mariadb:lts
     container_name: nextcloud-db

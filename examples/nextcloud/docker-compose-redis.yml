@@ -11,10 +11,10 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/database:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=test #SQL root Passwort eingeben
-      - MYSQL_PASSWORD=nextcloud #SQL Benutzer Passwort eingeben
-      - MYSQL_DATABASE=nextcloud #Datenbank Name
-      - MYSQL_USER=nextcloud #SQL Nutzername
+      - MYSQL_ROOT_PASSWORD=nextcloud_root
+      - MYSQL_PASSWORD=nextcloud
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
       - MYSQL_INITDB_SKIP_TZINFO=1
       - MARIADB_AUTO_UPGRADE=1
       - PUID=1000

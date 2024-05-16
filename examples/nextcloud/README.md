@@ -37,7 +37,6 @@ $CONFIG = array (
     2 => ['192.168.0.0/16'],
   ),
   'maintenance_window_start' => 1,
-  'dbtype' => 'sqlite3',
   ...
 );
 ````

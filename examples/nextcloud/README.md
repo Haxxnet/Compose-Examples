@@ -1,5 +1,6 @@
 # References
 
+- https://github.com/nextcloud/docker
 - https://hub.docker.com/r/linuxserver/nextcloud
 
 # Notes
@@ -9,10 +10,16 @@ If you plan on using a reverse proxy, you will have to define your domain or sub
 The relevant nextcloud configuration file to define this is located at:
 
 ````
+# linuxserver image
 /<your-volume-path>/config/www/nextcloud/config/config.php
+
+# official nextcloud image
+/<your-volume-path>/nextcloud/app/config/
 ````
 
-Adjust the PHP file and put in your subdomains as trusted. Something like this:
+Adjust the PHP file and put in your subdomains as well as trusted proxy IPs. 
+
+Something like this:
 
 ````
 <?php

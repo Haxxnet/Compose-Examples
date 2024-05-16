@@ -34,7 +34,7 @@ services:
     #  - proxy
 
   nextcloud-app:
-    image: nextcloud:29-fpm-alpine
+    image: nextcloud:29-apache
     container_name: nextcloud-app
     hostname: nextcloud-app
     restart: unless-stopped

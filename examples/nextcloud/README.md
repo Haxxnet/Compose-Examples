@@ -5,21 +5,27 @@
 
 # Notes
 
-If you plan on using a reverse proxy, you will have to define your domain or subdomain as trusted proxy domain.
+If you plan on using a reverse proxy, you will have to adjust Nextcloud's `config.php` configuration file.
 
-The relevant nextcloud configuration file to define this is located at:
+The configuration file is located at:
 
 ````
 # linuxserver image
 /<your-volume-path>/config/www/nextcloud/config/config.php
 
 # official nextcloud image
-/<your-volume-path>/nextcloud/app/config/
+/<your-volume-path>/nextcloud/app/config/config.php
 ````
 
-Adjust the PHP file and put in your subdomains at `trusted_domains` as well as trusted proxy IPs at `trusted_proxies`. Also set `overwriteprotocol` to `https` and may define a maintenance window via `maintenance_window_start`.
+Within this configuration file, you should adjust the following:
 
-Something like this:
+- `trusted_domains` with your domain and subdomain names
+- `trusted_proxies` with the IP address of your reverse proxy (defined as array)
+- `overwriteprotocol` set to `https` to force encrypted https protocol communication
+- `maintenance_window_start` to remove warnings in nextcloud's security scan
+- `default_phone_region` to remove warnings in nextcloud's security scan
+
+Adjust the PHP file like follows:
 
 ````
 <?php
@@ -38,6 +44,7 @@ $CONFIG = array (
   ),
   'overwriteprotocol' => 'https',
   'maintenance_window_start' => 1,
+  'default_phone_region' => 'DE',
   ...
 );
 ````

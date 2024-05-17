@@ -141,6 +141,7 @@ A [VPN](https://en.wikipedia.org/wiki/Virtual_private_network) is a mechanism fo
 - [wg-easy](examples/wg-easy) - The easiest way to install & manage WireGuard on any Linux host. All-in-one deployment of a WireGuard VPN network service + web management UI.
 - [WireGuard](examples/wireguard) - WireGuard by Linuxserver.io is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography.
 - [IPSec VPN Server](examples/ipsec-vpn-server) - Docker image to run an IPsec VPN server, with IPsec/L2TP, Cisco IPsec and IKEv2.
+- [OpenVPN-AS](examples/openvpn) - OpenVPN Access Server delivers an enterprise VPN solution for businesses of all sizes, providing a securely encrypted connection to private networks over unsecured public internet.
 - [Firezone](examples/firezone) - Self-hosted secure remote access gateway that supports the WireGuard protocol. It offers a Web GUI, 1-line install script, multi-factor auth (MFA), and SSO.
 - ~~[Netbird](https://github.com/netbirdio/netbird)~~ - Quickly connect your computers, servers, cloud instances, and IoT devices into a secure private network. No configuration required.
 - [Headscale](examples/headscale) - An open source, self-hosted implementation of the Tailscale control server.

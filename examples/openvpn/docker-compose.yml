@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+  openvpn-as:
+    image: openvpn/openvpn-as
+    container_name: openvpn-as
+    hostname: openvpn-as
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 443:443/tcp # openvpn over tcp
+      - 1194:1194/udp # openvpn over udp
+      - 943:943/tcp # openvpn admin ui
+    expose:
+      - 443 # openvpn over tcp
+      - 1194 # openvpn over udp
+      - 943 # openvpn as admin ui
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/openvpn:/openvpn 
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.openvpn.rule=Host(`openvpn.example.com`)
+    #  - traefik.http.services.openvpn.loadbalancer.server.port=943
+    #  # Optional part when proxying to services that already provide ssl/tls  
+    #  - traefik.http.services.openvpn.loadbalancer.server.scheme=https
+    #  - traefik.http.services.openvpn.loadbalancer.serverstransport=insecureTransport@file
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.openvpn.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

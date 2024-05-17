@@ -6,6 +6,6 @@
 
 Default username is `openvpn`. 
 
-The password is auto-generated and displayed in container logs.
+The password is auto-generated and displayed in container logs. Inspect the logs until you find the line `Auto-generated pass = "<password>"`.
 
-Admin web UI is accessible at `https://<IP>:943`
+Admin web UI is accessible at `https://<IP>:943/admin`.

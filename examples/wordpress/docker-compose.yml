@@ -6,8 +6,6 @@ services:
     container_name: wordpress-db
     hostname: wordpress-db
     command: '--default-authentication-plugin=mysql_native_password'
-    #networks:
-    #  - proxy
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wordpress/mysql:/var/lib/mysql
     restart: unless-stopped
@@ -16,6 +14,8 @@ services:
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD=wordpress
+    #networks:
+    #  - proxy      
   
   wordpress:
     image: wordpress:latest
@@ -25,23 +25,25 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wordpress/data:/var/www/html
     ports:
       - 80:80
-    #networks:
-    #  - proxy      
+    expose:
+      - 80
     restart: unless-stopped
     environment:
       - WORDPRESS_DB_HOST=wordpress-db
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=wordpress
       - WORDPRESS_DB_NAME=wordpress
+    #networks:
+    #  - proxy       
     #labels:
     #  - traefik.enable=true
-    #  - traefik.http.routers.wordpress.rule=Host(`blog.example.com`) # please adjust
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.wordpress.rule=Host(`wordpress.example.com`) # please adjust
     #  - traefik.http.services.wordpress.loadbalancer.server.port=80
     #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
     #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
     #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
-    #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.wordpress.middlewares=local-ipwhitelist@file
 

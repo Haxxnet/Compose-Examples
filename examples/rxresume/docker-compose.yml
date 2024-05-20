@@ -1,0 +1,93 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: rx-db
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rxresume/database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    #networks:
+    #  - proxy
+
+  minio:
+    image: minio/minio
+    container_name: rx-minio
+    restart: unless-stopped
+    command: server /data
+    expose:
+      - 9000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rxresume/minio:/data
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    #networks:
+    #  - proxy
+
+  chrome:
+    image: ghcr.io/browserless/chromium:latest
+    container_name: rx-chrome
+    restart: unless-stopped
+    environment:
+      - TIMEOUT=10000
+      - CONCURRENT=10
+      - TOKEN=chrome_token
+      - EXIT_ON_HEALTH_FAILURE=true
+      - PRE_REQUEST_HEALTH_CHECK=true
+    #networks:
+    #  - proxy
+
+  app:
+    image: amruthpillai/reactive-resume:latest
+    container_name: rx-resume
+    restart: unless-stopped
+    expose:
+      - 3000
+    depends_on:
+      - postgres
+      - minio
+      - chrome
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - PUBLIC_URL=http://rx-resume:3000
+      - STORAGE_URL=http://rx-minio:9000/default
+      - CHROME_TOKEN=chrome_token
+      - CHROME_URL=ws://chrome:3000
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
+      - ACCESS_TOKEN_SECRET=access_token_secret
+      - REFRESH_TOKEN_SECRET=refresh_token_secret
+      - MAIL_FROM=noreply@localhost
+      # - SMTP_URL=smtp://user:pass@smtp:587 # Optional
+      - STORAGE_ENDPOINT=minio
+      - STORAGE_PORT=9000
+      - STORAGE_REGION=us-east-1 # Optional
+      - STORAGE_BUCKET=default
+      - STORAGE_ACCESS_KEY=minioadmin
+      - STORAGE_SECRET_KEY=minioadmin
+      - STORAGE_USE_SSL=false
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.rxresume.rule=Host(`resume.example.com`)
+    #  - traefik.http.services.rxresume.loadbalancer.server.port=3000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.rxresume.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true      

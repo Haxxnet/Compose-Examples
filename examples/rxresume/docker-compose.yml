@@ -26,6 +26,8 @@ services:
     container_name: rx-minio
     restart: unless-stopped
     command: server /data
+    ports:
+      - 9000:9000
     expose:
       - 9000
     volumes:
@@ -35,6 +37,13 @@ services:
       - MINIO_ROOT_PASSWORD=minioadmin
     #networks:
     #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.minio.rule=Host(`storage.example.com`)
+    #  - traefik.http.services.minio.loadbalancer.server.port=9000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.minio.middlewares=local-ipwhitelist@file    
 
   chrome:
     image: ghcr.io/browserless/chromium:latest
@@ -53,6 +62,8 @@ services:
     image: amruthpillai/reactive-resume:latest
     container_name: rx-resume
     restart: unless-stopped
+    ports:
+      - 3000:3000
     expose:
       - 3000
     depends_on:
@@ -62,8 +73,8 @@ services:
     environment:
       - PORT=3000
       - NODE_ENV=production
-      - PUBLIC_URL=http://rx-resume:3000
-      - STORAGE_URL=http://rx-minio:9000/default
+      - PUBLIC_URL=http://localhost:3000 # replace with your https url if reverse proxy in use; e.g. https://resume.example.com
+      - STORAGE_URL=http://localhost:9000/default # replace with your https url if reverse proxy in use; e.g. https://storage.example.com
       - CHROME_TOKEN=chrome_token
       - CHROME_URL=ws://chrome:3000
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres

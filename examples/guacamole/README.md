@@ -1,6 +1,7 @@
 # References
 
 - https://hub.docker.com/r/guacamole/guacamole/
+- https://theko2fi.medium.com/apache-guacamole-session-recordings-and-playback-in-browser-f095fcfca387
 
 # Notes
 

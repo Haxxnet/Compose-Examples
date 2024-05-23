@@ -77,6 +77,9 @@ entryPoints:
     forwardedHeaders:
       # Reuse list of Cloudflare Trusted IP's above for HTTPS requests
       trustedIPs: *trustedIps
+    # enable HTTP3 QUIC via UDP/443
+    #http3:
+    #  advertisedPort: '443'      
     http:
       tls:
         # Generate a wildcard domain certificate

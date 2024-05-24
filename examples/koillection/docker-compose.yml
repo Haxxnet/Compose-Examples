@@ -1,0 +1,68 @@
+version: '3.3'
+
+services:
+
+  db:
+    image: postgres:16-alpine
+    container_name: koillection-db
+    hostname: koillection-db
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/koillection/database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME:-koillection}
+      - POSTGRES_USER=${DB_USER:-koillection}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-koillection}
+    #networks:
+    #  - proxy      
+
+  koillection:
+    image: koillection/koillection:latest
+    container_name: koillection
+    hostname: koillection
+    depends_on:
+      - db
+    restart: unless-stopped
+    ports:
+      - 8888:80/tcp
+    expose:
+      - 80
+    environment:
+      - APP_DEBUG=${APP_DEBUG:-0}
+      - APP_ENV=${APP_ENV:-prod}
+      - HTTPS_ENABLED=${HTTPS_ENABLED:-0}
+      - UPLOAD_MAX_FILESIZE=${UPLOAD_MAX_FILESIZE:-20M}
+      - PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT:-512M}
+      - PHP_TZ=${PHP_TZ:-Europe/Berlin}
+      - CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
+      - JWT_SECRET_KEY=%kernel.project_dir%/config/jwt/private.pem
+      - JWT_PUBLIC_KEY=%kernel.project_dir%/config/jwt/public.pem
+      - DB_DRIVER=${DB_DRIVER:-pdo_pgsql}
+      - DB_HOST=${DB_HOST:-db}
+      - DB_NAME=${DB_NAME:-koillection}
+      - DB_USER=${DB_USER:-koillection}
+      - DB_PASSWORD=${DB_PASSWORD:-koillection}
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_VERSION=${DB_VERSION:-16}
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/koillection/uploads:/uploads
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.koillection.rule=Host(`collection.example.com`)
+    #  - traefik.http.services.koillection.loadbalancer.server.port=80
+    #  # Optional part for file upload max sizes
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.koillection.middlewares=local-ipwhitelist@file,authelia@docker
+
+#networks:
+#  proxy:
+#    external: true

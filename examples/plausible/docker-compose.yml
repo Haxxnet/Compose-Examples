@@ -19,7 +19,7 @@ services:
 
   plausible_events_db:
     container_name: plausible-events-db
-    image: clickhouse/clickhouse-server:22.6-alpine
+    image: clickhouse/clickhouse-server:24.3.3.102-alpine
     restart: always
     environment:
       - CLICKHOUSE_UID=1000
@@ -37,9 +37,9 @@ services:
 
   plausible:
     container_name: plausible
-    image: plausible/analytics:v2.0.0
+    image: ghcr.io/plausible/community-edition:v2.1.0
     restart: always
-    command: sh -c "sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh db init-admin && /entrypoint.sh run"
+    command: sh -c "sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
     depends_on:
       - plausible_db
       - plausible_events_db

@@ -89,6 +89,8 @@ services:
       - STORAGE_ACCESS_KEY=minioadmin
       - STORAGE_SECRET_KEY=minioadmin
       - STORAGE_USE_SSL=false
+      - DISABLE_SIGNUPS=false
+      - DISABLE_EMAIL_AUTH=false
     #networks:
     #  - proxy
     #labels:

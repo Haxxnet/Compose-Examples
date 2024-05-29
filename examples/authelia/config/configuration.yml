@@ -55,6 +55,8 @@ access_control:
       policy: one_factor
     - domain: subdomain2.example.com
       policy: two_factor
+      subject:
+        - "group:admins"  # access restriction based on groups
 
 session:
   name: authelia_session

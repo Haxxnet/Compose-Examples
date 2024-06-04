@@ -8,6 +8,8 @@ services:
       - 8000:8000/tcp
     expose:
       - 8000
+    #environment:
+    #  - READECK_USE_X_FORWARDED=1 # required if run behind a reverse proxy
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/readeck:/readeck
     #networks:

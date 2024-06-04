@@ -7,7 +7,7 @@
 
 If you're using readeck as a container behind a reverse proxy, you must set the environment variable `READECK_USE_X_FORWARDED=1`. 
 
-Furthermore, you must adjust the `allowed_hosts` directive the Readeck config at `/etc/readeck/config.toml`:
+Furthermore, you must adjust the `allowed_hosts` directive in the Readeck config at `config.toml`. The configuration file is stored within the Docker bind volume mount. Please define your subdomain(s) in use as follows:
 
 ````
 [server]

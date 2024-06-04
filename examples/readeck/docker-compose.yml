@@ -1,0 +1,25 @@
+services:
+
+  readeck:
+    image: codeberg.org/readeck/readeck:latest
+    container_name: readeck
+    restart: unless-stopped
+    ports:
+      - 8000:8000/tcp
+    expose:
+      - 8000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/readeck:/readeck
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.readeck.rule=Host(`readeck.example.com`)
+    #  - traefik.http.services.readeck.loadbalancer.server.port=8000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.readeck.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

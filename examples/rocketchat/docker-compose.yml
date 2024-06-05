@@ -6,8 +6,10 @@ services:
     hostname: rocketchat
     image: registry.rocket.chat/rocketchat/rocket.chat:latest
     restart: unless-stopped
+    expose:
+      - 3000
     ports:
-       - 3000:3000 # web ui
+      - 3000:3000 # web ui
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.rocketchat.rule=Host(`chat.example.com`) # pls change

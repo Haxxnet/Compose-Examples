@@ -8,6 +8,8 @@ services:
     restart: always
     ports:
       - 3001:3001
+    expose:
+      - 3001
     dns:
       - 1.1.1.1
       - 8.8.8.8

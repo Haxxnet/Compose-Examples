@@ -6,6 +6,8 @@ services:
     image: answerdev/answer
     ports:
       - '9080:80'
+    expose:
+      - 80
     restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/answer/data:/data

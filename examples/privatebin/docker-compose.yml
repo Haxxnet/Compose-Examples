@@ -4,7 +4,7 @@ services:
   privatebin:
     hostname: privatebin
     container_name: privatebin
-    image: privatebin/nginx-fpm-alpine:latest
+    image: privatebin/nginx-fpm-alpine:stable
     read_only: true # not in compose 3.0 documentation but appears supported based
     ports:
       - 8080:8080

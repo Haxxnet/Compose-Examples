@@ -12,6 +12,17 @@ api:
 log:
   level: INFO
 
+#metrics:
+#  influxDB2:
+#     address: http://influxdb2:8086
+#     token: my-secure-token-secret
+#     org: influx-org
+#     bucket: influx-bucket
+#     addEntryPointsLabels: true
+#     addRoutersLabels: true
+#     addServicesLabels: true
+#     pushInterval: 60s  
+
 # Configuring Multiple Filters
 accessLog:
   filePath: "/logs/traefik.log"

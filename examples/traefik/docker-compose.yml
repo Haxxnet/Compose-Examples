@@ -2,7 +2,7 @@ version: '3'
 services:
   traefik:
     container_name: traefik
-    image: traefik:2.11
+    image: traefik:v3.1
     ports:
       - 80:80/tcp # HTTP
       - 443:443/tcp # HTTPS

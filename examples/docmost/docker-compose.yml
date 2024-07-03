@@ -13,6 +13,21 @@ services:
       - APP_SECRET=A_VERY_SECURE_STRING
       - DATABASE_URL=postgresql://docmost:STRONG_DB_PASSWORD@db:5432/docmost?schema=public
       - REDIS_URL=redis://redis:6379
+      # --------- S3 Storage Configuration --------
+      #- STORAGE_DRIVER=s3 # 'local' is the default; if you use s3 then fill out below env variables
+      #- AWS_S3_ACCESS_KEY_ID=xxx # Your AWS S3 access key ID
+      #- AWS_S3_SECRET_ACCESS_KEY=xxx # Your AWS S3 secret access key
+      #- AWS_S3_REGION=xxx # The region where your S3 bucket is located
+      #- AWS_S3_BUCKET=xxx # The name of your S3 bucket
+      #- AWS_S3_ENDPOINT=xxx # The endpoint URL for your S3 service (optional)
+      # --------- Mail Configuration --------
+      #- MAIL_DRIVER=smtp
+      #- SMTP_HOST=smtp.gmail.com
+      #- SMTP_PORT=587
+      #- SMTP_USERNAME=smtpuser
+      #- SMTP_PASSWORD=smtppassword
+      #- MAIL_FROM_ADDRESS=hello@example.com
+      #- MAIL_FROM_NAME=Docmost
     ports:
       - 3000:3000
     expose:

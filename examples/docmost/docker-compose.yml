@@ -3,7 +3,7 @@ version: '3'
 services:
 
   docmost:
-    image: docmost/docmost:latest
+    image: docmost/docmost:0.2.2
     container_name: docmost
     depends_on:
       - db

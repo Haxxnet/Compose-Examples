@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+
+  docmost:
+    image: docmost/docmost:latest
+    container_name: docmost
+    depends_on:
+      - db
+      - redis
+    environment:
+      - APP_URL=http://127.0.0.1:3000
+      - APP_SECRET=A_VERY_SECURE_STRING
+      - DATABASE_URL=postgresql://docmost:STRONG_DB_PASSWORD@db:5432/docmost?schema=public
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/docmost/storage:/app/data/storage
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.docmost.rule=Host(`wiki.example.com`)
+    #  - traefik.http.services.docmost.loadbalancer.server.port=3000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.docmost.middlewares=local-ipwhitelist@file
+
+  db:
+    image: postgres:16-alpine
+    container_name: docmost-db
+    environment:
+      - POSTGRES_DB=docmost
+      - POSTGRES_USER=docmost
+      - POSTGRES_PASSWORD=STRONG_DB_PASSWORD
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/docmost/database:/var/lib/postgresql/data
+    #networks:
+    #  - proxy
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: docmost-redis
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/docmost/redis:/data
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

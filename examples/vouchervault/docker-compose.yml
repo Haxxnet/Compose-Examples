@@ -1,0 +1,42 @@
+services:
+
+  vouchervault:
+    image: l4rm4nd/vouchervault:latest
+    container_name: vouchervault
+    environment:
+      - DOMAIN=vouchervault.example.com # your FQDN if a reverse proxy is used
+      - SECRET_KEY=ChooseSuperSecretKey # please define a strong secret
+      # see https://github.com/caronc/apprise
+      # takes one or multiple comma-separated apprise urls for notifications
+      - APPRISE_URLS=tgram://bottoken1/ChatID1,tgram://bottoken2/ChatID2
+      - REDIS_HOST=redis # the redis host for celery beat notification tasks
+      - EXPIRY_THRESHOLD_DAYS=90 # send notifications xx days prior expiry; default is 30
+    restart: unless-stopped
+    expose:
+      - 8000
+    ports:
+      - 8888:8000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vouchervault/database:/opt/app/database
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.vouchervault.rule=Host(`vouchervault.example.com`)
+    #  - traefik.http.services.vouchervault.loadbalancer.server.port=8000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.vouchervault.middlewares=local-ipwhitelist@file
+
+  redis:
+    container_name: vouchervault-redis
+    image: redis:7.2-alpine
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true      

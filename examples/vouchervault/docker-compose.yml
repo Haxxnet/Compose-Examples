@@ -4,10 +4,12 @@ services:
     image: l4rm4nd/vouchervault:latest
     container_name: vouchervault
     environment:
-      - DOMAIN=vouchervault.example.com # your FQDN if a reverse proxy is used
-      - SECRET_KEY=ChooseSuperSecretKey # please define a strong secret
-      - REDIS_HOST=redis # the redis host for celery beat notification tasks
+      - DOMAIN=vouchervault.example.com # your FQDN or IP; used to define ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS
+      - SECURE_COOKIES=False # set to True if you use a reverse proxy with tls; enables secure cookie flag and hsts
       - EXPIRY_THRESHOLD_DAYS=90 # send notifications xx days prior expiry; default is 30
+      - SECRET_KEY=ChooseSuperSecretKey # optional; if not defined, a secure secret is auto-generated
+      - PORT=8000 # optional; only relevant if you use a custom port; used to define CSRF_TRUSTED_ORIGINS
+      - REDIS_HOST=redis # optional; only change if you use another redis container
     restart: unless-stopped
     expose:
       - 8000

@@ -257,6 +257,7 @@ A [document management system](https://en.wikipedia.org/wiki/Document_management
 - [Papermerge](examples/papermerge) - Free and open source document management system with OCR designed for scanned documents, digital archives, pdf, tiff, jpeg.
 - [DocuSeal](examples/docuseal) - Create, fill, and sign digital documents (alternative to DocuSign).
 - [Koillection](examples/koillection) - Koillection is a self-hosted service allowing users to manage any kind of collections.
+- [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports expiry notifications, transaction histories and file uploads.
 
 ### Pastebins
 
@@ -396,7 +397,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [TRSync](examples/trsync) - Django web frontend for pytr to download all Trade Republic depot data.
 - [Money-Balancer](examples/money-balancer) - A simple application for managing debt with your friends!
 - [Firefly III](examples/firefly-iii) - A self-hosted manager for your personal finances.
-- [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons and gift cards digitally. Supports expiry notifications and transaction histories.
+- [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports expiry notifications, transaction histories and file uploads.
 
 ### Genealogy
 
@@ -416,7 +417,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [Domainmod](examples/domainmod) - DomainMOD is an open source application used to manage your domains and other internet assets in a central location.
 - [Snipe-IT](examples/snipe-it) - Snipe-IT is a free, open source IT asset management system written in PHP.
 - [Koillection](examples/koillection) - Koillection is a self-hosted service allowing users to manage any kind of collections.
-- [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons and gift cards digitally. Supports expiry notifications and transaction histories.
+- [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports expiry notifications, transaction histories and file uploads.
 
 ### Request Bins
 

@@ -1,12 +1,36 @@
 services:
 
   vouchervault:
-    image: l4rm4nd/vouchervault:1.0.x
+    image: l4rm4nd/vouchervault:1.1.x
     container_name: vouchervault
     environment:
       - DOMAIN=vouchervault.example.com # your FQDN or IP; used to define ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS
       - SECURE_COOKIES=False # set to True if you use a reverse proxy with tls; enables secure cookie flag and hsts
       - EXPIRY_THRESHOLD_DAYS=90 # send notifications xx days prior expiry; default is 30
+      # ------- OPTIONAL OIDC AUTH --------
+      # Set to 'True' to enable OIDC authentication
+      #- OIDC_ENABLED=True
+      # Set to 'True' to allow the creation of new users through OIDC
+      #- OIDC_CREATE_USER=True
+      # The signing algorithm used by the OIDC provider (e.g., RS256, HS256)
+      #- OIDC_RP_SIGN_ALGO=RS256
+      # URL of the JWKS endpoint for the OIDC provider
+      #- OIDC_OP_JWKS_ENDPOINT=https://authentik.example.com/application/o/vouchervault/jwks/
+      # Client ID for your OIDC RP
+      #- OIDC_RP_CLIENT_ID=vouchervault
+      # Client secret for your OIDC RP
+      #- OIDC_RP_CLIENT_SECRET=super-secure-secret-key
+      # Authorization endpoint URL of the OIDC provider
+      #- OIDC_OP_AUTHORIZATION_ENDPOINT=https://authentik.example.com/application/o/authorize/
+      # Token endpoint URL of the OIDC provider
+      #- OIDC_OP_TOKEN_ENDPOINT=https://authentik.example.com/application/o/token/
+      # User info endpoint URL of the OIDC provider
+      #- OIDC_OP_USER_ENDPOINT=https://authentik.example.com/application/o/userinfo/
+      # ------- OTHER OPTIONAL ENVS --------
+      #- SECRET_KEY=ChooseSuperSecretKey # optional; if not defined, a secure secret is auto-generated
+      #- PORT=8000 # optional; only relevant if you use a custom port; used to define CSRF_TRUSTED_ORIGINS
+      #- REDIS_HOST=redis # optional; only change if you use another redis container
+      #- DEBUG=True # # optional; only enable for debugging and dev environments
     restart: unless-stopped
     expose:
       - 8000

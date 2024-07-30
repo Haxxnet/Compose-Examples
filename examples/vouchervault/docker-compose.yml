@@ -1,7 +1,7 @@
 services:
 
   vouchervault:
-    image: l4rm4nd/vouchervault:1.1.x
+    image: l4rm4nd/vouchervault:1.2.x
     container_name: vouchervault
     environment:
       - DOMAIN=vouchervault.example.com # your FQDN or IP; used to define ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS
@@ -26,11 +26,6 @@ services:
       #- OIDC_OP_TOKEN_ENDPOINT=https://authentik.example.com/application/o/token/
       # User info endpoint URL of the OIDC provider
       #- OIDC_OP_USER_ENDPOINT=https://authentik.example.com/application/o/userinfo/
-      # ------- OTHER OPTIONAL ENVS --------
-      #- SECRET_KEY=ChooseSuperSecretKey # optional; if not defined, a secure secret is auto-generated
-      #- PORT=8000 # optional; only relevant if you use a custom port; used to define CSRF_TRUSTED_ORIGINS
-      #- REDIS_HOST=redis # optional; only change if you use another redis container
-      #- DEBUG=True # # optional; only enable for debugging and dev environments
     restart: unless-stopped
     expose:
       - 8000

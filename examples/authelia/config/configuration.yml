@@ -103,4 +103,74 @@ notifier:
   #   sender: "MySender <admin@example.com>"
   filesystem:
     filename: /config/notifications.txt
+
+#identity_providers:
+#  oidc:
+#    hmac_secret: 'a-very-secure-hmac-secret'
+#    jwks:
+#      - key_id: 'authelia'
+#        algorithm: 'RS256'
+#        use: 'sig'
+#        certificate_chain: |
+#          -----BEGIN CERTIFICATE-----
+#          <PUBLIC-KEY-DATA-COMES-HERE>
+#          -----END CERTIFICATE-----
+#        key: |
+#          -----BEGIN PRIVATE KEY-----
+#          <PRIVATE-KEY-DATA-COMES-HERE>
+#          -----END PRIVATE KEY-----
+#    enable_client_debug_messages: false
+#    minimum_parameter_entropy: 8
+#    enforce_pkce: 'public_clients_only'
+#    enable_pkce_plain_challenge: false
+#    enable_jwt_access_token_stateless_introspection: false
+#    discovery_signed_response_alg: 'none'
+#    discovery_signed_response_key_id: ''
+#    require_pushed_authorization_requests: false
+#    lifespans:
+#      access_token: '1h'
+#      authorize_code: '1m'
+#      id_token: '1h'
+#      refresh_token: '90m'
+#    cors:
+#      endpoints:
+#        - 'authorization'
+#        - 'token'
+#        - 'revocation'
+#        - 'introspection'
+#      allowed_origins:
+#        - 'https://immich.example.com'
+#      allowed_origins_from_client_redirect_uris: false
+#    clients:
+#      - client_id: immich
+#        client_name: Immich OIDC
+#        client_secret: 'a-very-secure-client-secret'
+#        public: false
+#        authorization_policy: one_factor # may use two_factor to enforce 2FA
+#        consent_mode: explicit
+#        token_endpoint_auth_method: "client_secret_basic"
+#        pre_configured_consent_duration: 1w
+#        scopes:
+#          - openid
+#          - groups
+#          - email
+#          - profile
+#        redirect_uris: # adjust to your domains
+#          - https://authelia.example.com/
+#          - https://authelia.example.com/oauth2/callback
+#          - https://immich.example.com/oauth2/callback
+#          - https://immich.example.com/auth/login
+#          - https://immich.example.com/user-settings
+#          - https://immich.example.com
+#          - app.immich:/
+#          - https://immich.example.com/api/oauth/mobile-redirect
+#        grant_types:
+#          - refresh_token
+#          - authorization_code
+#        response_types:
+#          - code
+#        response_modes:
+#          - form_post
+#          - query
+#          - fragment    
 ...

@@ -1,6 +1,7 @@
 # References
 
 - https://github.com/l4rm4nd/VoucherVault
+- https://github.com/l4rm4nd/VoucherVault/wiki/01-%E2%80%90-Installation
 
 # Notes
 

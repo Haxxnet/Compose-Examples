@@ -1,12 +1,17 @@
 services:
 
   vouchervault:
-    image: l4rm4nd/vouchervault:1.3.x
+    image: l4rm4nd/vouchervault:1.5.x
     container_name: vouchervault
     environment:
-      - DOMAIN=vouchervault.example.com # your FQDN or IP; used to define ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS
-      - SECURE_COOKIES=False # set to True if you use a reverse proxy with tls; enables secure cookie flag and hsts
-      - EXPIRY_THRESHOLD_DAYS=90 # send notifications xx days prior expiry; default is 30
+      # your FQDN or IP; used to define ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS
+      - DOMAIN=vouchervault.example.com
+      # set to True if you use a reverse proxy with tls; enables secure cookie flag and hsts
+      - SECURE_COOKIES=False
+      # send notifications xx days prior expiry
+      - EXPIRY_THRESHOLD_DAYS=90
+      # define the timezone
+      - TZ=Europe/Berlin
       # ------- OPTIONAL OIDC AUTH --------
       # Set to 'True' to enable OIDC authentication
       #- OIDC_ENABLED=True
@@ -32,8 +37,6 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vouchervault/database:/opt/app/database
     #networks:
     #  - proxy

@@ -26,6 +26,19 @@ services:
       - CMD_SESSION_SECRET="discolor-subtitle-seducing-result-ceramics" # define secret
       - CMD_ALLOW_EMAIL_REGISTER="false" # disallow registration
       - CMD_EMAIL="false" # disallow login; only guest notes
+      # ------- OAUTH SSO -------
+      # see https://docs.goauthentik.io/integrations/services/hedgedoc/
+      #- CMD_ALLOW_ANONYMOUS_EDITS=False
+      #- CMD_OAUTH2_USER_PROFILE_URL=https://authentik.example.com/application/o/userinfo/
+      #- CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR=preferred_username
+      #- CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR=name
+      #- CMD_OAUTH2_USER_PROFILE_EMAIL_ATTR=email
+      #- CMD_OAUTH2_TOKEN_URL=https://authentik.example.com/application/o/token/
+      #- CMD_OAUTH2_AUTHORIZATION_URL=https://authentik.example.com/application/o/authorize/
+      #- CMD_OAUTH2_CLIENT_ID=<ID>
+      #- CMD_OAUTH2_CLIENT_SECRET=<SECRET>
+      #- CMD_OAUTH2_PROVIDERNAME=Authentik
+      #- CMD_OAUTH2_SCOPE=openid email profile
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hedgedoc/uploads:/hedgedoc/public/uploads
     ports:

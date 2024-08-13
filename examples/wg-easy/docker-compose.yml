@@ -13,7 +13,7 @@ services:
       - WG_ALLOWED_IPS=0.0.0.0/0, ::/0
       - WG_DEVICE=eth0
     hostname: wireguard-easy
-    image: ghcr.io/wg-easy/wg-easy
+    image: ghcr.io/wg-easy/wg-easy:13
     ports:
       - 51820:51820/udp #VPN
       - 51821:51821/tcp #WEBGUI

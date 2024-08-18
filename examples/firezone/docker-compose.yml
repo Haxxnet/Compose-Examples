@@ -27,13 +27,6 @@ services:
       # /var/firezone/private_key exists when Firezone starts, it is
       # used as the WireGuard private. Otherwise, one is generated.
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/firezone:/var/firezone
-    #labels:
-    # - traefik.enable=true
-    # - traefik.docker.network=dev
-    # - traefik.http.routers.firezone_https.rule=Host(`firezone.example.com`)
-    # - traefik.http.routers.firezone_https.tls=true
-    # - traefik.http.services.firezone.loadbalancer.server.port=13000
-    # #- traefik.http.routers.firezone.middlewares=local-ipwhitelist@file
     cap_add:
       # Needed for WireGuard and firewall support.
       - NET_ADMIN
@@ -45,8 +38,15 @@ services:
       - net.ipv6.conf.all.forwarding=1
     depends_on:
       - postgres
-    networks:
-      - dev
+    #networks:
+    #  - proxy
+    #labels:
+    # - traefik.enable=true
+    # - traefik.docker.network=proxy
+    # - traefik.http.routers.firezone_https.rule=Host(`firezone.example.com`)
+    # - traefik.http.routers.firezone_https.tls=true
+    # - traefik.http.services.firezone.loadbalancer.server.port=13000
+    # #- traefik.http.routers.firezone.middlewares=local-ipwhitelist@file      
 
     deploy:
       <<: *default-deploy
@@ -60,13 +60,13 @@ services:
       POSTGRES_DB: ${DATABASE_NAME:-firezone}
       POSTGRES_USER: ${DATABASE_USER:-postgres}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?err}
-    networks:
-      - dev
     deploy:
       <<: *default-deploy
       update_config:
         order: stop-first
+    #networks:
+    #  - proxy        
 
-networks:
-  dev:
-    external: true
+#networks:
+#  proxy:
+#    external: true

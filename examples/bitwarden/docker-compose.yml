@@ -6,7 +6,7 @@ services:
     container_name: bitwarden_unified
     restart: always
     depends_on:
-      - bitwarden-unified-db
+      - db
     env_file:
       - settings.env
     ports:
@@ -15,6 +15,7 @@ services:
       - 8080
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bitwarden-unified/data:/etc/bitwarden
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bitwarden-unified/data/logs:/var/log/bitwarden
     #networks:
     #  - proxy
     #labels:
@@ -30,13 +31,13 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.bitwarden.middlewares=local-ipwhitelist@file
   
-  bitwarden-unified-db:
+  db:
     image: postgres:alpine3.18
     container_name: bitwarden_unified_db
     restart: always
     environment:
       POSTGRES_USER: "bitwarden"
-      POSTGRES_PASSWORD: "Secure_MariaDB_Password1"
+      POSTGRES_PASSWORD: "super_strong_password"
       POSTGRES_DB: "bitwarden_vault"    
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bitwarden-unified/psql:/var/lib/postgresql/data

@@ -11,7 +11,7 @@ version: "3.7"
 services:
 
   firezone:
-    image: firezone/firezone
+    image: l4rm4nd/firezone
     container_name: firezone-web
     ports:
       - 51820:51820/udp
@@ -52,7 +52,7 @@ services:
       <<: *default-deploy
 
   postgres:
-    image: postgres:15
+    image: postgres:15-alpine
     container_name: firezone-db
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/firezone/db:/var/lib/postgresql/data

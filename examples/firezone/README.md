@@ -1,11 +1,12 @@
 # Reference
 
-- https://www.firezone.dev/docs/deploy/docker
+- https://github.com/l4rm4nd/firezone (fork, maintained)
+- https://github.com/firezone/firezone/tree/legacy (EoL)
 
 # Notes
 
 1. Download the `docker-compose.yml` file from this repository.
-2. Create a firezone `.env` file via the command `docker run --rm firezone/firezone bin/gen-env > .env`
+2. Create a firezone `.env` file via the command `docker run --rm l4rm4nd/firezone bin/gen-env > .env`
 3. Adjust `docker-compose.yml` and created `.env` to your needs. Especially change the environment variables `DEFAULT_ADMIN_EMAIL`, `DEFAULT_ADMIN_PASSWORD` and `EXTERNAL_URL` to secure values!
 4. Proceed by executing the below commands.
 
@@ -21,3 +22,5 @@ Note: It is recommended to run the Firezone web panel behind a reverse proxy (e.
 > Firezone v0.7 has reached End-of-Life on 31st January 2024.
 >
 > It undergoes a complete redesign (zero-knowledge, cloud) for v1.0 and won't provide any updates for the v0.7 (legacy) branch anymore. More information can be found [here](https://www.firezone.dev/blog/firezone-1-0).
+>
+> A new fork (l4rm4nd/fireabend) tries to fix outdated dependencies and keep the software alive.

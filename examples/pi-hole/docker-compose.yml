@@ -22,3 +22,16 @@ services:
     cap_add:
       - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.pihole.rule=Host(`pihole.example.com`)
+    #  - traefik.http.services.pihole.loadbalancer.server.port=80
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.pihole.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

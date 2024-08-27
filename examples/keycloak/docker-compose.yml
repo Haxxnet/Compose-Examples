@@ -1,0 +1,76 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: keycloak-db
+    restart: always
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/keycloak/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "${KEYCLOAK_DB_NAME}", "-U", "${KEYCLOAK_DB_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 60s      
+    networks:
+      - keycloak-internal
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0
+    container_name: keycloak-app
+    command: start
+    environment:
+      KC_HOSTNAME: ${KEYCLOAK_HOSTNAME}
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres/${POSTGRES_DB}
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      KC_PROXY_HEADERS: 'xforwarded'
+      KC_HTTP_ENABLED: true
+      KC_HEALTH_ENABLED: true
+      PROXY_ADDRESS_FORWARDING: 'true'
+    healthcheck:
+      test:
+      - "CMD-SHELL"
+      - |
+        exec 3<>/dev/tcp/localhost/9000 &&
+        echo -e 'GET /health/ready HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 &&
+        cat <&3 | tee /tmp/healthcheck.log | grep -q '200 OK'
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    ports:
+      - 8080:8080
+    expose:
+      - 8080 # web ui http
+      - 9000 # health endpoint
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - keycloak-internal
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.keycloak.rule=Host(`keycloak.example.com`)
+    #  - traefik.http.services.keycloak.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.keycloak.middlewares=local-ipwhitelist@file
+
+networks:
+  keycloak-internal:
+    internal: true
+  #proxy:
+  #  external: true    

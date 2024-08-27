@@ -60,7 +60,7 @@ services:
         condition: service_healthy
     networks:
       - keycloak-internal
-    #  - proxy
+      - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.docker.network=proxy
@@ -72,5 +72,5 @@ services:
 networks:
   keycloak-internal:
     internal: true
-  #proxy:
-  #  external: true    
+  proxy:
+    external: true    

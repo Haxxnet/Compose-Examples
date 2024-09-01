@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  wyl:
+    image: aceberg/watchyourlan:v2
+    container_name: watchyourlan-v2
+    network_mode: "host"
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/watchyourlan-v2:/data/WatchYourLAN
+    environment:
+      TZ: Europe/Beelin                 # required: needs your TZ for correct time
+      IFACES: "ens18"                   # required: 1 or more interface
+      THEME: "sand"                     # optional
+      COLOR: "dark"                     # optional
+      #SHOUTRRR_URL: "telegram://"      # optional, set url to notify
+      PORT: 8840                        # optional, default: 8840

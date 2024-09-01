@@ -16,7 +16,7 @@ services:
     #  - proxy
 
   app:
-    image: quay.io/hedgedoc/hedgedoc:1.9.9
+    image: quay.io/hedgedoc/hedgedoc:1.10.0
     container_name: hedgedoc-app
     environment:
       - CMD_DB_URL=postgres://hedgedoc:password@database:5432/hedgedoc

@@ -10,5 +10,5 @@ After spawning up this Authentik stack, you will be greeted by Authentik's login
 This is done by visiting the following URL: 
 
 ````
-http(s)://<myserver>/if/flow/initial-setup
+http(s)://<myserver>/if/flow/initial-setup/
 ````

@@ -95,7 +95,7 @@ services:
       - .env
     depends_on:
       - postgresql
-      - redis      
+      - redis
     networks:
       - authentik-internal
 

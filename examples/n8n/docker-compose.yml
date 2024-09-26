@@ -3,12 +3,13 @@ version: '3.8'
 services:
 
   n8n-db:
-    image: postgres:11-alpine
+    image: postgres:16-alpine
     container_name: n8n-db
     restart: unless-stopped
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
+     
       - POSTGRES_DB
       - POSTGRES_NON_ROOT_USER
       - POSTGRES_NON_ROOT_PASSWORD
@@ -19,7 +20,9 @@ services:
       test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
       interval: 5s
       timeout: 5s
-      retries: 10      
+      retries: 10
+    #networks:
+    #  - n8n-internal
 
   n8n:
     image: n8nio/n8n
@@ -34,6 +37,8 @@ services:
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD}
     ports:
       - 5678:5678
+    expose:
+      - 5678
     links:
       - n8n-db
     volumes:
@@ -41,10 +46,19 @@ services:
     depends_on:
       n8n-db:
         condition: service_healthy
+    #networks:
+    #  - proxy
+    #  - n8n-internal        
     #labels:
     #  - traefik.enable=true
+    #  - traefik.docker.network=proxy    
     #  - traefik.http.routers.n8n.rule=Host(`n8n.example.com`)
     #  - traefik.http.services.n8n.loadbalancer.server.port=5678
-    #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.n8n.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  tier-2:
+#    external: true
+#  n8n-internal:
+#    internal: true

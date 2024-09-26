@@ -19,9 +19,12 @@ mv init-database.sh /mnt/docker-volumes/n8n/.
 # fix permissions
 sudo chown -R 0:1000 /mnt/docker-volumes/n8n/
 sudo chmod -R 775 /mnt/docker-volumes/n8n/
+
+# adjust environment variables
+nano .env
 ````
 
-Afterwards, you can proceed spawning up the docker compose stack with:
+Afterwards, you can proceed spawning up the docker compose stack:
 
 ````
 docker compose up -d

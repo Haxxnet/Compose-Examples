@@ -29,13 +29,22 @@ services:
     hostname: n8n
     restart: unless-stopped
     environment:
+      # database settings
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=n8n-db
       - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
       - DB_POSTGRESDB_USER=${POSTGRES_NON_ROOT_USER}
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD}
-      - EXTRA_NODE_MODULES=lodash
-      - NODE_FUNCTION_ALLOW_EXTERNAL=lodash
+      # application settings
+      - NODE_ENV=${N8N_NODE_ENV}
+      - GENERIC_TIMEZONE=${N8N_TZ}      
+      # tls proxy settings
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PROTOCOL=${N8N_PROTOCOL}
+      - WEBHOOK_URL=${N8N_WEBHOOK_URL}
+      # npm extra options
+      - EXTRA_NODE_MODULES=${N8N_EXTRA_NODE_MODULES}
+      - NODE_FUNCTION_ALLOW_EXTERNAL=${N8N_NODE_FUNCTION_ALLOW_EXTERNAL}
     ports:
       - 5678:5678
     expose:
@@ -44,6 +53,7 @@ services:
       - n8n-db
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/storage:/home/node/.n8n
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/files:/files
     depends_on:
       n8n-db:
         condition: service_healthy

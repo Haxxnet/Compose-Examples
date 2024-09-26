@@ -1,7 +1,7 @@
 # References
 
 - https://github.com/n8n-io/n8n
-- https://github.com/n8n-io/n8n/tree/master/docker/compose/withPostgres
+- https://github.com/n8n-io/n8n-hosting/tree/main/docker-compose/withPostgres
 
 # Notes
 

@@ -25,6 +25,6 @@ This is done by visiting the following URL:
 # with TLS reverse proxy
 https://<hostname>/if/flow/initial-setup/
 
-# without TSL reverse proxy
+# without TLS reverse proxy
 https://<hostname>:9000/if/flow/initial-setup/
 ````

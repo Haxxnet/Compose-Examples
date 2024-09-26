@@ -99,10 +99,11 @@ services:
       - postgresql
       - redis
     networks:
+      - proxy
       - authentik-internal
 
 networks:
   proxy:
     external: true
   authentik-internal:
-    external: true
+    internal: true

@@ -11,7 +11,7 @@ Please follow these steps to do so:
 
 ````
 # create new directory for database
-mkdir -p /mnt/docker-volumes/n8n
+mkdir -p /mnt/docker-volumes/n8n/storage
 
 # move the init file from this repo to the new location
 mv init-database.sh /mnt/docker-volumes/n8n/.

@@ -23,23 +23,5 @@ sudo chmod -R 777 /mnt/docker-volumes/n8n/
 Afterwards, you can proceed spawning up the docker compose stack with:
 
 ````
-docker compose up
+docker compose up -d
 ````
-
-> [!WARNING]
-> Upon starting the stack you may see n8n errors regarding permissions:
->
-> ````
-> [EACCES] Error Plugin: n8n: EACCES: permission denied, open '/home/node/.n8n/config'
-> ````
->
-> You can fix those my running:
-> ````
-> sudo chmod -R 777 /mnt/docker-volumes/n8n/database
-> ````
->
-> and restarting the stack:
->
-> ````
-> docker compose up --force-recreate
-> ````

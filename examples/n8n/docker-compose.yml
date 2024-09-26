@@ -59,7 +59,7 @@ services:
     #  - traefik.http.routers.n8n.middlewares=local-ipwhitelist@file,basic-auth@file
 
 #networks:
-#  tier-2:
+#  proxy:
 #    external: true
 #  n8n-internal:
 #    internal: true

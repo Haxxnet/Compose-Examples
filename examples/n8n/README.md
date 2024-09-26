@@ -16,8 +16,9 @@ mkdir -p /mnt/docker-volumes/n8n/storage
 # move the init file from this repo to the new location
 mv init-database.sh /mnt/docker-volumes/n8n/.
 
-# optional; adjust permissions
-sudo chmod -R 777 /mnt/docker-volumes/n8n/
+# fix permissions
+sudo chown -R 0:1000 /mnt/docker-volumes/n8n/
+sudo chmod -R 775 /mnt/docker-volumes/n8n/
 ````
 
 Afterwards, you can proceed spawning up the docker compose stack with:

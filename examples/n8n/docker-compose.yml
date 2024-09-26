@@ -9,7 +9,6 @@ services:
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
-     
       - POSTGRES_DB
       - POSTGRES_NON_ROOT_USER
       - POSTGRES_NON_ROOT_PASSWORD

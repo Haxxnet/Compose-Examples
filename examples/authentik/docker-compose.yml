@@ -99,7 +99,6 @@ services:
       - postgresql
       - redis
     networks:
-      - proxy
       - authentik-internal
 
 networks:

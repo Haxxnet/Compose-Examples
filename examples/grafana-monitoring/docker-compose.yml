@@ -3,7 +3,7 @@ version: "2"
 services:
 
   loki:
-    image: grafana/loki:2.9.9
+    image: grafana/loki:2.9.10
     hostname: loki
     container_name: loki
     volumes:
@@ -32,7 +32,7 @@ services:
     #  - monitoring_default
 
   influxdb:
-    image: influxdb:1.8.10
+    image: influxdb:1.8
     container_name: influxdb
     hostname: influxdb
     restart: unless-stopped

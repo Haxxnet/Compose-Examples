@@ -38,7 +38,7 @@ services:
     #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
     #  # Optional part for traefik middlewares
-    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,authelia@docker
+    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file
 
 #networks:
 #  proxy:

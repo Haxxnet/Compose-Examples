@@ -3,7 +3,7 @@ version: '3'
 services:
 
   database:
-    image: postgres:13.4-alpine
+    image: postgres:16-alpine
     container_name: hedgedoc-db
     environment:
       - POSTGRES_USER=hedgedoc

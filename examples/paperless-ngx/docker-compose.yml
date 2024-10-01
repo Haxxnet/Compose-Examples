@@ -11,7 +11,7 @@ services:
     #  - proxy      
 
   db:
-    image: docker.io/library/postgres:13
+    image: docker.io/library/postgres:16-alpine
     container_name: paperless-ngx-db
     restart: unless-stopped
     volumes:

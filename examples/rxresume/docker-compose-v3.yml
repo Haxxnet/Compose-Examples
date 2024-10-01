@@ -23,7 +23,7 @@ version: "3.8"
 
 services:
   postgres:
-    image: postgres:alpine
+    image: postgres:16-alpine
     container_name: rxresume-db
     restart: always
     expose:

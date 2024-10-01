@@ -3,7 +3,7 @@ services:
   db_recipes:
     restart: always
     container_name: tandoor_db
-    image: postgres:11-alpine
+    image: postgres:16-alpine
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/postgresql:/var/lib/postgresql/data
     env_file:

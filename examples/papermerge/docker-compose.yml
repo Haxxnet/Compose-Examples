@@ -39,7 +39,7 @@ services:
     #  - traefik.http.routers.papermerge.middlewares=local-ipwhitelist@file,authelia@docker      
 
   db:
-    image: postgres:12.3-alpine
+    image: postgres:16-alpine
     container_name: papermerge-db
     restart: unless-stopped
     expose:

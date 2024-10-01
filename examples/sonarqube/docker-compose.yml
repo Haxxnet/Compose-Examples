@@ -2,7 +2,7 @@ version: "3"
 
 services:
   sonarqube:
-    image: sonarqube:8.5.1-community
+    image: sonarqube:lts-community
     container_name: sonarqube
     ports:
       - 9000:9000 # WEB UI
@@ -16,7 +16,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarqube/extensions:/opt/sonarqube/extensions
 
   db:
-    image: postgres:13.1
+    image: postgres:16-alpine
     container_name: sonarqube_db
     hostname: db
     environment:

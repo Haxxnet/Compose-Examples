@@ -80,7 +80,7 @@ services:
         condition: service_healthy
 
   redis:
-    image: redis:6
+    image: redis:6-alpine
     container_name: librephotos-redis
     restart: unless-stopped
     healthcheck:

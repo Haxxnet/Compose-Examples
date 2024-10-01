@@ -117,7 +117,7 @@ services:
 
     redis:
         restart: always
-        image: redis:6.2-alpine
+        image: redis:7-alpine
         container_name: sharelatex-redis
         expose:
             - 6379

@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   broker:
-    image: docker.io/library/redis:7
+    image: docker.io/library/redis:7-alpine
     container_name: paperless-ngx-redis
     restart: unless-stopped
     volumes:

@@ -17,7 +17,7 @@ services:
       retries: 2
 
   nitter-redis:
-    image: redis:6-alpine
+    image: redis:7-alpine
     container_name: nitter-redis
     command: redis-server --save 60 1 --loglevel warning
     volumes:

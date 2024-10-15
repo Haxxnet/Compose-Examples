@@ -12,9 +12,9 @@ services:
     environment:
       - NODE_ENV=production
     ports:
-      - 2283:3001
+      - 2283:2283
     expose:
-      - 3001
+      - 2283
     depends_on:
       - immich-redis
       - immich-database
@@ -24,7 +24,7 @@ services:
     #labels:
     #  - traefik.enable=false
     #  - traefik.http.routers.immich.rule=Host(`immich.example.com`)
-    #  - traefik.http.services.immich.loadbalancer.server.port=3001
+    #  - traefik.http.services.immich.loadbalancer.server.port=2283
     #  - traefik.docker.network=proxy
     #  # Optional part for file upload max sizes
     #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB

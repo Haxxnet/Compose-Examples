@@ -7,11 +7,12 @@ services:
     expose:
       - 8080
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/logs:/var/log/crowdsec:ro
+      # crowdsec container data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/data:/var/lib/crowdsec/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/etc:/etc/crowdsec
+      # log bind mounts into crowdsec
+      - /var/log/auth.log:/var/log/auth.log:ro      
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/var/log/traefik:ro
-      - /var/log/auth.log:/var/log/auth.log:ro
     environment:
       - GID=1000
       - BOUNCER_KEY_TRAEFIK=${CROWDSEC-BOUNCER-API-TOKEN:-FIXME-LAPI-KEY}

@@ -109,9 +109,8 @@ http:
     #      crowdsecCapiScenarios:
     #        - crowdsecurity/traefik
     #        - crowdsecurity/http-cve
-    #        - crowdsecurity/http-path-traversal-probing
-    #        - crowdsecurity/http-xss-probing
-    #        - crowdsecurity/http-generic-bf
+    #        - crowdsecurity/appsec-virtual-patching
+    #        - crowdsecurity/appsec-generic-rules
     #      forwardedHeadersTrustedIPs:
     #        - 10.0.0.0/8
     #        - 172.16.0.0/12

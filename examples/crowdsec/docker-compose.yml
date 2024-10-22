@@ -13,7 +13,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/var/log/traefik:ro
       - /var/log/auth.log:/var/log/auth.log:ro
     environment:
-      - PGID=1000
+      - GID=1000
       - BOUNCER_KEY_TRAEFIK=${CROWDSEC-BOUNCER-API-TOKEN:-FIXME-LAPI-KEY}
       - COLLECTIONS=crowdsecurity/traefik crowdsecurity/http-cve crowdsecurity/appsec-generic-rules crowdsecurity/appsec-virtual-patching
     #networks:

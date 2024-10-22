@@ -36,7 +36,7 @@ accessLog:
   format: json
   filters:
     statusCodes:
-    #  - "200" # log successful http requests
+      - "200-299" # log successful http requests
       - "400-599" # log failed http requests
     #retryAttempts: true
     #minDuration: "10ms"

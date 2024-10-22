@@ -16,6 +16,8 @@ services:
       - GID=1000
       - BOUNCER_KEY_TRAEFIK=${CROWDSEC-BOUNCER-API-TOKEN:-FIXME-LAPI-KEY}
       - COLLECTIONS=crowdsecurity/traefik crowdsecurity/http-cve crowdsecurity/appsec-generic-rules crowdsecurity/appsec-virtual-patching
+    #security_opt:
+    #  - no-new-privileges=true      
     #networks:
     #  - proxy
 

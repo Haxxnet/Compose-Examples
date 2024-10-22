@@ -15,9 +15,10 @@ services:
     environment:
       - PGID=1000
       - BOUNCER_KEY_TRAEFIK=$CROWDSEC-BOUNCER-API-TOKEN
-    networks:
-      - proxy
+      - COLLECTIONS=crowdsecurity/traefik crowdsecurity/http-cve crowdsecurity/appsec-generic-rules crowdsecurity/appsec-virtual-patching
+    #networks:
+    #  - proxy
 
-networks:
-  proxy:
-    external: true
+#networks:
+#  proxy:
+#    external: true

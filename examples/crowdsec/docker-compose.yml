@@ -1,0 +1,23 @@
+services:
+
+  crowdsec:
+    image: crowdsecurity/crowdsec:latest
+    container_name: crowdsec
+    restart: unless-stopped
+    expose:
+      - 8080
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/logs:/var/log/crowdsec:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/data:/var/lib/crowdsec/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/etc:/etc/crowdsec
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/var/log/traefik:ro
+      - /var/log/auth.log:/var/log/auth.log:ro
+    environment:
+      - PGID=1000
+      - BOUNCER_KEY_TRAEFIK=$CROWDSEC-BOUNCER-API-TOKEN
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

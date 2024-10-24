@@ -55,7 +55,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/media:/media
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/custom-templates:/templates
     ports:
-      - 9000:9000/tcp
+      - 9000:9000/tcp # http
+      - 9443:9443/tcp # https
     expose:
       - 9000
       - 9443

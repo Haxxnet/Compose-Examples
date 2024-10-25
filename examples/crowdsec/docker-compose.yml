@@ -11,7 +11,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/data:/var/lib/crowdsec/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/etc:/etc/crowdsec
       # log bind mounts into crowdsec
-      - /var/log/auth.log:/var/log/auth.log:ro      
+      - /var/log/auth.log:/var/log/auth.log:ro
+      - /var/log/syslog:/var/log/syslog:ro
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/var/log/traefik:ro
     environment:
       - GID=1000

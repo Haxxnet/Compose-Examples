@@ -5,7 +5,9 @@ services:
     container_name: crowdsec
     restart: unless-stopped
     expose:
-      - 8080
+      - 8080 # http api for bouncers
+      - 6060 # metrics endpoint for prometheus
+      - 7422 # appsec waf endpoint
     volumes:
       # crowdsec container data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/data:/var/lib/crowdsec/data

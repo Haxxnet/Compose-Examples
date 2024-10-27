@@ -16,8 +16,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/var/log/traefik:ro
     environment:
       - GID=1000
-      - BOUNCER_KEY_TRAEFIK=${CROWDSEC-BOUNCER-API-TOKEN:-FIXME-LAPI-KEY}
       - COLLECTIONS=crowdsecurity/traefik crowdsecurity/http-cve crowdsecurity/appsec-generic-rules crowdsecurity/appsec-virtual-patching
+      #- BOUNCER_KEY_<NAME>=${CROWDSEC-BOUNCER-API-TOKEN:-FIXME-LAPI-KEY} # pre-supply a bouncer with api key
       #- CUSTOM_HOSTNAME=crowdsec-host123
     #security_opt:
     #  - no-new-privileges=true      

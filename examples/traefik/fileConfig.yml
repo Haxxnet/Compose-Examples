@@ -97,6 +97,8 @@ http:
     #      enabled: true
     #      defaultDecisionSeconds: 60
     #      crowdsecMode: live
+    #      crowdsecAppsecEnabled: false
+    #      crowdsecAppsecHost: crowdsec:7422
     #      crowdsecAppsecFailureBlock: true
     #      crowdsecAppsecUnreachableBlock: true
     #      crowdsecLapiKey: FIXME-LAPI-KEY # <--- replace this later

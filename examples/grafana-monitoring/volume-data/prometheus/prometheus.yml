@@ -1,0 +1,17 @@
+
+# my global config
+global:
+  scrape_interval: 15s
+  evaluation_interval: 30s
+  body_size_limit: 15MB
+  sample_limit: 1500
+  target_limit: 30
+  label_limit: 30
+  label_name_length_limit: 200
+  label_value_length_limit: 200
+  # scrape_timeout is set to the global default (10s).
+
+scrape_configs:
+  - job_name: crowdsec_myMachine
+    static_configs:
+      - targets: ["crowdsec:6060"]

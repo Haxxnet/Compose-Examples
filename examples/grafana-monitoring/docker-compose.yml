@@ -99,6 +99,17 @@ services:
     #  # Part for local lan services only
     #  - traefik.http.routers.grafana.middlewares=local-ipwhitelist@file
 
+  #prometheus:
+  #  image: prom/prometheus
+  #  container_name: prometheus
+  #  restart: unless-stopped
+  #  expose:
+  #    - 9090
+  #  volumes:
+  #    - ./volume-data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  #  #networks:
+  #  #  - monitoring_default
+
 #networks:
 #  monitoring_default:
 #   external: true

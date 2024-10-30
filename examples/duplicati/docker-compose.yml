@@ -2,17 +2,26 @@ version: "3"
 
 services:
   duplicati:
+    image: linuxserver/duplicati:latest  
     container_name: duplicati
+    hostname: duplicati    
     entrypoint:
       - /init
     ports:
       - 8200:8200 # MGMT UI
+    expose:
+      - 8200
     environment:
       - PUID=0
       - PGID=1000
       - TZ=Europe/Berlin
-    hostname: duplicati
-    image: linuxserver/duplicati:latest
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/backups:/backups
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/config:/config
+      - /path/to/my/data/to/backup:/source # change this
+    #networks:
+    #  - proxy
     #labels:
     #  - com.centurylinklabs.watchtower.enable=false
     #  - traefik.enable=true
@@ -21,8 +30,8 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
     #  - traefik.http.routers.duplicati.middlewares=local-ipwhitelist@file
-    restart: unless-stopped
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/backups:/backups
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/config:/config
-      - /path/to/my/data/to/backup:/source # change this
+
+#networks:
+#  proxy:
+#     external: true
+    

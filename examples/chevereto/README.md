@@ -24,7 +24,7 @@ docker exec -it chevereto bash
 # fixing permissions to www-data
 mkdir -p /var/www/html/images/_assets
 chown -R www-data:www-data /var/www/html/images/*
-chmod -R 777 /var/www/html/images/*
+chmod -R 775 /var/www/html/images/*
 ````
 No container restart necessary. The web application should now work flawlessly.
 

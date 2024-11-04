@@ -1,11 +1,9 @@
----
-version: '3.7'
-
 services:
+
   duplicacy-web:
+    image: saspus/duplicacy-web:mini    
     container_name: duplicacy-web
     hostname: myhost # pls adjust
-    image: saspus/duplicacy-web:mini
     environment:
       - USR_ID=1000 # user account id on the system
       - GRP_ID=1000 # group id on the system
@@ -13,6 +11,8 @@ services:
       - DUPLICACY_WEB_VERSION=latest
     ports:
       - "3875:3875/tcp"
+    expose:
+      - 3875
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicacy-web/config:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicacy-web/logs:/logs

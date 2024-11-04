@@ -1,8 +1,7 @@
-version: "3"
-
 services:
+
   minio-s3:
-    image: bitnami/minio:2023
+    image: bitnami/minio:2024
     container_name: minio
     hostname: minio
     environment:
@@ -10,9 +9,11 @@ services:
       - MINIO_ROOT_PASSWORD=XscUJuDQP4WuWA55vfXNrc7 # change this
     ports:
       - 9001:9001/tcp
+    expose:
+      - 9001
     restart: unless-stopped
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/minio/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/minio/data:/bitnami/minio/data
     #networks:
     #  - proxy
     #labels:

@@ -1,6 +1,5 @@
-version: "3.7"
-
 services:
+
   privatebin:
     hostname: privatebin
     container_name: privatebin
@@ -8,6 +7,8 @@ services:
     read_only: true # not in compose 3.0 documentation but appears supported based
     ports:
       - 8080:8080
+    expose:
+      - 8080
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/data:/srv/data # volume for persisted data pastes
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/privatebin/configs/config.php:/srv/cfg/conf.php:ro # volume for custom privatebin config; please place the config.php file here

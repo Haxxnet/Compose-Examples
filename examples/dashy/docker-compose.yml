@@ -1,10 +1,9 @@
----
-version: "3.8"
 services:
+
   dashy:
+    image: lissy93/dashy    
     container_name: dashy
     hostname: dashy
-    image: lissy93/dashy
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/dashy/config/config.yml:/app/public/conf.yml
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/dashy/icons:/app/public/item-icons
@@ -14,7 +13,9 @@ services:
       - GID=1000
     restart: unless-stopped
     ports:
-      - 4000:80    
+      - 4000:80
+    expose:
+      - 80
     healthcheck:
       test: ['CMD', 'node', '/app/services/healthcheck']
       interval: 1m30s

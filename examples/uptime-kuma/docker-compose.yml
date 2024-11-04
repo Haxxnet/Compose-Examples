@@ -1,10 +1,9 @@
-version: "3.8"
-
 services:
+
   app:
+    image: louislam/uptime-kuma    
     container_name: uptime-kuma
     hostname: uptime-kuma
-    image: louislam/uptime-kuma
     restart: always
     ports:
       - 3001:3001
@@ -19,9 +18,9 @@ services:
     #  - proxy
     #labels:
     #  - traefik.enable=true
+    #  - traefik.docker.network=proxy    
     #  - traefik.http.routers.uptimekuma.rule=Host(`uptimekuma.example.com`)
     #  - traefik.http.services.uptimekuma.loadbalancer.server.port=3001
-    #  - traefik.docker.network=proxy
     #  # Part for local lan services only
     #  #- traefik.http.routers.uptimekuma.middlewares=local-ipwhitelist@file
 

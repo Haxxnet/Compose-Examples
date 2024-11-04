@@ -1,6 +1,5 @@
-version: "3.8"
-
 services:
+
   bitwarden:
     image: bitwarden/self-host:2024.8.0-beta
     container_name: bitwarden_unified

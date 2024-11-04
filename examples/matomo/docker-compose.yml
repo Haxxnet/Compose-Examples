@@ -1,11 +1,12 @@
-version: "2"
-
 services:
+
   matomo:
+    image: matomo:5-fpm-alpine 
     container_name: matomo
-    image: matomo
     ports:
       - 8099:80
+    expose:
+      - 80
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/matomo/apache/apache2.conf:/etc/apache2/apache2.conf:ro
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/matomo/html:/var/www/html
@@ -29,13 +30,15 @@ services:
 
 
   matomo_db:
+    image: mariadb:11.5
     container_name: matomo_db
-    image: mariadb
     command: --max-allowed-packet=64MB
     environment:
       - MYSQL_ROOT_PASSWORD=makeitup
     env_file:
       - ./db.env
+    expose:
+      - 3306
     restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/matomo/database:/var/lib/mysql

@@ -1,10 +1,26 @@
-version: '3.3'
 services:
-    trsync:
-        image: l4rm4nd/trsync:latest
-        container_name: trsync
-        ports:
-            - '8000:8000'
-        environment:
-            - SECRET_KEY=ChooseStrongSecretKeyHere # pls change
-            - DOMAIN=trsync.example.com # your hostname to put in Django's ALLOW_HOSTS
+
+  trsync:
+    image: l4rm4nd/trsync:latest
+    container_name: trsync
+    restart: unless-stopped
+    ports:
+      - 8000:8000/tcp
+    expose:
+      - 8000
+    environment:
+      - SECRET_KEY=ChooseStrongSecretKeyHere # pls change
+      - DOMAIN=trsync.example.com # your hostname to put in Django's ALLOW_HOSTS  
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.trsync.rule=Host(`trsync.example.com`)
+    #  - traefik.http.services.trsync.loadbalancer.server.port=8000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.trsync.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

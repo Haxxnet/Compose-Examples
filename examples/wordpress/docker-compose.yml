@@ -1,14 +1,15 @@
-version: '3.3'
-
 services:
+
   wordpress-db:
     image: mariadb:10.11
     container_name: wordpress-db
     hostname: wordpress-db
+    restart: unless-stopped    
     command: '--default-authentication-plugin=mysql_native_password'
+    expose:
+      - 3306
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wordpress/mysql:/var/lib/mysql
-    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=wordpressroot
       - MYSQL_DATABASE=wordpress

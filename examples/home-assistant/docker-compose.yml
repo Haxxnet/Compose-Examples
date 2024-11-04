@@ -1,10 +1,10 @@
----
-version: "2.1"
 services:
+
   homeassistant:
     image: linuxserver/homeassistant:latest
     container_name: homeassistant
     network_mode: host
+    restart: unless-stopped    
     environment:
       - PUID=1000
       - PGID=1000
@@ -12,7 +12,6 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homeassistant/config:/config
     #ports:
-    #  - 8123:8123 #optional
+    #  - 8123:8123 # optional of host network is used
     #devices:
     #  - /path/to/device:/path/to/device #optional
-    restart: unless-stopped

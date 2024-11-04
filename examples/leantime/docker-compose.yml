@@ -1,9 +1,10 @@
-version: '3.3'
-
 services:
+
   leantime_db:
     image: mysql:8.0
     container_name: leantime-mysql
+    expose:
+      - 3306
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/mysql:/var/lib/mysql
     restart: unless-stopped
@@ -21,9 +22,11 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/public_data:/var/www/html/public/userfiles
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/data:/var/www/html/userfiles
     ports:
-      - "8080:80"                                                       # The port to expose and access Leantime
+      - "8080:80" # The port to expose and access Leantime
+    expose:
+      - 80
     depends_on:
-      - leantime_db                                                     # Don't start Leantime unless leantime_db is running
+      - leantime_db # Don't start Leantime unless leantime_db is running
     #networks:
     #  - proxy
     #labels:

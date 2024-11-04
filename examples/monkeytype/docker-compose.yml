@@ -1,6 +1,5 @@
-version: '3.3'
-
 services:
+
   monkeytype:
     image: themythologist/monkeytype:frontend-latest
     container_name: monkeytype
@@ -8,6 +7,8 @@ services:
     restart: unless-stopped
     ports:
       - 5000:5000/tcp
+    expose:
+      - 5000
     #networks:
     #  - proxy
     #labels:

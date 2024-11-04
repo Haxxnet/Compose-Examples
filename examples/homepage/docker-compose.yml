@@ -1,18 +1,22 @@
-version: "3.3"
 services:
+
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     restart: unless-stopped
     ports:
       - 3000:3000
+    expose:
+      - 3000
     environment:
       - PUID=1000
       - PGID=1000
     volumes:
+      #- /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations      
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homepage/config:/app/config # Make sure your local config directory exists
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homepage/icons:/app/public/icons
-    #  - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations
+    #networks:
+    #  - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.homepage.rule=Host(`home.example.com`)
@@ -20,3 +24,7 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
     #  - traefik.http.routers.homepage.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

@@ -1,5 +1,5 @@
-version: "2.1"
 services:
+
   adguardhome-sync:
     image: linuxserver/adguardhome-sync
     container_name: adguardhome-sync

@@ -1,11 +1,13 @@
-version: "3.7"
 services:
+
   nessus:
-    hostname: nessus
-    container_name: nessus
     image: tenableofficial/nessus:latest
+    container_name: nessus
+    hostname: nessus    
     ports:
       - 8834:8834/tcp # WEB UI
+    expose:
+      - 8834
     environment:
       - ACTIVATION_CODE=XXX-XXXXX-XXXXX-XXXX # change this
       - USERNAME=nessus

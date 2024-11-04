@@ -1,7 +1,9 @@
-version: "3"
 services:
+
     gvm:
         image: securecompliance/gvm
+        container_name: gvm
+        restart: unless-stopped        
         volumes:
           - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/greenbone/database:/opt/database
           - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/greenbone/gvm:/var/lib/gvm
@@ -20,4 +22,7 @@ services:
           - "9392:9392"  # Web interface
           #- "5432:5432" # Access PostgreSQL database from external tools
           #- "2222:22"   # SSH for remote sensors
-        restart: unless-stopped
+        expose:
+          - 9392
+          - 5432
+          - 22

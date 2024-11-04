@@ -1,12 +1,13 @@
-version: "3.7"
-
 services:
+
   gokapi:
     image: f0rc3/gokapi:latest
     container_name: gokapi
     restart: unless-stopped
     ports:
       - 53842:53842
+    expose:
+      - 53842
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gokapi/data:/app/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gokapi/config:/app/config

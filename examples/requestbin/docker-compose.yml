@@ -1,6 +1,5 @@
-version: "3.3"
-
 services:
+
   app:
     image: l4rm4nd/requestbin:latest
     hostname: requestbin
@@ -27,8 +26,8 @@ services:
 
   redis:
     image: redis:alpine
-    hostname: redis
     container_name: requestbin_redis
+    hostname: redis    
     restart: unless-stopped
     #volumes:
     #  - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/requestbin/redis:/data

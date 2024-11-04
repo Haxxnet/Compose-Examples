@@ -1,5 +1,5 @@
-version: "2.1"
 services:
+
   projectsend:
     image: lscr.io/linuxserver/projectsend:latest
     container_name: projectsend
@@ -13,15 +13,19 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/projectsend/data:/data
     ports:
       - 8080:80 # WEB UI
+    expose:
+      - 80
     restart: unless-stopped
     depends_on:
       - database
 
   database:
-    image: mariadb:10.11
+    image: mariadb:11.5
     container_name: projectsend-db
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: unless-stopped
+    expose:
+      - 3306
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/projectsend/database:/var/lib/mysql
     environment:

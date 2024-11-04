@@ -1,7 +1,7 @@
-version: "3.9"
-
 services:
+
   watchtower:
+    image: containrrr/watchtower:latest    
     container_name: watchtower
     hostname: watchtower
     environment:
@@ -16,12 +16,11 @@ services:
       #- WATCHTOWER_MONITOR_ONLY=true
       - WATCHTOWER_SCHEDULE=0 0 6 * * * # requires a go cron syntax of 6 space-separated fields; see https://containrrr.dev/watchtower/arguments/#scheduling
       - WATCHTOWER_CLEANUP=true # remove unused images afterwards
-    image: containrrr/watchtower:latest
-    labels:
-      com.centurylinklabs.watchtower: true
     restart: always
     network_mode: "host"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     working_dir: /
+    labels:
+      com.centurylinklabs.watchtower: true    

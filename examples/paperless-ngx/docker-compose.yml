@@ -1,6 +1,5 @@
-version: "3.4"
-
 services:
+
   broker:
     image: docker.io/library/redis:7-alpine
     container_name: paperless-ngx-redis
@@ -8,7 +7,7 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/paperless-ngx/redis:/data
     #networks:
-    #  - proxy      
+    #  - proxy
 
   db:
     image: docker.io/library/postgres:16-alpine
@@ -21,7 +20,7 @@ services:
       POSTGRES_USER: paperless
       POSTGRES_PASSWORD: paperless
     #networks:
-    #  - proxy      
+    #  - proxy
 
   webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
@@ -32,6 +31,8 @@ services:
       - broker
     ports:
       - "8910:8000"
+    expose:
+      - 8000
     healthcheck:
       test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
       interval: 30s

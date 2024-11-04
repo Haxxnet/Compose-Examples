@@ -1,9 +1,9 @@
-version: "2.1"
-
 services:
+
   transmission:
     image: lscr.io/linuxserver/transmission:latest
     container_name: transmission
+    restart: unless-stopped    
     environment:
       - PUID=1000
       - PGID=1000
@@ -16,4 +16,6 @@ services:
       - 9091:9091 # web ui
       - 51413:51413 # torrent port tcp
       - 51413:51413/udp # torrent port udp
-    restart: unless-stopped
+    expose:
+      - 9091
+      - 51413

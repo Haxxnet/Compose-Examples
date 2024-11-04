@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   pwndrop:
     image: linuxserver/pwndrop:latest
     container_name: pwndrop

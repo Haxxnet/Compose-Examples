@@ -1,5 +1,5 @@
-version: '2.2'
 services:
+
     sharelatex:
         restart: always
         image: sharelatex/sharelatex
@@ -11,6 +11,8 @@ services:
                 condition: service_started
         ports:
             - 8888:80
+        expose:
+            - 80
         links:
             - mongo
             - redis

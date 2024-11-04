@@ -1,11 +1,12 @@
-version: '3'
-
 services:
+
   webhook:
     image: webhooksite/webhook.site
     container_name: webhook
     restart: unless-stopped
     command: php artisan queue:work --daemon --tries=3 --timeout=10
+    ports:
+      - 8084:80
     expose:
       - 80
     environment:
@@ -23,13 +24,13 @@ services:
       - redis
     #labels:
     #  - traefik.enable=true
-    #  - traefik.docker.network=dev
+    #  - traefik.docker.network=proxy
     #  - traefik.http.routers.webhook.rule=Host(`hook.example.com`)
     #  - traefik.http.services.webhook.loadbalancer.server.port=80
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.webhook.middlewares=local-ipwhitelist@file,authelia@docker
     #networks:
-    #  - dev
+    #  - proxy
 
   redis:
     image: redis:alpine
@@ -38,7 +39,7 @@ services:
     #volumes:
     #  - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/requestbin/redis:/data
     #networks:
-    #  - dev
+    #  - proxy
 
   laravel-echo-server:
     image: webhooksite/laravel-echo-server
@@ -56,8 +57,8 @@ services:
       - ECHO_ALLOW_METHODS=*
       - ECHO_ALLOW_HEADERS=*
     #networks:
-    #  - dev
+    #  - proxy
 
 #networks:
-#  dev:
+#  proxy:
 #    external: true

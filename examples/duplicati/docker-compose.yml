@@ -1,10 +1,9 @@
-version: "3"
-
 services:
+
   duplicati:
-    image: linuxserver/duplicati:latest  
+    image: linuxserver/duplicati:latest
     container_name: duplicati
-    hostname: duplicati    
+    hostname: duplicati
     entrypoint:
       - /init
     ports:

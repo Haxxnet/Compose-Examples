@@ -1,10 +1,9 @@
-version: '3.9'
-
 services:
+
   headscale:
     image: headscale/headscale:0.22
+    container_name: headscale    
     pull_policy: always
-    container_name: headscale
     restart: unless-stopped
     command: headscale serve
     expose:
@@ -26,8 +25,8 @@ services:
       
   headscale-ui:
     image: ghcr.io/gurucomputing/headscale-ui:latest
+    container_name: headscale-ui    
     pull_policy: always
-    container_name: headscale-ui
     networks:
       - proxy
     restart: unless-stopped

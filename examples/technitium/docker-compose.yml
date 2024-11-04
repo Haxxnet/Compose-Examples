@@ -1,9 +1,9 @@
-version: "3"
 services:
+
   dns-server:
+    image: technitium/dns-server:latest    
     container_name: dns-server
     hostname: dns-server
-    image: technitium/dns-server:latest
     # Use "host" network mode for DHCP deployments
     # network_mode: "host"
     ports:
@@ -33,10 +33,16 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/technitium/config:/etc/dns/config
     restart: unless-stopped
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.technitium.rule=Host(`technitium.example.com`)
-      - traefik.http.services.technitium.loadbalancer.server.port=5380
-      - traefik.docker.network=proxy
-      # Part for local lan services only
-      #- traefik.http.routers.technitium.middlewares=local-ipwhitelist@file
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy      
+    #  - traefik.http.routers.technitium.rule=Host(`technitium.example.com`)
+    #  - traefik.http.services.technitium.loadbalancer.server.port=5380
+    #  # Part for local lan services only
+    #  #- traefik.http.routers.technitium.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

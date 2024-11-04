@@ -4,6 +4,9 @@ services:
     image: crowdsecurity/crowdsec:v1.6.3
     container_name: crowdsec
     restart: unless-stopped
+    ports:
+      - 127.0.0.1:9876:8080 # http api for local fw bouncers
+      - 127.0.0.1:6060:6060 # metrics endpoint for prometheus
     expose:
       - 8080 # http api for bouncers
       - 6060 # metrics endpoint for prometheus

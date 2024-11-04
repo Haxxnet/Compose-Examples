@@ -1,11 +1,11 @@
-version: '3.8'
-
 services:
 
   n8n-db:
     image: postgres:16-alpine
     container_name: n8n-db
     restart: unless-stopped
+    expose:
+      - 5432
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD

@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   photoprism:
     image: photoprism/photoprism:latest  
     container_name: photoprism
@@ -16,6 +15,8 @@ services:
       - PHOTOPRISM_DATABASE_DRIVER=sqlite
     ports:
       - 2342:2342
+    expose:
+      - 2342
     restart: unless-stopped
     volumes:
       - /path/to/my/locally/stored/media/files:/photoprism/originals

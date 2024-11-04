@@ -1,6 +1,5 @@
-version: '3.3'
-
 services:
+
   lldap:
     image: lldap/lldap:stable
     container_name: lldap
@@ -17,10 +16,11 @@ services:
     ports:
       - 3890:3890 # LDAP
       - 17170:17170 # WEB UI
+    expose:
+      - 3890
+      - 17170
     #networks:
     #  - proxy
-    #expose:
-    #  - 17170
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.lldap.rule=Host(`lldap.example.com`)

@@ -1,5 +1,3 @@
-version: "2.1"
-
 services:
 
   code-server:
@@ -18,6 +16,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vscode/config:/config
     ports:
       - 8443:8443
+    expose:
+      - 8443
     restart: unless-stopped
     #networks:
     #  - proxy

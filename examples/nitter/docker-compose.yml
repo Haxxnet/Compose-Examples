@@ -5,6 +5,8 @@ services:
     container_name: nitter
     ports:
       - "8080:8080"
+    expose:
+      - 8080
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nitter/nitter.conf:/src/nitter.conf:ro
     depends_on:

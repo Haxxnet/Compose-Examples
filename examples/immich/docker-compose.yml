@@ -1,9 +1,8 @@
-version: "3.8"
-
 services:
+
   immich-server:
-    container_name: immich-server
     image: altran1502/immich-server:${IMMICH_VERSION:-release}
+    container_name: immich-server    
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -52,8 +51,8 @@ services:
     #  - proxy
 
   immich-redis:
+    image: redis:6.2-alpine    
     container_name: immich-redis
-    image: redis:6.2-alpine
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
@@ -61,8 +60,8 @@ services:
     #  - proxy
 
   immich-database:
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0    
     container_name: immich-database
-    image: tensorchord/pgvecto-rs:pg14-v0.2.0
     env_file:
       - .env
     environment:

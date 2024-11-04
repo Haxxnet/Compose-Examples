@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
 
   app:
@@ -54,8 +52,8 @@ services:
     #  - proxy
 
   redis:
+    image: redis:6-alpine    
     container_name: papermerge-redis
-    image: redis:6-alpine
     restart: unless-stopped
     expose:
       - 6379

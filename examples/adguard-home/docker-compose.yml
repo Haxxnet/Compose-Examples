@@ -1,10 +1,9 @@
-version: "3"
-
 services:
+
   adguard:
+    image: adguard/adguardhome:latest
     container_name: adguard
     hostname: adguard
-    image: adguard/adguardhome:latest
     ports:
       - 3000:3000/tcp # only required during initial setup
       - 8080:80/tcp # web interface after setup

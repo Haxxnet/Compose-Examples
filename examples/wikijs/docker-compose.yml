@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   wikijs:
     image: linuxserver/wikijs:latest
     container_name: wikijs

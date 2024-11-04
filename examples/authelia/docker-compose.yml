@@ -1,13 +1,10 @@
-version: '3.3'
-
 services:
+
   authelia:
     image: authelia/authelia
     container_name: authelia
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authelia/config:/config
-    networks:
-      - proxy
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.authelia.rule=Host(`auth.example.com`)'  # replace with your domain name
@@ -15,11 +12,15 @@ services:
       - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.example.com'  # replace with your domain name
       - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
       - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'  # yamllint disable-line rule:line-length
+    ports:
+      - 9091:9091/tcp
     expose:
       - 9091
     restart: unless-stopped
     environment:
       - TZ=Europe/Berlin
+    #networks:
+    #  - proxy      
 
   redis:
     image: redis:alpine
@@ -27,14 +28,14 @@ services:
     command: redis-server --requirepass SuperSecureRedisAuthPassword # also reflect this in the authelia config file
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authelia/redis:/data
-    networks:
-      - proxy
     expose:
       - 6379
     restart: unless-stopped
     environment:
       - TZ=Europe/Berlin
+    #networks:
+    #  - proxy
 
-networks:
-   proxy:
-      external: true
+#networks:
+#   proxy:
+#      external: true

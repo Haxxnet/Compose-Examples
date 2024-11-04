@@ -1,6 +1,5 @@
-version: "3.7"
-
 services:
+
   drone-server:
     image: drone/drone:latest
     container_name: drone-server
@@ -26,15 +25,15 @@ services:
       - DRONE_AGENTS_ENABLED=true
       - DRONE_GITEA_CLIENT_ID=XXX-XXX # change this to your client ID from Gitea; see https://docs.drone.io/server/provider/gitea/
       - DRONE_GITEA_CLIENT_SECRET=XXX-XXX # change this to your client secret from Gitea; see https://docs.drone.io/server/provider/gitea/
-    networks:
-      - proxy
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.drone-server.rule=Host(`drone.domain.tld`)
-      - traefik.http.services.drone-server.loadbalancer.server.port=80
-      - traefik.docker.network=proxy
-      # Part for local lan services only; disable to expose externally
-      - traefik.http.routers.drone-server.middlewares=local-ipwhitelist@file
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.drone-server.rule=Host(`drone.domain.tld`)
+    #  - traefik.http.services.drone-server.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only; disable to expose externally
+    #  - traefik.http.routers.drone-server.middlewares=local-ipwhitelist@file
 
   drone-agent:
     image: drone/agent:1.2.1
@@ -47,9 +46,9 @@ services:
       - DRONE_RPC_SERVER=http://drone-server:80
       - DRONE_RPC_SECRET=8aff725d2e16ef31fbc42
       - DRONE_RUNNER_CAPACITY=2
-    networks:
-      - proxy
+    #networks:
+    #  - proxy
 
-networks:
-  proxy:
-    external: true
+#networks:
+#  proxy:
+#    external: true

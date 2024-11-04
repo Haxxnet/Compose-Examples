@@ -1,9 +1,8 @@
----
-version: "2.1"
 services:
+
   snipe-it:
     image: lscr.io/linuxserver/snipe-it:latest
-    container_name: snipe-it
+    container_name: snipeit
     environment:
       - PUID=1000
       - PGID=1000
@@ -18,11 +17,15 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/snipeit/config:/config
     ports:
       - 8080:80
+    expose:
+      - 80
     restart: unless-stopped
 
   mariadb:
     image: lscr.io/linuxserver/mariadb:latest
-    container_name: mariadb
+    container_name: snipeit-mariadb
+    expose:
+      - 3306
     environment:
       - PUID=1000
       - PGID=1000

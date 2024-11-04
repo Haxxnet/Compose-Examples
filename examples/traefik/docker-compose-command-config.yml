@@ -1,13 +1,12 @@
 # This docker compose example configures traefik by command definitions.
 # This makes the traefik.yml static configuration obsolete.
 # Note that we still reference a dynamic configuration for best practice
-
-version: '3.8'
-
 services:
+
   traefik:
     image: traefik:2.11
     container_name: traefik
+    restart: always
     command:
       - --providers.docker=true # enable docker provider
       - --providers.docker.network=proxy # define default network to monitor for docker provider
@@ -52,9 +51,11 @@ services:
     ports:
       - 80:80 # http
       - 443:443 # https
-      - 127.0.0.1:8080:8080 # traefik api dashboard
-    networks:
-      - proxy # define traefik docker network
+      - 127.0.0.1:8080:8080 # http api dashboard
+    expose:
+      - 80 # http
+      - 443 # https
+      - 8080 # http api dashboard
     environment:
       - TZ=Europe/Berlin # define timezone
       - CF_DNS_API_TOKEN=<MY-CF-API-TOKEN> # define your cloudflare api token
@@ -62,9 +63,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro # pass docker socket as read-only
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik:/etc/traefik/ # bind mount volume for persistent traefik data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/logs # bind mount volume for persistent traefik logs
-    restart: always # always restart traefik
     extra_hosts:
       - host.docker.internal:172.17.0.1 # define internal ip; helps traefik to resolve containers running in host network mode
+    networks:
+      - proxy # define traefik docker network
 
 networks:
   proxy:

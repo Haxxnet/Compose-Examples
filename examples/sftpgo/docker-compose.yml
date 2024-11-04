@@ -2,13 +2,16 @@ services:
 
   sftpgo:
     image: drakkan/sftpgo:v2-alpine
+    container_name: sftpgo
     user: 1000:1000
     restart: unless-stopped
     ports:
       - 8888:8080 # HTTP
-      #- 2022:2022" # SFTP
-      #- 8443:443" # HTTPS
-      #- 5007:5007 # WEBDAV
+    expose:
+      - 8080 # HTTP
+      - 2022 # SFTP
+      - 443 # HTTPS
+      - 5007 # WEBDAV
     environment:
       # These are the settings to access your db
       SFTPGO_WEBDAVD__BINDINGS__0__PORT: 5007
@@ -28,7 +31,10 @@ services:
 
   mysql:
     image: mysql:latest
+    container_name: sftpgo-db
     restart: always
+    expose:
+      - 3306
     environment:
       MYSQL_DATABASE: sftpgo
       MYSQL_USER: sftpgo # please change    

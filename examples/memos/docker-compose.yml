@@ -1,6 +1,5 @@
-version: "3.0"
-
 services:
+
   memos:
     image: neosmemo/memos:latest
     container_name: memos
@@ -8,6 +7,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/memos/data:/var/opt/memos
     ports:
       - 5230:5230
+    expose:
+      - 5230
     #networks:
     #  - proxy
     #labels:

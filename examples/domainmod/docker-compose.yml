@@ -1,6 +1,5 @@
----
-version: '3.7'
 services:
+
   app:
     image: domainmod/domainmod:latest
     container_name: domainmod_app
@@ -20,6 +19,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/domainmod/app:/var/www/html
     ports:
       - 8080:80
+    expose:
+      - 80
     restart: unless-stopped
 
   db:

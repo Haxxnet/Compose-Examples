@@ -1,6 +1,5 @@
-version: "2.1"
-
 services:
+
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
@@ -12,4 +11,6 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/prowlarr/config:/config
     ports:
       - 9696:9696
+    expose:
+      - 9696
     restart: unless-stopped

@@ -1,6 +1,5 @@
-version: "3.7"
-
 services:
+
   mealie-frontend:
     image: hkotel/mealie:frontend-v1.0.0beta-5
     container_name: mealie-frontend
@@ -13,6 +12,8 @@ services:
     restart: unless-stopped
     ports:
       - "9925:3000" # adjust to your liking 
+    expose:
+      - 3000
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/mealie/data:/app/data/
     #networks:

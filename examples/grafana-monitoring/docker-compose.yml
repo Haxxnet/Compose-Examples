@@ -1,15 +1,15 @@
-version: "2"
-
 services:
 
   loki:
     image: grafana/loki:2.9.10
+    container_name: loki    
     hostname: loki
-    container_name: loki
     volumes:
       - ./volume-data/loki:/etc/loki # place loki-config.yml
     ports:
       - "127.0.0.1:3100:3100"
+    expose:
+      - 3100
     restart: unless-stopped
     user: 1000:1000
     command: -config.file=/etc/loki/loki-config.yml  
@@ -19,9 +19,9 @@ services:
   promtail:
     image: grafana/promtail:latest
     container_name: promtail
+    hostname: promtail    
     depends_on:
       - loki
-    hostname: promtail
     volumes:
       - /var/log:/var/log:ro # let promtail access the docker host's log files
       - ./volume-data/promtail:/etc/promtail # place promtail-config.yml
@@ -48,10 +48,10 @@ services:
 
   telegraf:
     image: telegraf:latest
+    container_name: telegraf
+    hostname: telegraf    
     restart: unless-stopped
     user: telegraf:$(stat -c '%g' /var/run/docker.sock) # see: https://www.influxdata.com/blog/docker-run-telegraf-as-non-root/
-    container_name: telegraf
-    hostname: telegraf
     dns:
       - 1.1.1.1
       - 8.8.8.8
@@ -74,21 +74,23 @@ services:
     #  - monitoring_default
 
   grafana:
+    image: grafana/grafana:latest    
     container_name: grafana
     hostname: grafana
+    restart: unless-stopped    
     user: 1000:1000
     depends_on:
       - influxdb
       - loki
       - promtail
-    image: grafana/grafana:latest
-    restart: unless-stopped
-    #environment:
-    #  - GF_SERVER_ROOT_URL=https://grafana.example.com # optional
+    environment:
+      - GF_SERVER_ROOT_URL=https://grafana.example.com # pls change this
     volumes:
       - ./volume-data/grafana:/var/lib/grafana
     ports:
       - 3000:3000
+    expose:
+      - 3000
     #networks:
     #  - monitoring_default
     #labels:

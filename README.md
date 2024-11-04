@@ -19,7 +19,8 @@
 </div>
 
 ## ✨ Requirements
-- Docker Compose
+- [Docker Engine](https://docs.docker.com/engine/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## 🎓 Usage
 - Volume bind mounts are assumed to be located at `/mnt/docker-volumes/<container-name>/`. You can adjust the path via the global env variable `DOCKER_VOLUME_STORAGE` to your liking though. The compose examples will fall back to `/mnt/docker-volumes/<container-name>/` if the env variable is not set on your Docker server.

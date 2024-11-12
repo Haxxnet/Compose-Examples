@@ -45,12 +45,12 @@ services:
     #  - traefik.http.routers.vaultwarden-admin.rule=Host(`bitwarden.example.com`) && Path(`/admin`)
     #  - traefik.http.routers.vaultwarden-admin.service=vaultwarden
     #  - traefik.http.services.vaultwarden-admin.loadbalancer.server.port=80
-    #  - traefik.http.routers.vaultwarden-admin.middlewares=local-ipwhitelist@file,authelia@file
+    #  - traefik.http.routers.vaultwarden-admin.middlewares=local-ipwhitelist@file
     ## Block access to the /api/version endpoint from public ip ranges
     #  - traefik.http.routers.vaultwarden-admin.rule=Host(`bitwarden.example.com`) && Path(`/api/version`)
     #  - traefik.http.routers.vaultwarden-admin.service=vaultwarden
     #  - traefik.http.services.vaultwarden-admin.loadbalancer.server.port=80
-    #  - traefik.http.routers.vaultwarden-admin.middlewares=local-ipwhitelist@file,authelia@file    
+    #  - traefik.http.routers.vaultwarden-admin.middlewares=local-ipwhitelist@file
 
   # this service will backup your vaultwarden instance correctly
   # see https://github.com/Bruceforce/vaultwarden-backup for more information

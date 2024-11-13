@@ -10,8 +10,8 @@ services:
       - VERBOSE_LOGS=false
       # maximum number of days for access logs to be retained before being deleted
       - ATL_TOMCAT_ACCESS_LOGS_MAXDAYS=360
-      # The maximum time a user can remain logged-in with remember me feature.
-      - ATL_AUTOLOGIN_COOKIE_AGE
+      # The maximum time a user can remain logged-in with remember me feature (in seconds; default 2 weeks).
+      - ATL_AUTOLOGIN_COOKIE_AGE=1209600
       # The minimum heap size of the JVM
       - JVM_MINIMUM_MEMORY=1024m
       # maximum heap size of the JVM
@@ -58,8 +58,8 @@ services:
       - VERBOSE_LOGS=false
       # maximum number of days for access logs to be retained before being deleted
       - ATL_TOMCAT_ACCESS_LOGS_MAXDAYS=360
-      # The maximum time a user can remain logged-in with remember me feature.
-      - ATL_AUTOLOGIN_COOKIE_AGE
+      # The maximum time a user can remain logged-in with remember me feature (in seconds; default 2 weeks)
+      - ATL_AUTOLOGIN_COOKIE_AGE=1209600
       # The minimum heap size of the JVM
       - JVM_MINIMUM_MEMORY=1024m
       # maximum heap size of the JVM

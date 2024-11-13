@@ -30,7 +30,7 @@ services:
       - 8090:8090/tcp
     expose:
       - 8090 # http web
-      - 8091 # api port for jira communication
+      - 8091 # synchrony api
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/confluence/data:/var/atlassian/application-data/confluence
     networks:
@@ -109,7 +109,7 @@ services:
       retries: 5
       timeout: 5s
     expose:
-      - 5432 # psql service
+      - 5432
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jira/psql:/var/lib/postgresql/data
     environment:

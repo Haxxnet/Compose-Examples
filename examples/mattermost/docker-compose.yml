@@ -1,6 +1,5 @@
-version: "2.4"
-
 services:
+
   postgres:
     image: postgres:${POSTGRES_IMAGE_TAG}
     container_name: mattermost-db

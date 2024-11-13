@@ -268,6 +268,7 @@ A [pastebin](https://en.wikipedia.org/wiki/Pastebin) is a type of online content
 
 - [PrivateBin](examples/privatebin) - PrivateBin is a minimalist, opensource online pastebin/discussion board where the server has zero knowledge of hosted data.
 - [Hemmelig](examples/hemmelig) - Keep your sensitive information out of chat logs, emails, and more with encrypted secrets. Free encrypted secret sharing for everyone!
+- [Opengist](examples/opengist) - Self-hosted pastebin powered by Git, open-source alternative to Github Gist.
 
 ### File Transfer & Synchronization
 

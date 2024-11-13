@@ -3,11 +3,13 @@ services:
   opengist:
     image: ghcr.io/thomiceli/opengist:1.8
     container_name: opengist
+    restart: unless-stopped
+    env_file:
+      - .env
     environment:
       - OG_OIDC_CLIENT_KEY=${OG_OIDC_CLIENT_KEY:-mykey}
       - OG_OIDC_SECRET=${OG_OIDC_SECRET:-mysecret}
-      - OG_OIDC_DISCOVERY_URL=${OG_OIDC_DISCOVERY_URL:-https://sso.example.com}
-    restart: unless-stopped
+      - OG_OIDC_DISCOVERY_URL=${OG_OIDC_DISCOVERY_URL:-https://sso.example.com}    
     ports:
       - 6157:6157
     expose:

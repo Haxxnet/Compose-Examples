@@ -9,6 +9,6 @@
 
 The Jira Core container requires a database.
 
-The compose stack will spawn up a postgresql database for this. You can configure the database connection from Jira's setup wirard via the HTTP UI.
+The compose stack will spawn up a postgresql database for this. You can configure the database connection from Jira's setup wizard via the HTTP UI.
 
-May use a dedicated `.env` file to provide your custom DB credentials.
+May use a dedicated `.env` file to provide your custom DB credentials. Ensure to use secure passwords!

@@ -173,6 +173,7 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [Gitlab Community](examples/gitlab-ce) -  Self Hosted Git repository management, code reviews, issue tracking, activity feeds and wikis.
 - [Code-Server](examples/code-server) - VS Code in the browser, hosted on a remote server.
 - [Onedev](examples/onedev) - Self-hosted Git Server with CI/CD and Kanban.
+- [Atlassian Jira Core](examples/atlassian-jira-confluence) - Jira Core is a project and task management solution built for business teams.
 
 ### Automation and Monitoring
 
@@ -388,6 +389,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 - [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
 - [Docmost](examples/docmost) - Docmost is an open source collaborative documentation and wiki software. It is an open-source alternative to the likes of Confluence and Notion.
+- [Atlassian Confluence](examples/atlassian-jira-confluence) - Confluence is a wiki solution built for business teams.
 
 ### Money, Budgeting & Management
 

@@ -5,13 +5,7 @@
 
 # Notes
 
-Start by creating a new Docker network for separation:
-
-````
-docker network create authentik-internal
-````
-
-Then adjust the `.env` file with your private secrets and spawn up the stack:
+Adjust the `.env` file with your private secrets and spawn up the stack:
 
 ````
 docker compose up -d

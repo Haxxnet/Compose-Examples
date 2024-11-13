@@ -39,7 +39,7 @@ services:
     #  - traefik.enable=true
     #  - traefik.docker.network=atlassian-network
     #  - traefik.http.routers.confluence.rule=Host(`confluence.example.com`)
-    #  - traefik.http.services.confluence.loadbalancer.server.port=8080
+    #  - traefik.http.services.confluence.loadbalancer.server.port=8090
     #  # Optional part for file upload max sizes
     #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
     #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000

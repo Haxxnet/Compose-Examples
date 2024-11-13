@@ -1,7 +1,7 @@
 services:
 
   confluence:
-    image: atlassian/confluence:latest
+    image: atlassian/confluence:9.0.3
     container_name: confluence
     hostname: confluence
     restart: unless-stopped

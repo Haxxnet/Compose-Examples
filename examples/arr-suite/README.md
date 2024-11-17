@@ -117,7 +117,9 @@ Then head over to `Settings > Downloads` and configure the custom download path 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/278b800d-2b6b-45cb-a44c-7f56def7f9d3)
 
 > [!TIP]
-> If you would like to ensure that Qbittorrent downloads stuff via the gluetun VPN killswitch and not your personal WAN IP, you may use [this GitHub project](https://github.com/AKK9/torrent-ip-checker). It is an example torrent file, which does not actually download something malicious but reports back your disclosed IP address. The reported IP address must be the one from your commercial VPN provider like Mullvad. Just download the torrent file from the GH repo and upload it in Qbittorrent's web UI via `File > Add torrent file`.
+> If you would like to ensure that Qbittorrent downloads stuff via the gluetun VPN killswitch and not your personal WAN IP, you may use [this GitHub project](https://github.com/AKK9/torrent-ip-checker). It is an example torrent file, which does not actually download something malicious but reports back your disclosed IP address. The reported IP address must be the one from your commercial VPN provider like Mullvad.
+>
+> Just [download the torrent file](https://vvdapo30eb.execute-api.eu-west-2.amazonaws.com/torrent) and upload it via Qbittorrent's web UI via `File > Add torrent file`.
 
 ![image](https://github.com/user-attachments/assets/5c7531eb-2cd7-4b16-968d-32a00cc4020a)
 

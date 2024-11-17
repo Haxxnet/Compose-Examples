@@ -129,7 +129,7 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.readarr.middlewares=local-ipwhitelist@file
 
-  # image used to scan for books
+  # image used to manage subtitles
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
     container_name: arr-suite-bazarr

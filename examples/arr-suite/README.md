@@ -137,6 +137,14 @@ All other arr applications follow the same configuration steps.
 
 ### Emby / Jellyfin
 
+The Docker Compose stack makes use of Emby as default. 
+
+You can switch to Jellyfin though by removing the Emby container service and uncommenting the Jellyfin one.
+
+- Emby (default) and Jellyfin are accessible at `http://<YOUR-IP>:8096/`
+
+Follow the below steps to configure one of these media streaming containers:
+
 1. Configure authentication for your media streaming app. Can be done natively via the HTTP UI settings.
 2. Ensure to define your media location for your library. Can be done natively via the HTTP UI settings.
 3. Configure transcoding and passthrough your GPU into the container (optional)

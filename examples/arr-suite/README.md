@@ -91,7 +91,7 @@ Just make sure that the URL is correct and paste the API key. Should look someth
 
 #### Flareresolverr Cloudflare Bypass
 
-Moreover, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `settings/indexers` at Prowlarr. Hit the plus button and add FlareResolverr. Ensure to define the correct URL and also the tag `flaresolverr`.
+Moreover, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `/settings/indexers` at Prowlarr. Hit the plus button and add FlareResolverr. Ensure to define the correct URL and also the tag `flaresolverr`.
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/19a26a74-dae0-4381-9614-46d20f912542)
 

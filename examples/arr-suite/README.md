@@ -73,6 +73,8 @@ https://github.com/qdm12/gluetun-wiki
 
 ### Prowlarr
 
+#### API Connection to other Arrs
+
 After spawning up the compose stack, Prowlarr will be accessible on `http://<YOUR-IP>:9696`.
 
 Within Prowlarr, we have to configure API connectivity to Sonarr, Lidarr, Readarr and any other arrs. To do so, just log into Prowlarr via the HTTP UI and access `Settings > Apps` under `/settings/applications`. Hit the plus button and add your arr application.
@@ -87,9 +89,17 @@ Just make sure that the URL is correct and paste the API key. Should look someth
 
 **Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. 
 
-Finally, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `settings/indexers` at Prowlarr. Hit the plus button and add FlareResolverr. Ensure to define the correct URL and also the tag `flaresolverr`.
+#### Flareresolverr Cloudflare Bypass
+
+Moreover, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `settings/indexers` at Prowlarr. Hit the plus button and add FlareResolverr. Ensure to define the correct URL and also the tag `flaresolverr`.
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/19a26a74-dae0-4381-9614-46d20f912542)
+
+#### Qbittorrent Download Client
+
+Finally, add Qbittorrent as download client to Prowlarr. Head over to `Settings > Download Clients` and add a new one. 
+
+Define your server's IP address at `Host` (or the container name `arr-suite-gluetun`) and `8080` at `Port`.
 
 ### Qbittorrent
 

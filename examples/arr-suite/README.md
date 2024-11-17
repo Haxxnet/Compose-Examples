@@ -119,6 +119,8 @@ Then head over to `Settings > Downloads` and configure the custom download path 
 > [!TIP]
 > If you would like to ensure that Qbittorrent downloads stuff via the gluetun VPN killswitch and not your personal WAN IP, you may use [this GitHub project](https://github.com/AKK9/torrent-ip-checker). It is an example torrent file, which does not actually download something malicious but reports back your disclosed IP address. The reported IP address must be the one from your commercial VPN provider like Mullvad. Just download the torrent file from the GH repo and upload it in Qbittorrent's web UI via `File > Add torrent file`.
 
+![image](https://github.com/user-attachments/assets/5c7531eb-2cd7-4b16-968d-32a00cc4020a)
+
 ### Sonarr, Radarr, Lidarr, Readarr, Bazarr
 
 All other arr applications follow the same configuration steps.

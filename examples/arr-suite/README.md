@@ -61,20 +61,85 @@ You can follow parts of [this Youtube tutorial](https://youtu.be/LD8-Qr3B2-o?si=
 
 **Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. Use Docker networks! The only exception is qbittorrent, which uses the vpn killswitch network of the gluetun container. Here, the gluetun container will expose qbittorrent's web ui on TCP/8080 and the IP address of your docker host server. Setup qbittorrent in all arr-applications using your server's local IP address, on which port 8080 is mapped to.
 
-> [!WARNING]
-> We configured qbittorrent to use the non-default path `/media/downloads` for downloads.
->
-> Please define this location path in the qbittorrent admin panel too!
+Please make sure to configure authentication for all arr containers. Authentication is often optional and not enabled per default.
 
-![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/278b800d-2b6b-45cb-a44c-7f56def7f9d3)
+### Gluetun
+
+Please refer to the official wiki of Gluetun to configure it for your commercial VPN provider in use.
+
+For this compose example, we will use Mullvad VPN, which is a privacy-friendly VPN provider that does not log. If you use another VPN provider, you have to adjust the environment variables typically.
+
+https://github.com/qdm12/gluetun-wiki
+
+### Prowlarr
+
+After spawning up the compose stack, Prowlarr will be accessible on `http://<YOUR-IP>:9696`.
+
+Within Prowlarr, we have to configure API connectivity to Sonarr, Lidarr, Readarr and any other arrs. To do so, just log into Prowlarr via the HTTP UI and access `Settings > Apps` under `/settings/applications`. Hit the plus button and add your arr application.
+
+To add an arr application, you typically have to create an API key first. To do so, log into the other arr applications via the UI and create an API key. You can find the application area for this typically at `Settings > General > API Key` under `/settings/general`.
+
+Just make sure that the URL is correct and paste the API key. Should look something like this:
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/8915f9f3-081f-41d2-9c5e-bdf9553e09c2)
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/94de5802-3b26-420b-bb1d-ac82cd5a5cfb)
 
+**Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. 
+
+Finally, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `settings/indexers` at Prowlarr. Hit the plus button and add FlareResolverr. Ensure to define the correct URL and also the tag `flaresolverr`.
+
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/19a26a74-dae0-4381-9614-46d20f912542)
 
-## Traefik + Emby + HTTP Headers
+### Qbittorrent
+
+> [!WARING]
+> Qbittorrent is run behind the Gluetun VPN killswitch container. Therefore, we have to port map the Qbittorrent port 8080 at the gluetun container.
+
+Log into the Qbittorrent web UI. The UI is typically accessible from `http://<YOUR-IP>:8080`.
+
+Make sure to change the user password immediately. The initial password is printed in the container logs. 
+
+Then head over to `Settings > Downloads` and configure the custom download path `/media/downloads` as follows:
+
+![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/278b800d-2b6b-45cb-a44c-7f56def7f9d3)
+
+> [!TIP]
+> If you would like to ensure that Qbittorrent downloads stuff via the gluetun VPN killswitch and not your personal WAN IP, you may use [this GitHub project](https://github.com/AKK9/torrent-ip-checker). It is an example torrent file, which does not actually download something malicious but reports back your disclosed IP address. The reported IP address must be the one from your commercial VPN provider like Mullvad. Just download the torrent file from the GH repo and upload it in Qbittorrent's web UI via `File > Add torrent file`.
+
+### Sonarr, Radarr, Lidarr, Readarr, Bazarr
+
+All other arr applications follow the same configuration steps.
+
+1. Configure authentication for the arr's HTTP UI. Can be done regularly via `Settings > General`.
+2. Ensure to define your media location. Can be done regularly via `Settings > Media Management > Root Folders > Path`. Should point to `/media/music` for Lidarr, `/media/tv-shows` for Sonarr, `/media/movies` for Radarr and so on.
+3. Fix all `System > Health` warnings and errors reported by each arr container. May refer to https://wiki.servarr.com/.
+
+- Sonarr is accessible at `http://<YOUR-IP>:8989/`
+- Radarr is accessible at `http://<YOUR-IP>:7979/`
+- Lidarr is accessible at `http://<YOUR-IP>:8686/`
+- Bazarr is accessible at `http://<YOUR-IP>:6767/`
+- Readarr is accessible at `http://<YOUR-IP>:8787/`
+
+### Emby / Jellyfin
+
+1. Configure authentication for your media streaming app. Can be done natively via the HTTP UI settings.
+2. Ensure to define your media location for your library. Can be done natively via the HTTP UI settings.
+
+### Reverse Proxy
+
+It is recommended to run all containers with an HTTP UI behind a reverse proxy. The reverse proxy can enforce a TLS encrypted communication channel with valid SSL certificates.
+
+This example Compose Stack includes labels for the Traefik reverse proxy. Uncomment to make use of it.
+
+If you run a different reverse proxy, please adjust to its official documentation on how to configure proxy hosts.
+
+> [!TIP]
+> Once a reverse proxy is in use, you can typically remove all port mappings from the Docker Compose file. The reverse proxy will do the proxying and should be placed in the same network as the arr media stack.
+>
+> Note that the Qbittorrent TCP/8080 port is mapped at the Gluetun VPN killswitch container. So your reverse proxy must proxy to Gluetun in order to access the Qbittorrent admin UI.
+
+#### Traefik + Emby + HTTP Headers
 
 During the setup of Emby in a web browser (HTTPS via Traefik) you may notice errors in the developer console, which prevent the web page from loading properly.
 

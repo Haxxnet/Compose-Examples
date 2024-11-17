@@ -93,7 +93,7 @@ Finally, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare fo
 
 ### Qbittorrent
 
-> [!WARING]
+> [!WARNING]
 > Qbittorrent is run behind the Gluetun VPN killswitch container. Therefore, we have to port map the Qbittorrent port 8080 at the gluetun container.
 
 Log into the Qbittorrent web UI. The UI is typically accessible from `http://<YOUR-IP>:8080`.

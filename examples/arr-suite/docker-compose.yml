@@ -185,6 +185,7 @@ services:
       - VPN_TYPE=wireguard # define the vpn protocol to use
       - WIREGUARD_PRIVATE_KEY=wOEI9rqqbDwnN8/Bpp22sVz48T71vJ4fYmFWujulwUU= # define your wireguard private key here
       - WIREGUARD_ADDRESSES=10.64.222.21/32 # define the ipv4 vpn network subnet here
+      - SERVER_CITIES=Paris # define the server cities
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/gluetun:/gluetun
     restart: unless-stopped

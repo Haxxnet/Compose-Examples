@@ -57,9 +57,7 @@ The following bind mount volumes are defined:
 
 ## Setup
 
-You can follow this Youtube tutorial on how to setup most of the arr applications:
-
-https://www.youtube.com/watch?v=LD8-Qr3B2-o
+You can follow parts of [this Youtube tutorial](https://youtu.be/LD8-Qr3B2-o?si=49RQxJ5KRcoETCiQ&t=740) on how to configure most of the arr applications.
 
 **Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. Use Docker networks! The only exception is qbittorrent, which uses the vpn killswitch network of the gluetun container. Here, the gluetun container will expose qbittorrent's web ui on TCP/8080 and the IP address of your docker host server. Setup qbittorrent in all arr-applications using your server's local IP address, on which port 8080 is mapped to.
 

@@ -96,9 +96,9 @@ Finally, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare fo
 > [!WARNING]
 > Qbittorrent is run behind the Gluetun VPN killswitch container. Therefore, we have to port map the Qbittorrent port 8080 at the gluetun container.
 
-Log into the Qbittorrent web UI. The UI is typically accessible from `http://<YOUR-IP>:8080`.
+Log into the Qbittorrent web UI. The UI is typically accessible from `http://<YOUR-IP>:8080`. 
 
-Make sure to change the user password immediately. The initial password is printed in the container logs. 
+The default username is `admin`. Make sure to change the password immediately. The initial password is printed in the container logs. If you do not change the password immediately, a new password will printed and set upon next container restart.
 
 Then head over to `Settings > Downloads` and configure the custom download path `/media/downloads` as follows:
 

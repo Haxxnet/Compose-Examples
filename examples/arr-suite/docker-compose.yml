@@ -129,6 +129,32 @@ services:
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.readarr.middlewares=local-ipwhitelist@file
 
+  # image used to scan for books
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: arr-suite-bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/bazarr:/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media and qbittorrent download folder
+    expose:
+      - 6767/tcp # web ui
+    ports:
+      - 6767:6767/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.bazarr.rule=Host(`bazarr.example.com`)
+    #  - traefik.http.services.bazarr.loadbalancer.server.port=6767
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.bazarr.middlewares=local-ipwhitelist@file
+
   # image used to bypass cloudflare for prowlarr
   flaresolverr:
     image: flaresolverr/flaresolverr:latest

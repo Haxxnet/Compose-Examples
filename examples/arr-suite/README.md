@@ -5,6 +5,7 @@
 - https://docs.linuxserver.io/images/docker-radarr/
 - https://docs.linuxserver.io/images/docker-lidarr/
 - https://docs.linuxserver.io/images/docker-readarr/
+- https://hub.docker.com/r/linuxserver/bazarr
 - https://github.com/FlareSolverr/FlareSolverr
 - https://docs.linuxserver.io/images/docker-qbittorrent/
 - https://hub.docker.com/r/qmcgaw/gluetun

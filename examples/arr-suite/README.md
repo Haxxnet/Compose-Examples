@@ -33,6 +33,8 @@ Docker stack consisting of various arr-services like:
   - Used for music
 - Readarr
   - Used for books
+- Bazarr
+  - Used for subtitles 
 - Flaresolverr
   - Used to bypass Cloudflare for prowlarr
   - You must add it at prowlarr as indexer with the tag `flaresolverr`

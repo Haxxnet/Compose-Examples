@@ -52,7 +52,7 @@ The following bind mount volumes are defined:
 
 - `/arr-suite/configs/<container-name>`
   - holds the config files of an arr container
-- `/arr-suite/media/`
+- `/arr-suite/media/<type>`
   - will hold your media files such as movies, music, books, tv-shows, qbittorrent downloads etc.
 
 ## Setup

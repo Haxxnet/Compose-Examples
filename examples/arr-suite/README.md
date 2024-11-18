@@ -91,9 +91,13 @@ Just make sure that the URL is correct and paste the API key. Should look someth
 
 #### FlareResolverr CloudFlare Bypass
 
-Moreover, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `/settings/indexers`. Hit the plus button and add FlareResolverr. Ensure to define the correct URL and also the tag `flaresolverr`.
+Moreover, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `/settings/indexers`. Hit the plus button and add FlareResolverr. 
+
+Ensure to define the correct URL and also the tag `flaresolverr`. The tag must be defined again when adding indexers that are protected by CloudFlare (e.g. 1337x).
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/19a26a74-dae0-4381-9614-46d20f912542)
+
+![image](https://github.com/user-attachments/assets/548c8e93-24da-41fb-8b4d-ba7d9061b51f)
 
 #### Qbittorrent Download Client
 

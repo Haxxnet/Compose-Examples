@@ -64,9 +64,38 @@ Please make sure to configure authentication for all arr containers. Authenticat
 
 Please refer to the official wiki of Gluetun to configure it for your commercial VPN provider in use.
 
-For this compose example, we will use Mullvad VPN, which is a privacy-friendly VPN provider that does not log. If you use another VPN provider, you have to adjust the environment variables typically.
+This must be done before spawning up the Docker Compose stack.
+
+For this compose example, we used Mullvad VPN, which is a privacy-friendly VPN provider that does not log. If you use another VPN provider, you have to adjust the environment variables typically.
 
 https://github.com/qdm12/gluetun-wiki
+
+### Volume Mappings
+
+The following bind mount volumes are defined wihtin the Docker Compose stack:
+
+- `/arr-suite/configs/<container-name>`
+  - holds the config files of an arr container; automatically created during during compose stack start
+- `/arr-suite/media/<folder>`
+  - will hold your media files such as movies, music, books, tv-shows, qbittorrent downloads etc.
+  - only the downloads folder will be created automatically by Qbittorrent during compose stack start
+
+The media folders should be created before starting up the compose stack. To do so, issue these commands:
+
+````bash
+# create subfolders for our media library
+mkdir -p ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/{downloads,movies,tv-shows,music,books}
+
+# adjust permissions
+sudo chown -R 1000:1000 ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/
+sudo chmod -R 775 ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/
+````
+
+Afterwards, we can spawn up the stack via:
+
+````bash
+docker compose up -d
+````
 
 ### Prowlarr
 
@@ -134,6 +163,12 @@ Add your preferred indexers such as 1337X and many others. Do not forget to add 
 
 All other arr applications follow the same configuration steps.
 
+- Sonarr is accessible at `http://<YOUR-IP>:8989/`
+- Radarr is accessible at `http://<YOUR-IP>:7878/`
+- Lidarr is accessible at `http://<YOUR-IP>:8686/`
+- Readarr is accessible at `http://<YOUR-IP>:8787/`
+- Bazarr is accessible at `http://<YOUR-IP>:6767/`
+
 Follow these steps for each individuall arr container:
 
 1. Configure authentication for the arr's HTTP UI. Can be done regularly via `Settings > General`.
@@ -143,21 +178,17 @@ Follow these steps for each individuall arr container:
 5. Configure Bazarr for Radarr and Sonarr. See https://wiki.bazarr.media/Getting-Started/Setup-Guide/
 6. Fix all `System > Health` warnings and errors reported by each arr container. May refer to https://wiki.servarr.com/.
 
-- Sonarr is accessible at `http://<YOUR-IP>:8989/`
-- Radarr is accessible at `http://<YOUR-IP>:7878/`
-- Lidarr is accessible at `http://<YOUR-IP>:8686/`
-- Readarr is accessible at `http://<YOUR-IP>:8787/`
-- Bazarr is accessible at `http://<YOUR-IP>:6767/`
-
 ### Emby / Jellyfin
 
-The Docker Compose stack makes use of Emby as default. You can switch to Jellyfin though by removing the Emby container service and uncommenting the Jellyfin one.
+The Docker Compose stack makes use of Emby as default. 
 
-- Emby or Jellyfin will be accessible at `http://<YOUR-IP>:8096/`
+You can switch to Jellyfin by removing the Emby container service and uncommenting the Jellyfin one though.
+
+- Emby or Jellyfin is accessible at `http://<YOUR-IP>:8096/`
 
 Follow the below steps to configure one of these media streaming containers:
 
-1. Configure authentication for your media streaming app. Can be done natively via the HTTP UI settings.
+1. Setup authentication for your media streaming app. Is done automatically during the HTTP setup wizard.
 2. Ensure to define your media location for your library. Can be done natively via the HTTP UI settings.
 3. Configure transcoding and passthrough your GPU into the container (optional)
 

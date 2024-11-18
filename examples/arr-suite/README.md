@@ -89,9 +89,9 @@ Just make sure that the URL is correct and paste the API key. Should look someth
 
 > **Note**:  As all arr containers live within the same Docker network, you can easily reference container names instead of IPs. Docker will resolve the container names automatically to the current docker containers' IP. No need for port mappings or defining your Docker server's IP address. 
 
-#### Flareresolverr Cloudflare Bypass
+#### FlareResolverr CloudFlare Bypass
 
-Moreover, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `/settings/indexers` at Prowlarr. Hit the plus button and add FlareResolverr. Ensure to define the correct URL and also the tag `flaresolverr`.
+Moreover, we will add FlareResolverr to Prowlarr in order to bypass CloudFlare for some indexers. To do so, head over to `Settings > Indexer` under `/settings/indexers`. Hit the plus button and add FlareResolverr. Ensure to define the correct URL and also the tag `flaresolverr`.
 
 ![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/19a26a74-dae0-4381-9614-46d20f912542)
 
@@ -107,10 +107,12 @@ Define your server's IP address at `Host` (or the container name `arr-suite-glue
 
 > [!WARNING]
 > Qbittorrent is run behind the Gluetun VPN killswitch container. Therefore, we have to port map the Qbittorrent port 8080 at the gluetun container.
+>
+> This is also the reason why we define `arr-suite-gluetun` as host when adding Qbittorent and its port 8080 as download client to other arr containers.
 
-Log into the Qbittorrent web UI. The UI is typically accessible from `http://<YOUR-IP>:8080`. 
+Log into the Qbittorrent's web UI. The UI is typically accessible from `http://<YOUR-IP>:8080`. 
 
-The default username is `admin`. Make sure to change the password immediately. The initial password is printed in the container logs. If you do not change the password immediately, a new password will printed and set upon next container restart.
+The default username is `admin`. Make sure to change the password immediately. The initial password is printed in the container logs. If you do not change the password immediately, a new password will be printed and set upon each container restart.
 
 Then head over to `Settings > Downloads` and configure the custom download path `/media/downloads` as follows:
 
@@ -144,11 +146,9 @@ Follow these steps for each individuall arr container:
 
 ### Emby / Jellyfin
 
-The Docker Compose stack makes use of Emby as default. 
+The Docker Compose stack makes use of Emby as default. You can switch to Jellyfin though by removing the Emby container service and uncommenting the Jellyfin one.
 
-You can switch to Jellyfin though by removing the Emby container service and uncommenting the Jellyfin one.
-
-- Emby (default) and Jellyfin are accessible at `http://<YOUR-IP>:8096/`
+- Emby or Jellyfin will be accessible at `http://<YOUR-IP>:8096/`
 
 Follow the below steps to configure one of these media streaming containers:
 
@@ -158,16 +158,16 @@ Follow the below steps to configure one of these media streaming containers:
 
 ### Reverse Proxy
 
-It is recommended to run all containers with an HTTP UI behind a reverse proxy. The reverse proxy can enforce a TLS encrypted communication channel with valid SSL certificates.
+It is recommended to run all containers with an HTTP UI behind a reverse proxy. The reverse proxy can enforce a TLS encrypted communication channel with valid SSL certificates. Also add access controls via IP whitelisting, IdP forward-auth and many more.
 
-This example Compose Stack includes labels for the Traefik reverse proxy. Uncomment to make use of it.
+This example Compose Stack includes labels for the Traefik reverse proxy. Uncomment those to make use of it. Otherwise, remove them.
 
-If you run a different reverse proxy, please adjust to its official documentation on how to configure proxy hosts.
+If you run a different reverse proxy, please refer to the official documentation on how to configure proxy hosts. The ports to proxy on are defined in the Docker Compose file using the `expose` directive.
 
 > [!TIP]
-> Once a reverse proxy is in use, you can typically remove all port mappings from the Docker Compose file. The reverse proxy will do the proxying and should be placed in the same network as the arr media stack.
+> Once a reverse proxy is in use, you can typically remove all port mappings from the Docker Compose file. The reverse proxy will do the proxying and must be placed in the same Docker bridge network as the arr media stack.
 >
-> Note that the Qbittorrent TCP/8080 port is mapped at the Gluetun VPN killswitch container. So your reverse proxy must proxy to Gluetun in order to access the Qbittorrent admin UI.
+> Note that the Qbittorrent TCP/8080 port is mapped at the Gluetun VPN killswitch container. So your reverse proxy must proxy to the 8080 port mapped on your docker server's IP address in order to access the Qbittorrent admin UI.
 
 #### Traefik + Emby + HTTP Headers
 

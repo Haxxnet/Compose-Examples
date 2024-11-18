@@ -35,8 +35,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/sonarr:/config # location of database and configs
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/tv-shows:/media/tv-shows # location of media library
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of qbittorrent downloads
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
     expose:
       - 8989/tcp # web ui
     ports:
@@ -62,8 +61,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config # location of database and configs
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/movies:/media/movies # location of media library
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of qbittorrent downloads
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
     expose:
       - 7878/tcp # web ui
     ports:
@@ -89,8 +87,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/lidarr:/config # location of database and configs
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/music:/media/music # location of media library
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of qbittorrent downloads
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
     expose:
       - 8686/tcp # web ui
     ports:
@@ -116,8 +113,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/readarr:/config # location of database and configs
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/books:/media/books # location of media library
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of qbittorrent downloads
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
     expose:
       - 8787/tcp # web ui
     ports:

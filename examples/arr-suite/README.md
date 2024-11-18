@@ -144,10 +144,10 @@ Follow these steps for each individuall arr container:
 6. Fix all `System > Health` warnings and errors reported by each arr container. May refer to https://wiki.servarr.com/.
 
 - Sonarr is accessible at `http://<YOUR-IP>:8989/`
-- Radarr is accessible at `http://<YOUR-IP>:7979/`
+- Radarr is accessible at `http://<YOUR-IP>:7878/`
 - Lidarr is accessible at `http://<YOUR-IP>:8686/`
-- Bazarr is accessible at `http://<YOUR-IP>:6767/`
 - Readarr is accessible at `http://<YOUR-IP>:8787/`
+- Bazarr is accessible at `http://<YOUR-IP>:6767/`
 
 ### Emby / Jellyfin
 

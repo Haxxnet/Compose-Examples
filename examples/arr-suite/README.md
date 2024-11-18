@@ -114,6 +114,10 @@ Log into the Qbittorrent's web UI. The UI is typically accessible from `http://<
 
 The default username is `admin`. Make sure to change the password immediately. The initial password is printed in the container logs. If you do not change the password immediately, a new password will be printed and set upon each container restart.
 
+Then head over to `Settings > Downloads` and configure the custom download path `/media/downloads` as follows:
+
+![image](https://github.com/Haxxnet/Compose-Examples/assets/21357789/278b800d-2b6b-45cb-a44c-7f56def7f9d3)
+
 > [!TIP]
 > If you would like to ensure that Qbittorrent downloads stuff via the gluetun VPN killswitch and not your personal WAN IP, you may use [this GitHub project](https://github.com/AKK9/torrent-ip-checker). It is an example torrent file, which does not actually download something malicious but reports back your disclosed IP address. The reported IP address must be the one from your commercial VPN provider like Mullvad.
 >

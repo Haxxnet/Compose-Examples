@@ -72,7 +72,7 @@ https://github.com/qdm12/gluetun-wiki
 
 ### Volume Mappings
 
-The following bind mount volumes are defined wihtin the Docker Compose stack:
+The following bind mount volumes are defined within the Docker Compose stack:
 
 - `/arr-suite/configs/<container-name>`
   - holds the config files of an arr container; automatically created during during compose stack start

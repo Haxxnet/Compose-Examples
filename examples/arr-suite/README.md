@@ -132,11 +132,12 @@ All other arr applications follow the same configuration steps.
 Follow these steps for each individuall arr container:
 
 1. Configure authentication for the arr's HTTP UI. Can be done regularly via `Settings > General`.
-2. Ensure to define your media location. Can be done regularly via `Settings > Media Management > Root Folders > Path`. Should point to `/media/music` for Lidarr, `/media/tv-shows` for Sonarr, `/media/movies` for Radarr and `/media/books` for Readarr and so on. If those subdirectories do not exist yet, go ahead and create them.
-3. Configure Qbittorrent as download client. Can be done regularly via `Settings > Download Clients`. Define your server's IP address at `Host` (or the container name `arr-suite-gluetun`) and `8080` at `Port`.
-4. Configure your quality definitions and indexers (optional)
-5. Configure Bazarr for Radarr and Sonarr. See https://wiki.bazarr.media/Getting-Started/Setup-Guide/
-6. Fix all `System > Health` warnings and errors reported by each arr container. May refer to https://wiki.servarr.com/.
+2. Ensure to define your media location. Can be done regularly via `Settings > Media Management > Root Folders > Path`. Should point to `/media/music` for Lidarr, `/media/tv-shows` for Sonarr, `/media/movies` for Radarr and `/media/books` for Readarr and so on. If those subdirectories do not exist yet, go ahead and create them via the following command:
+    - `mkdir -p /mnt/docker-volumes/arr-suite/media/{downloads,movies,tv-shows,music,books}`
+4. Configure Qbittorrent as download client. Can be done regularly via `Settings > Download Clients`. Define your server's IP address at `Host` (or the container name `arr-suite-gluetun`) and `8080` at `Port`.
+5. Configure your quality definitions and indexers (optional)
+6. Configure Bazarr for Radarr and Sonarr. See https://wiki.bazarr.media/Getting-Started/Setup-Guide/
+7. Fix all `System > Health` warnings and errors reported by each arr container. May refer to https://wiki.servarr.com/.
 
 - Sonarr is accessible at `http://<YOUR-IP>:8989/`
 - Radarr is accessible at `http://<YOUR-IP>:7979/`

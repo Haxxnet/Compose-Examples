@@ -181,8 +181,8 @@ services:
     environment:
       # see https://github.com/qdm12/gluetun-wiki for more details
       # example envs based on https://github.com/qdm12/gluetun-wiki/blob/main/setup/providers/mullvad.md
-      - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER:?VPN_SERVICE_PROVIDER must be set} # define the vpn provider
-      - VPN_TYPE=${VPN_TYPE:?VPN_TYPE must be set} # define the vpn protocol to use
+      - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER:-mullvad} # define the vpn provider
+      - VPN_TYPE=${VPN_TYPE:-wireguard} # define the vpn protocol to use
       - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?WIREGUARD_PRIVATE_KEY must be set} # define your wireguard private key here
       - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?WIREGUARD_ADDRESSES must be set} # define the ipv4 vpn network subnet here
       - SERVER_CITIES=${SERVER_CITIES:?SERVER_CITIES must be set} # define the server cities

@@ -33,13 +33,14 @@ services:
     #  - internal    
     #labels:
     #  - traefik.enable=true
+    #  - traefik.docker.network=proxy    
     #  - traefik.http.routers.leantime.rule=Host(`leantime.example.com`)
     #  - traefik.http.services.leantime.loadbalancer.server.port=80
+    #  # Optional part for file upload max sizes
     #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
     #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
     #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
-    #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.leantime.middlewares=local-ipwhitelist@file,authelia@file,basic-auth@file
 

@@ -451,6 +451,7 @@ Software that does not fit in another section.
 
 - [Network-Multitool](examples/network-multitool) - Multi-arch multitool for container network troubleshooting.
 - [IT-Tools](examples/it-tools) - Collection of handy online tools for developers, with great UX.
+- [Scratch-Map](examples/scratch-map) - An open-source scratch-off style map to track your travels.
 
 ## 🌟 Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)

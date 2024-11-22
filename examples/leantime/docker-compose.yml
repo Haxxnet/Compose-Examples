@@ -1,7 +1,7 @@
 services:
 
   leantime_db:
-    image: mysql:8.0
+    image: mysql:8.4
     container_name: leantime-mysql
     expose:
       - 3306
@@ -11,7 +11,7 @@ services:
     env_file: ./.env
     command: --character-set-server=UTF8MB4 --collation-server=UTF8MB4_unicode_ci
     #networks:
-    #  - proxy
+    #  - internal
 
   leantime:
     image: leantime/leantime:latest
@@ -21,14 +21,16 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/public_data:/var/www/html/public/userfiles
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/data:/var/www/html/userfiles
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/leantime/plugins:/var/www/html/app/Plugins
     ports:
       - "8080:80" # The port to expose and access Leantime
     expose:
       - 80
     depends_on:
-      - leantime_db # Don't start Leantime unless leantime_db is running
+      - leantime_db
     #networks:
     #  - proxy
+    #  - internal    
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.leantime.rule=Host(`leantime.example.com`)
@@ -44,3 +46,5 @@ services:
 #networks:
 #  proxy:
 #    external: true
+#  internal:
+#    internal: true

@@ -4,7 +4,7 @@
 services:
 
   traefik:
-    image: traefik:2.11
+    image: traefik:3.1
     container_name: traefik
     restart: always
     command:

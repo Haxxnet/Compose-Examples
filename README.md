@@ -399,7 +399,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 
 - [TRSync](examples/trsync) - Django web frontend for pytr to download all Trade Republic depot data.
 - [Money-Balancer](examples/money-balancer) - A simple application for managing debt with your friends!
-- [Firefly III](examples/firefly-iii) - A self-hosted manager for your personal finances.
+- [Firefly III](examples/firefly) - A self-hosted manager for your personal finances.
 - [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports expiry notifications, transaction histories and file uploads.
 
 ### Genealogy

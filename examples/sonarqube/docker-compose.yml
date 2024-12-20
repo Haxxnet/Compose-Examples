@@ -1,15 +1,18 @@
-version: "3"
+version: "3.8"
 
 services:
   sonarqube:
     image: sonarqube:8.5.1-community
     container_name: sonarqube
+    depends_on:
+      - db
     ports:
-      - 9000:9000 # WEB UI
+      - "9000:9000" # WEB UI
     environment:
-      - sonar.jdbc.username=sonar
-      - sonar.jdbc.password=sonar
-      - sonar.search.javaAdditionalOpts=-Dbootstrap.system_call_filter=false
+      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+      SONAR_SEARCH_JAVAADDITIONALOPTS: -Dbootstrap.system_call_filter=false
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarqube/logs:/opt/sonarqube/logs
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarqube/data:/opt/sonarqube/data
@@ -20,8 +23,9 @@ services:
     container_name: sonarqube_db
     hostname: db
     environment:
-      - POSTGRES_USER=sonar
-      - POSTGRES_PASSWORD=sonar
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonar
     volumes:
       - pg_db:/var/lib/postgresql
       - pg_data:/var/lib/postgresql/data

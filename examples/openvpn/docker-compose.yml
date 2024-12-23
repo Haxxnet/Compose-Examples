@@ -1,6 +1,5 @@
-version: '3.3'
-
 services:
+
   openvpn-as:
     image: openvpn/openvpn-as
     container_name: openvpn-as

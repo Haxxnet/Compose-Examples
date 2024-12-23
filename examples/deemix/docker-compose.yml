@@ -1,13 +1,12 @@
-version: "3"
-
 services:
+
   deemix:
+    image: registry.gitlab.com/bockiii/deemix-docker:latest    
     container_name: deemix
+    hostname: deemix    
     environment:
       - PUID=1000
       - PGID=1000
-    hostname: deemix
-    image: registry.gitlab.com/bockiii/deemix-docker:latest
     restart: unless-stopped
     ports:
       - 6595:6595

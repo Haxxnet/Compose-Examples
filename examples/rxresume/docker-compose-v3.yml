@@ -1,5 +1,3 @@
-version: "3.8"
-
 # This docker compose example targets rxresume < 4.0
 # For a newer version, please see https://github.com/AmruthPillai/Reactive-Resume/tree/main/tools/compose
 
@@ -22,8 +20,9 @@ version: "3.8"
 # https://github.com/AmruthPillai/Reactive-Resume/issues/721#issuecomment-1405283786
 
 services:
+
   postgres:
-    image: postgres:alpine
+    image: postgres:16-alpine
     container_name: rxresume-db
     restart: always
     expose:

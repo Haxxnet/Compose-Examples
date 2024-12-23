@@ -1,17 +1,18 @@
-version: "3.8"
-
 services:
+
   excalidraw:
-    container_name: excalidraw
     image: excalidraw/excalidraw:latest
-    ports:
-      - "3000:80"
+    container_name: excalidraw
     restart: unless-stopped
     stdin_open: true
     healthcheck:
       disable: true
     environment:
       - NODE_ENV=production
+    ports:
+      - "3000:80"
+    expose:
+      - 80      
     #networks:
     #  - proxy
     #volumes:

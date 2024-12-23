@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   syncthing:
     image: syncthing/syncthing
     container_name: syncthing

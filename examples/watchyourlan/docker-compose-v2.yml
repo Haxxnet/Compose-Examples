@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   wyl:
     image: aceberg/watchyourlan:v2
     container_name: watchyourlan-v2

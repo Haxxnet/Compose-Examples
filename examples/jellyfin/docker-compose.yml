@@ -1,5 +1,5 @@
-version: '3.3'
 services:
+
     jellyfin:
         image: jellyfin/jellyfin:latest
         container_name: jellyfin
@@ -7,8 +7,11 @@ services:
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jellyfin/config:/config
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jellyfin/cache:/cache
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jellyfin/media:/media
-        network_mode: host
         restart: unless-stopped
+        ports:
+            - 8096:8096/tcp
+        expose:
+            - 8096
         #environment:
         #    - JELLYFIN_PublishedServerUrl=http://example.com # Optional - alternative address used for autodiscovery
         #extra_hosts:

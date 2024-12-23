@@ -1,20 +1,21 @@
-version: "3"
-
 services:
+
   npm:
+    image: jc21/nginx-proxy-manager:latest    
     container_name: npm
+    hostname: npm    
     environment:
       - TZ=Europe/Berlin
       - PUID=1000 # see https://nginxproxymanager.com/advanced-config/
       - PGID=1000 # see https://nginxproxymanager.com/advanced-config/
-    hostname: npm
-    #networks:
-    #  - npm_proxy
-    image: jc21/nginx-proxy-manager:latest
     ports:
       - 80:80/tcp # HTTP
       - 443:443/tcp # HTTPS
       - 81:81/tcp # MGMT UI, do not expose publicly
+    expose:
+      - 80
+      - 443
+      - 81
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/bin/check-health"]
@@ -23,6 +24,8 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx-proxy-manager/data:/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+    #networks:
+    #  - npm_proxy
 
 #networks:
 #  npm_proxy:

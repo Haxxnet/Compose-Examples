@@ -9,7 +9,7 @@
 > It undergoes a complete redesign (zero-knowledge, cloud) for v1.0 and won't provide any updates for the v0.7 (legacy) branch anymore. More information can be found [here](https://www.firezone.dev/blog/firezone-1-0).
 
 > [!TIP]
-> A new fork (l4rm4nd/fireabend) tries to fix outdated dependencies and keep the software alive.
+> A new fork (l4rm4nd/firezone) tries to fix outdated dependencies and keep the software alive.
 >
 > The fork starts with a new v7.0.0 release version and tag.
 

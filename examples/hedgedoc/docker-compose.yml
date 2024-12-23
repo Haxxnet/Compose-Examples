@@ -1,23 +1,24 @@
-version: '3'
-
 services:
 
   database:
-    image: postgres:13.4-alpine
+    image: postgres:16-alpine
     container_name: hedgedoc-db
+    restart: always    
+    expose:
+      - 5432
     environment:
       - POSTGRES_USER=hedgedoc
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=hedgedoc
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hedgedoc/database:/var/lib/postgresql/data
-    restart: always
     #networks:
     #  - proxy
 
   app:
     image: quay.io/hedgedoc/hedgedoc:1.10.0
     container_name: hedgedoc-app
+    restart: always    
     environment:
       - CMD_DB_URL=postgres://hedgedoc:password@database:5432/hedgedoc
       - CMD_DOMAIN=collab.example.com
@@ -45,7 +46,6 @@ services:
       - 3000:3000/tcp
     expose:
       - 3000
-    restart: always
     depends_on:
       - database
     #networks:

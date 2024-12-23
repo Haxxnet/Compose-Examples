@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   bookstack:
     image: linuxserver/bookstack
     container_name: bookstack
@@ -18,6 +17,8 @@ services:
     restart: unless-stopped
     ports:
       - 8099:80
+    expose:
+      - 80
     depends_on:
       - bookstack_db
     #networks:
@@ -47,6 +48,8 @@ services:
       - MYSQL_DATABASE=bookstackapp
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=USERPW1
+    expose:
+      - 3306
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/bookstack/mariadb-config:/config
     restart: unless-stopped

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
 
   app:
@@ -29,7 +27,7 @@ services:
     #  - traefik.http.routers.evershop.middlewares=local-ipwhitelist@file,authelia@docker 
 
   database:
-    image: postgres:16
+    image: postgres:16-alpine
     container_name: evershop-db
     restart: unless-stopped
     volumes:

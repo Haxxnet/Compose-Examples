@@ -1,10 +1,9 @@
-version: '3'
-
 services:
+
   vpn:
     image: hwdsl2/ipsec-vpn-server
+    container_name: ipsec-vpn-server    
     hostname: ipsec-vpn-server
-    container_name: ipsec-vpn-server
     environment:
       #- VPN_IPSEC_PSK=3gAW0sDYI2ARSMQIQRa2xpIHb42JS+ImsiHdf3jbTl8 # set a secure psk; e.g. via `openssl rand -base64 32`; only necessary if not IKEv2 only
       #- VPN_USER=vpn # define your vpn username; only necessary if not IKEv2 only
@@ -25,6 +24,9 @@ services:
     ports:
       - "500:500/udp"
       - "4500:4500/udp"
+    expose:
+      - 500
+      - 4500
     privileged: true
     volumes:
       -  ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ipsec-vpn-server/data:/etc/ipsec.d # required to enable IKEv2

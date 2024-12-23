@@ -1,14 +1,5 @@
-# DO NOT EDIT
-# The .env file has everything you need to edit.
-# Run options:
-# 1. Use prebuilt images (preferred method):
-#   run cmd: docker-compose up -d
-# 2. Build images on your own machine:
-#   build cmd: COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
-#   run cmd: docker-compose up -d
-
-version: "3.8"
 services:
+
   proxy:
     image: reallibrephotos/librephotos-proxy:${tag}
     container_name: librephotos-proxy
@@ -23,7 +14,7 @@ services:
       - frontend
 
   db:
-    image: postgres:13
+    image: postgres:16-alpine
     container_name: librephotos-db
     restart: unless-stopped
     environment:
@@ -80,7 +71,7 @@ services:
         condition: service_healthy
 
   redis:
-    image: redis:6
+    image: redis:7-alpine
     container_name: librephotos-redis
     restart: unless-stopped
     healthcheck:

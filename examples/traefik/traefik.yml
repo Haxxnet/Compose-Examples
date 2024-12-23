@@ -12,6 +12,13 @@ api:
 log:
   level: INFO
 
+# crowdsec bouncer
+#experimental:
+#  plugins:
+#    bouncer:
+#      moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+#      version: v1.3.5
+
 #metrics:
 #  influxDB2:
 #     address: http://influxdb2:8086
@@ -29,7 +36,7 @@ accessLog:
   format: json
   filters:
     statusCodes:
-    #  - "200" # log successful http requests
+      - "200-299" # log successful http requests
       - "400-599" # log failed http requests
     #retryAttempts: true
     #minDuration: "10ms"
@@ -102,6 +109,7 @@ entryPoints:
       middlewares:
         - security-headers@file # reference to a dynamic middleware for setting http security headers per default
         - rate-limit@file # reference to a dynamic middleware for enabling rate limiting per default
+        #- crowdsec@file # reference to a dynamic middleware for enabling crowdsec bouncer
 
 providers:
   providersThrottleDuration: 2s

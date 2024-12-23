@@ -1,9 +1,8 @@
-version: '3'
-
 services:
+
   portainer:
-    image: portainer/portainer-ee:2.21.0-alpine # or use community edition via portainer/portainer-ce
-    container_name: portainer-ee # may rename to portainer-ce if community edition is used
+    image: portainer/portainer-ce:2.23.0-alpine # or portainer-ee for enterprise edition
+    container_name: portainer-ce # or portainer-ee for enterprise edition
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro

@@ -1,24 +1,14 @@
-version: "3.7"
-
 services:
+
   rocketchat:
+    image: registry.rocket.chat/rocketchat/rocket.chat:latest    
     container_name: rocketchat
     hostname: rocketchat
-    image: registry.rocket.chat/rocketchat/rocket.chat:latest
     restart: unless-stopped
     expose:
       - 3000
     ports:
       - 3000:3000 # web ui
-    #labels:
-    #  - traefik.enable=true
-    #  - traefik.http.routers.rocketchat.rule=Host(`chat.example.com`) # pls change
-    #  - traefik.http.services.rocketchat.loadbalancer.server.port=3000
-    #  - traefik.docker.network=proxy
-    #  # Part for local lan services only; disable to expose externally
-    #  - traefik.http.routers.rocketchat.middlewares=local-ipwhitelist@file
-    #networks:
-    #  - proxy
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rocketchat/uploads:/app/uploads # only use if you enable filesystem upload in the admin area; see https://docs.rocket.chat/use-rocket.chat/workspace-administration/settings/file-upload#storage-type
     environment:
@@ -34,11 +24,20 @@ services:
       DEPLOY_PLATFORM: ${DEPLOY_PLATFORM:-linux}
     depends_on:
       - mongodb
+    #networks:
+    #  - proxy      
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.rocketchat.rule=Host(`chat.example.com`) # pls change
+    #  - traefik.http.services.rocketchat.loadbalancer.server.port=3000
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only; disable to expose externally
+    #  - traefik.http.routers.rocketchat.middlewares=local-ipwhitelist@file     
 
   mongodb:
+    image: docker.io/bitnami/mongodb:${MONGODB_VERSION:-4.4}    
     container_name: rocketchat-db
     hostname: rocketchat-db
-    image: docker.io/bitnami/mongodb:${MONGODB_VERSION:-4.4}
     restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/rocketchat/mongodb:/bitnami/mongodb

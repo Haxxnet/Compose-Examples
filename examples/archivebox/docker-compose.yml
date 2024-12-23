@@ -1,6 +1,5 @@
-version: "3.9"
-
 services:
+
   archivebox:
     image: archivebox/archivebox:dev
     container_name: archivebox

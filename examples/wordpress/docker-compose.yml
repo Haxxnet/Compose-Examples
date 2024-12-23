@@ -1,22 +1,23 @@
-version: '3.3'
-
 services:
+
   wordpress-db:
     image: mariadb:10.11
     container_name: wordpress-db
     hostname: wordpress-db
+    restart: unless-stopped
     command: '--default-authentication-plugin=mysql_native_password'
+    expose:
+      - 3306
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wordpress/mysql:/var/lib/mysql
-    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=wordpressroot
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD=wordpress
     #networks:
-    #  - proxy      
-  
+    #  - proxy
+
   wordpress:
     image: wordpress:latest
     container_name: wordpress
@@ -34,7 +35,7 @@ services:
       - WORDPRESS_DB_PASSWORD=wordpress
       - WORDPRESS_DB_NAME=wordpress
     #networks:
-    #  - proxy       
+    #  - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.docker.network=proxy

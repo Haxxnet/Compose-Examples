@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   upsnap:
     image: ghcr.io/seriousm4x/upsnap:3
     container_name: upsnap

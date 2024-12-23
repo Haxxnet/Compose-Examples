@@ -1,6 +1,5 @@
-version: '3.3'
-
 services:
+
   it-tools:
     image: corentinth/it-tools
     container_name: it-tools
@@ -8,6 +7,8 @@ services:
     restart: unless-stopped
     ports:
       - 8080:80/tcp
+    expose:
+      - 80
     #networks:
     #  - proxy # or use dev for testing purposes
     #labels:

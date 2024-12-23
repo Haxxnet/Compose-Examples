@@ -1,11 +1,10 @@
-version: "3"
-
 services:
+
   answer:
-    container_name: answer
     image: answerdev/answer
+    container_name: answer    
     ports:
-      - '9080:80'
+      - 9080:80
     expose:
       - 80
     restart: unless-stopped

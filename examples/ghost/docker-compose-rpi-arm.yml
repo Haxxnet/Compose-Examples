@@ -1,12 +1,13 @@
-version: '3.3'
-
 services:
+
   blog:
     image: ghost:5
     container_name: ghost
     restart: always
     ports:
       - 8080:2368
+    expose:
+      - 2368
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/content:/var/lib/ghost/content
     environment:
@@ -28,6 +29,7 @@ services:
   database:
     image: linuxserver/mariadb
     container_name: ghost-db
+    restart: unless-stopped    
     environment:
       - PUID=1000
       - PGID=1000
@@ -36,6 +38,7 @@ services:
       - MYSQL_DATABASE=${DB_NAME:-ghost}
       - MYSQL_USER=${DB_USER:-ghost}
       - MYSQL_PASSWORD=${DB_USER_PASS:-DatabasePassword1234}
+    expose:
+      - 3306
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ghost/mariadb/config:/config
-    restart: unless-stopped

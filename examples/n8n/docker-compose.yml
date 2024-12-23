@@ -1,11 +1,11 @@
-version: '3.8'
-
 services:
 
   n8n-db:
-    image: postgres:11-alpine
+    image: postgres:16-alpine
     container_name: n8n-db
     restart: unless-stopped
+    expose:
+      - 5432
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
@@ -19,7 +19,9 @@ services:
       test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
       interval: 5s
       timeout: 5s
-      retries: 10      
+      retries: 10
+    #networks:
+    #  - n8n-internal
 
   n8n:
     image: n8nio/n8n
@@ -27,24 +29,47 @@ services:
     hostname: n8n
     restart: unless-stopped
     environment:
+      # database settings
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=n8n-db
       - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
       - DB_POSTGRESDB_USER=${POSTGRES_NON_ROOT_USER}
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD}
+      # application settings
+      - NODE_ENV=${N8N_NODE_ENV}
+      - GENERIC_TIMEZONE=${N8N_TZ}      
+      # tls proxy settings
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PROTOCOL=${N8N_PROTOCOL}
+      - WEBHOOK_URL=${N8N_WEBHOOK_URL}
+      # npm extra options
+      - EXTRA_NODE_MODULES=${N8N_EXTRA_NODE_MODULES}
+      - NODE_FUNCTION_ALLOW_EXTERNAL=${N8N_NODE_FUNCTION_ALLOW_EXTERNAL}
     ports:
       - 5678:5678
+    expose:
+      - 5678
     links:
       - n8n-db
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/storage:/home/node/.n8n
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/files:/files
     depends_on:
       n8n-db:
         condition: service_healthy
+    #networks:
+    #  - proxy
+    #  - n8n-internal        
     #labels:
     #  - traefik.enable=true
+    #  - traefik.docker.network=proxy    
     #  - traefik.http.routers.n8n.rule=Host(`n8n.example.com`)
     #  - traefik.http.services.n8n.loadbalancer.server.port=5678
-    #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.n8n.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true
+#  n8n-internal:
+#    internal: true

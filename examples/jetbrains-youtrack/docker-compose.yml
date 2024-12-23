@@ -1,6 +1,5 @@
-version: '3.5'
-
 services:
+
   youtrack:
     image: jetbrains/youtrack:2022.3.65373
     container_name: youtrack
@@ -9,17 +8,19 @@ services:
     restart: unless-stopped
     ports:
       - 8080:8080 # web ui
+    expose:
+      - 8080
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/data:/opt/youtrack/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/conf:/opt/youtrack/conf
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/logs:/opt/youtrack/logs
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/youtrack/backups:/opt/youtrack/backups
-    #networks:
-    #  - proxy
     deploy:
       placement:
         constraints:
           - node.labels.youtrack.data == true
+    #networks:
+    #  - proxy
     #labels:
       #  - traefik.enable=true
       #  - traefik.docker.network=proxy

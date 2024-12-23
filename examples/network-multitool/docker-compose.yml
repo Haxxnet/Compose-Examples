@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   network-multitool:
     image: wbitt/network-multitool:alpine-extra
     container_name: network-multitool

@@ -1,6 +1,5 @@
-version: "3.3"
-
 services:
+
   firefox:
     image: lscr.io/linuxserver/firefox:latest
     container_name: firefox
@@ -16,6 +15,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/firefox/config:/config
     ports:
       - 3210:3000
+    expose:
+      - 3000
     #networks:
     #  - proxy
     #labels:

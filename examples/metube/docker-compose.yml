@@ -1,13 +1,16 @@
-version: "3"
-
 services:
+
   metube:
     image: alexta69/metube
     container_name: metube
     hostname: metube
     restart: unless-stopped
+    environment:
+      - DELETE_FILE_ON_TRASHCAN=false
     ports:
       - "8081:8081" # web ui
+    expose:
+      - 8081
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/metube/downloads:/downloads
     #networks:

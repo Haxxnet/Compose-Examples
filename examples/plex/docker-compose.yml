@@ -1,6 +1,5 @@
-version: '3.3'
-
 services:
+
     pms-docker:
         image: plexinc/pms-docker
         container_name: plex
@@ -14,3 +13,5 @@ services:
         restart: unless-stopped
         ports:
             - '32400:32400'
+        expose:
+            - 32400

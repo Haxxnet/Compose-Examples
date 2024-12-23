@@ -1,6 +1,5 @@
-version: "2.1"
-
 services:
+
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
@@ -14,4 +13,6 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sonarr/downloads:/downloads # Should be the same as the download client's folder
     ports:
       - 8989:8989
+    expose:
+      - 8989
     restart: unless-stopped

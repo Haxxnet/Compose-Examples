@@ -1,8 +1,9 @@
-version: "3"
-
 services:
+
   gitea:
+    image: gitea/gitea:latest    
     container_name: gitea
+    restart: unless-stopped    
     environment:
       - USER_UID=1000
       - USER_GID=1000
@@ -10,8 +11,9 @@ services:
     ports:
       - 3000:3000 #webgui
       - 2222:22 #ssh
-    image: gitea/gitea:latest
-    restart: unless-stopped
+    expose:
+      - 3000
+      - 22
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitea/data:/data
     #networks:

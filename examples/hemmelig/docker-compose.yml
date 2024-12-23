@@ -1,4 +1,5 @@
 services:
+
   hemmelig:
     image: hemmeligapp/hemmelig:latest
     container_name: hemmelig
@@ -19,12 +20,16 @@ services:
       - SECRET_MAX_TEXT_SIZE=256          # The max text size for the secret. Is set in kb. i.e. 256 for 256kb
     ports:
       - "3000:3000"
+    expose:
+      - 3000
     restart: always
     stop_grace_period: 1m
     healthcheck:
       test: "wget -O /dev/null localhost:3000 || exit 1"
       timeout: 5s
       retries: 1
+    #networks:
+    #  - proxy
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.hemmelig.rule=Host(`hemmelig.example.com`)
@@ -32,3 +37,7 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.hemmelig.middlewares=local-ipwhitelist@file,basic-auth@file  
+
+#networks:
+#  proxy:
+#    external: true

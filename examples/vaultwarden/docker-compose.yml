@@ -1,6 +1,5 @@
-version: "3"
-
 services:
+
   vaultwarden:
     image: vaultwarden/server:latest-alpine
     container_name: vaultwarden
@@ -28,6 +27,11 @@ services:
       - EXTENDED_LOGGING=true
     ports:
       - 8888:80
+    expose:
+      - 80
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/logs:/data/logs      
     #networks:
     #  - proxy
     #labels:
@@ -37,13 +41,16 @@ services:
     #  - traefik.http.routers.vaultwarden.rule=Host(`bitwarden.example.com`)
     #  - traefik.http.routers.vaultwarden.service=vaultwarden
     #  - traefik.http.services.vaultwarden.loadbalancer.server.port=80
+    ## Block access to the /admin dashboard from public ip ranges
     #  - traefik.http.routers.vaultwarden-admin.rule=Host(`bitwarden.example.com`) && Path(`/admin`)
     #  - traefik.http.routers.vaultwarden-admin.service=vaultwarden
     #  - traefik.http.services.vaultwarden-admin.loadbalancer.server.port=80
-    #  - traefik.http.routers.vaultwarden-admin.middlewares=local-ipwhitelist@file,authelia@file
-    volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/data:/data
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/logs:/data/logs
+    #  - traefik.http.routers.vaultwarden-admin.middlewares=local-ipwhitelist@file
+    ## Block access to the /api/version endpoint from public ip ranges
+    #  - traefik.http.routers.vaultwarden-admin.rule=Host(`bitwarden.example.com`) && Path(`/api/version`)
+    #  - traefik.http.routers.vaultwarden-admin.service=vaultwarden
+    #  - traefik.http.services.vaultwarden-admin.loadbalancer.server.port=80
+    #  - traefik.http.routers.vaultwarden-admin.middlewares=local-ipwhitelist@file
 
   # this service will backup your vaultwarden instance correctly
   # see https://github.com/Bruceforce/vaultwarden-backup for more information
@@ -55,15 +62,11 @@ services:
     init: true
     depends_on:
       - vaultwarden
-    #labels:
-    #  com.centurylinklabs.watchtower.monitor-only: true
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/data:/data/
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/vaultwarden/backup:/myBackup
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-    #networks:
-    #  - proxy
     environment:
       - TIMESTAMP=true
       - DELETE_AFTER=30
@@ -72,6 +75,8 @@ services:
       - TZ=Europe/Berlin
       - BACKUP_DIR=/myBackup
       - CRON_TIME=50 3 * * * # see https://crontab.guru/, define without quotes!
+    #networks:
+    #  - proxy      
 
 #networks:
 #  proxy:

@@ -1,6 +1,5 @@
-version: '3.3'
-
 services:
+
   onedev:
     image: 1dev/server:latest
     container_name: onedev
@@ -8,6 +7,8 @@ services:
     restart: unless-stopped
     ports:
       - 6610:6610/tcp
+    expose:
+      - 6610
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro

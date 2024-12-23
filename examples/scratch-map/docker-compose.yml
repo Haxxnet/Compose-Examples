@@ -1,0 +1,28 @@
+services:
+
+  scratchmap:
+    image: ad3m3r5/scratch-map:latest
+    container_name: scratch-map
+    restart: unless-stopped
+    ports:
+      - 8080:8080/tcp # http ui
+    expose:
+      - 8080/tcp
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/scratch-map:/data
+    environment:
+      - DBLOCATION=/data
+      - PORT=8080
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.scratchmap.rule=Host(`earth.example.com`)
+    #  - traefik.http.services.scratchmap.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.scratchmap.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

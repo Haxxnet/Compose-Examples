@@ -1,5 +1,5 @@
-version: "3"
 services:
+
   cloudflare-ddns:
     image: favonia/cloudflare-ddns:latest
     container_name: cloudflare-ddns

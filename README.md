@@ -19,7 +19,8 @@
 </div>
 
 ## ✨ Requirements
-- Docker Compose
+- [Docker Engine](https://docs.docker.com/engine/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## 🎓 Usage
 - Volume bind mounts are assumed to be located at `/mnt/docker-volumes/<container-name>/`. You can adjust the path via the global env variable `DOCKER_VOLUME_STORAGE` to your liking though. The compose examples will fall back to `/mnt/docker-volumes/<container-name>/` if the env variable is not set on your Docker server.
@@ -172,6 +173,7 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [Gitlab Community](examples/gitlab-ce) -  Self Hosted Git repository management, code reviews, issue tracking, activity feeds and wikis.
 - [Code-Server](examples/code-server) - VS Code in the browser, hosted on a remote server.
 - [Onedev](examples/onedev) - Self-hosted Git Server with CI/CD and Kanban.
+- [Atlassian Jira Core](examples/atlassian-jira-confluence) - Jira Core is a project and task management solution built for business teams.
 
 ### Automation and Monitoring
 
@@ -221,7 +223,7 @@ A [gallery](https://en.wikipedia.org/wiki/Gallery_Software) is software that hel
 
 Software to manage audio and video material.
 
-- [Arr-Suite](examples/arr-suite) - Docker stack consisting of Prowlarr, Sonarr, Radarr, Lidarr, Readarr, Flaresolverr, Qbittorrent and Emby.
+- [Arr-Suite](examples/arr-suite) - Docker stack consisting of Prowlarr, Sonarr, Radarr, Lidarr, Readarr, Bazarr, Flaresolverr, Qbittorrent and Emby/Jellyfin.
 - [Raveberry](examples/raveberry) - A multi-user music server with a focus on participation.
 - [Deemix](examples/deemix) - deemix is a barebone deezer downloader library built from the ashes of Deezloader Remix.
 - [Forte](examples/forte) - forte is a self-hosted music platform. You can either connect to a forte server or create your own server for your friends & family. However, it is also very convenient to use forte on your local machine as a stand-alone music player. Supports group streaming sessions.
@@ -267,6 +269,7 @@ A [pastebin](https://en.wikipedia.org/wiki/Pastebin) is a type of online content
 
 - [PrivateBin](examples/privatebin) - PrivateBin is a minimalist, opensource online pastebin/discussion board where the server has zero knowledge of hosted data.
 - [Hemmelig](examples/hemmelig) - Keep your sensitive information out of chat logs, emails, and more with encrypted secrets. Free encrypted secret sharing for everyone!
+- [Opengist](examples/opengist) - Self-hosted pastebin powered by Git, open-source alternative to Github Gist.
 
 ### File Transfer & Synchronization
 
@@ -282,7 +285,6 @@ A [pastebin](https://en.wikipedia.org/wiki/Pastebin) is a type of online content
 - [Gokapi](examples/gokapi) - Lightweight selfhosted Firefox Send alternative without public upload. AWS S3 supported.
 - [Projectsend](examples/projectsend) - ProjectSend is a free, open source software that lets you share files with your clients, focused on ease of use and privacy. It supports clients groups, system users roles, statistics, multiple languages, detailed logs and much more!
 - [Pwndrop](examples/pwndrop) - pwndrop is a self-deployable file hosting service for sending out red teaming payloads or securely sharing your private files over HTTP and WebDAV.
-- [Droppy](examples/droppy) (deprecated) - droppy is a self-hosted file storage server with a web interface and capabilities to edit files and view media directly in the browser. It is particularly well-suited to be run on low-end hardware like the Raspberry Pi.
 - [PairDrop](examples/pairdrop) - PairDrop is a sublime alternative to AirDrop that works on all platforms. Send images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices.
 - [MinIO](examples/minio) - MinIO is an object storage server, compatible with Amazon S3 cloud storage service, mainly used for storing unstructured data (such as photos, videos, log files, etc.).
 - [Transfer.sh](examples/transfer.sh) - Easy and fast file sharing from the command-line.
@@ -367,9 +369,9 @@ Software that helps to increase security and privacy.
 - [Greenbone](examples/greenbone) - Greenbone is the world's most trusted provider of open source vulnerability management.
 - [SonarQube](examples/sonarqube) - SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs and code smells on 29 programming languages.
 - [Fail2ban](examples/fail2ban) - Fail2ban is an intrusion prevention software framework. Written in the Python programming language, it is designed to prevent against brute-force attacks.
+- [CrowdSec](examples/crowdsec) - The open-source and participative security solution offering crowdsourced protection against malicious IPs and access to the most advanced real-world CTI.
 - [Tor-Browser](examples/tor-browser) - Running a Tor browser instance on any headless server.
 - [Firefox](examples/firefox) - Firefox by linuxserver.io allows you to run the popular Firefox web broser on a remote server.
-- [Bibliogram](examples/bibliogram) (deprecated) - Bibliogram is a private front-end frontend to Instagram, similar to Invidous.
 - [Nitter](examples/nitter) - Nitter is an alternative front-end to Twitter, and was inspired by Invidious.
 - [Unify Network Application](examples/unify-network-application) - The Unifi-network-application software is a powerful, enterprise wireless software engine ideal for high-density client deployments requiring low latency and high uptime performance.
 
@@ -387,6 +389,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 - [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
 - [Docmost](examples/docmost) - Docmost is an open source collaborative documentation and wiki software. It is an open-source alternative to the likes of Confluence and Notion.
+- [Atlassian Confluence](examples/atlassian-jira-confluence) - Confluence is a wiki solution built for business teams.
 
 ### Money, Budgeting & Management
 
@@ -396,7 +399,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 
 - [TRSync](examples/trsync) - Django web frontend for pytr to download all Trade Republic depot data.
 - [Money-Balancer](examples/money-balancer) - A simple application for managing debt with your friends!
-- [Firefly III](examples/firefly-iii) - A self-hosted manager for your personal finances.
+- [Firefly III](examples/firefly) - A self-hosted manager for your personal finances.
 - [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports expiry notifications, transaction histories and file uploads.
 
 ### Genealogy
@@ -448,6 +451,7 @@ Software that does not fit in another section.
 
 - [Network-Multitool](examples/network-multitool) - Multi-arch multitool for container network troubleshooting.
 - [IT-Tools](examples/it-tools) - Collection of handy online tools for developers, with great UX.
+- [Scratch-Map](examples/scratch-map) - An open-source scratch-off style map to track your travels.
 
 ## 🌟 Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)

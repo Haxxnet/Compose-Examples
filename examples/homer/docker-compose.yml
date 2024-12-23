@@ -1,6 +1,5 @@
-version: '3.6'
-
 services:
+
   homer:
     image: b4bz/homer:latest
     container_name: homer
@@ -8,6 +7,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homer:/www/assets
     ports:
       - "8080:8080"
+    expose:
+      - 8080
     restart: unless-stopped
     environment:
       - UID=1000

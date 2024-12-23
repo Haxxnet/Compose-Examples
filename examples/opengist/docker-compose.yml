@@ -1,0 +1,32 @@
+services:
+
+  opengist:
+    image: ghcr.io/thomiceli/opengist:1.8
+    container_name: opengist
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - OG_OIDC_CLIENT_KEY=${OG_OIDC_CLIENT_KEY:-mykey}
+      - OG_OIDC_SECRET=${OG_OIDC_SECRET:-mysecret}
+      - OG_OIDC_DISCOVERY_URL=${OG_OIDC_DISCOVERY_URL:-https://sso.example.com}    
+    ports:
+      - 6157:6157
+    expose:
+      - 6157 # http ui
+      - 2222 # ssh
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/opengist:/opengist
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.opengist.rule=Host(`gist.example.com`)
+    #  - traefik.http.services.opengist.loadbalancer.server.port=6157
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.opengist.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

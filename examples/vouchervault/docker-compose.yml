@@ -1,7 +1,7 @@
 services:
 
   vouchervault:
-    image: l4rm4nd/vouchervault:1.6.x
+    image: l4rm4nd/vouchervault:1.7.x
     container_name: vouchervault
     environment:
       # your FQDN or IP; used to define ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS
@@ -49,8 +49,8 @@ services:
     #  - traefik.http.routers.vouchervault.middlewares=local-ipwhitelist@file
 
   redis:
+    image: redis:7-alpine
     container_name: vouchervault-redis
-    image: redis:7.2-alpine
     restart: unless-stopped
     #networks:
     #  - proxy

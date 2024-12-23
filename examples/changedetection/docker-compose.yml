@@ -1,5 +1,5 @@
-version: "2.1"
 services:
+
   changedetection:
     image: lscr.io/linuxserver/changedetection.io:latest
     container_name: changedetection
@@ -11,6 +11,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/changedetection/config:/config
     ports:
       - 5000:5000
+    expose:
+      - 5000
     restart: unless-stopped
     #networks:
     #  - proxy

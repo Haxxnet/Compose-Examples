@@ -1,9 +1,8 @@
-version: "3.8"
-
 services:
+
   immich-server:
-    container_name: immich-server
     image: altran1502/immich-server:${IMMICH_VERSION:-release}
+    container_name: immich-server    
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -12,9 +11,9 @@ services:
     environment:
       - NODE_ENV=production
     ports:
-      - 2283:3001
+      - 2283:2283
     expose:
-      - 3001
+      - 2283
     depends_on:
       - immich-redis
       - immich-database
@@ -24,7 +23,7 @@ services:
     #labels:
     #  - traefik.enable=false
     #  - traefik.http.routers.immich.rule=Host(`immich.example.com`)
-    #  - traefik.http.services.immich.loadbalancer.server.port=3001
+    #  - traefik.http.services.immich.loadbalancer.server.port=2283
     #  - traefik.docker.network=proxy
     #  # Optional part for file upload max sizes
     #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
@@ -52,8 +51,8 @@ services:
     #  - proxy
 
   immich-redis:
+    image: redis:6.2-alpine    
     container_name: immich-redis
-    image: redis:6.2-alpine
     restart: unless-stopped
     #labels:
     #  - "com.centurylinklabs.watchtower.enable=true"
@@ -61,8 +60,8 @@ services:
     #  - proxy
 
   immich-database:
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0    
     container_name: immich-database
-    image: tensorchord/pgvecto-rs:pg14-v0.2.0
     env_file:
       - .env
     environment:

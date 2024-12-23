@@ -1,12 +1,13 @@
-version: '3'
-
 services:
+
     app:
         image: kaangiray26/forte:4.3
         container_name: forte
         restart: on-failure
         ports:
             - 3000:3000
+        expose:
+            - 3000
         depends_on:
             postgres:
                 condition: service_healthy
@@ -40,6 +41,8 @@ services:
         image: kaangiray26/postgres:2.0
         container_name: forte-db
         restart: always
+        expose:
+            - 5432
         environment:
             POSTGRES_DB: forte       # Set Postgres Database Name
             POSTGRES_USER: forte     # Set Postgres Username

@@ -1,5 +1,5 @@
-version: "2.1"
 services:
+
   ombi:
     image: lscr.io/linuxserver/ombi:latest
     container_name: ombi
@@ -12,4 +12,6 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ombi/config:/config
     ports:
       - 3579:3579
+    expose:
+      - 3579
     restart: unless-stopped

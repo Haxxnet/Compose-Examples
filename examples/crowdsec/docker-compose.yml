@@ -1,0 +1,34 @@
+services:
+
+  crowdsec:
+    image: crowdsecurity/crowdsec:v1.6.4
+    container_name: crowdsec
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:9876:8080 # http api for local fw bouncers
+      - 127.0.0.1:6060:6060 # metrics endpoint for prometheus
+    expose:
+      - 8080 # http api for bouncers
+      - 6060 # metrics endpoint for prometheus
+      - 7422 # appsec waf endpoint
+    volumes:
+      # crowdsec container data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/data:/var/lib/crowdsec/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/crowdsec/etc:/etc/crowdsec
+      # log bind mounts into crowdsec
+      - /var/log/auth.log:/var/log/auth.log:ro
+      - /var/log/syslog:/var/log/syslog:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/var/log/traefik:ro
+    environment:
+      - GID=1000
+      - COLLECTIONS=crowdsecurity/traefik crowdsecurity/http-cve crowdsecurity/base-http-scenarios crowdsecurity/sshd crowdsecurity/linux crowdsecurity/appsec-crs crowdsecurity/appsec-generic-rules crowdsecurity/appsec-virtual-patching
+      #- BOUNCER_KEY_<NAME>=${CROWDSEC-BOUNCER-API-TOKEN:-FIXME-LAPI-KEY} # pre-supply a bouncer with api key
+      #- CUSTOM_HOSTNAME=crowdsec-host123
+    #security_opt:
+    #  - no-new-privileges=true      
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

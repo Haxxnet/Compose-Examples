@@ -1,16 +1,17 @@
-version: '3.7'
-
 services:
+
   mirotalk:
     image: mirotalk/p2p:latest
-    restart: unless-stopped
     container_name: mirotalk
     hostname: mirotalk
+    restart: unless-stopped    
     ports:
       # use a reverse proxy with SSL/TLS support
       # otherwise webrtc won't work with plaintext http after Chrome 47+
       # see https://stackoverflow.com/questions/52759992/how-to-access-camera-and-microphone-in-chrome-without-https/58449078#58449078
-      - 3000:3000 # WEB UI; 
+      - 3000:3000 # WEB UI
+    expose:
+      - 3000
     volumes:
       - .env:/src/.env:ro
       #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/mirotalk/app:/src/app:ro # only necessary if you want to adjust the code itself (js, css, etc.)

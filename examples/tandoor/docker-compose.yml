@@ -1,20 +1,24 @@
-version: "3"
 services:
+
   db_recipes:
-    restart: always
+    image: postgres:16-alpine    
     container_name: tandoor_db
-    image: postgres:11-alpine
+    restart: always
+    expose:
+      - 5432
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/postgresql:/var/lib/postgresql/data
     env_file:
       - ./.env
 
   web_recipes:
-    restart: always
+    image: vabene1111/recipes:latest
     container_name: tandoor_recipes
+    restart: always    
     ports:
       - 8080:8080
-    image: vabene1111/recipes:latest
+    expose:
+      - 8080
     env_file:
       - ./.env
     volumes:
@@ -23,10 +27,16 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/mediafiles:/opt/recipes/mediafiles
     depends_on:
       - db_recipes
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.tandoor.rule=Host(`tandoor.example.com`)
-      - traefik.http.services.tandoor.loadbalancer.server.port=8080
-      - traefik.docker.network=proxy
-      # Part for local lan services only
-      #- traefik.http.routers.tandoor.middlewares=local-ipwhitelist@file
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.tandoor.rule=Host(`tandoor.example.com`)
+    #  - traefik.http.services.tandoor.loadbalancer.server.port=8080
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  #- traefik.http.routers.tandoor.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

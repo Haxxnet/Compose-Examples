@@ -1,5 +1,3 @@
-version: "3.4"
-
 services:
 
   postgresql:
@@ -40,7 +38,7 @@ services:
       - authentik-internal
 
   authentik-proxy:
-    image: ghcr.io/goauthentik/server:${AUTHENTIK_VERSION:-2024.8}
+    image: ghcr.io/goauthentik/server:${AUTHENTIK_VERSION:-2024.10}
     container_name: authentik
     restart: unless-stopped
     command: server
@@ -54,6 +52,9 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/media:/media
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authentik/custom-templates:/templates
+    ports:
+      - 9000:9000/tcp # http
+      - 9443:9443/tcp # https
     expose:
       - 9000
       - 9443
@@ -65,17 +66,17 @@ services:
     networks:
       - proxy
       - authentik-internal
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.authentik.rule=Host(`authentik.example.com`) || HostRegexp(`{subdomain:[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?}.example.com`) && PathPrefix(`/outpost.goauthentik.io/`)
-      - traefik.http.services.authentik.loadbalancer.server.port=9000
-      - traefik.docker.network=proxy
-      - traefik.http.middlewares.authentik.forwardauth.address=http://authentik-proxy:9000/outpost.goauthentik.io/auth/traefik
-      - traefik.http.middlewares.authentik.forwardauth.trustForwardHeader=true
-      - traefik.http.middlewares.authentik.forwardauth.authResponseHeaders=X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid,X-authentik-jwt,X-authentik-meta-jwks,X-authentik-meta-outpost,X-authentik-meta-provider,X-authentik-meta-app,X-authentik-meta-version
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.authentik.rule=Host(`authentik.example.com`) || HostRegexp(`{subdomain:[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?}.example.com`) && PathPrefix(`/outpost.goauthentik.io/`)
+    #  - traefik.http.services.authentik.loadbalancer.server.port=9000
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.middlewares.authentik.forwardauth.address=http://authentik-proxy:9000/outpost.goauthentik.io/auth/traefik
+    #  - traefik.http.middlewares.authentik.forwardauth.trustForwardHeader=true
+    #  - traefik.http.middlewares.authentik.forwardauth.authResponseHeaders=X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid,X-authentik-jwt,X-authentik-meta-jwks,X-authentik-meta-outpost,X-authentik-meta-provider,X-authentik-meta-app,X-authentik-meta-version
 
   worker:
-    image: ghcr.io/goauthentik/server:${AUTHENTIK_VERSION:-2024.8}
+    image: ghcr.io/goauthentik/server:${AUTHENTIK_VERSION:-2024.10}
     container_name: authentik-worker
     restart: unless-stopped
     command: worker
@@ -97,10 +98,11 @@ services:
       - postgresql
       - redis
     networks:
+      - proxy
       - authentik-internal
 
 networks:
   proxy:
     external: true
   authentik-internal:
-    external: true
+    internal: true

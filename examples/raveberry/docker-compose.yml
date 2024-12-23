@@ -1,8 +1,7 @@
-version: '3'
-
 services:
+
   db:
-    image: postgres:13
+    image: postgres:16-alpine
     container_name: raveberry-db
     environment:
       - POSTGRES_DB=raveberry
@@ -15,7 +14,7 @@ services:
     #  - proxy
 
   redis:
-    image: redis
+    image: redis:7-alpine
     container_name: raveberry-redis
     restart: unless-stopped
     #networks:
@@ -144,8 +143,10 @@ services:
   nginx:
     image: raveberry/raveberry-nginx
     container_name: raveberry-nginx
-    #ports:
-    #  - 9870:80
+    ports:
+      - 9870:80
+    expose:
+      - 80
     environment:
       - DAPHNE_HOST
       - DAPHNE_PORT

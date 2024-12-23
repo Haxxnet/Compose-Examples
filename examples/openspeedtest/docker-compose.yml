@@ -1,11 +1,14 @@
-version: "3"
 services:
+
   openspeedtest:
     image: openspeedtest/latest:latest
     container_name: openspeedtest
     ports:
       - 3380:3000 # HTTP
       - 3001:3001 # HTTPS
+    expose:
+      - 3000
+      - 3001
     restart: always
     #labels:
     #  - traefik.enable=true

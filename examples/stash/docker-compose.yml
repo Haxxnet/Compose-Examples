@@ -1,7 +1,5 @@
-# APPNICENAME=Stash
-version: '3.4'
-
 services:
+
   stash:
     image: stashapp/stash:latest
     container_name: stash
@@ -10,6 +8,8 @@ services:
     ## the container's port must be the same with the STASH_PORT in the environment section
     ports:
       - "9999:9999"
+    expose:
+      - 9999
     ## If you intend to use stash's DLNA functionality uncomment the below network mode and comment out the above ports section
     # network_mode: host
     logging:
@@ -36,10 +36,16 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/stash/cache:/cache
       ## Where to store generated content (screenshots,previews,transcodes,sprites)
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/stash/generated:/generated
+    #networks:
+    #  - proxy
     #labels:
     #  - traefik.enable=true
+    #  - traefik.docker.network=proxy    
     #  - traefik.http.routers.stash.rule=Host(`stash.example.com`)
     #  - traefik.http.services.stash.loadbalancer.server.port=9999
-    #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
     #  - traefik.http.routers.stash.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

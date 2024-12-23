@@ -1,6 +1,5 @@
-version: "2.1"
-
 services:
+
   pairdrop:
     image: linuxserver/pairdrop:latest
     container_name: pairdrop
@@ -13,6 +12,8 @@ services:
       - WS_FALLBACK=false #optional
     ports:
       - 3215:3000
+    expose:
+      - 3000
     restart: unless-stopped
     #networks:
     #  - proxy

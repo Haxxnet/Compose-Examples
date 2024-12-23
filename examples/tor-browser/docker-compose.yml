@@ -1,10 +1,15 @@
 services:
+
   torbrowser:
     image: domistyle/tor-browser:latest
+    container_name: torbrowser
     restart: unless-stopped
     ports:
       - 5800:5800 # Provides a web interface to access the Tor browser
       #- 5900:5900 # Provides direct access to the VNC server; optional
+    expose:
+      - 5800
+      - 5900
     environment:
       #- DISPLAY_WIDTH=1280 # default; optional
       #- DISPLAY_HEIGHT=768 # default; optional

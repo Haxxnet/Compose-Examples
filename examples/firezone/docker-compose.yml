@@ -6,8 +6,6 @@ x-deploy: &default-deploy
   update_config:
     order: start-first
 
-version: "3.7"
-
 services:
 
   firezone:
@@ -54,6 +52,8 @@ services:
   postgres:
     image: postgres:15-alpine
     container_name: firezone-db
+    expose:
+      - 5432
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/firezone/db:/var/lib/postgresql/data
     environment:

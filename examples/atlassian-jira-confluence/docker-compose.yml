@@ -1,0 +1,126 @@
+services:
+
+  confluence:
+    image: atlassian/confluence:9.0.3
+    container_name: confluence
+    hostname: confluence
+    restart: unless-stopped
+    environment:
+      # detailed debug messages during the container initialization
+      - VERBOSE_LOGS=false
+      # maximum number of days for access logs to be retained before being deleted
+      - ATL_TOMCAT_ACCESS_LOGS_MAXDAYS=360
+      # The maximum time a user can remain logged-in with remember me feature (in seconds; default 2 weeks).
+      - ATL_AUTOLOGIN_COOKIE_AGE=1209600
+      # The minimum heap size of the JVM
+      - JVM_MINIMUM_MEMORY=1024m
+      # maximum heap size of the JVM
+      - JVM_MAXIMUM_MEMORY=1024m
+      # reserved code cache size of the JVM
+      - JVM_RESERVED_CODE_CACHE_SIZE=256m
+      # reverse proxy setup
+      - ATL_PROXY_NAME=confluence.example.com
+      - ATL_PROXY_PORT=443
+      - ATL_TOMCAT_PORT=8090
+      - ATL_TOMCAT_SCHEME=https
+      - ATL_TOMCAT_SECURE=false
+      # list of trusted reverse proxy ips separated by a pipe character
+      - ATL_TOMCAT_TRUSTEDPROXIES=192.168.0.0/24|10.0.0.0/8|172.16.0.0/16
+    ports:
+      - 8090:8090/tcp
+    expose:
+      - 8090 # http web
+      - 8091 # synchrony api
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/confluence/data:/var/atlassian/application-data/confluence
+    networks:
+      - atlassian-network
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=atlassian-network
+    #  - traefik.http.routers.confluence.rule=Host(`confluence.example.com`)
+    #  - traefik.http.services.confluence.loadbalancer.server.port=8090
+    #  # Optional part for file upload max sizes
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.confluence.middlewares=local-ipwhitelist@file      
+
+  jira:
+    image: atlassian/jira-core:9.9.2
+    container_name: jira
+    hostname: jira
+    restart: unless-stopped
+    environment:
+      # detailed debug messages during the container initialization
+      - VERBOSE_LOGS=false
+      # maximum number of days for access logs to be retained before being deleted
+      - ATL_TOMCAT_ACCESS_LOGS_MAXDAYS=360
+      # The maximum time a user can remain logged-in with remember me feature (in seconds; default 2 weeks)
+      - ATL_AUTOLOGIN_COOKIE_AGE=1209600
+      # The minimum heap size of the JVM
+      - JVM_MINIMUM_MEMORY=1024m
+      # maximum heap size of the JVM
+      - JVM_MAXIMUM_MEMORY=1024m
+      # reserved code cache size of the JVM
+      - JVM_RESERVED_CODE_CACHE_SIZE=256m
+      # reverse proxy setup
+      - ATL_PROXY_NAME=jira.example.com
+      - ATL_PROXY_PORT=443
+      - ATL_TOMCAT_PORT=8090
+      - ATL_TOMCAT_SCHEME=https
+      - ATL_TOMCAT_SECURE=false
+      # list of trusted reverse proxy ips separated by a pipe character
+      - ATL_TOMCAT_TRUSTEDPROXIES=192.168.0.0/24|10.0.0.0/8|172.16.0.0/16
+    depends_on:
+      - postgresql
+    ports:
+      - 8080:8080/tcp
+    expose:
+      - 8080 # http web
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jira/data:/var/atlassian/application-data/jira
+    networks:
+      - atlassian-network
+      - internal-db-network
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=atlassian-network
+    #  - traefik.http.routers.jira.rule=Host(`jira.example.com`)
+    #  - traefik.http.services.jira.loadbalancer.server.port=8080
+    #  # Optional part for file upload max sizes
+    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.jira.middlewares=local-ipwhitelist@file      
+
+  postgresql:
+    image: docker.io/library/postgres:16-alpine
+    container_name: jira-psql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jira/psql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASS:-jira}
+      POSTGRES_USER: ${PG_USER:-jira}
+      POSTGRES_DB: ${PG_DB:-jira}
+    networks:
+      - internal-db-network
+
+networks:
+  atlassian-network:
+    external: true
+  internal-db-network:
+    internal: true

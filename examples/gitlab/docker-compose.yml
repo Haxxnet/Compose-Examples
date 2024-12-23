@@ -1,9 +1,9 @@
-version: '3.7'
 services:
+
   gitlab-ce:
     image: gitlab/gitlab-ce:latest
+    container_name: gitlab-ce    
     restart: unless-stopped
-    container_name: gitlab-ce
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlab.example.com' # please adjust
@@ -11,6 +11,10 @@ services:
       - 8033:80 # HTTP
       - 8434:443 # HTTPS
       - 2222:22 # SSH
+    expose:
+      - 80
+      - 443
+      - 22
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitlab/config:/etc/gitlab
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitlab/logs:/var/log/gitlab

@@ -1,11 +1,12 @@
-version: '3.9'
-
 services:
+
   db:
-    image: mariadb:10.3
+    image: mariadb:11.5
     container_name: passbolt-db
     hostname: passbolt-db
     restart: unless-stopped
+    expose:
+      - 3306
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "true"
       MYSQL_DATABASE: "passbolt"
@@ -43,3 +44,8 @@ services:
       - 8432:443 # HTTPS
     # - 8543:8080 # alternative port mappings if rootless image is used
     # - 8432:4433 # alternative port mappings if rootless image is used
+    expose:
+      - 80
+      - 443
+      - 8080
+      - 4433

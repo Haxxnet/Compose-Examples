@@ -1,8 +1,7 @@
-version: '3.6'
-
 services:
+
   db:
-    image: mariadb:10.11
+    image: mariadb:11.5
     container_name: seafile-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=db_dev  # Requested, set the root's password of MySQL service.
@@ -28,6 +27,9 @@ services:
     ports:
       - "7780:80" # HTTP
       - "7443:443"  # HTTPS
+    expose:
+      - 80
+      - 443
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/seafile/data:/shared   # Requested, specifies the path to Seafile data persistent store.
     environment:

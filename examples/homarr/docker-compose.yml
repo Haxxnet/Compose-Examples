@@ -1,8 +1,8 @@
-version: '3'
 services:
+
   homarr:
+    image: ghcr.io/ajnart/homarr:latest    
     container_name: homarr
-    image: ghcr.io/ajnart/homarr:latest
     restart: unless-stopped
     environment:
       - PASSWORD=MySecureLoginPassword
@@ -12,3 +12,5 @@ services:
       #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homarr/icons:/app/public/icons # optional for custom icons
     ports:
       - '7575:7575'
+    expose:
+      - 7575

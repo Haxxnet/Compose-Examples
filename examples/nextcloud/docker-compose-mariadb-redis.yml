@@ -6,6 +6,8 @@ services:
     hostname: nextcloud-db
     command: --transaction-isolation=READ-COMMITTED --innodb_read_only_compressed=OFF
     restart: unless-stopped
+    expose:
+      - 3306
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nextcloud/database:/var/lib/mysql
     environment:

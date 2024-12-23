@@ -1,6 +1,5 @@
-version: '3.3'
-
 services:
+
   posio:
     image: l4rm4nd/posio:latest
     container_name: posio

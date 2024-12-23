@@ -1,5 +1,3 @@
-version: "3.6"
-
 services:
 
   # image used to index torrent links from the internet
@@ -11,7 +9,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config # database and Prowlarr configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/prowlarr:/config # location of database and configs
     expose:
       - 9696/tcp # web ui
     ports:
@@ -36,8 +34,8 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/sonarr:/config # database and Radarr configs
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media and qbittorrent download folder
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/sonarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
     expose:
       - 8989/tcp # web ui
     ports:
@@ -62,8 +60,8 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media and qbittorrent download folder
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/radarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
     expose:
       - 7878/tcp # web ui
     ports:
@@ -88,8 +86,8 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/lidarr:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media and qbittorrent download folder
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/lidarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
     expose:
       - 8686/tcp # web ui
     ports:
@@ -114,8 +112,8 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/readarr:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media and qbittorrent download folder
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/readarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library + qbittorrent download folder
     expose:
       - 8787/tcp # web ui
     ports:
@@ -130,6 +128,32 @@ services:
     #  - traefik.http.services.readarr.loadbalancer.server.port=8787
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.readarr.middlewares=local-ipwhitelist@file
+
+  # image used to manage subtitles
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: arr-suite-bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/bazarr:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/media # location of media library (optional)
+    expose:
+      - 6767/tcp # web ui
+    ports:
+      - 6767:6767/tcp # web ui
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.bazarr.rule=Host(`bazarr.example.com`)
+    #  - traefik.http.services.bazarr.loadbalancer.server.port=6767
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.bazarr.middlewares=local-ipwhitelist@file
 
   # image used to bypass cloudflare for prowlarr
   flaresolverr:
@@ -157,10 +181,11 @@ services:
     environment:
       # see https://github.com/qdm12/gluetun-wiki for more details
       # example envs based on https://github.com/qdm12/gluetun-wiki/blob/main/setup/providers/mullvad.md
-      - VPN_SERVICE_PROVIDER=mullvad # define the vpn provider
-      - VPN_TYPE=wireguard # define the vpn protocol to use
-      - WIREGUARD_PRIVATE_KEY=wOEI9rqqbDwnN8/Bpp22sVz48T71vJ4fYmFWujulwUU= # define your wireguard private key here
-      - WIREGUARD_ADDRESSES=10.64.222.21/32 # define the ipv4 vpn network subnet here
+      - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER:-mullvad} # define the vpn provider
+      - VPN_TYPE=${VPN_TYPE:-wireguard} # define the vpn protocol to use
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?WIREGUARD_PRIVATE_KEY must be set} # define your wireguard private key here
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?WIREGUARD_ADDRESSES must be set} # define the ipv4 vpn network subnet here
+      - SERVER_CITIES=${SERVER_CITIES:?SERVER_CITIES must be set} # define the server cities
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/gluetun:/gluetun
     restart: unless-stopped
@@ -184,8 +209,8 @@ services:
       - TZ=Europe/Berlin
       - WEBUI_PORT=8080
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrent:/config
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/qbittorrent:/config # location of database and configs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media/downloads:/media/downloads # location of qbittorrent downloads
     depends_on:
       - gluetun
     network_mode: container:arr-suite-gluetun # use the gluetun container network (vpn killswitch)
@@ -200,9 +225,9 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config # emby data storage location; can grow very large
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # media goes here
-      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby:/config # location of database and configs; can grow very large
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # location of media library
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/emby/lib:/opt/vc/lib # location for Raspberry Pi OpenMAX libs (optional)
     expose:
       - 8096/tcp # http web ui
       - 8920/tcp # https web ui
@@ -234,9 +259,9 @@ services:
   #    - PGID=1000
   #    - TZ=Europe/Berlin
   #  volumes:
-  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/jellyfin:/config # emby data storage location; can grow very large
-  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # media goes here
-  #    #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/jellyfin/lib:/opt/vc/lib # optional; path for Raspberry Pi OpenMAX libs
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/jellyfin:/config # location of database and configs; can grow very large
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/media:/data # location of media library
+  #    #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/arr-suite/configs/jellyfin/lib:/opt/vc/lib # location for Raspberry Pi OpenMAX libs (optional)
   #  expose:
   #    - 8096/tcp # http web ui
   #  ports:

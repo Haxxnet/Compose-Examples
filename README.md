@@ -216,6 +216,7 @@ A [gallery](https://en.wikipedia.org/wiki/Gallery_Software) is software that hel
 - [Stash](examples/stash) - Stash is a self-hosted webapp written in Go which organizes and serves your porn.
 - [LibrePhotos](examples/librephotos) - A self-hosted open source photo management service, with face recognition, geolocation, and more.
 - [Chevereto](examples/chevereto) - Ultimate image sharing software. Create your very own personal image hosting website in just minutes.
+- [WeddingShare](examples/weddingshare) - A place for guests to view and drop pictures of the big day.
 
 ### Audio and Video Management
 

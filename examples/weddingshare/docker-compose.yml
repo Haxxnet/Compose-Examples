@@ -1,0 +1,44 @@
+services:
+
+  wedding-share:
+    image: cirx08/wedding_share:1.4.7
+    container_name: WeddingShare
+    restart: always
+    ports:
+      - 5000:5000/tcp
+    expose:
+      - 5000
+    environment:
+      - TITLE=WeddingShare
+      - DEFAULT_THEME=dark
+      - LOGO=YOUR-URL
+      - GALLERY_COLUMNS=4
+      - ALLOWED_FILE_TYPES=.jpg,.jpeg,.png,.heic
+      - MAX_FILE_SIZE_MB=10
+      - SECRET_KEY=PleaseChangeMe
+      - ACCOUNT_ADMIN_USERNAME=admin
+      - ACCOUNT_ADMIN_PASSWORD=PleaseChangeMe
+      - REQUIRE_REVIEW=true
+      - DISABLE_REVIEW_COUNTER=false
+      - DISABLE_QR_CODE=false
+      - MAX_GALLERY_SIZE_MB=4096
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/config:/app/config
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/uploads/thumbnails:/app/wwwroot/thumbnails
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/uploads:/app/wwwroot/uploads
+#    networks:
+#      - proxy
+#    labels:
+#      - traefik.enable=true
+#      - traefik.docker.network=proxy
+#      - traefik.http.routers.weddingshare.rule=Host(`weddingshare.example.com`)
+#      - traefik.http.services.weddingshare.loadbalancer.server.port=5000
+#      # Optional part for file upload max sizes
+#      - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
+#      - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
+#      - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
+#      - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+
+#networks:
+#  proxy:
+#    external: true

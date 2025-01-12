@@ -20,8 +20,9 @@ services:
     restart: unless-stopped
     #networks:
     #  - proxy
+    #  - immich-internal
     #labels:
-    #  - traefik.enable=false
+    #  - traefik.enable=true
     #  - traefik.http.routers.immich.rule=Host(`immich.example.com`)
     #  - traefik.http.services.immich.loadbalancer.server.port=2283
     #  - traefik.docker.network=proxy
@@ -32,7 +33,6 @@ services:
     #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
     #  # Part for local lan services only
     #  - traefik.http.routers.immich.middlewares=local-ipwhitelist@file
-    #  - "com.centurylinklabs.watchtower.enable=true"    
 
   immich-machine-learning:
     image: altran1502/immich-machine-learning:${IMMICH_VERSION:-release}
@@ -45,19 +45,15 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
-    #labels:
-    #  - "com.centurylinklabs.watchtower.enable=true"
     #networks:
-    #  - proxy
+    #  - immich-internal
 
   immich-redis:
-    image: redis:6.2-alpine    
+    image: redis:6.2-alpine
     container_name: immich-redis
     restart: unless-stopped
-    #labels:
-    #  - "com.centurylinklabs.watchtower.enable=true"
     #networks:
-    #  - proxy
+    #  - immich-internal
 
   immich-database:
     image: tensorchord/pgvecto-rs:pg14-v0.2.0    
@@ -72,10 +68,8 @@ services:
     volumes:
       - ${DB_DATABASE_LOCATION}:/var/lib/postgresql/data
     restart: unless-stopped
-    #labels:
-    #  - "com.centurylinklabs.watchtower.enable=true"
     #networks:
-    #  - proxy
+    #  - immich-internal
     
 volumes:
   model-cache:
@@ -83,3 +77,5 @@ volumes:
 #networks:
 #  proxy:
 #    external: true
+#  immich-internal:
+#    internal: true

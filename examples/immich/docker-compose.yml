@@ -18,9 +18,9 @@ services:
       - immich-redis
       - immich-database
     restart: unless-stopped
-    #networks:
-    #  - proxy
-    #  - immich-internal
+    networks:
+      - proxy
+      - immich-internal
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.immich.rule=Host(`immich.example.com`)
@@ -45,18 +45,18 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
-    #networks:
-    #  - immich-internal
+    networks:
+      - immich-internal
 
   immich-redis:
     image: redis:6.2-alpine
     container_name: immich-redis
     restart: unless-stopped
-    #networks:
-    #  - immich-internal
+    networks:
+      - immich-internal
 
   immich-database:
-    image: tensorchord/pgvecto-rs:pg14-v0.2.0    
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0
     container_name: immich-database
     env_file:
       - .env
@@ -68,14 +68,14 @@ services:
     volumes:
       - ${DB_DATABASE_LOCATION}:/var/lib/postgresql/data
     restart: unless-stopped
-    #networks:
-    #  - immich-internal
+    networks:
+      - immich-internal
     
 volumes:
   model-cache:
 
-#networks:
-#  proxy:
-#    external: true
-#  immich-internal:
-#    internal: true
+networks:
+  proxy:
+    external: true
+  immich-internal:
+    internal: true

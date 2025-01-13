@@ -46,6 +46,7 @@ services:
       - NODE_ENV=production
     restart: unless-stopped
     networks:
+      - proxy
       - immich-internal
 
   immich-redis:

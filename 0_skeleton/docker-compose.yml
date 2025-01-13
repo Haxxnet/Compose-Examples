@@ -32,12 +32,12 @@ services:
     #  - traefik.http.services.CHANGEME.loadbalancer.server.scheme=https
     #  - traefik.http.services.CHANGEME.loadbalancer.serverstransport=insecureTransport@file
     #  # Optional part for file upload max sizes
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-CHANGEME.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-CHANGEME.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-CHANGEME.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-CHANGEME.buffering.memResponseBodyBytes=50000000
     #  # Optional part for traefik middlewares
-    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,crowdsec@file
+    #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,crowdsec@file,limit-CHANGEME
 
 #networks:
 #  proxy:

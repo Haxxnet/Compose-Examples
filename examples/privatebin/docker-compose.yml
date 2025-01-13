@@ -17,12 +17,12 @@ services:
     restart: always
     #labels:
     #  - traefik.enable=true
+    #  - traefik.docker.network=proxy    
     #  - traefik.http.routers.privatebin.rule=Host(`privatebin.example.com`)
     #  - traefik.http.services.privatebin.loadbalancer.server.port=8080
-    #  - traefik.docker.network=proxy
     #  # Part for local lan services only
-    #  # - traefik.http.routers.privatebin.middlewares=local-ipwhitelist@file
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=1000000000 # necessary to enable large file uploads
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=1000000000 # necessary to enable large file uploads
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=2000000000 # necessary to enable large file uploads
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=2000000000 # necessary to enable large file uploads
+    #  # - traefik.http.routers.privatebin.middlewares=local-ipwhitelist@file,limit-privatebin
+    #  - traefik.http.middlewares.limit-privatebin.buffering.maxRequestBodyBytes=1000000000 # necessary to enable large file uploads
+    #  - traefik.http.middlewares.limit-privatebin.buffering.maxResponseBodyBytes=1000000000 # necessary to enable large file uploads
+    #  - traefik.http.middlewares.limit-privatebin.buffering.memRequestBodyBytes=2000000000 # necessary to enable large file uploads
+    #  - traefik.http.middlewares.limit-privatebin.buffering.memResponseBodyBytes=2000000000 # necessary to enable large file uploads

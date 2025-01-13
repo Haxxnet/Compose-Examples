@@ -23,11 +23,11 @@ services:
     #  - traefik.http.services.pairdrop.loadbalancer.server.port=3000
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.pairdrop.middlewares=local-ipwhitelist@file,basic-auth@file
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads    
+    #  - traefik.http.routers.pairdrop.middlewares=limit-pairdrop
+    #  - traefik.http.middlewares.limit-pairdrop.buffering.maxRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-pairdrop.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-pairdrop.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-pairdrop.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads    
 
 #networks:
 #  proxy:

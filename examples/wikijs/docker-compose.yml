@@ -31,12 +31,12 @@ services:
     #  - traefik.http.routers.wikijs.rule=Host(`wikijs.example.com`)
     #  - traefik.http.services.wikijs.loadbalancer.server.port=3000
     #  # Optional part for file upload max sizes
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-wikijs.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-wikijs.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-wikijs.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-wikijs.buffering.memResponseBodyBytes=50000000
     #  # Optional part for traefik middlewares
-    #  - traefik.http.routers.wikijs.middlewares=local-ipwhitelist@file    
+    #  - traefik.http.routers.wikijs.middlewares=limit-wikijs
 
   db:
     image: postgres:16-alpine

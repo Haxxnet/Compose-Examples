@@ -19,12 +19,12 @@ services:
     #  - traefik.docker.network=proxy    
     #  - traefik.http.routers.transferzip.rule=Host(`transfer.example.com`)
     #  - traefik.http.services.transferzip.loadbalancer.server.port=80
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
+    #  - traefik.http.middlewares.limit-transferzip.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-transferzip.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-transferzip.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-transferzip.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.transferzip.middlewares=local-ipwhitelist@file,authelia@file,basic-auth@file      
+    #  - traefik.http.routers.transferzip.middlewares=limit-transferzip   
 
   signaling-server:
     #build: signaling-server

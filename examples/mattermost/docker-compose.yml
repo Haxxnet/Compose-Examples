@@ -67,12 +67,12 @@ services:
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.mattermost.rule=Host(`mattermost.example.com`)
     #  - traefik.http.services.mattermost.loadbalancer.server.port=8065
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit-mattermost.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit-mattermost.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit-mattermost.buffering.memRequestBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
+    #  - traefik.http.middlewares.limit-mattermost.buffering.memResponseBodyBytes=50000000 # optional, only necessary for file uploads; allow 50MB
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.mattermost.middlewares=local-ipwhitelist@file
+    #  - traefik.http.routers.mattermost.middlewares=limit-mattermost
 
 #networks:
 #  proxy:

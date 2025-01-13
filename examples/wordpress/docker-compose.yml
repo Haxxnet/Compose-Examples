@@ -41,12 +41,12 @@ services:
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.wordpress.rule=Host(`wordpress.example.com`) # please adjust
     #  - traefik.http.services.wordpress.loadbalancer.server.port=80
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
+    #  - traefik.http.middlewares.limit-wordpress.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-wordpress.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-wordpress.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-wordpress.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.wordpress.middlewares=local-ipwhitelist@file
+    #  - traefik.http.routers.wordpress.middlewares=limit-wordpress
 
 #networks:
 #  proxy:

@@ -22,21 +22,21 @@ services:
       - 9200:9200
     expose:
       - 9200
+    #networks:
+    #  - dev      
     #labels:
     #  - traefik.enable=true
+    #  - traefik.docker.network=dev    
     #  - traefik.http.routers.ocis.rule=Host(`cloud.example.com`) # adjust to your domain
     #  - traefik.http.services.ocis.loadbalancer.server.port=9200
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
-    #  - traefik.http.routers.ocis.middlewares=local-ipwhitelist@file,authelia@docker
-    #  - traefik.docker.network=dev
+    #  - traefik.http.middlewares.limit-ocis.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-ocis.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-ocis.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-ocis.buffering.memResponseBodyBytes=50000000
+    #  - traefik.http.routers.ocis.middlewares=limit-ocis
     #  # disallow listing version details via /status.php endpoint
     #  - traefik.http.routers.ocis-version-disclosure.rule=Host(`cloud.example.com`) && Path(`/status.php`)
     #  - traefik.http.routers.ocis-version-disclosure.middlewares=local-ipwhitelist@file
-    #networks:
-    #  - dev
 
 #networks:
 #  dev:

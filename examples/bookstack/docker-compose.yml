@@ -29,12 +29,12 @@ services:
     #  - traefik.http.routers.bookstack.rule=Host(`bookstack.example.com`)
     #  - traefik.http.services.bookstack.loadbalancer.server.port=80
     #  # Optional part for file upload max sizes
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-bookstack.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-bookstack.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-bookstack.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-bookstack.buffering.memResponseBodyBytes=50000000
     #  # Optional part for traefik middlewares
-    #  - traefik.http.routers.bookstack.middlewares=local-ipwhitelist@file,authelia@docker    
+    #  - traefik.http.routers.bookstack.middlewares=limit-bookstack
 
   bookstack_db:
     image: linuxserver/mariadb

@@ -27,12 +27,12 @@ services:
     #  - traefik.http.services.immich.loadbalancer.server.port=2283
     #  - traefik.docker.network=proxy
     #  # Optional part for file upload max sizes
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
+    #  - traefik.http.middlewares.limit-immich.buffering.maxRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
+    #  - traefik.http.middlewares.limit-immich.buffering.maxResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
+    #  - traefik.http.middlewares.limit-immich.buffering.memRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
+    #  - traefik.http.middlewares.limit-immich.buffering.memResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5000MB
     #  # Part for local lan services only
-    #  - traefik.http.routers.immich.middlewares=local-ipwhitelist@file
+    #  - traefik.http.routers.immich.middlewares=limit-immich
 
   immich-machine-learning:
     image: altran1502/immich-machine-learning:${IMMICH_VERSION:-release}
@@ -46,7 +46,7 @@ services:
       - NODE_ENV=production
     restart: unless-stopped
     networks:
-      - proxy
+      - proxy # machine learning requires internet connecting for model download
       - immich-internal
 
   immich-redis:

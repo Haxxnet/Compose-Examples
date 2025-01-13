@@ -12,10 +12,10 @@ services:
     restart: always
     #labels:
     #  - traefik.enable=true
-    #  - traefik.http.routers.openspeedtest.middlewares=local-ipwhitelist@file, limit
     #  - traefik.http.routers.openspeedtest.rule=Host(`speedtest.example.com`)
     #  - traefik.http.services.openspeedtest.loadbalancer.server.port=3000
+    #  - traefik.http.routers.openspeedtest.middlewares=local-ipwhitelist@file,limit-openspeedtest,test-compress
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=10000000000
+    #  - traefik.http.middlewares.limit-openspeedtest.buffering.maxRequestBodyBytes=10000000000
     #  - traefik.http.middlewares.test-compress.compress=true

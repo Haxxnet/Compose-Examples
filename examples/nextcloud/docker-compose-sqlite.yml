@@ -23,14 +23,14 @@ services:
     #  - traefik.http.services.nextcloud.loadbalancer.server.port=443
     #  - traefik.http.services.nextcloud.loadbalancer.server.scheme=https
     #  - traefik.http.services.nextcloud.loadbalancer.serverstransport=insecureTransport@file
-    #  - traefik.http.routers.nextcloud.middlewares=local-ipwhitelist@file,authelia@docker
-    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.nextcloud.middlewares=limit-nextcloud,nextcloud-dav
     #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav
     #  - traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement=/remote.php/dav/
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-nextcloud.buffering.maxRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-nextcloud.buffering.maxResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-nextcloud.buffering.memRequestBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.http.middlewares.limit-nextcloud.buffering.memResponseBodyBytes=50000000 # only necessary for enabled file uploads
+    #  - traefik.docker.network=proxy    
 
 #networks:
 #  proxy:

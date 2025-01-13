@@ -65,10 +65,11 @@ services:
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.send.rule=Host(`send.example.com`)
     #  - traefik.http.services.send.loadbalancer.server.port=1234
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+    #  - traefik.http.middlewares.limit-send.buffering.maxRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+    #  - traefik.http.middlewares.limit-send.buffering.maxResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+    #  - traefik.http.middlewares.limit-send.buffering.memRequestBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+    #  - traefik.http.middlewares.limit-send.buffering.memResponseBodyBytes=5000000000 # optional, only necessary for file uploads; allow 5GB
+    #  - traefik.http.routers.send.middlewares=limit-send
 
   redis:
     image: redis:alpine

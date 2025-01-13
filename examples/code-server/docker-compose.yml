@@ -27,12 +27,12 @@ services:
     #  - traefik.http.routers.codeserver.rule=Host(`code.example.com`)
     #  - traefik.http.services.codeserver.loadbalancer.server.port=8443
     #  # Optional part for file upload max sizes
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-codeserver.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-codeserver.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-codeserver.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-codeserver.buffering.memResponseBodyBytes=50000000
     #  # Optional part for traefik middlewares
-    #  - traefik.http.routers.codeserver.middlewares=local-ipwhitelist@file,authelia@docker
+    #  - traefik.http.routers.codeserver.middlewares=limit-codeserver
 
 #networks:
 #  proxy:

@@ -41,12 +41,12 @@ services:
     #  - traefik.http.routers.confluence.rule=Host(`confluence.example.com`)
     #  - traefik.http.services.confluence.loadbalancer.server.port=8090
     #  # Optional part for file upload max sizes
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-confluence.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-confluence.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-confluence.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-confluence.buffering.memResponseBodyBytes=50000000
     #  # Optional part for traefik middlewares
-    #  - traefik.http.routers.confluence.middlewares=local-ipwhitelist@file      
+    #  - traefik.http.routers.confluence.middlewares=limit-confluence
 
   jira:
     image: atlassian/jira-core:9.9.2
@@ -91,12 +91,12 @@ services:
     #  - traefik.http.routers.jira.rule=Host(`jira.example.com`)
     #  - traefik.http.services.jira.loadbalancer.server.port=8080
     #  # Optional part for file upload max sizes
-    #  - traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000
-    #  - traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-jira.buffering.maxRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-jira.buffering.maxResponseBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-jira.buffering.memRequestBodyBytes=50000000
+    #  - traefik.http.middlewares.limit-jira.buffering.memResponseBodyBytes=50000000
     #  # Optional part for traefik middlewares
-    #  - traefik.http.routers.jira.middlewares=local-ipwhitelist@file      
+    #  - traefik.http.routers.jira.middlewares=limit-jira
 
   postgresql:
     image: docker.io/library/postgres:16-alpine

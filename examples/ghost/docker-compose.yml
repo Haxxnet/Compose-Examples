@@ -45,7 +45,7 @@ services:
 
   database:
     image: mysql:8
-    container_name: ghost_db
+    container_name: ghost-db
     restart: always
     healthcheck:
       test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$DB_ROOT_PASS' ]

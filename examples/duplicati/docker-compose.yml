@@ -14,6 +14,7 @@ services:
       - PUID=0
       - PGID=1000
       - TZ=Europe/Berlin
+      - SETTINGS_ENCRYPTION_KEY=PleaseChangeMeToSecureValue
     restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/backups:/backups

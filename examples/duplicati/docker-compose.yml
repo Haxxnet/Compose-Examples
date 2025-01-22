@@ -14,12 +14,13 @@ services:
       - PUID=0
       - PGID=1000
       - TZ=Europe/Berlin
-      - SETTINGS_ENCRYPTION_KEY=PleaseChangeMeToSecureValue
+      - SETTINGS_ENCRYPTION_KEY=PleaseChangeMeToSecureValue # <-- change this
+      - DUPLICATI__WEBSERVICE_PASSWORD=MySecureAdminPasswordForLogin # <-- change this
     restart: unless-stopped
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/backups:/backups
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicati/config:/config
-      - /path/to/my/data/to/backup:/source # change this
+      - /path/to/my/data/to/backup:/source # <-- change this
     #networks:
     #  - proxy
     #labels:

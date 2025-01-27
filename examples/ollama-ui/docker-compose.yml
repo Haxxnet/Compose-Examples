@@ -5,7 +5,7 @@ services:
     container_name: ollama-ui
     restart: always
     ports:
-      - 8080
+      - 8080:8080 # web ui
     expose:
       - 8080
     volumes:

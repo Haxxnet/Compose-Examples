@@ -31,6 +31,13 @@ services:
       - 11434
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ollama/data:/root/.ollama
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          count: all
+    #          capabilities: [gpu]      
     #networks:
     #  - proxy
 

@@ -12,6 +12,11 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homeassistant/config:/config
     #ports:
-    #  - 8123:8123 # optional of host network is used
+    #  - 8123:8123 # optional if host network is used
     #devices:
     #  - /path/to/device:/path/to/device #optional
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500M

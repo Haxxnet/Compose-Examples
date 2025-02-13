@@ -87,6 +87,7 @@ services:
       - GF_SERVER_ROOT_URL=https://grafana.example.com # pls change this
     volumes:
       - ./volume-data/grafana:/var/lib/grafana
+      #- ./volume-data/defaults.ini:/etc/grafana/grafana.ini
     ports:
       - 3000:3000
     expose:

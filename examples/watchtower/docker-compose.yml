@@ -1,7 +1,7 @@
 services:
 
   watchtower:
-    image: containrrr/watchtower:latest    
+    image: containrrr/watchtower:latest
     container_name: watchtower
     hostname: watchtower
     environment:
@@ -16,11 +16,38 @@ services:
       #- WATCHTOWER_MONITOR_ONLY=true
       - WATCHTOWER_SCHEDULE=0 0 6 * * * # requires a go cron syntax of 6 space-separated fields; see https://containrrr.dev/watchtower/arguments/#scheduling
       - WATCHTOWER_CLEANUP=true # remove unused images afterwards
+      - DOCKER_HOST=tcp://socket-proxy:2375 # use socket-proxy for secure docker api access
     restart: always
-    network_mode: "host"
+    networks:
+      - watchtower
+      - proxynet
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
     working_dir: /
     labels:
-      com.centurylinklabs.watchtower: true    
+      com.centurylinklabs.watchtower: true
+
+  socket-proxy:
+    image: lscr.io/linuxserver/socket-proxy:1.26.2
+    container_name: socket-proxy-watchtower
+    environment:
+      - ALLOW_START=1
+      - ALLOW_STOP=1
+      - ALLOW_RESTARTS=1
+      - CONTAINERS=1
+      - IMAGES=1
+      - NETWORKS=1
+      - POST=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - proxynet
+    restart: always
+    read_only: true
+    tmpfs:
+      - /run
+
+networks:
+  proxynet:
+    internal: true
+  watchtower:

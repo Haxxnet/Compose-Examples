@@ -15,6 +15,8 @@ services:
       # ------- OPTIONAL OIDC AUTH --------
       # Set to 'True' to enable OIDC authentication
       #- OIDC_ENABLED=True
+      # Decide whether login area triggers automatic OIDC login flow
+      #- OIDC_AUTOLOGIN=False
       # Set to 'True' to allow the creation of new users through OIDC
       #- OIDC_CREATE_USER=True
       # The signing algorithm used by the OIDC provider (e.g., RS256, HS256)

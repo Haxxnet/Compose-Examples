@@ -28,6 +28,8 @@ services:
       #- traefik.http.middlewares.basic-auth-global.basicauth.users=admin:$$apr1$$epoKf5li$$QfTMJZOCS/halv3CiIUEu0 # protect the traefik dashboard by basic auth (pw=password)
     extra_hosts:
       - host.docker.internal:172.17.0.1
+    security_opt:
+      - no-new-privileges:true      
     networks:
       - proxy
       - docker-proxynet

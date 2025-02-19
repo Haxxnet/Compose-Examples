@@ -14,7 +14,7 @@ services:
       - 443 # https
       - 8080 # http api dashboard
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro # ro = read-only access to the docker.sock
+      #- /var/run/docker.sock:/var/run/docker.sock:ro # better use socket-proxy instead
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik:/etc/traefik/ # put the provided traefik.yml and fileConfig.yml files at this location
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/logs
     environment:
@@ -30,7 +30,25 @@ services:
       - host.docker.internal:172.17.0.1
     networks:
       - proxy
+      - docker-proxynet
+
+  socket-proxy:
+    image: lscr.io/linuxserver/socket-proxy:1.26.2
+    container_name: socket-proxy
+    environment:
+      - CONTAINERS=1
+      - EVENTS=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - docker-proxynet
+    restart: always
+    read_only: true
+    tmpfs:
+      - /run
 
 networks:
   proxy:
     external: true
+  docker-proxynet:
+    internal: true

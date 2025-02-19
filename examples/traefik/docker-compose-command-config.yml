@@ -8,41 +8,42 @@ services:
     container_name: traefik
     restart: always
     command:
-      - --providers.docker=true # enable docker provider
-      - --providers.docker.network=proxy # define default network to monitor for docker provider
-      - --providers.docker.exposedbydefault=false # do not expose docker hosts per default
-      - --providers.file.watch=true # monitor file provider for changes
-      - --providers.file.filename=/etc/traefik/fileConfig.yml # location of the dynamic configuration
-      - --entrypoints.http.address=:80 # entrypoint for unencrypted http
-      - --entrypoints.http.forwardedHeaders.trustedIPs=103.21.244.0/22,103.22.200.0/22,103.31.4.0/22,104.16.0.0/13,104.24.0.0/14,108.162.192.0/18,131.0.72.0/22,141.101.64.0/18,162.158.0.0/15,172.64.0.0/13,173.245.48.0/20,188.114.96.0/20,190.93.240.0/20,197.234.240.0/22,198.41.128.0/17,2400:cb00::/32,2606:4700::/32,2803:f800::/32,2405:b500::/32,2405:8100::/32,2a06:98c0::/29,2c0f:f248::/32 # define cloudflare ip ranges as trusted
-      - --entrypoints.http.http.redirections.entryPoint.to=https # automatic redirect from http to https
-      - --entrypoints.http.http.redirections.entryPoint.scheme=https # automatic redirect from http to https
-      - --entrypoints.https.address=:443 # entrypoint for encrypted https
-      - --entrypoints.https.forwardedHeaders.trustedIPs=103.21.244.0/22,103.22.200.0/22,103.31.4.0/22,104.16.0.0/13,104.24.0.0/14,108.162.192.0/18,131.0.72.0/22,141.101.64.0/18,162.158.0.0/15,172.64.0.0/13,173.245.48.0/20,188.114.96.0/20,190.93.240.0/20,197.234.240.0/22,198.41.128.0/17,2400:cb00::/32,2606:4700::/32,2803:f800::/32,2405:b500::/32,2405:8100::/32,2a06:98c0::/29,2c0f:f248::/32 # define cloudflare ip ranges as trusted
-      - --entrypoints.https.http.middlewares=security-headers@file,rate-limit@file # define default middlewares for all proxy entries
-      - --api.dashboard=true # enable traefik api dashboard
-      - --api.insecure=true # expose traefik api dashboard on TCP/8080 without need for router
+      - "--providers.docker=true" # enable docker provider
+      - "--providers.docker.network=proxy" # define default network to monitor for docker provider
+      - "--providers.docker.endpoint=tcp://socket-proxy:2375" # define socket-proxy as docker socket
+      - "--providers.docker.exposedbydefault=false" # do not expose docker hosts per default
+      - "--providers.file.watch=true" # monitor file provider for changes
+      - "--providers.file.filename=/etc/traefik/fileConfig.yml" # location of the dynamic configuration
+      - "--entrypoints.http.address=:80" # entrypoint for unencrypted http
+      - "--entrypoints.http.forwardedHeaders.trustedIPs=103.21.244.0/22,103.22.200.0/22,103.31.4.0/22,104.16.0.0/13,104.24.0.0/14,108.162.192.0/18,131.0.72.0/22,141.101.64.0/18,162.158.0.0/15,172.64.0.0/13,173.245.48.0/20,188.114.96.0/20,190.93.240.0/20,197.234.240.0/22,198.41.128.0/17,2400:cb00::/32,2606:4700::/32,2803:f800::/32,2405:b500::/32,2405:8100::/32,2a06:98c0::/29,2c0f:f248::/32" # define cloudflare ip ranges as trusted
+      - "--entrypoints.http.http.redirections.entryPoint.to=https" # automatic redirect from http to https
+      - "--entrypoints.http.http.redirections.entryPoint.scheme=https" # automatic redirect from http to https
+      - "--entrypoints.https.address=:443" # entrypoint for encrypted https
+      - "--entrypoints.https.forwardedHeaders.trustedIPs=103.21.244.0/22,103.22.200.0/22,103.31.4.0/22,104.16.0.0/13,104.24.0.0/14,108.162.192.0/18,131.0.72.0/22,141.101.64.0/18,162.158.0.0/15,172.64.0.0/13,173.245.48.0/20,188.114.96.0/20,190.93.240.0/20,197.234.240.0/22,198.41.128.0/17,2400:cb00::/32,2606:4700::/32,2803:f800::/32,2405:b500::/32,2405:8100::/32,2a06:98c0::/29,2c0f:f248::/32" # define cloudflare ip ranges as trusted
+      - "--entrypoints.https.http.middlewares=security-headers@file,rate-limit@file" # define default middlewares for all proxy entries
+      - "--api.dashboard=true" # enable traefik api dashboard
+      - "--api.insecure=true" # expose traefik api dashboard on TCP/8080 without need for router
       ####################################################
       # !!! ADJUST TO YOUR INFRASTRUCTURE SETUP BELOW !!!!
-      - --entrypoints.https.http.tls.certresolver=myresolver # define default cert resolver
-      - --entrypoints.https.http.tls.domains[0].main=example.com # define main domain, change to your domain
-      - --entrypoints.https.http.tls.domains[0].sans=*.example.com # define sans domain, change to your domain
-      - --certificatesresolvers.myresolver.acme.email=myemail@domain.tld # define your email address
-      #- --certificatesresolvers.myresolver.acme.httpchallenge=true # use http challenge
-      #- --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=http # define entrypoint for http challenge
-      - --certificatesresolvers.myresolver.acme.dnschallenge=true # enable dns challenge to obtain wildcard certificates
-      - --certificatesresolvers.myresolver.acme.dnschallenge.provider=cloudflare # define provider for certificates
-      - --certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme.json # define acme path for certificate information
-      - --certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53 # define dns servers for your resolver, here cloudflare
+      - "--entrypoints.https.http.tls.certresolver=myresolver" # define default cert resolver
+      - "--entrypoints.https.http.tls.domains[0].main=example.com" # define main domain, change to your domain
+      - "--entrypoints.https.http.tls.domains[0].sans=*.example.com" # define sans domain, change to your domain
+      - "--certificatesresolvers.myresolver.acme.email=myemail@domain.tld" # define your email address
+      #- "--certificatesresolvers.myresolver.acme.httpchallenge=true" # use http challenge
+      #- "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=http" # define entrypoint for http challenge
+      - "--certificatesresolvers.myresolver.acme.dnschallenge=true" # enable dns challenge to obtain wildcard certificates
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=cloudflare" # define provider for certificates
+      - "--certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme.json" # define acme path for certificate information
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53" # define dns servers for your resolver, here cloudflare
       ####################################################
-      - --log.level=INFO # enable log level
-      - --accesslog=true # enable access logs
-      - --accesslog.filepath=/logs/traefik.log # define access log path
-      - --accesslog.format=json # set access log format to json instead clm
-      - --accesslog.bufferingsize=0 # set access log buffer size to 0
-      - --accesslog.filters.statuscodes=400-599 # only log http errors in logs; alternatively set 200-599 to include successful http requests
-      - --accesslog.fields.headers.defaultmode=drop # drop all headers
-      - --serversTransport.insecureSkipVerify=true # set insecureSkipVerify to true to allow self-signed certificates
+      - "--log.level=INFO" # enable log level
+      - "--accesslog=true" # enable access logs
+      - "--accesslog.filepath=/logs/traefik.log" # define access log path
+      - "--accesslog.format=json" # set access log format to json instead clm
+      - "--accesslog.bufferingsize=0" # set access log buffer size to 0
+      - "--accesslog.filters.statuscodes=400-599" # only log http errors in logs; alternatively set 200-599 to include successful http requests
+      - "--accesslog.fields.headers.defaultmode=drop" # drop all headers
+      - "--serversTransport.insecureSkipVerify=true" # set insecureSkipVerify to true to allow self-signed certificates
     labels:
       - traefik.enable=true # enable traefik
       - traefik.http.routers.api.rule=Host(`traefik.example.com`) # define subdomain for the traefik api dashboard
@@ -67,7 +68,25 @@ services:
       - host.docker.internal:172.17.0.1 # define internal ip; helps traefik to resolve containers running in host network mode
     networks:
       - proxy # define traefik docker network
+      - docker-proxynet
+
+  socket-proxy:
+    image: lscr.io/linuxserver/socket-proxy:1.26.2
+    container_name: socket-proxy
+    environment:
+      - CONTAINERS=1
+      - EVENTS=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - docker-proxynet
+    restart: always
+    read_only: true
+    tmpfs:
+      - /run
 
 networks:
   proxy:
     external: true
+  docker-proxynet:
+    internal: true

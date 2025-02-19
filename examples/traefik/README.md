@@ -14,15 +14,20 @@ There are options to outsource the Traefik configuration into static and dynamic
 
 Please remember to configure logrotation on your Docker host server if you've enabled Traefik access logs. See `logrotate_example.txt` as example. The logs will increase in size and may cause disk space issues, if not handled properly.
 
+> [!TIP]
+> The provided compose examples make use of a separate socket-proxy container.
+> 
+> Socket Proxy is a security-enhanced proxy, which allows you to apply access rules to the Docker socket, limiting the attack surface for containers such as Traefik that need to use it.
+
 ### Spawning up Traefik with outsourced configuration files
 
 1. Put the provided `traefik.yml` (static) and `fileConfig.yml` (dynamic) configuration files to your volume bind mount (here `/mnt/docker-volumes/traefik`). 
-2. Add your Cloudflare API token as environment variable to the `docker-compose.yml` file and define your Cloudflare email address in the `traefik.yml` file. May adjust to your preferred certresolver. The example given is for Cloudflare.
+2. Add your Cloudflare API token as environment variable to the `docker-compose.yml` file and define your Cloudflare email address in the `traefik.yml` file. May adjust to your preferred certresolver. The example given is for Cloudflare, using the ACME DNS challenge to obtain wildcard certificates.
 3. Adjust the static and dynamic configuration files to your needs. Especially replace the `example.com` strings with your domain name in the `traefik.yml` static configuration file. Also adjust the authelia and basic auth definitions in the `fileConfig.yml` dynamic configuration file with secure values and your domain names.
 
 ### Spawning up Traefik with configuration command definitions
 
 1. Use the `docker-compose-command-config.yml` example as a reference point.
 2. Put the provided `fileConfig.yml` (dynamic) configuration file to your volume bind mount (here `/mnt/docker-volumes/traefik`).
-3. Add your Cloudflare API token as environment variable in the compose file. Define your Cloudflare email address in the command definitions of the compose file. May adjust to your preferred certresolver. The example given is for Cloudflare.
+3. Add your Cloudflare API token as environment variable in the compose file. Define your Cloudflare email address in the command definitions of the compose file. May adjust to your preferred certresolver. The example given is for Cloudflare, using the ACME DNS challenge to obtain wildcard certificates.
 4. Adjust the dynamic configuration file `fileConfig.yml` to your needs. Especially adjust the authelia and basic auth definitions with secure values and your domain names.

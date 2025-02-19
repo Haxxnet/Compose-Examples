@@ -66,6 +66,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/logs # bind mount volume for persistent traefik logs
     extra_hosts:
       - host.docker.internal:172.17.0.1 # define internal ip; helps traefik to resolve containers running in host network mode
+    security_opt:
+      - no-new-privileges:true
     networks:
       - proxy # define traefik docker network
       - docker-proxynet

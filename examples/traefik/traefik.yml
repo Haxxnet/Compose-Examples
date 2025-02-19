@@ -123,6 +123,7 @@ providers:
   docker:
     watch: true
     network: proxy # Add Your Docker Network Name Here
+    #endpoint: "tcp://socket-proxy:2375"
     # Default host rule to containername.domain.example
     defaultRule: "Host(`{{ index .Labels \"com.docker.compose.service\"}}.example.com`)" # change 'example.com' to your proxy domain
     exposedByDefault: false

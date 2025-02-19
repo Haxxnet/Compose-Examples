@@ -3,7 +3,7 @@ services:
   traefik:
     image: traefik:v3.3
     container_name: traefik
-    restart: always    
+    restart: always
     ports:
       - 80:80/tcp # http
       - 443:443/tcp # https
@@ -29,7 +29,7 @@ services:
     extra_hosts:
       - host.docker.internal:172.17.0.1
     networks:
-      - proxy    
+      - proxy
 
 networks:
   proxy:

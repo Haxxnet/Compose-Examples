@@ -43,6 +43,7 @@ services:
       - "--accesslog.bufferingsize=0" # set access log buffer size to 0
       - "--accesslog.filters.statuscodes=400-599" # only log http errors in logs; alternatively set 200-599 to include successful http requests
       - "--accesslog.fields.headers.defaultmode=drop" # drop all headers
+      - "--accesslog.fields.headers.names.user-agent=keep" # keep user-agent header
       - "--serversTransport.insecureSkipVerify=true" # set insecureSkipVerify to true to allow self-signed certificates
     labels:
       - traefik.enable=true # enable traefik

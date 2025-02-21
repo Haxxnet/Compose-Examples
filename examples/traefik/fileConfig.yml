@@ -151,7 +151,7 @@ http:
     basic-auth:
       basicAuth:
         # https://hostingcanada.org/htpasswd-generator/
-        users: "admin:$$apr1$$epoKf5li$$QfTMJZOCS/halv3CiIUEu0" # admin:password
+        users: "admin:$apr1$76boeqjp$tVQUCSSQky300AS.kgbZX/" # admin:password
 
 # Only use secure ciphers - https://ssl-config.mozilla.org/#server=traefik&version=2.9&config=intermediate&guideline=5.6
 tls:

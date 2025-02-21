@@ -61,7 +61,7 @@ services:
       - TZ=Europe/Berlin # define timezone
       - CF_DNS_API_TOKEN=<MY-CF-API-TOKEN> # define your cloudflare api token
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro # pass docker socket as read-only
+      #- /var/run/docker.sock:/var/run/docker.sock:ro # pass docker socket as read-only
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik:/etc/traefik/ # bind mount volume for persistent traefik data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/traefik/logs:/logs # bind mount volume for persistent traefik logs
     extra_hosts:

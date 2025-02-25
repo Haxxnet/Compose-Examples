@@ -391,6 +391,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
 - [Docmost](examples/docmost) - Docmost is an open source collaborative documentation and wiki software. It is an open-source alternative to the likes of Confluence and Notion.
 - [Atlassian Confluence](examples/atlassian-jira-confluence) - Confluence is a wiki solution built for business teams.
+- [Siyuan](examples/siyuan) - A privacy-first, self-hosted, fully open source personal knowledge management software, written in typescript and golang.
 
 ### Money, Budgeting & Management
 

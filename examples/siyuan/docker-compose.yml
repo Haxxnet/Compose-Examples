@@ -1,0 +1,30 @@
+services:
+
+  siyuan:
+    image: b3log/siyuan:latest
+    container_name: siyuan
+    command: ['--workspace=/siyuan/workspace/', '--accessAuthCode=${AuthCode:-S3cr3t}']
+    ports:
+      - 6806:6806/tcp # web ui
+    expose:
+      - 6806
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/siyuan/workspace:/siyuan/workspace
+    restart: unless-stopped
+    environment:
+      - TZ=${PUID:-Europe/Berlin}
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.siyuan.rule=Host(`wiki.example.com`)
+    #  - traefik.http.services.siyuan.loadbalancer.server.port=6806
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.siyuan.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

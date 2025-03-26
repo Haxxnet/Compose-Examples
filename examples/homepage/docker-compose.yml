@@ -11,6 +11,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - HOMEPAGE_ALLOWED_HOSTS=home.example.com # add your FQDN here
     volumes:
       #- /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations      
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/homepage/config:/app/config # Make sure your local config directory exists

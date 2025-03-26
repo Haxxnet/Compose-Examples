@@ -18,6 +18,9 @@ services:
       - ROUNDCUBEMAIL_DB_TYPE=sqlite
       - ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE=50M
       - ROUNDCUBEMAIL_ASPELL_DICTS=de,en
+      # Custom plugins; see https://packagist.org/?type=roundcube-plugin
+      - ROUNDCUBEMAIL_COMPOSER_PLUGINS=johndoh/contextmenu,weird-birds/thunderbird_labels,jfcherng-roundcube/show-folder-size,germancoding/tls_icon,texxasrulez/advanced_search,johndoh/swipe
+      - ROUNDCUBEMAIL_PLUGINS=contextmenu,thunderbird_labels,show_folder_size,tls_icon,advanced_search,swipe
     #networks:
     #  - proxy
     #labels:

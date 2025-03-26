@@ -1,0 +1,33 @@
+services:
+
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    container_name: roundcube
+    restart: unless-stopped
+    expose:
+      - 80/tcp
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/roundcube/database:/var/roundcube/db
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/roundcube/config:/var/roundcube/config
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/roundcube/enigma:/var/roundcube/enigma
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=ssl://imap.web.de
+      - ROUNDCUBEMAIL_DEFAULT_PORT=993
+      - ROUNDCUBEMAIL_SMTP_SERVER=tls://smtp.web.de
+      - ROUNDCUBEMAIL_SMTP_PORT=587
+      - ROUNDCUBEMAIL_DB_TYPE=sqlite
+      - ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE=50M
+      - ROUNDCUBEMAIL_ASPELL_DICTS=de,en
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.roundcube.rule=Host(`roundcube.example.com`)
+    #  - traefik.http.services.roundcube.loadbalancer.server.port=80
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.roundcube.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

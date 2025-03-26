@@ -54,7 +54,7 @@ docker compose up
 - [Automation and Monitoring](#automation-and-monitoring)
 - [Backups](#backups)
 - [Blogging Platforms and Homepages](#blogging-platforms-and-homepages)
-- [Communication - Social Networks, Forums and Video Conferencing](#communication---social-networks-forums-and-video-conferencing)
+- [Communication - Social Networks, Webclients, Forums and Video Conferencing](#communication---social-networks-webclients-forums-and-video-conferencing)
 - [Document Management](#document-management)
 - [Domain Name Service (DNS)](#domain-name-service-dns)
 - [E-commerce](#e-commerce)
@@ -331,7 +331,7 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 - [WordPress](examples/wordpress) - WordPress is a free and open-source content management system written in hypertext preprocessor language and paired with a MySQL or MariaDB database with supported HTTPS.
 - [Nginx + PHP](examples/nginx-php) - Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. Combined with PHP, a general-purpose scripting language geared toward web development, server-side functions can be implemented for the webs.
 
-### Communication - Social Networks, Forums and Video Conferencing
+### Communication - Social Networks, Webclients, Forums and Video Conferencing
 
 **[`^        back to top        ^`](#-project-list)**
 
@@ -342,6 +342,7 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 - [Answer](examples/answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
 - [Mirotalk P2P](examples/mirotalk) - Simple, Secure, Fast Real-Time Video Conferences Up to 4k and 60fps, compatible with all browsers and platforms.
 - [Reactive-Resume](examples/rxresume) - A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever.
+- [Roundcube](examples/roundcube) - Roundcube Webmail is a browser-based multilingual IMAP client with an application-like user interface. It provides full functionality you expect from an email client, including MIME support, address book, folder management, message searching and spell checking.
 
 ### E-commerce
 

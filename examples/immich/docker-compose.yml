@@ -63,6 +63,8 @@ services:
       PG_DATA: /var/lib/postgresql/data
     volumes:
       - ${DB_DATABASE_LOCATION}:/var/lib/postgresql/data
+    command: >-
+      postgres -c shared_preload_libraries=vectors.so -c 'search_path="$$user", public, vectors' -c logging_collector=on -c max_wal_size=2GB -c shared_buffers=512MB -c wal_compression=on      
     restart: unless-stopped
     networks:
       - immich-internal

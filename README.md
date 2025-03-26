@@ -335,7 +335,7 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 
 **[`^        back to top        ^`](#-project-list)**
 
-[Social Networking](https://en.wikipedia.org/wiki/Social_networking_service) and [Forum](https://en.wikipedia.org/wiki/Internet_forum) software.
+[Social Networking](https://en.wikipedia.org/wiki/Social_networking_service), [Webmail clients](https://en.wikipedia.org/wiki/Webmail), [Video Conferencing](https://en.wikipedia.org/wiki/Web_conferencing) and [Forum](https://en.wikipedia.org/wiki/Internet_forum) software.
 
 - [Rocket.Chat](examples/rocketchat) - Rocket.Chat is an open-source fully customizable communications platform developed in JavaScript for organizations with high standards of data protection.
 - [Mattermost](examples/mattermost) - Mattermost is an open source platform for secure collaboration across the entire software development lifecycle.

@@ -6,14 +6,14 @@
 # Notes
 
 > [!WARNING]
-> The container runs as low-privileged `www-data` user. So you have to adjust the permissions for the persistent database bind mount volume.
+> The container runs as low-privileged `www-data` user (UID/GID 33). So you have to adjust the permissions for the persistent database bind mount volume.
 
 ````
 # create volume dir for persistence
 mkdir -p /mnt/docker-volumes/vouchervault/database
 
 # adjust permissions
-sudo chown -R www-data:www-data /mnt/docker-volumes/vouchervault/*
+sudo chown -R 33:33 /mnt/docker-volumes/vouchervault/*
 
 # spawn the container stack
 docker compose up

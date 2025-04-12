@@ -68,8 +68,8 @@ http:
           X-Forwarded-Proto: "https"
         hostsProxyHeaders:
           - "X-Forwarded-Host"
-        customRequestHeaders:
-          X-Forwarded-Proto: "https"
+        #customRequestHeaders:
+        #  X-Forwarded-Proto: "https"
         contentTypeNosniff: true # X-Content-Type-Options
         customFrameOptionsValue: "SAMEORIGIN" # X-Frame-Options
         browserXssFilter: false # X-XSS-Protection; deprecated

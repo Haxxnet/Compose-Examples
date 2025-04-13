@@ -27,7 +27,8 @@ services:
     #  - traefik.http.services.immich.loadbalancer.server.port=2283
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
-    #  - traefik.http.routers.immich.middlewares=limit-immich
+    #  - traefik.http.routers.immich-swagger.rule=Host(`immich.example.com`) && PathPrefix(`/doc`)
+    #  - traefik.http.routers.immich-swagger.middlewares=local-ipwhitelist@file
 
   immich-machine-learning:
     image: altran1502/immich-machine-learning:${IMMICH_VERSION:-release}

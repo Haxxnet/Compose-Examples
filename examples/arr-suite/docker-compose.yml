@@ -286,3 +286,15 @@ services:
 #networks:
 #  proxy:
 #    external: true
+  jellyseerr:
+    container_name: jellyseerr
+    image: fallenbagel/jellyseerr:latest
+    environment:
+      - LOG_LEVEL=information
+      - TZ=Asia/Kolkata
+      - PORT=5055 #optional
+    ports:
+      - 5055:5055
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/jellyseer/config:/app/config
+    restart: unless-stopped

@@ -46,9 +46,11 @@ services:
       - immich-internal
 
   immich-redis:
-    image: redis:6.2-alpine
+    image: docker.io/valkey/valkey:8-bookworm
     container_name: immich-redis
     restart: unless-stopped
+    healthcheck:
+      test: redis-cli ping || exit 1
     networks:
       - immich-internal
 

@@ -12,8 +12,6 @@ services:
       - EXPIRY_THRESHOLD_DAYS=90
       # define the timezone
       - TZ=Europe/Berlin
-      # define custom x-frame-options response header
-      #- X-FRAME-OPTIONS=other.example.tld      
       # ------- OPTIONAL OIDC AUTH --------
       # Set to 'True' to enable OIDC authentication
       #- OIDC_ENABLED=True

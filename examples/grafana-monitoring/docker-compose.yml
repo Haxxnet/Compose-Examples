@@ -2,7 +2,7 @@ services:
 
   loki:
     image: grafana/loki:2.9.11
-    container_name: loki    
+    container_name: loki
     hostname: loki
     volumes:
       - ./volume-data/loki:/etc/loki # place loki-config.yml
@@ -12,14 +12,14 @@ services:
       - 3100
     restart: unless-stopped
     user: 1000:1000
-    command: -config.file=/etc/loki/loki-config.yml  
+    command: -config.file=/etc/loki/loki-config.yml
     #networks:
     #  - monitoring_default
 
   promtail:
     image: grafana/promtail:latest
     container_name: promtail
-    hostname: promtail    
+    hostname: promtail
     depends_on:
       - loki
     volumes:
@@ -46,10 +46,30 @@ services:
     #networks:
     #  - monitoring_default
 
+  #influxdb:
+  #  image: influxdb:2.7
+  #  container_name: influxdb2
+  #  restart: unless-stopped
+  #  expose:
+  #    - 8086
+  #  environment:
+  #    - DOCKER_INFLUXDB_INIT_USERNAME=admin
+  #    - DOCKER_INFLUXDB_INIT_PASSWORD=change-me-1 # <-- change this pw
+  #    - DOCKER_INFLUXDB_INIT_ORG=influx-org
+  #    - DOCKER_INFLUXDB_INIT_BUCKET=influx-bucket
+  #    - DOCKER_INFLUXDB_INIT_RETENTION=30d
+  #    - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=change-me-2 # <-- change this pw
+  #    - DOCKER_INFLUXDB_INIT_MODE=setup
+  #  volumes:
+  #    - ./volume-data/influxdb2/data:/var/lib/influxdb2
+  #    - ./volume-data/influxdb2/conf:/etc/influxdb2
+  #  networks:
+  #    - monitoring_default
+
   telegraf:
     image: telegraf:latest
     container_name: telegraf
-    hostname: telegraf    
+    hostname: telegraf
     restart: unless-stopped
     user: telegraf:$(stat -c '%g' /var/run/docker.sock) # see: https://www.influxdata.com/blog/docker-run-telegraf-as-non-root/
     dns:
@@ -74,10 +94,10 @@ services:
     #  - monitoring_default
 
   grafana:
-    image: grafana/grafana-oss:latest    
+    image: grafana/grafana-oss:12.0.0
     container_name: grafana
     hostname: grafana
-    restart: unless-stopped    
+    restart: unless-stopped
     user: 1000:1000
     depends_on:
       - influxdb

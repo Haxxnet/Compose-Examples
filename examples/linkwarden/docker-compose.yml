@@ -1,0 +1,68 @@
+services:
+
+  linkwarden:
+    image: ghcr.io/linkwarden/linkwarden:latest
+    container_name: linkwarden-app
+    environment:
+      - DATABASE_URL=postgresql://${PG_USER:-linkwarden}:${PG_PASS:-linkwarden}@postgres:5432/${PG_DB:-linkwarden}
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/linkwarden/data:/data/data
+    depends_on:
+      - postgres
+      - meilisearch
+    #networks:
+    #  - internal
+    #  - tier-2
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.linkwarden.rule=Host(`linkwarden.example.com`)
+    #  - traefik.http.services.linkwarden.loadbalancer.server.port=3000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.linkwarden.middlewares=local-ipwhitelist@file
+
+  postgres:
+    image: docker.io/library/postgres:16-alpine
+    container_name: linkwarden-psql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/linkwarden/psql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASS:-linkwarden}
+      POSTGRES_USER: ${PG_USER:-linkwarden}
+      POSTGRES_DB: ${PG_DB:-linkwarden}
+    expose:
+      - 5432
+    env_file:
+      - .env
+    #networks:
+    #  - internal
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.12.8
+    container_name: linkwarden-search
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/linkwarden/meili_data:/meili_data
+    #networks:
+    #  - internal
+
+#networks:
+#  tier-2:
+#    external: true
+#  internal:
+#    internal: true

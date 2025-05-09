@@ -249,6 +249,7 @@ Digital [archiving](https://en.wikipedia.org/wiki/Archival_science) and [preserv
 - [Archivebox](examples/archivebox) - ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view websites offline.
 - [Shiori](examples/shiori) - Simple bookmark manager and website archiver built with Go.
 - [Readeck](examples/readeck) - Readeck is a simple web application that lets you save the precious readable content of web pages you like and want to keep forever.
+- [Linkwarden](examples/linkwarden) - Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents.
 
 ### Document Management
 

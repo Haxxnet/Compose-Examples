@@ -22,7 +22,7 @@ services:
       - keycloak-internal
 
   keycloak:
-    image: quay.io/keycloak/keycloak:25.0
+    image: quay.io/keycloak/keycloak:26.2
     container_name: keycloak-app
     command: start
     environment:

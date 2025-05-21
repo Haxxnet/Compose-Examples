@@ -1,7 +1,7 @@
 services:
 
   immich-server:
-    image: altran1502/immich-server:${IMMICH_VERSION:-release}
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     container_name: immich-server    
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -31,7 +31,7 @@ services:
     #  - traefik.http.routers.immich-swagger.middlewares=local-ipwhitelist@file
 
   immich-machine-learning:
-    image: altran1502/immich-machine-learning:${IMMICH_VERSION:-release}
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release
     container_name: immich-ml
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -46,7 +46,7 @@ services:
       - immich-internal
 
   immich-redis:
-    image: docker.io/valkey/valkey:8-bookworm
+    image: docker.io/valkey/valkey:8-bookworm@sha256:ff21bc0f8194dc9c105b769aeabf9585fea6a8ed649c0781caeac5cb3c247884
     container_name: immich-redis
     restart: unless-stopped
     healthcheck:

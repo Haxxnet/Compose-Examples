@@ -31,7 +31,7 @@ services:
     #  - traefik.http.routers.immich-swagger.middlewares=local-ipwhitelist@file
 
   immich-machine-learning:
-    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     container_name: immich-ml
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload

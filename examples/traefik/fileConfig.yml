@@ -64,6 +64,7 @@ http:
           #Cross-Origin-Embedder-Policy: "unsafe-none"
           #Cross-Origin-Opener-Policy: "same-origin"
           #Cross-Origin-Resource-Policy: "same-site"
+          #X-Permitted-Cross-Domain-Policies: "none"
         sslProxyHeaders:
           X-Forwarded-Proto: "https"
         hostsProxyHeaders:

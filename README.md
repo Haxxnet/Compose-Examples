@@ -447,6 +447,7 @@ Multiplayer game servers, browser games and utilities for managing game servers.
 - [cs2-dedicated-server](examples/cs2-dedicated-server) - CS2 Dedicated Server Docker Image with an RCON web-based control panel.
 - [posio](examples/posio) - A multiplayer geography game using Websockets.
 - [Monkeytype](examples/monkeytype) - The most customizable typing website with a minimalistic design and a ton of features. Test yourself in various modes, track your progress and improve your speed.
+- [GZCTF](examples/gzctf) - The GZ::CTF project, an open source CTF platform.
 
 ### Metrics & Metric Collection
 

@@ -1,0 +1,58 @@
+services:
+
+  gzctf:
+    image: gztime/gzctf:latest
+    container_name: gzctf-app
+    restart: always
+    environment:
+      - GZCTF_ADMIN_PASSWORD=My-Secure-Password5
+      - LC_ALL=de-DE.UTF-8
+    expose:
+      - 8080
+    ports:
+      - "8888:8080"
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gzctf/data/files:/app/files
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gzctf/config/appsettings.json:/app/appsettings.json:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - db
+    #networks:
+    #  - internal
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.ctf.rule=Host(`ctf.example.com`)
+    #  - traefik.http.services.ctf.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.ctf.middlewares=authentik@docker
+
+  db:
+    image: docker.io/library/postgres:16-alpine
+    container_name: gzctf-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secure-gzctf-db-password
+      - POSTGRES_DB=gzctf
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gzctf/data/db:/var/lib/postgresql/data
+    #networks:
+    #  - internal
+
+  cache:
+    image: ghcr.io/microsoft/garnet-alpine:latest
+    container_name: gzctf-cache
+    expose:
+      - 6379
+    command: ["--bind", "0.0.0.0"]
+    restart: always
+    #networks:
+    #  - internal
+
+#networks:
+#  internal:
+#    internal: true
+#  proxy:
+#    external: true

@@ -171,7 +171,7 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [Leantime](examples/leantime) - Leantime is an open source project management system for small teams and startups written in PHP, Javascript using MySQL.
 - [Gitea](examples/gitea) - Community managed fork of Gogs, lightweight code hosting solution.
 - [Drone](examples/drone) - Drone is a continuous delivery system built on container technology. Drone uses a simple YAML build file, to define and execute build pipelines inside Docker containers.
-- [Gitlab Community](examples/gitlab-ce) -  Self Hosted Git repository management, code reviews, issue tracking, activity feeds and wikis.
+- [Gitlab Community](examples/gitlab) -  Self Hosted Git repository management, code reviews, issue tracking, activity feeds and wikis.
 - [Code-Server](examples/code-server) - VS Code in the browser, hosted on a remote server.
 - [Onedev](examples/onedev) - Self-hosted Git Server with CI/CD and Kanban.
 - [Atlassian Jira Core](examples/atlassian-jira-confluence) - Jira Core is a project and task management solution built for business teams.

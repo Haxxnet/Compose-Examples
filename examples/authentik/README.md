@@ -1,6 +1,6 @@
 # References
 
-- https://goauthentik.io/docs/installation/
+- https://github.com/goauthentik/authentik
 - https://blog.lrvt.de/authentik-traefik-azure-ad/
 
 # Notes

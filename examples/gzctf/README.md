@@ -2,6 +2,7 @@
 
 - https://gzctf.gzti.me/guide/start/quick-start.html
 - https://github.com/GZTimeWalker/GZCTF
+- https://github.com/l4rm4nd/GZCTF-Cloner
 
 # Notes
 

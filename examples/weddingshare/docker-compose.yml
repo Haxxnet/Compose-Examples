@@ -1,7 +1,7 @@
 services:
 
   wedding-share:
-    image: cirx08/wedding_share:1.5.11
+    image: cirx08/wedding_share:1.6.7
     container_name: WeddingShare
     restart: always
     ports:
@@ -15,10 +15,11 @@ services:
       - GALLERY_COLUMNS=4
       - ALLOWED_FILE_TYPES=.jpg,.jpeg,.png,.heic
       - MAX_FILE_SIZE_MB=10
-      - SECRET_KEY=PleaseChangeMe
-      - ACCOUNT_ADMIN_USERNAME=admin
-      - ACCOUNT_ADMIN_PASSWORD=PleaseChangeMe
+      - ACCOUNT_OWNER_USERNAME=admin
+      - ACCOUNT_OWNER_PASSWORD=PleaseChangeMe # <-- change this
+      - ENCRYPTION_KEY=PleaseChangeMe # <-- change this
       - REQUIRE_REVIEW=true
+      - DATABASE_TYPE=sqlite
       - DISABLE_REVIEW_COUNTER=false
       - DISABLE_QR_CODE=false
       - MAX_GALLERY_SIZE_MB=4096
@@ -26,6 +27,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/config:/app/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/uploads/thumbnails:/app/wwwroot/thumbnails
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/uploads:/app/wwwroot/uploads
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/custom_resources:/app/wwwroot/custom_resources
     #networks:
     #  - proxy
     #labels:

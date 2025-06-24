@@ -6,6 +6,7 @@ services:
     hostname: loki
     volumes:
       - ./volume-data/loki:/etc/loki # place loki-config.yml
+      - ./volume-data/loki/data:/loki # loki data storage
     ports:
       - "127.0.0.1:3100:3100"
     expose:

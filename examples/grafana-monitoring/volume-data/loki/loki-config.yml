@@ -7,6 +7,11 @@ server:
   http_listen_port: 3100
   grpc_listen_port: 9096
 
+compactor:
+  working_directory: /tmp/loki/compactor
+  retention_enabled: true
+  retention_delete_delay: 2h
+
 common:
   path_prefix: /tmp/loki
   storage:

@@ -55,7 +55,7 @@ services:
       - immich-internal
 
   immich-database:
-    image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
+    image: ghcr.io/immich-app/postgres:15-vectorchord0.3.0-pgvectors0.3.0
     container_name: immich-database
     env_file:
       - .env

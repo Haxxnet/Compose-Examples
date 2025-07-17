@@ -41,7 +41,7 @@ services:
       #- 27020:27020/udp        # UDP
 
   cs2-rconpanel:
-    image: soren90/rcon-panel
+    image: ghcr.io/l4rm4nd/cs2-rcon-panel:latest
     container_name: cs2-rcon-panel
     ports:
       - 3000:3000

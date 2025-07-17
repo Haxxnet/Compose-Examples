@@ -35,7 +35,7 @@ services:
       - docker-proxynet
 
   socket-proxy:
-    image: lscr.io/linuxserver/socket-proxy:1.26.2
+    image: lscr.io/linuxserver/socket-proxy:latest
     container_name: socket-proxy
     environment:
       - CONTAINERS=1

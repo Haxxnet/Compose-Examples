@@ -2,6 +2,7 @@
 
 - https://github.com/joedwards32/CS2
 - https://github.com/shobhit-pathak/cs2-rcon-panel
+- https://github.com/l4rm4nd/cs2-rcon-panel
 
 # Notes
 

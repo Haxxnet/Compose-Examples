@@ -43,6 +43,9 @@ services:
   cs2-rconpanel:
     image: ghcr.io/l4rm4nd/cs2-rcon-panel:latest
     container_name: cs2-rcon-panel
+    environment:
+      - USERNAME=cspanel # change this
+      - PASSWORD=v67ic55x4ghvjfj # change this
     ports:
       - 3000:3000
     restart: unless-stopped

@@ -31,7 +31,7 @@
 
 Otherwise, it should be a matter of:
 ````
-git clone https://github.com/Haxxnet/Compose-Examples && cd Compose-Examples
+git clone https://github.com/Haxxnet/Compose-Examples && cd Compose-Examples/examples
 cd <container-of-interest>
 
 # read the notes, comments and adjust compose + volumes + configs

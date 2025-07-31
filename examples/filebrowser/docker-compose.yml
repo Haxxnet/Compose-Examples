@@ -14,3 +14,16 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/data:/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/config:/config
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.filebrowser.rule=Host(`filebrowser.example.com`)
+    #  - traefik.http.services.filebrowser.loadbalancer.server.port=8080
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.filebrowser.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true      

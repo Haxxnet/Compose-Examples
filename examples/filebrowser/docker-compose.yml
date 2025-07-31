@@ -1,7 +1,7 @@
 services:
 
   filebrowser:
-    image: hurlenko/filebrowser
+    image: filebrowser/filebrowser
     container_name: filebrowser
     restart: unless-stopped    
     user: 1000:1000 # adjust to your needs

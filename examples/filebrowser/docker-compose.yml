@@ -12,7 +12,7 @@ services:
     expose:
       - 80
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/data:/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/data:/srv
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/config:/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/database:/database
     #networks:

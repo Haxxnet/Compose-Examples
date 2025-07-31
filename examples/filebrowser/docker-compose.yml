@@ -8,9 +8,9 @@ services:
     environment:
       - FB_BASEURL=/filebrowser    
     ports:
-      - 8080:8080
+      - 8080:80
     expose:
-      - 8080
+      - 80
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/data:/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filebrowser/config:/config
@@ -21,7 +21,7 @@ services:
     #  - traefik.enable=true
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.filebrowser.rule=Host(`filebrowser.example.com`)
-    #  - traefik.http.services.filebrowser.loadbalancer.server.port=8080
+    #  - traefik.http.services.filebrowser.loadbalancer.server.port=80
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.filebrowser.middlewares=local-ipwhitelist@file
 

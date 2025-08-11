@@ -1,7 +1,7 @@
 services:
 
   wg-easy:
-    image: ghcr.io/wg-easy/wg-easy:15
+    image: ghcr.io/wg-easy/wg-easy:13
     container_name: wg-easy
     hostname: wireguard-easy
     restart: unless-stopped    
@@ -9,11 +9,11 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     environment:
-      - INIT_ENABLED=true
-      - INIT_USERNAME=admin # adjust
-      - INIT_PASSWORD=VerySecureInitPassword123 # adjust
-      - INIT_HOST=vpn.example.com # your hostname or ip address
-      - INIT_DNS=1.1.1.1,8.8.8.8 # add your local dns like pihole
+      - WG_HOST=vpn.example.com # your hostname or ip address
+      - PASSWORD=MyStrongPasswordForWebUi # change this
+      - WG_DEFAULT_DNS=1.1.1.1,8.8.8.8 # add your local dns like pihole
+      - WG_ALLOWED_IPS=0.0.0.0/0, ::/0
+      - WG_DEVICE=eth0
     ports:
       - 51820:51820/udp # wireguard vpn
       - 51821:51821/tcp # admin web ui

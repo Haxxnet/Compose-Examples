@@ -23,7 +23,7 @@ Please remember to configure logrotation on your Docker host server if you've en
 
 1. Put the provided `traefik.yml` (static) and `fileConfig.yml` (dynamic) configuration files to your volume bind mount (here `/mnt/docker-volumes/traefik`). 
 2. Add your Cloudflare API token as environment variable to the `docker-compose.yml` file and define your Cloudflare email address in the `traefik.yml` file. May adjust to your preferred certresolver. The example given is for Cloudflare, using the ACME DNS challenge to obtain wildcard certificates.
-3. Adjust the static and dynamic configuration files to your needs. Especially replace the `example.com` strings with your domain name in the `traefik.yml` static configuration file. Also adjust the authelia and basic auth definitions in the `fileConfig.yml` dynamic configuration file with secure values and your domain names.
+3. Adjust the static and dynamic configuration files to your needs. Especially replace the `example.com` strings with your domain name in the `traefik.yml` static configuration file. Also adjust the middleware definitions in the `fileConfig.yml` dynamic configuration file with secure values and your domain names.
 
 ### Spawning up Traefik with configuration command definitions
 

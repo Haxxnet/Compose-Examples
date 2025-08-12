@@ -20,6 +20,7 @@ services:
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.nginx.rule=Host(`nginx.example.com`)
     #  - traefik.http.services.nginx.loadbalancer.server.port=80
+    #  - traefik.http.services.nginx.loadbalancer.server.scheme=h2c # force http/2
     #  # Optional part for traefik middlewares
     #  #- traefik.http.routers.nginx.middlewares=error-pages-middleware@docker
   

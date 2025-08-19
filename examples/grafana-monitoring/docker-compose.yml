@@ -1,7 +1,7 @@
 services:
 
   loki:
-    image: grafana/loki:2.9.11
+    image: grafana/loki:2.9.15
     container_name: loki
     hostname: loki
     volumes:
@@ -68,7 +68,7 @@ services:
   #    - monitoring_default
 
   telegraf:
-    image: telegraf:1.34.4
+    image: telegraf:1.35
     container_name: telegraf
     hostname: telegraf
     restart: unless-stopped
@@ -95,7 +95,7 @@ services:
     #  - monitoring_default
 
   grafana:
-    image: grafana/grafana-oss:12.0.2
+    image: grafana/grafana-oss:latest
     container_name: grafana
     hostname: grafana
     restart: unless-stopped

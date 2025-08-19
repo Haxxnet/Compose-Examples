@@ -1,7 +1,7 @@
 services:
 
   grafana:
-    image: grafana/grafana-oss:latest
+    image: grafana/grafana:latest
     container_name: grafana
     user: 1000:1000
     restart: unless-stopped

@@ -1,7 +1,7 @@
 services:
 
   nextcloud-db:
-    image: mariadb:lts
+    image: mariadb:11.4
     container_name: nextcloud-db
     hostname: nextcloud-db
     command: --transaction-isolation=READ-COMMITTED --innodb_read_only_compressed=OFF
@@ -36,7 +36,7 @@ services:
     #  - proxy
 
   nextcloud-app:
-    image: nextcloud:29-apache
+    image: nextcloud:31-apache
     container_name: nextcloud-app
     hostname: nextcloud-app
     restart: unless-stopped

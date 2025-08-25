@@ -1,7 +1,7 @@
 services:
 
   nextcloud-db:
-    image: mariadb:lts
+    image: mariadb:11.4
     container_name: nextcloud-db
     hostname: nextcloud-db
     command: --transaction-isolation=READ-COMMITTED --innodb_read_only_compressed=OFF

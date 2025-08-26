@@ -45,8 +45,8 @@ services:
     expose:
        - 9000
     environment:
-      AUTHENTIK_HOST: https://authentik.ptf.one
-      AUTHENTIK_TOKEN: <YOUR-DEPLOYMENT-TOKEN>
+      AUTHENTIK_HOST: https://authentik.example.com # <-- adjust
+      AUTHENTIK_TOKEN: <YOUR-DEPLOYMENT-TOKEN> # <-- adjust
       AUTHENTIK_INSECURE: "false"  # set to "true" if your Authentik domain uses self-signed certs
     labels:
       - traefik.enable=true

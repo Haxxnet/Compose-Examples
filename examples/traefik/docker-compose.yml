@@ -29,7 +29,7 @@ services:
     extra_hosts:
       - host.docker.internal:172.17.0.1
     security_opt:
-      - no-new-privileges:true      
+      - no-new-privileges:true
     networks:
       - proxy
       - docker-proxynet

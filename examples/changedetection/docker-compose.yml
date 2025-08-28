@@ -7,6 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
+      - PLAYWRIGHT_DRIVER_URL=ws://playwright-chrome:3000
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/changedetection/config:/config
     ports:
@@ -23,6 +24,35 @@ services:
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only; disable to expose externally
     #  - traefik.http.routers.changedetection.middlewares=local-ipwhitelist@file,basic-auth@file
+
+  playwright-chrome:
+    hostname: playwright-chrome
+    image: dgtlmoon/sockpuppetbrowser:latest
+    restart: unless-stopped
+    expose:
+      - 3000
+    tmpfs:
+      - /tmp    # This just keeps tmp data from being written to disk
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1024
+      - SCREEN_DEPTH=16
+      - MAX_CONCURRENT_CHROME_PROCESSES=10
+      - STATS_REFRESH_SECONDS=120 # Default is 3 seconds which is way too much
+    #networks:
+    #  - proxy
+
+  #proxy:
+  #  image: dockage/tor-privoxy:latest
+  #  container_name: torprivoxy
+  #  expose:
+  #    - 9050 # socks5
+  #    - 9051 # tor control port
+  #    - 8118 # http proxy
+  #  hostname: proxy
+  #  restart: unless-stopped
+  #  #networks:
+  #  #  - proxy  
 
 #networks:
 #  proxy:

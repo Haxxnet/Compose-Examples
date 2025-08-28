@@ -7,6 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
+      - HIDE_REFERER=true
       - PLAYWRIGHT_DRIVER_URL=ws://playwright-chrome:3000
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/changedetection/config:/config

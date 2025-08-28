@@ -27,8 +27,8 @@ services:
     #  - traefik.http.routers.changedetection.middlewares=local-ipwhitelist@file,basic-auth@file
 
   playwright-chrome:
-    hostname: playwright-chrome
     image: dgtlmoon/sockpuppetbrowser:latest
+    container_name: playwright-chrome
     restart: unless-stopped
     expose:
       - 3000

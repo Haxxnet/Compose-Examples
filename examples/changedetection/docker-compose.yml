@@ -44,14 +44,14 @@ services:
     #  - proxy
 
   #proxy:
-  #  image: dockage/tor-privoxy:latest
-  #  container_name: torprivoxy
-  #  expose:
-  #    - 9050 # socks5
-  #    - 9051 # tor control port
-  #    - 8118 # http proxy
-  #  hostname: proxy
-  #  restart: unless-stopped
+    #image: zhaowde/rotating-tor-http-proxy:latest
+    #container_name: torproxy
+    #environment:
+      #- TOR_INSTANCES=4
+      #- TOR_REBUILD_INTERVAL=36000
+    #expose:
+      #- 3128 # socks5
+    #restart: unless-stopped
   #  #networks:
   #  #  - proxy  
 

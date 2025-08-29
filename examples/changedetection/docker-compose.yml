@@ -50,7 +50,7 @@ services:
       #- TOR_INSTANCES=4
       #- TOR_REBUILD_INTERVAL=36000
     #expose:
-      #- 3128 # socks5
+      #- 3128 # http proxy round-robin 
     #restart: unless-stopped
   #  #networks:
   #  #  - proxy  

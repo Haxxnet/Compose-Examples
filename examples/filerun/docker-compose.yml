@@ -14,7 +14,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filerun/db:/var/lib/mysql
 
   filerun:
-    image: filerun/filerun:latest
+    image: filerun/filerun:8.1
     container_name: filerun
     environment:
       - FR_DB_HOST=db
@@ -27,7 +27,7 @@ services:
     links:
       - db:db
     ports:
-      - 8080:80
+      - 8088:80
     expose:
       - 80
     volumes:

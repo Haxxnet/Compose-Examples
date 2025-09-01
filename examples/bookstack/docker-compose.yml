@@ -8,6 +8,9 @@ services:
       - PUID=1000
       - PGID=1000
       - APP_URL=http://127.0.0.1:8099 # change this to your prod url with https
+      # you should generate a new app key using:
+      # docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey
+      - APP_KEY=base64:Npczl7vKB0Y3AlNboNTD5f71bYVaAuVB8ay4UhZ3My0=
       - DB_HOST=bookstack_db
       - DB_USERNAME=bookstack
       - DB_PASSWORD=USERPW1

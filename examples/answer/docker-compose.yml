@@ -2,7 +2,7 @@ services:
 
   answer:
     image: answerdev/answer
-    container_name: answer    
+    container_name: answer
     ports:
       - 9080:80
     expose:

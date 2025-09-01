@@ -1,14 +1,14 @@
 services:
 
   docmost:
-    image: docmost/docmost:0.5
+    image: docmost/docmost:0.22
     container_name: docmost
     depends_on:
       - db
       - redis
     environment:
       - APP_URL=http://127.0.0.1:3000
-      - APP_SECRET=A_VERY_SECURE_STRING
+      - APP_SECRET=SecureSecretKeySecureSecretKey12 # <-- change
       - DATABASE_URL=postgresql://docmost:STRONG_DB_PASSWORD@db:5432/docmost?schema=public
       - REDIS_URL=redis://redis:6379
       # --------- S3 Storage Configuration --------

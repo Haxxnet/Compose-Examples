@@ -25,16 +25,16 @@ services:
       - "--api.insecure=true" # expose traefik api dashboard on TCP/8080 without need for router
       ####################################################
       # !!! ADJUST TO YOUR INFRASTRUCTURE SETUP BELOW !!!!
-      - "--entrypoints.https.http.tls.certresolver=myresolver" # define default cert resolver
+      - "--entrypoints.https.http.tls.certresolver=myresolver-dns" # define default cert resolver
       - "--entrypoints.https.http.tls.domains[0].main=example.com" # define main domain, change to your domain
       - "--entrypoints.https.http.tls.domains[0].sans=*.example.com" # define sans domain, change to your domain
-      - "--certificatesresolvers.myresolver.acme.email=myemail@domain.tld" # define your email address
-      #- "--certificatesresolvers.myresolver.acme.httpchallenge=true" # use http challenge
-      #- "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=http" # define entrypoint for http challenge
-      - "--certificatesresolvers.myresolver.acme.dnschallenge=true" # enable dns challenge to obtain wildcard certificates
-      - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=cloudflare" # define provider for certificates
-      - "--certificatesresolvers.myresolver.acme.storage=/etc/traefik/acme.json" # define acme path for certificate information
-      - "--certificatesresolvers.myresolver.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53" # define dns servers for your resolver, here cloudflare
+      - "--certificatesresolvers.myresolver-dns.acme.email=myemail@domain.tld" # define your email address
+      - "--certificatesresolvers.myresolver-dns.acme.dnschallenge=true" # enable dns challenge to obtain wildcard certificates
+      - "--certificatesresolvers.myresolver-dns.acme.dnschallenge.provider=cloudflare" # define provider for certificates
+      - "--certificatesresolvers.myresolver-dns.acme.storage=/etc/traefik/acme.json" # define acme path for certificate information
+      - "--certificatesresolvers.myresolver-dns.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53" # define dns servers for your resolver, here cloudflare
+      - "--certificatesresolvers.myresolver-http.acme.httpchallenge=true" # use http challenge
+      - "--certificatesresolvers.myresolver-http.acme.httpchallenge.entrypoint=http" # define entrypoint for http challenge
       ####################################################
       - "--log.level=INFO" # enable log level
       - "--accesslog=true" # enable access logs

@@ -28,6 +28,8 @@ services:
     #  - traefik.docker.network=proxy
     #  - traefik.http.routers.CHANGEME.rule=Host(`service.example.com`)
     #  - traefik.http.services.CHANGEME.loadbalancer.server.port=8080
+    #  # Optional part for selecting certificate resolver
+    #  - traefik.http.routers.CHANGEME.tls.certresolver=myresolver-http
     #  # Optional part when proxying to services that already provide ssl/tls  
     #  - traefik.http.services.CHANGEME.loadbalancer.server.scheme=https
     #  - traefik.http.services.CHANGEME.loadbalancer.serverstransport=insecureTransport@file

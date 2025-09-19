@@ -101,7 +101,7 @@ entryPoints:
     http:
       tls:
         # Generate a wildcard domain certificate
-        certResolver: myresolver
+        certResolver: myresolver-dns
         domains:
           - main: example.com # change this to your proxy domain
             sans:
@@ -129,15 +129,20 @@ providers:
 
 # Use letsencrypt to generate ssl certificates
 certificatesResolvers:
-  myresolver:
+  # ACME HTTP CHALLENGE
+  myresolver-http:
     acme:
       email: example@example.com  # the email address used for ssl certificate registration
       storage: /etc/traefik/acme.json
-      #httpChallenge: # acme http challenge; requires port 80 and proper dns entries
-      #  entryPoint: http # specify the entry point for the HTTP challenge (adjust if needed)
+      httpChallenge: # acme http challenge; requires port 80 and proper dns entries
+        entryPoint: http # specify the entry point for the HTTP challenge (adjust if needed)
+  # ACME DNS CHALLENGE
+  myresolver-dns:
+    acme:
+      email: example@example.com  # the email address used for ssl certificate registration
+      storage: /etc/traefik/acme.json
       dnsChallenge: # acme dns challenge; requires api token of dns provider
         provider: cloudflare
-        # Used to make sure the dns challenge is propagated to the right dns servers
         resolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"

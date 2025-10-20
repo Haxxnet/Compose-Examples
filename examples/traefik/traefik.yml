@@ -99,13 +99,16 @@ entryPoints:
     #http3:
     #  advertisedPort: '443'      
     http:
-      tls:
-        # Generate a wildcard domain certificate
-        certResolver: myresolver-dns
-        domains:
-          - main: example.com # change this to your proxy domain
-            sans:
-              - '*.example.com' # change this to your proxy domain
+      # use dynamically generated self-signed certificate
+      tls: {}
+      # or use a pre-defined certificate resolver from below
+      # if so, remove above line with tls: {}
+      #tls:
+      #  certResolver: myresolver-dns
+      #  domains:
+      #    - main: example.com # change this to your proxy domain
+      #      sans:
+      #        - '*.example.com' # change this to your proxy domain
       middlewares:
         - security-headers@file # reference to a dynamic middleware for setting http security headers per default
         - rate-limit@file # reference to a dynamic middleware for enabling rate limiting per default

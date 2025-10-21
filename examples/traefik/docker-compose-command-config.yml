@@ -25,9 +25,10 @@ services:
       - "--api.insecure=true" # expose traefik api dashboard on TCP/8080 without need for router
       ####################################################
       # !!! ADJUST TO YOUR INFRASTRUCTURE SETUP BELOW !!!!
-      - "--entrypoints.https.http.tls.certresolver=myresolver-dns" # define default cert resolver
-      - "--entrypoints.https.http.tls.domains[0].main=example.com" # define main domain, change to your domain
-      - "--entrypoints.https.http.tls.domains[0].sans=*.example.com" # define sans domain, change to your domain
+      - "--entrypoints.https.http.tls={}" # use dynamically generated cert
+      #- "--entrypoints.https.http.tls.certresolver=myresolver-dns" # define default cert resolver
+      #- "--entrypoints.https.http.tls.domains[0].main=example.com" # define main domain, change to your domain
+      #- "--entrypoints.https.http.tls.domains[0].sans=*.example.com" # define sans domain, change to your domain
       - "--certificatesresolvers.myresolver-dns.acme.email=myemail@domain.tld" # define your email address
       - "--certificatesresolvers.myresolver-dns.acme.dnschallenge=true" # enable dns challenge to obtain wildcard certificates
       - "--certificatesresolvers.myresolver-dns.acme.dnschallenge.provider=cloudflare" # define provider for certificates

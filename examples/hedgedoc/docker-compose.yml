@@ -24,9 +24,13 @@ services:
       - CMD_DOMAIN=collab.example.com
       - CMD_URL_ADDPORT=false
       - CMD_PROTOCOL_USESSL=true
+      - CMD_SESSION_LIFE=1209600000 # 14 days default
       - CMD_SESSION_SECRET="discolor-subtitle-seducing-result-ceramics" # define secret
-      - CMD_ALLOW_EMAIL_REGISTER="false" # disallow registration
       - CMD_EMAIL="false" # disallow login; only guest notes
+      - CMD_ALLOW_EMAIL_REGISTER="false" # disallow registration
+      - CMD_ALLOW_ANONYMOUS=false
+      - CMD_ALLOW_ANONYMOUS_EDITS=False
+      - CMD_DEFAULT_PERMISSION=locked
       # ------- OAUTH SSO -------
       # see https://docs.goauthentik.io/integrations/services/hedgedoc/
       #- CMD_ALLOW_ANONYMOUS_EDITS=False

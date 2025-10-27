@@ -39,7 +39,7 @@ Follow these instructions:
 services:
 
   authentik-outpost:
-    image: ghcr.io/goauthentik/proxy:2025.8
+    image: ghcr.io/goauthentik/proxy:2025.10
     container_name: authentik-outpost
     restart: unless-stopped
     expose:

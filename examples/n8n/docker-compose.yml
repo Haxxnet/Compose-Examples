@@ -14,7 +14,7 @@ services:
       - POSTGRES_NON_ROOT_PASSWORD
       - EXECUTIONS_DATA_PRUNE=true
       - EXECUTIONS_DATA_MAX_AGE=365
-	  	- EXECUTIONS_DATA_PRUNE_MAX_COUNT=50000
+	  - EXECUTIONS_DATA_PRUNE_MAX_COUNT=50000
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/database:/var/lib/postgresql/data
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/n8n/init-database.sh:/docker-entrypoint-initdb.d/init-data.sh:ro

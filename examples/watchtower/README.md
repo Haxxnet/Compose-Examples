@@ -1,7 +1,6 @@
 # References
 
-- https://github.com/containrrr/watchtower
-- https://containrrr.dev/watchtower/
+- https://github.com/nicholas-fedor/watchtower
 
 # Notes
 

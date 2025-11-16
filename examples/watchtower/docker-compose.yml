@@ -28,7 +28,7 @@ services:
       com.centurylinklabs.watchtower: true
 
   socket-proxy:
-    image: lscr.io/linuxserver/socket-proxy:1.26.2
+    image: lscr.io/linuxserver/socket-proxy:latest
     container_name: socket-proxy-watchtower
     environment:
       - ALLOW_START=1

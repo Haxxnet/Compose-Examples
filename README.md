@@ -170,6 +170,7 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [JetBrains YouTrack](examples/jetbrains-youtrack) - YouTrack is a proprietary, commercial browser-based bug tracker, issue tracking system and project management software developed by JetBrains.
 - [Leantime](examples/leantime) - Leantime is an open source project management system for small teams and startups written in PHP, Javascript using MySQL.
 - [Gitea](examples/gitea) - Community managed fork of Gogs, lightweight code hosting solution.
+- [Forgejo](examples/forgejo) - Started as a soft-fork of Gitea and developed in the interest of the general public.
 - [Drone](examples/drone) - Drone is a continuous delivery system built on container technology. Drone uses a simple YAML build file, to define and execute build pipelines inside Docker containers.
 - [Gitlab Community](examples/gitlab) -  Self Hosted Git repository management, code reviews, issue tracking, activity feeds and wikis.
 - [Code-Server](examples/code-server) - VS Code in the browser, hosted on a remote server.

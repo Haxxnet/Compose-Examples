@@ -10,6 +10,8 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/postgresql:/var/lib/postgresql/data
     env_file:
       - ./.env
+    #networks:
+    #  - internal
 
   web_recipes:
     image: vabene1111/recipes:2
@@ -29,6 +31,7 @@ services:
       - db_recipes
     #networks:
     #  - proxy
+    #  - internal
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.tandoor.rule=Host(`tandoor.example.com`)
@@ -40,3 +43,5 @@ services:
 #networks:
 #  proxy:
 #    external: true
+#  internal:
+#    internal: true

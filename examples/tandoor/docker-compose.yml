@@ -12,13 +12,13 @@ services:
       - ./.env
 
   web_recipes:
-    image: vabene1111/recipes:latest
+    image: vabene1111/recipes:2
     container_name: tandoor_recipes
     restart: always    
     ports:
-      - 8080:8080
+      - 8080:80
     expose:
-      - 8080
+      - 80
     env_file:
       - ./.env
     volumes:
@@ -32,7 +32,7 @@ services:
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.tandoor.rule=Host(`tandoor.example.com`)
-    #  - traefik.http.services.tandoor.loadbalancer.server.port=8080
+    #  - traefik.http.services.tandoor.loadbalancer.server.port=80
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only
     #  #- traefik.http.routers.tandoor.middlewares=local-ipwhitelist@file

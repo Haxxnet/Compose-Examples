@@ -25,7 +25,7 @@ services:
       - ./.env
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/staticfiles:/opt/recipes/staticfiles
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/nginx_config:/opt/recipes/nginx/conf.d
+      #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/nginx_config:/opt/recipes/nginx/conf.d
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/tandoor/mediafiles:/opt/recipes/mediafiles
     depends_on:
       - db_recipes

@@ -26,3 +26,9 @@ docker compose up -d
 The Guacamole login is available at `http://<YOUR-IP>:8080/guacamole`.
 
 The default username is `guacadmin`. The default password is `guacadmin`.
+
+
+> [!TIP]
+> You can also access internal hosts somewhere else. Just use gluetun to force guacamole over vpn.
+>
+> See `docker-compose-gluetun-traefik-authentik-oidc.yml` for an example with wireguard and Authentik OIDC SSO.

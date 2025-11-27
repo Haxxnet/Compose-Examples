@@ -1,174 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haxxnet Compose Viewer</title>
-    <link rel="shortcut icon" href="data:image/x-icon;base64,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" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous">
-    <!-- Dark Mode CSS -->
+    <link rel="shortcut icon" href="data:image/x-icon;base64,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" />
     <style>
-        body {
-            background-color: #333;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            flex: 1;
-        }
-
-        .project-tile {
-            border: 1px solid #555;
-            border-radius: 10px;
-            padding: 10px;
-            margin: 10px;
-            text-align: center;
-            background-color: #2d2c2c;
-            cursor: pointer;
-        }
-
-        .project-tile img {
-            max-width: 50px;
-            max-height: 50px;
-            margin-bottom: 10px;
-        }
-
-        #searchBar {
-            width: 310px;
-            margin: 10px auto;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: transparent;
-            color: #fff;
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        #repoContent .project-tile {
-            width: 20%; /* Set width to 20% for 5 tiles in a row by default */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        /* Responsive adjustment for small screens */
-        @media (max-width: 576px) {
-            #repoContent .project-tile {
-                width: 40%; /* Set width to 45% for 2 tiles in a row on small screens */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .header img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .stat-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-badge:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            font-size: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .view-btn {
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: rgba(255,255,255,0.4);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .projects-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .project-card.list-view {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            gap: 20px;
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .project-card.list-view .project-icon {
+            margin-bottom: 0;
+            width: 50px;
+            height: 50px;
+        }
+
+        .project-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .project-info {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 5px;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 1.5rem;
+            padding: 50px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sort-dropdown {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
             }
         }
     </style>
 </head>
-
-<body class="container mt-5">
+<body>
     <div class="container">
-        <a target="_blank" href="https://github.com/Haxxnet/Compose-Examples" class="d-flex justify-content-center">
-            <img width="80px" src="https://avatars.githubusercontent.com/u/98923398?s=200&v=4" alt="Haxxnet Avatar">
-        </a><br>
-        <div align="center" width="100%">
-            <h1>Awesome Docker Compose Examples</h1>
-            <p>Various Docker Compose examples of selfhosted FOSS and proprietary projects.</p>
-            <img src="https://img.shields.io/github/stars/Haxxnet/Compose-Examples.svg?style=social&label=Star" /> |
-            <img src="https://img.shields.io/github/forks/Haxxnet/Compose-Examples.svg?style=social&label=Fork" /> |
-            <img src="https://img.shields.io/github/watchers/Haxxnet/Compose-Examples.svg?style=social&label=Watch" /><p>
-            <img src="https://img.shields.io/github/directory-file-count/Haxxnet/Compose-Examples/examples?label=Compose%20Examples&style=for-the-badge.svg&color=blue" />
-            <img src="https://img.shields.io/badge/maintainer-LRVT-red" /><p>
+        <div class="header">
+            <a href="https://github.com/Haxxnet/Compose-Examples" target="_blank">
+                <img src="https://avatars.githubusercontent.com/u/98923398?s=200&v=4" alt="Haxxnet Avatar">
+            </a>
+            <h1>🐳 Awesome Docker Compose</h1>
+            <p>Discover and explore selfhosted FOSS projects</p>
+            <div class="stats">
+                <div class="stat-badge">⭐ <span id="projectCount">Loading...</span> Projects</div>
+                <div class="stat-badge">🔍 Smart Search</div>
+                <div class="stat-badge">🎲 Random Discovery</div>
+            </div>
         </div>
-        <div class="text-center mt-3">
-            <button class="btn btn-primary" onclick="randomProject()">Random Project</button>
-            <button class="btn btn-danger" onclick="clearAndReload()">Clear Search</button>
-        </div>
-        <div id="searchBar" class="text-center">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search by project name...">
-        </div>
-        <div id="repoContent" class="row justify-content-center"></div>
 
+        <div class="controls">
+            <button class="btn btn-primary" onclick="randomProject()">🎲 Random Project</button>
+            <button class="btn btn-secondary" onclick="clearSearch()">✨ Show All</button>
+            <select class="sort-dropdown" id="sortSelect" onchange="sortProjects()">
+                <option value="name-asc">A → Z</option>
+                <option value="name-desc">Z → A</option>
+            </select>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search projects... (e.g., 'traefik', 'nginx')">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="view-toggle">
+            <button class="view-btn active" onclick="setView('grid')">Grid</button>
+            <button class="view-btn" onclick="setView('list')">List</button>
+        </div>
+
+        <div id="projectsContainer" class="projects-grid">
+            <div class="loading">Loading projects... 🚀</div>
+        </div>
     </div>
-    <!-- jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha512-VK2zcvntEufaimc+efOYi622VN5ZacdnufnmX7zIhCPmjhKnOi9ZDMtg1/ug5l183f19gG1/cBstPO4D8N/Img==" crossorigin="anonymous"></script>
-    <!-- Custom JavaScript -->
+
     <script>
-        var apiUrl = 'https://api.github.com/repos/Haxxnet/Compose-Examples/contents/examples';
-        var data; // Define the data variable globally
-        var dockericon = 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png';
+        const apiUrl = 'https://api.github.com/repos/Haxxnet/Compose-Examples/contents/examples';
+        const dockerIcon = 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker.png';
+        let allProjects = [];
+        let currentView = 'grid';
 
-        function clearAndReload() {
-            // Clear the search input field
-            document.getElementById('searchInput').value = '';
+        async function loadProjects() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                allProjects = data.filter(item => item.type === 'dir').map(project => ({
+                    name: project.name,
+                    url: project.html_url,
+                    size: project.size || 0
+                }));
 
-            // Reload all tiles (assuming loadProjects() is your initial load function)
-            loadProjects();
-        }
-
-        function loadProjects() {
-            $.get(apiUrl, function (data) {
-                data.forEach(function (project) {
-                    if (project.type === 'dir') {
-                        var projectName = project.name;
-                        var imageUrl = `https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/${projectName}.png`;
-
-                        var projectTile = $('<div class="col-md-2 project-tile">' +
-                            '<img src="' + imageUrl + '" onerror="this.src=\'' + dockericon + '\'" alt="Icon">' +
-                            '<h5>' + project.name + '</h5>' +
-                            '</div>');
-
-                        projectTile.on('click', function () {
-                            window.open(project.html_url, '_blank');
-                        });
-
-                        $('#repoContent').append(projectTile);
-                    }
-                });
-            });
-        }
-
-    // Initial load
-    $.get(apiUrl, function (responseData) {
-        data = responseData;
-        loadProjects(); // Call the function to load projects after data is available
-    });
-
-    // Search functionality
-    $('#searchInput').on('input', function () {
-        var searchTerm = $(this).val().toLowerCase();
-        // Clear existing content
-        $('#repoContent').empty();
-        // Reload projects based on the search term
-        data.forEach(function (project) {
-            if (project.type === 'dir' && project.name.toLowerCase().includes(searchTerm)) {
-                var projectName = project.name;
-                        var imageUrl = `https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/${projectName}.png`;
-
-                        var projectTile = $('<div class="col-md-2 project-tile">' +
-                            '<img src="' + imageUrl + '" onerror="this.src=\'' + dockericon + '\'" alt="Icon">' +
-                            '<h5>' + project.name + '</h5>' +
-                            '</div>');
-                projectTile.on('click', function () {
-                    window.open(project.html_url, '_blank');
-                });
-                $('#repoContent').append(projectTile);
+                document.getElementById('projectCount').textContent = allProjects.length;
+                renderProjects(allProjects);
+            } catch (error) {
+                document.getElementById('projectsContainer').innerHTML = 
+                    '<div class="no-results">Error loading projects. Please try again later.</div>';
             }
-        });
-    });
+        }
 
+        function renderProjects(projects) {
+            const container = document.getElementById('projectsContainer');
+            
+            if (projects.length === 0) {
+                container.innerHTML = '<div class="no-results">No projects found. Try a different search term!</div>';
+                return;
+            }
 
-    // Function to select a random project name and fill the search input
-    function randomProject() {
-        // Get a random project index
-        var randomIndex = Math.floor(Math.random() * data.length);
-        var randomProject = data[randomIndex];
-        
-        // Fill the search input with the random project name
-        $('#searchInput').val(randomProject.name);
+            container.innerHTML = projects.map(project => {
+                const imageUrl = `https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/${project.name}.png`;
+                const viewClass = currentView === 'list' ? 'list-view' : '';
+                
+                return `
+                    <div class="project-card ${viewClass}" onclick="openProject('${project.url}')">
+                        <img class="project-icon" src="${imageUrl}" onerror="this.src='${dockerIcon}'" alt="${project.name}">
+                        <div>
+                            <div class="project-name">${project.name}</div>
+                            ${currentView === 'list' ? '<div class="project-info">Click to view compose file</div>' : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
-        // Trigger the input event to initiate the search
-        $('#searchInput').trigger('input');
-    }
+        function openProject(url) {
+            window.open(url, '_blank');
+        }
 
+        function randomProject() {
+            if (allProjects.length === 0) return;
+            
+            const randomIndex = Math.floor(Math.random() * allProjects.length);
+            const project = allProjects[randomIndex];
+            
+            document.getElementById('searchInput').value = project.name;
+            searchProjects();
+        }
 
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            renderProjects(allProjects);
+        }
+
+        function searchProjects() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allProjects.filter(project => 
+                project.name.toLowerCase().includes(searchTerm)
+            );
+            renderProjects(filtered);
+        }
+
+        function sortProjects() {
+            const sortValue = document.getElementById('sortSelect').value;
+            const sorted = [...allProjects];
+            
+            if (sortValue === 'name-asc') {
+                sorted.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortValue === 'name-desc') {
+                sorted.sort((a, b) => b.name.localeCompare(a.name));
+            }
+            
+            allProjects = sorted;
+            searchProjects();
+        }
+
+        function setView(view) {
+            currentView = view;
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const container = document.getElementById('projectsContainer');
+            if (view === 'list') {
+                container.classList.add('list-view');
+            } else {
+                container.classList.remove('list-view');
+            }
+            
+            searchProjects();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', searchProjects);
+
+        loadProjects();
     </script>
 </body>
 </html>

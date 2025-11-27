@@ -1,0 +1,87 @@
+services:
+​
+  guacd:
+    image: guacamole/guacd
+    container_name: guacamole-guacd
+    restart: always
+    depends_on:
+      - gluetun
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/guacd/drive:/drive:rw
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/guacd/record:/record:rw
+    network_mode: container:gluetun
+​
+  postgres:
+    image: postgres:16-alpine
+    container_name: guacamole-db
+    restart: always
+    depends_on:
+      - gluetun
+    environment:
+      - PGDATA=/var/lib/postgresql/data/guacamole
+      - POSTGRES_DB=guacamole_db
+      - POSTGRES_USER=guacamole_user
+      - POSTGRES_PASSWORD=ChooseYourOwnPasswordHere1234
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/psql/init:/docker-entrypoint-initdb.d:z
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/psql/data:/var/lib/postgresql/data:Z
+    network_mode: container:gluetun
+​
+  guacamole:
+    image: guacamole/guacamole
+    container_name: guacamole-ui
+    restart: always
+    depends_on:
+      - guacd
+      - postgres
+      - gluetun
+    environment:
+      - GUACD_HOSTNAME=localhost
+      - POSTGRESQL_HOSTNAME=localhost
+      - POSTGRESQL_DATABASE=guacamole_db
+      - POSTGRESQL_USER=guacamole_user
+      - POSTGRESQL_PASSWORD=ChooseYourOwnPasswordHere1234
+      - OPENID_ENABLED=true
+      - OPENID_AUTHORIZATION_ENDPOINT=https://authentik.example.com/application/o/authorize/
+      - OPENID_JWKS_ENDPOINT=https://authentik.example.com/application/o/guacamole-oidc/jwks/
+      - OPENID_ISSUER=https://authentik.example.com/application/o/guacamole-oidc/
+      - OPENID_CLIENT_ID=<masked>
+      - OPENID_REDIRECT_URI=https://guacamole.example.com/guacamole
+      - OPENID_USERNAME_CLAIM_TYPE=preferred_username
+      - OPENID_SCOPE=openid email profile
+    network_mode: container:gluetun
+​
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    expose:
+      - 8080 # guacamole
+      - 5432 # psql guac
+    environment:
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=wireguard
+      - DNS_ADDRESS=1.1.1.1,1.0.0.1
+      - WIREGUARD_ENDPOINT_IP=127.0.0.1 # add your wan ipv4 here of wg server
+      - WIREGUARD_ENDPOINT_PORT=51820
+      - WIREGUARD_PUBLIC_KEY='<PUBKEY>' # add your wg public  key here
+      - WIREGUARD_PRIVATE_KEY='<PRIVKEY>' # add your wg private key here
+      - WIREGUARD_PRESHARED_KEY='<PSK>' # add your wg pre-shared key here
+      - WIREGUARD_ADDRESSES='0.0.0.0/32' # add your client ipv4/ipv6 here
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gluetun/configs/gluetun:/gluetun
+    restart: always
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.guacamole.rule=Host(`guacamole.example.com`) && PathPrefix(`/guacamole`) || Host(`guacamole.example.com`) && PathPrefix(`/outpost.goauthentik.io`)
+      - traefik.http.routers.guacamole.service=guacamole
+      - traefik.http.services.guacamole.loadbalancer.server.port=8080
+      - traefik.http.routers.guacamole.middlewares=authentik@docker
+​
+networks:
+  proxy:
+    external: true

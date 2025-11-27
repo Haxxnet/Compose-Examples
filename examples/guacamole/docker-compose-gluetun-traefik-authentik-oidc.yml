@@ -1,5 +1,5 @@
 services:
-​
+
   guacd:
     image: guacamole/guacd
     container_name: guacamole-guacd
@@ -10,7 +10,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/guacd/drive:/drive:rw
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/guacd/record:/record:rw
     network_mode: container:gluetun
-​
+
   postgres:
     image: postgres:16-alpine
     container_name: guacamole-db
@@ -26,7 +26,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/psql/init:/docker-entrypoint-initdb.d:z
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/psql/data:/var/lib/postgresql/data:Z
     network_mode: container:gluetun
-​
+
   guacamole:
     image: guacamole/guacamole
     container_name: guacamole-ui
@@ -50,7 +50,7 @@ services:
       - OPENID_USERNAME_CLAIM_TYPE=preferred_username
       - OPENID_SCOPE=openid email profile
     network_mode: container:gluetun
-​
+
   gluetun:
     image: qmcgaw/gluetun:latest
     container_name: gluetun
@@ -81,7 +81,7 @@ services:
       - traefik.http.routers.guacamole.service=guacamole
       - traefik.http.services.guacamole.loadbalancer.server.port=8080
       - traefik.http.routers.guacamole.middlewares=authentik@docker
-​
+
 networks:
   proxy:
     external: true

@@ -20,7 +20,7 @@ services:
       - PGDATA=/var/lib/postgresql/data/guacamole
       - POSTGRES_DB=guacamole_db
       - POSTGRES_USER=guacamole_user
-      - POSTGRES_PASSWORD=ChooseYourOwnPasswordHere1234      
+      - POSTGRES_PASSWORD=ChooseYourOwnPasswordHere1234
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/psql/init:/docker-entrypoint-initdb.d:z
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/psql/data:/var/lib/postgresql/data:Z
@@ -36,7 +36,7 @@ services:
       - postgres
     environment:
       - GUACD_HOSTNAME=guacd
-      - POSTGRESQL_HOSTNAME=postgres      
+      - POSTGRESQL_HOSTNAME=postgres
       - POSTGRESQL_DATABASE=guacamole_db
       - POSTGRESQL_USER=guacamole_user
       - POSTGRESQL_PASSWORD=ChooseYourOwnPasswordHere1234
@@ -45,7 +45,7 @@ services:
     ports:
       # Guacamole is on :8080/guacamole, not /.
       # Default login is guacadmin:guacadmin
-      - 8080:8080/tcp 
+      - 8080:8080/tcp
     expose:
       - 8080
     #networks:

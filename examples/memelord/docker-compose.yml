@@ -1,0 +1,86 @@
+services:
+
+  app:
+    image: ghcr.io/l4rm4nd/memelord:latest # pin a minor version series tag instead of latest
+    container_name: memelord
+    environment:
+      # your FQDN or IP; multiple ones supported by comma separation
+      - DOMAIN=memelord.example.com
+      # set to True if you use a reverse proxy with tls; enables secure cookie flag and hsts
+      - SECURE_COOKIES=False
+      # define the maximum session age in minutes
+      - SESSION_COOKIE_AGE=30
+      # decide whether session cookie is invalidated on browser close
+      - SESSION_EXPIRE_AT_BROWSER_CLOSE=False
+      # define the timezone
+      - TZ=Europe/Berlin
+      # define comma-separated list of sources for csp frame-ancestors directive
+      #- CSP_FRAME_ANCESTORS="'self', https://iframe.example.com, https://iframe2.example.com:5432"
+      # ------- OPTIONAL OIDC AUTH --------
+      # Set to 'True' to enable OIDC authentication
+      #- OIDC_ENABLED=True
+      # Decide whether login area triggers automatic OIDC login flow
+      #- OIDC_AUTOLOGIN=False
+      # Set to 'True' to allow the creation of new users through OIDC
+      #- OIDC_CREATE_USER=True
+      # The signing algorithm used by the OIDC provider (e.g., RS256, HS256)
+      #- OIDC_RP_SIGN_ALGO=RS256
+      # URL of the JWKS endpoint for the OIDC provider
+      #- OIDC_OP_JWKS_ENDPOINT=https://authentik.example.com/application/o/<slug>/jwks/
+      # Client ID for your OIDC RP
+      #- OIDC_RP_CLIENT_ID=<client-id>
+      # Client secret for your OIDC RP
+      #- OIDC_RP_CLIENT_SECRET=<client-secret>
+      # Authorization endpoint URL of the OIDC provider
+      #- OIDC_OP_AUTHORIZATION_ENDPOINT=https://authentik.example.com/application/o/authorize/
+      # Token endpoint URL of the OIDC provider
+      #- OIDC_OP_TOKEN_ENDPOINT=https://authentik.example.com/application/o/token/
+      # User info endpoint URL of the OIDC provider
+      #- OIDC_OP_USER_ENDPOINT=https://authentik.example.com/application/o/userinfo/
+      # Length of time it takes for an id token to expire in seconds	
+      #- OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS=900
+      # ------- PSQL DB ENVS --------
+      #- DB_ENGINE=postgres
+      #- POSTGRES_USER=memelord
+      #- POSTGRES_PASSWORD=memelord
+      #- POSTGRES_DB=memelord
+      #- POSTGRES_HOST=db
+      #- POSTGRES_PORT=5432
+    restart: unless-stopped
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./volume-data/database:/opt/app/database # persistent storage for sqlite3 database
+      - ./volume-data/media:/opt/app/media # persistent storage for uploaded media
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.memelord.rule=Host(`memelord.example.com`)
+    #  - traefik.http.services.memelord.loadbalancer.server.port=8000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.memelord.middlewares=local-ipwhitelist@file
+
+#  db:
+#    container_name: memelord-psql
+#    image: postgres:16-alpine
+#    restart: unless-stopped
+#    expose:
+#      - 5432
+#    volumes:
+#      - ./volume-data/database/psql:/var/lib/postgresql/data/
+#    environment:
+#      - POSTGRES_USER=memelord
+#      - POSTGRES_PASSWORD=memelord
+#      - POSTGRES_DB=memelord    
+#    #networks:
+#    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true      

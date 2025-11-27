@@ -85,6 +85,8 @@ services:
     networks:
       - docker-proxynet
     restart: always
+    labels:
+      - com.centurylinklabs.watchtower.enable=false    
     read_only: true
     tmpfs:
       - /run

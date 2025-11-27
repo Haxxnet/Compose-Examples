@@ -42,6 +42,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - proxynet
+    labels:
+      - com.centurylinklabs.watchtower.enable=false
     restart: always
     read_only: true
     tmpfs:

@@ -1,7 +1,7 @@
 services:
 
   portainer:
-    image: portainer/portainer-ce:2.33.5-alpine # or portainer-ee for enterprise edition
+    image: portainer/portainer-ce:alpine # or portainer-ee for enterprise edition
     container_name: portainer-ce # or portainer-ee for enterprise edition
     restart: unless-stopped
     volumes:

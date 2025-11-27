@@ -20,7 +20,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Berlin     
+      - TZ=Europe/Berlin
     #networks:
     #  - proxy
     #labels:
@@ -40,6 +40,8 @@ services:
     #  - traefik.http.middlewares.limit-CHANGEME.buffering.memResponseBodyBytes=50000000
     #  # Optional part for traefik middlewares
     #  - traefik.http.routers.CHANGEME.middlewares=local-ipwhitelist@file,crowdsec@file,limit-CHANGEME
+    #  # Optional part to disable watchtower
+    #  - com.centurylinklabs.watchtower.enable=false
 
 #networks:
 #  proxy:

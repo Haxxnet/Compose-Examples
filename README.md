@@ -343,7 +343,7 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 
 - [Rocket.Chat](examples/rocketchat) - Rocket.Chat is an open-source fully customizable communications platform developed in JavaScript for organizations with high standards of data protection.
 - [Mattermost](examples/mattermost) - Mattermost is an open source platform for secure collaboration across the entire software development lifecycle.
-- [Answer](examples/answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
+- [Apache Answer](examples/apache-answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
 - [Mirotalk P2P](examples/mirotalk) - Simple, Secure, Fast Real-Time Video Conferences Up to 4k and 60fps, compatible with all browsers and platforms.
 - [Reactive-Resume](examples/rxresume) - A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever.
 - [Roundcube](examples/roundcube) - Roundcube Webmail is a browser-based multilingual IMAP client with an application-like user interface. It provides full functionality you expect from an email client, including MIME support, address book, folder management, message searching and spell checking.
@@ -389,7 +389,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 
 - [Bookstack](examples/bookstack) - BookStack is a free and open-source wiki software aimed for a simple, self-hosted, and easy-to-use platform.
 - [Wiki.js](examples/wikijs) - Wiki.js is an open source project that has been made possible due to the generous contributions by community backers.
-- [Answer](examples/answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
+- [Apache Answer](examples/apache-answer) - An open-source knowledge-based community software. You can use it quickly to build Q&A community for your products, customers, teams, and more.
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
 - [Obsidian-Gitsync-Perlite](https://github.com/l4rm4nd/Obsidian-Gitsync-Perlite) - Continuously sync Obsidian markdown notes from GitHub and publish it for the webs.
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.

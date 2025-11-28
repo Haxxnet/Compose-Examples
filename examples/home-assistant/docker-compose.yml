@@ -4,6 +4,9 @@ services:
     image: linuxserver/homeassistant:latest
     container_name: homeassistant
     network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
     restart: unless-stopped    
     environment:
       - PUID=1000

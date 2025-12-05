@@ -1,7 +1,7 @@
 services:
 
   blog:
-    image: ghost:5-alpine
+    image: ghost:6-alpine
     container_name: ghost
     restart: always
     depends_on:

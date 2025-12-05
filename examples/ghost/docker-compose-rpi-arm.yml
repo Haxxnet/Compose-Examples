@@ -1,7 +1,7 @@
 services:
 
   blog:
-    image: ghost:5
+    image: ghost:6
     container_name: ghost
     restart: always
     ports:

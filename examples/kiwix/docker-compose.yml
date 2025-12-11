@@ -1,0 +1,18 @@
+services:
+
+  kiwix-serve:
+    image: ghcr.io/kiwix/kiwix-serve:latest
+    container_name: kiwix
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+    # uncomment next 4 lines to use it with local zim file in /tmp/zim
+    # volumes:
+    #   - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/kiwix/data:/data
+    # command:
+    #   - '*.zim'
+    # uncomment next 2 lines to use it with remote zim file
+    # environment:
+    #   - DOWNLOAD=https://download.kiwix.org/zim/wikipedia_bm_all.zim

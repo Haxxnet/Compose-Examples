@@ -25,7 +25,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     working_dir: /
     labels:
-      - com.centurylinklabs.watchtower.enable=true
+      - com.centurylinklabs.watchtower.enable=false
 
   socket-proxy:
     image: lscr.io/linuxserver/socket-proxy:latest

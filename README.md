@@ -372,6 +372,7 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 Software that helps to increase security and privacy.
 
 - [Nessus](examples/nessus) - Nessus is a proprietary vulnerability scanner developed by Tenable, Inc.
+- [Vulert](https://vulert.com) - Vulert secures software by detecting vulnerabilities in open-source dependencies—without accessing your code. It supports Js, PHP, Java, Python, and more
 - [Greenbone](examples/greenbone) - Greenbone is the world's most trusted provider of open source vulnerability management.
 - [SonarQube](examples/sonarqube) - SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs and code smells on 29 programming languages.
 - [Fail2ban](examples/fail2ban) - Fail2ban is an intrusion prevention software framework. Written in the Python programming language, it is designed to prevent against brute-force attacks.

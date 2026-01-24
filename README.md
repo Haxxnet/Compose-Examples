@@ -429,6 +429,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [Snipe-IT](examples/snipe-it) - Snipe-IT is a free, open source IT asset management system written in PHP.
 - [Koillection](examples/koillection) - Koillection is a self-hosted service allowing users to manage any kind of collections.
 - [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports expiry notifications, transaction histories and file uploads.
+- [Atlas](examples/atlas) - Open-source tool for network discovery, visualization, and monitoring. Built with Go, FastAPI, and React, supports Docker host scanning.
 
 ### Request Bins
 

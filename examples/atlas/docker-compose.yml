@@ -1,0 +1,52 @@
+services:
+
+  atlas:
+    image: keinstien/atlas:latest
+    container_name: atlas
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    ports:
+      - 8888:8888/tcp # ui
+      - 8889:8889/tcp # api
+    expose:
+      - 8888
+      - 8889
+    environment:
+      - ATLAS_UI_PORT=8888
+      - ATLAS_API_PORT=8889
+      - FASTSCAN_INTERVAL=3600
+      - DOCKERSCAN_INTERVAL=3600
+      - DEEPSCAN_INTERVAL=7200
+      - SCAN_SUBNETS=192.168.0.0/24
+      - DOCKER_HOST=tcp://socket-proxy:2375
+    #networks:
+    #  - proxy
+    #  - atlas-internal
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.atlas.rule=Host(`atlas.example.com`)
+    #  - traefik.http.services.atlas.loadbalancer.server.port=8888
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.atlas.middlewares=local-ipwhitelist@file
+
+  socket-proxy:
+    image: lscr.io/linuxserver/socket-proxy:latest
+    container_name: socket-proxy-atlas
+    environment:
+      - CONTAINERS=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    #networks:
+    #  - atlas-internal
+    restart: always
+    read_only: true
+    tmpfs:
+      - /run
+
+#networks:
+#  proxy:
+#    external: true
+#  atlas-internal:
+#    internal: true

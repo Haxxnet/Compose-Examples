@@ -25,9 +25,28 @@ services:
       #- BOUNCER_KEY_<NAME>=${CROWDSEC-BOUNCER-API-TOKEN:-FIXME-LAPI-KEY} # pre-supply a bouncer with api key
       #- CUSTOM_HOSTNAME=crowdsec-host123
     #security_opt:
-    #  - no-new-privileges=true      
+    #  - no-new-privileges=true
     #networks:
     #  - proxy
+
+  # - You can enable the below service to enhance crowdsec's blocklist
+  # - More info here: https://github.com/wolffcatskyy/crowdsec-blocklist-import
+  # ----------------------------------------------------------------------------
+  #crowdsec-blocklist-import:
+  #  image: ghcr.io/wolffcatskyy/crowdsec-blocklist-import:2.1.0
+  #  container_name: crowdsec-blocklist-import
+  #  restart: "no"
+  #  environment:
+  #    # setup: 
+  #    # docker exec -it crowdsec cscli machines add blocklist-importer --password secretpassphrase -f blocklist-importer
+  #    - CROWDSEC_LAPI_URL=http://crowdsec:8080
+  #    - CROWDSEC_MACHINE_ID=blocklist-importer
+  #    - CROWDSEC_MACHINE_PASSWORD=secretpassphrase
+  #    - DECISION_DURATION=24h
+  #    - TZ=Europe/Berlin
+  #    - TELEMETRY_ENABLED=false
+  #  #networks:
+  #  #  - proxy
 
 #networks:
 #  proxy:

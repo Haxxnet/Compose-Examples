@@ -16,9 +16,6 @@ services:
         find /usr/share/nginx/html/assets -type f -name "*.js" -exec sed -i 's|https://oss-collab\.excalidraw\.com|'$$VITE_APP_WS_SERVER_URL'|g' {} +
         echo "Starting nginx..."
         nginx -g 'daemon off;'
-    stdin_open: true
-    healthcheck:
-      disable: true
     environment:
       - NODE_ENV=production
       - VITE_APP_WS_SERVER_URL=https://draw2gether.example.com # define your custom url for selfhosted excalidraw-room below

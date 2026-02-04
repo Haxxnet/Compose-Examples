@@ -3,30 +3,50 @@ services:
   excalidraw:
     image: excalidraw/excalidraw:latest
     container_name: excalidraw
+    ports:
+      - 8888:80 # web-ui for drawing
+    expose:
+      - 80
     restart: unless-stopped
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        echo "Replacing WebSocket URL with: $$VITE_APP_WS_SERVER_URL"
+        find /usr/share/nginx/html/assets -type f -name "*.js" -exec sed -i 's|https://oss-collab\.excalidraw\.com|'$$VITE_APP_WS_SERVER_URL'|g' {} +
+        echo "Starting nginx..."
+        nginx -g 'daemon off;'
     stdin_open: true
     healthcheck:
       disable: true
     environment:
       - NODE_ENV=production
-    ports:
-      - "3000:80"
-    expose:
-      - 80      
+      - VITE_APP_WS_SERVER_URL=https://draw2gether.example.com # define your custom url for selfhosted excalidraw-room below
     #networks:
     #  - proxy
-    #volumes:
-    #  - ./:/opt/node_app/app:delegated
-    #  - ./package.json:/opt/node_app/package.json
-    #  - ./yarn.lock:/opt/node_app/yarn.lock
-    #  - notused:/opt/node_app/app/node_modules
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.excalidraw.rule=Host(`draw.example.com`)
     #  - traefik.http.services.excalidraw.loadbalancer.server.port=80
     #  - traefik.docker.network=proxy
-    #  # Part for local lan services only; disable to expose externally
-    #  - traefik.http.routers.excalidraw.middlewares=local-ipwhitelist@file
+
+  excalidraw-room:
+    image: excalidraw/excalidraw-room:latest
+    container_name: excalidraw-room
+    ports:
+      - 8889:80 # web-socket for collaboration
+    expose:
+      - 80
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.excalidraw-collab.rule=Host(`draw2gether.example.com`)
+    #  - traefik.http.services.excalidraw-collab.loadbalancer.server.port=80
+    #  - traefik.docker.network=proxy
 
 #networks:
 #  proxy:

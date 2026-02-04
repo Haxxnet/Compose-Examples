@@ -17,15 +17,26 @@ services:
         echo "Starting nginx..."
         nginx -g 'daemon off;'
     stdin_open: true
+    environment:
+      - NODE_ENV=production
+      - VITE_APP_WS_SERVER_URL=https://draw2gether.example.com
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:80/ >/dev/null 2>&1 || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 20s
-    environment:
-      - NODE_ENV=production
-      - VITE_APP_WS_SERVER_URL=https://draw2gether.example.com # define your custom url for selfhosted excalidraw-room below
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+      - /var/cache/nginx/client_temp:rw,noexec,nosuid,size=64m
     #networks:
     #  - proxy
     #labels:
@@ -42,12 +53,19 @@ services:
     expose:
       - 80
     restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:80/ >/dev/null 2>&1 || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 20s    
+      start_period: 20s
     #networks:
     #  - proxy
     #labels:
@@ -55,7 +73,3 @@ services:
     #  - traefik.http.routers.excalidraw-collab.rule=Host(`draw2gether.example.com`)
     #  - traefik.http.services.excalidraw-collab.loadbalancer.server.port=80
     #  - traefik.docker.network=proxy
-
-#networks:
-#  proxy:
-#   external: true

@@ -264,7 +264,7 @@ A [document management system](https://en.wikipedia.org/wiki/Document_management
 - [Papermerge](examples/papermerge) - Free and open source document management system with OCR designed for scanned documents, digital archives, pdf, tiff, jpeg.
 - [DocuSeal](examples/docuseal) - Create, fill, and sign digital documents (alternative to DocuSign).
 - [Koillection](examples/koillection) - Koillection is a self-hosted service allowing users to manage any kind of collections.
-- [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports expiry notifications, transaction histories and file uploads.
+- [VoucherVault](examples/vouchervault) - Django PWA web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports offline caching, expiry notifications, transaction histories and file uploads.
 
 ### Pastebins
 

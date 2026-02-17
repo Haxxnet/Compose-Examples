@@ -1,7 +1,7 @@
 services:
 
   docmost:
-    image: docmost/docmost:0.22
+    image: docmost/docmost:0.25
     container_name: docmost
     depends_on:
       - db

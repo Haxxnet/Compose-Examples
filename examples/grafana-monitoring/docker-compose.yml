@@ -33,7 +33,7 @@ services:
     #  - monitoring_default
 
   influxdb:
-    image: influxdb:1.8
+    image: influxdb:1.12
     container_name: influxdb
     hostname: influxdb
     restart: unless-stopped

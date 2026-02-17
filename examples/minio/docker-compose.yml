@@ -4,6 +4,7 @@ services:
     image: minio/minio:latest
     container_name: minio
     hostname: minio
+    command: server /data --console-address ":9001"
     environment:
       - MINIO_ROOT_USER=minio # change this
       - MINIO_ROOT_PASSWORD=XscUJuDQP4WuWA55vfXNrc7 # change this

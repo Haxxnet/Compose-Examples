@@ -1,7 +1,7 @@
 services:
 
   headscale:
-    image: headscale/headscale:0.22
+    image: headscale/headscale:v0.28
     container_name: headscale    
     pull_policy: always
     restart: unless-stopped

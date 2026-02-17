@@ -1,6 +1,6 @@
 # References
 
-- https://github.com/plausible/analytics
+- https://github.com/plausible/community-edition
 
 # Notes
 

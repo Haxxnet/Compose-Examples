@@ -1,13 +1,23 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+
+  "extends": ["config:base"],
+
   "enabledManagers": ["docker-compose"],
-  "ignorePaths": ["**/node_modules/**", "**/vendor/**"],
+
+  "includePaths": ["examples/**"],
+
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/vendor/**"
+  ],
+
   "docker-compose": {
-    "fileMatch": ["(^|/)examples/.+/(?:docker-)?compose\\.ya?ml$"]
+    "managerFilePatterns": [
+      "/(^|/)examples\\/.*\\/(?:docker-)?compose\\.ya?ml$/"
+    ]
   },
+
   "separateMajorMinor": true,
-  "separateMinorPatch": true,
-  "prConcurrentLimit": 0,
-  "prHourlyLimit": 0
+  "separateMinorPatch": true
 }

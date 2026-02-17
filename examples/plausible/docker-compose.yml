@@ -24,10 +24,10 @@ services:
     environment:
       - CLICKHOUSE_SKIP_USER_SETUP=1
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/event-data:/var/lib/clickhouse
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/event-logs:/var/log/clickhouse-server
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/clickhouse/event-data:/var/lib/clickhouse
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/clickhouse/event-logs:/var/log/clickhouse-server
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/clickhouse/logs.xml:/etc/clickhouse-server/config.d/logs.xml:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/clickhouse/ipv4-only.xml:/etc/clickhouse-server/config.d/ipv4-only.xml:ro
     ulimits:
       nofile:
         soft: 262144

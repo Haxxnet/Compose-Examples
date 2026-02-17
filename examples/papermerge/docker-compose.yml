@@ -63,7 +63,7 @@ services:
     #  - proxy
 
   worker:
-    image: eugenci/papermerge-worker:v2.0.0
+    image: eugenci/papermerge-worker:2.0.1
     container_name: papermerge-worker
     restart: unless-stopped
     volumes:

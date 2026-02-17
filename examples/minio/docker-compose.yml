@@ -1,7 +1,7 @@
 services:
 
   minio-s3:
-    image: bitnami/minio:2024
+    image: minio/minio:latest
     container_name: minio
     hostname: minio
     environment:
@@ -20,13 +20,13 @@ services:
     #  - traefik.enable=true
     #  - traefik.http.routers.minio.rule=Host(`s3.example.com`)
     #  - traefik.http.services.minio.loadbalancer.server.port=9001
-    #  - traefik.http.middlewares.limit-minio.buffering.maxRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit-minio.buffering.maxResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit-minio.buffering.memRequestBodyBytes=50000000 # optional, only necessary for enabled file uploads
-    #  - traefik.http.middlewares.limit-minio.buffering.memResponseBodyBytes=50000000 # optional, only necessary for enabled file uploads    
+    #  - traefik.http.middlewares.limit-minio.buffering.maxRequestBodyBytes=50000000 # optional, restrict file uploads
+    #  - traefik.http.middlewares.limit-minio.buffering.maxResponseBodyBytes=50000000 # optional, restrict file uploads
+    #  - traefik.http.middlewares.limit-minio.buffering.memRequestBodyBytes=50000000 # optional, restrict file uploads
+    #  - traefik.http.middlewares.limit-minio.buffering.memResponseBodyBytes=50000000 # optional, restrict file uploads 
     #  - traefik.docker.network=proxy
     #  # Part for optional traefik middlewares
-    #  - traefik.http.routers.minio.middlewares=limit-minio
+    #  - traefik.http.routers.minio.middlewares=limit-minio # optional, restrict file uploads
 
 #networks:
 #  proxy:

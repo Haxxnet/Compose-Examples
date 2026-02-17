@@ -21,4 +21,5 @@ jobs:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           LOG_LEVEL: info
           RENOVATE_PRINT_CONFIG: "true"
-          RENOVATE_NODE_OPTIONS: "--max-old-space-size=8192"
+          RENOVATE_NODE_OPTIONS: "--max-old-space-size=6.144"
+          RENOVATE_WORKERS: 1

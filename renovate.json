@@ -1,8 +1,17 @@
 {
   "extends": ["config:recommended"],
   "enabledManagers": ["docker-compose"],
+  "onboarding": false,
 
-  "includePaths": ["examples/**"],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**"
+  ],
 
   "docker-compose": {
     "fileMatch": [

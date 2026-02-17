@@ -1,7 +1,7 @@
 services:
 
   chevereto:
-    image: ghcr.io/chevereto/chevereto:4.1
+    image: ghcr.io/chevereto/chevereto:4.4
     container_name: chevereto
     init: true
     restart: unless-stopped

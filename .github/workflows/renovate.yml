@@ -19,3 +19,5 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
+          LOG_LEVEL: debug
+          RENOVATE_PRINT_CONFIG: "true"

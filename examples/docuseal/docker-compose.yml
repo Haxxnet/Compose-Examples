@@ -26,7 +26,7 @@ services:
     #  - traefik.http.routers.docuseal.middlewares=local-ipwhitelist@file,authelia@docker
 
   postgres:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     container_name: docuseal-db
     restart: unless-stopped
     environment:
@@ -34,7 +34,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=docuseal
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/docuseal/pg_data:/var/lib/postgresql/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/docuseal/pg_data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s

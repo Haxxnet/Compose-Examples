@@ -9,7 +9,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  renovate-a-m:
+  renovate-a-f:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,13 +18,12 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
-          LOG_LEVEL: debug
-          RENOVATE_PRINT_CONFIG: "true"
+          LOG_LEVEL: info
           NODE_OPTIONS: "--max-old-space-size=4096"
           RENOVATE_WORKERS: 1
-          RENOVATE_INCLUDE_PATHS: '["examples/a**","examples/b**","examples/c**","examples/d**","examples/e**","examples/f**","examples/g**","examples/h**","examples/i**","examples/j**","examples/k**","examples/l**","examples/m**"]'
+          RENOVATE_INCLUDE_PATHS: '["examples/a**","examples/b**","examples/c**","examples/d**","examples/e**","examples/f**"]'
 
-  renovate-n-z:
+  renovate-g-m:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,8 +32,35 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
-          LOG_LEVEL: debug
-          RENOVATE_PRINT_CONFIG: "true"
+          LOG_LEVEL: info
           NODE_OPTIONS: "--max-old-space-size=4096"
           RENOVATE_WORKERS: 1
-          RENOVATE_INCLUDE_PATHS: '["examples/n**","examples/o**","examples/p**","examples/q**","examples/r**","examples/s**","examples/t**","examples/u**","examples/v**","examples/w**","examples/x**","examples/y**","examples/z**"]'
+          RENOVATE_INCLUDE_PATHS: '["examples/g**","examples/h**","examples/i**","examples/j**","examples/k**","examples/l**","examples/m**"]'
+
+  renovate-n-s:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: renovatebot/github-action@v44.2.5
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          LOG_LEVEL: info
+          NODE_OPTIONS: "--max-old-space-size=4096"
+          RENOVATE_WORKERS: 1
+          RENOVATE_INCLUDE_PATHS: '["examples/n**","examples/o**","examples/p**","examples/q**","examples/r**","examples/s**"]'
+
+  renovate-t-z:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: renovatebot/github-action@v44.2.5
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          LOG_LEVEL: info
+          NODE_OPTIONS: "--max-old-space-size=4096"
+          RENOVATE_WORKERS: 1
+          RENOVATE_INCLUDE_PATHS: '["examples/t**","examples/u**","examples/v**","examples/w**","examples/x**","examples/y**","examples/z**"]'

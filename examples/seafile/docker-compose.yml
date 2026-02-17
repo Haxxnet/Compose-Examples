@@ -13,7 +13,7 @@ services:
     #  - proxy
     
   memcached:
-    image: memcached:1.6.18
+    image: memcached:1.6.40
     container_name: seafile-memcached
     entrypoint: memcached -m 256
     restart: unless-stopped

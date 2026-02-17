@@ -1,7 +1,7 @@
 services:
 
   db:
-    image: mariadb:11.5
+    image: mariadb:11.8
     container_name: filerun-db
     environment:
       - MYSQL_ROOT_PASSWORD=your_mysql_root_password
@@ -14,7 +14,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/filerun/db:/var/lib/mysql
 
   filerun:
-    image: filerun/filerun:8.1
+    image: filerun/filerun:8.4
     container_name: filerun
     environment:
       - FR_DB_HOST=db

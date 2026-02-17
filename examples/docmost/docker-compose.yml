@@ -1,7 +1,7 @@
 services:
 
   docmost:
-    image: docmost/docmost:0.22
+    image: docmost/docmost:0.25
     container_name: docmost
     depends_on:
       - db
@@ -59,7 +59,7 @@ services:
     #  - proxy
 
   redis:
-    image: redis:7.2-alpine
+    image: redis:7.4-alpine
     container_name: docmost-redis
     restart: unless-stopped
     expose:

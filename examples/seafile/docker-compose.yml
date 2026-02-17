@@ -1,7 +1,7 @@
 services:
 
   db:
-    image: mariadb:11.5
+    image: mariadb:11.8
     container_name: seafile-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=db_dev  # Requested, set the root's password of MySQL service.
@@ -13,7 +13,7 @@ services:
     #  - proxy
     
   memcached:
-    image: memcached:1.6.18
+    image: memcached:1.6.40
     container_name: seafile-memcached
     entrypoint: memcached -m 256
     restart: unless-stopped

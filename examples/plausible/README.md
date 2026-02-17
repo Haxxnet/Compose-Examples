@@ -7,11 +7,11 @@
 You have to place two clickhouse configuration files at the corresponding Docker bind volume mounts before starting the stack:
 
 ````
-wget https://raw.githubusercontent.com/plausible/hosting/master/clickhouse/clickhouse-config.xml
-wget https://raw.githubusercontent.com/plausible/hosting/master/clickhouse/clickhouse-user-config.xml
+wget https://raw.githubusercontent.com/plausible/community-edition/refs/heads/v3.2.0/clickhouse/ipv4-only.xml
+wget https://raw.githubusercontent.com/plausible/community-edition/refs/heads/v3.2.0/clickhouse/logs.xml
 
-mv clickhouse-config.xml /mnt/docker-volumes/plausible/clickhouse/.
-mv clickhouse-user-config.xml /mnt/docker-volumes/plausible/clickhouse/.
+mv ipv4-only.xml /mnt/docker-volumes/plausible/clickhouse/.
+mv logs.xml /mnt/docker-volumes/plausible/clickhouse/.
 
 docker compose up
 ````

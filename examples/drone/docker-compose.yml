@@ -36,7 +36,7 @@ services:
     #  - traefik.http.routers.drone-server.middlewares=local-ipwhitelist@file
 
   drone-agent:
-    image: drone/agent:1.6.2
+    image: drone/agent:1.6
     command: agent
     restart: unless-stopped
     container_name: drone-agent

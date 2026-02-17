@@ -7,6 +7,9 @@
 
 # Notes
 
+> [!CAUTION]
+> - **Jira Server** and **Confluence Server** support ended on **2024-02-15** (no security fixes). Check out the new Datacenter options.
+
 The Jira Core container requires a database.
 
 The compose stack will spawn up a postgresql database for this. You can configure the database connection from Jira's setup wizard via the HTTP UI.

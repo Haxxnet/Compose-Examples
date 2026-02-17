@@ -19,5 +19,6 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
-          LOG_LEVEL: debug
+          LOG_LEVEL: info
           RENOVATE_PRINT_CONFIG: "true"
+          RENOVATE_NODE_OPTIONS: "--max-old-space-size=8192"

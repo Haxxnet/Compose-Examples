@@ -2,7 +2,7 @@
   "extends": ["config:recommended"],
   "enabledManagers": ["docker-compose"],
 
-  "includePaths": ["examples/**"]
+  "includePaths": ["examples/**"],
 
   "docker-compose": {
     "fileMatch": [

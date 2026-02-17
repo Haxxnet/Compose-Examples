@@ -20,7 +20,7 @@ services:
       - database
 
   database:
-    image: mariadb:11.5
+    image: mariadb:11.8
     container_name: projectsend-db
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: unless-stopped

@@ -1,7 +1,7 @@
 services:
 
   opengist:
-    image: ghcr.io/thomiceli/opengist:1.8
+    image: ghcr.io/thomiceli/opengist:1.12
     container_name: opengist
     restart: unless-stopped
     env_file:

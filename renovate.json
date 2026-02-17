@@ -2,20 +2,14 @@
   "extends": ["config:recommended"],
   "enabledManagers": ["docker-compose"],
 
+  "requireConfig": "ignored",
+
   "docker-compose": {
     "fileMatch": [
-      "(^|/)(docker-)?compose\\.ya?ml$",
-      "(^|/)docker-compose\\.ya?ml$"
+      "^examples/.+/(docker-)?compose\\.ya?ml$",
+      "^examples/.+/docker-compose\\.ya?ml$"
     ]
   },
-
-  "packageRules": [
-    {
-      "matchManagers": ["docker-compose"],
-      "matchPackageNames": ["*"],
-      "groupName": null
-    }
-  ],
 
   "separateMajorMinor": true,
   "separateMinorPatch": true,

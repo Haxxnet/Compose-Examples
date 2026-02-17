@@ -19,7 +19,20 @@ jobs:
           LOG_LEVEL: info
           NODE_OPTIONS: "--max-old-space-size=4096"
           RENOVATE_WORKERS: 1
-          RENOVATE_INCLUDE_PATHS: "examples/[a-mA-M]**"
+          RENOVATE_INCLUDE_PATHS: |
+            examples/a**
+            examples/b**
+            examples/c**
+            examples/d**
+            examples/e**
+            examples/f**
+            examples/g**
+            examples/h**
+            examples/i**
+            examples/j**
+            examples/k**
+            examples/l**
+            examples/m**
 
   renovate-n-z:
     runs-on: ubuntu-latest
@@ -33,4 +46,17 @@ jobs:
           LOG_LEVEL: info
           NODE_OPTIONS: "--max-old-space-size=4096"
           RENOVATE_WORKERS: 1
-          RENOVATE_INCLUDE_PATHS: "examples/[n-zN-Z]**"
+          RENOVATE_INCLUDE_PATHS: |
+            examples/n**
+            examples/o**
+            examples/p**
+            examples/q**
+            examples/r**
+            examples/s**
+            examples/t**
+            examples/u**
+            examples/v**
+            examples/w**
+            examples/x**
+            examples/y**
+            examples/z**

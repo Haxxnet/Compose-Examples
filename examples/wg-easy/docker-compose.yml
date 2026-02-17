@@ -1,0 +1,38 @@
+services:
+
+  wg-easy:
+    image: ghcr.io/wg-easy/wg-easy:15
+    container_name: wg-easy
+    hostname: wireguard-easy
+    restart: unless-stopped    
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    ports:
+      - 51820:51820/udp # wireguard vpn
+      - 51821:51821/tcp # admin web ui
+    expose:
+      - 51820/udp # wireguard vpn
+      - 51821/tcp # admin web ui
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/wg-easy:/etc/wireguard
+      - /lib/modules:/lib/modules:ro
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.default.forwarding=1
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy    
+    #  - traefik.http.routers.wireguard.rule=Host(`vpn.example.com`)
+    #  - traefik.http.services.wireguard.loadbalancer.server.port=51821
+    #  # Part for local lan services only
+    #  - traefik.http.routers.wireguard.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

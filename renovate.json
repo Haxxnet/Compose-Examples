@@ -5,12 +5,7 @@
   "onboarding": false,
   "ignorePaths": [
     "**/node_modules/**",
-    "**/bower_components/**",
-    "**/vendor/**",
-    "**/__tests__/**",
-    "**/test/**",
-    "**/tests/**",
-    "**/__fixtures__/**"
+    "**/vendor/**"
   ],
   "docker-compose": {
     "fileMatch": [

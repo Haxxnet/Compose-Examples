@@ -20,9 +20,8 @@ services:
     image: clickhouse/clickhouse-server:24.12-alpine
     container_name: plausible-events-db
     restart: always
+    user: "101:1000"
     environment:
-      - CLICKHOUSE_UID=1000
-      - CLICKHOUSE_GID=1000
       - CLICKHOUSE_SKIP_USER_SETUP=1
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/plausible/event-data:/var/lib/clickhouse

@@ -1,7 +1,7 @@
 services:
 
   db:
-    image: mariadb:11.5
+    image: mariadb:11.8
     container_name: passbolt-db
     hostname: passbolt-db
     restart: unless-stopped

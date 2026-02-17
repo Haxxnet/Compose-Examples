@@ -16,7 +16,7 @@ services:
     #  - proxy
 
   app:
-    image: quay.io/hedgedoc/hedgedoc:1.10.0
+    image: quay.io/hedgedoc/hedgedoc:1.10.6
     container_name: hedgedoc-app
     restart: always    
     environment:

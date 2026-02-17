@@ -68,7 +68,7 @@ services:
   #    - monitoring_default
 
   telegraf:
-    image: telegraf:1.35
+    image: telegraf:1.37
     container_name: telegraf
     hostname: telegraf
     restart: unless-stopped

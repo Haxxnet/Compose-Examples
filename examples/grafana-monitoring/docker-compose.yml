@@ -95,7 +95,7 @@ services:
     #  - monitoring_default
 
   grafana:
-    image: grafana/grafana:12.1.1
+    image: grafana/grafana:12.1.7
     container_name: grafana
     hostname: grafana
     restart: unless-stopped

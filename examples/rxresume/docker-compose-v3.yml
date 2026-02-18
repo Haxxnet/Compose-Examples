@@ -117,7 +117,7 @@ services:
       #- traefik.http.routers.rxresume-client.middlewares=local-ipwhitelist@file # may enable this middleware for access control
       
   traefik:
-    image: traefik:v2.11.37
+    image: traefik:v2.11
     container_name: rxresume-traefik
     restart: unless-stopped
     command:

@@ -1,7 +1,7 @@
 services:
 
   youtrack:
-    image: jetbrains/youtrack:2022.3.65379
+    image: jetbrains/youtrack:2025.3.124603
     container_name: youtrack
     hostname: youtrack
     user: 13001:13001 # this is the default UID:GUID; see https://hub.docker.com/r/jetbrains/youtrack/

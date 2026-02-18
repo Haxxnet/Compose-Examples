@@ -49,7 +49,7 @@ services:
     #  - traefik.http.routers.confluence.middlewares=limit-confluence
 
   jira:
-    image: atlassian/jira-core:9.9.2
+    image: atlassian/jira-core:11.3.2
     container_name: jira
     hostname: jira
     restart: unless-stopped

@@ -50,7 +50,7 @@ services:
       <<: *default-deploy
 
   postgres:
-    image: postgres:15-alpine
+    image: postgres:18-alpine
     container_name: firezone-db
     expose:
       - 5432

@@ -31,7 +31,7 @@ services:
             ENABLED_LINKED_FILE_TYPES: 'project_file,project_output_file'
             ENABLE_CONVERSIONS: 'true'
             EMAIL_CONFIRMATION_DISABLED: 'true'
-            TEXMFVAR: /var/lib/sharelatex/tmp/texmf-var
+            #TEXMFVAR: /var/lib/sharelatex/tmp/texmf-var
 
             # OVERLEAF_SITE_URL: http://overleaf.example.com
             # OVERLEAF_NAV_TITLE: Overleaf Community Edition

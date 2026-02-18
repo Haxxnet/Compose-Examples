@@ -73,7 +73,7 @@ services:
 
     mongo:
         restart: always
-        image: mongo:6.0
+        image: mongo:8.2
         container_name: sharelatex-mongo
         command: "--replSet overleaf"
         expose:

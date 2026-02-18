@@ -1,7 +1,7 @@
 services:
 
   upsnap:
-    image: ghcr.io/seriousm4x/upsnap:3
+    image: ghcr.io/seriousm4x/upsnap:5
     container_name: upsnap
     network_mode: host
     restart: unless-stopped
@@ -9,11 +9,16 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/upsnap/data:/app/pb_data
     environment:
       - TZ=Europe/Berlin # Set container timezone for cron schedules
-      - UPSNAP_INTERVAL=@every 10s # Sets the interval in which the devices are pinged
+      - UPSNAP_INTERVAL=*/10 * * * * * # Sets the interval in which the devices are pinged
       - UPSNAP_SCAN_RANGE=192.168.178.0/24 # Scan range is used for device discovery on local network
       - UPSNAP_WEBSITE_TITLE=UpSnap # Custom website title
-    entrypoint: /bin/sh -c "./upsnap serve --http 0.0.0.0:5000"
-    healthcheck:
-      test: curl -fs "http://localhost:5000/api/health" || exit 1
-      interval: 10s
+      - TZ=Europe/Berlin # Set container timezone for cron schedules
+      #- UPSNAP_HTTP_LISTEN=127.0.0.1:8090
+      #- UPSNAP_SCAN_TIMEOUT=500ms # Scan timeout is nmap's --host-timeout value to wait for devices (https://nmap.org/book/man-performance.html)
+      #- UPSNAP_PING_PRIVILEGED=true # Set to false if non-root user and no NET_RAW capability *requires host setting net.ipv4.ping_group_range="0   2147483647"
+      #- UPSNAP_WEBSITE_TITLE=Custom name # Custom website title
+    #entrypoint: /bin/sh -c "./upsnap serve --http 0.0.0.0:5000"
+    #healthcheck:
+    #  test: curl -fs "http://localhost:5000/api/health" || exit 1
+    #  interval: 10s
     #entrypoint: /bin/sh -c "apk update && apk add --no-cache <YOUR_PACKAGE> && rm -rf /var/cache/apk/* && ./upsnap serve --http 0.0.0.0:8090"

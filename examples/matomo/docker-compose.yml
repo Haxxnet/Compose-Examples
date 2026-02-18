@@ -30,7 +30,7 @@ services:
 
 
   matomo_db:
-    image: mariadb:11.8
+    image: mariadb:12.2
     container_name: matomo_db
     command: --max-allowed-packet=64MB
     environment:

@@ -15,7 +15,7 @@ services:
       - db
   
   db:
-    image: mariadb:11.8
+    image: mariadb:12.2
     container_name: firefly-db
     restart: unless-stopped
     environment:

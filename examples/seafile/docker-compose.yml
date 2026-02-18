@@ -1,7 +1,7 @@
 services:
 
   db:
-    image: mariadb:11.8
+    image: mariadb:12.2
     container_name: seafile-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=db_dev  # Requested, set the root's password of MySQL service.

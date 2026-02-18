@@ -44,7 +44,7 @@ services:
     #  #- traefik.http.routers.ghost.middlewares=external-secure@file
 
   database:
-    image: mysql:8
+    image: mysql:9
     container_name: ghost-db
     restart: always
     healthcheck:

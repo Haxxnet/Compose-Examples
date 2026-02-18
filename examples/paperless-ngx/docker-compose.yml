@@ -10,7 +10,7 @@ services:
     #  - proxy
 
   db:
-    image: docker.io/library/postgres:16-alpine
+    image: docker.io/library/postgres:18-alpine
     container_name: paperless-ngx-db
     restart: unless-stopped
     volumes:

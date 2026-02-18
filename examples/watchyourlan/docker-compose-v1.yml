@@ -1,7 +1,7 @@
 services:
 
   wyl:
-    image: aceberg/watchyourlan:1.0.6
+    image: aceberg/watchyourlan:2.1.4
     container_name: watchyourlan
     network_mode: "host"
     restart: unless-stopped

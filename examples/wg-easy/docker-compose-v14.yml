@@ -1,7 +1,7 @@
 services:
 
   wg-easy:
-    image: ghcr.io/wg-easy/wg-easy:14
+    image: ghcr.io/wg-easy/wg-easy:15
     container_name: wg-easy
     hostname: wireguard-easy
     restart: unless-stopped    

@@ -52,7 +52,7 @@ services:
     #  - proxy
 
   redis:
-    image: redis:6-alpine    
+    image: redis:8-alpine    
     container_name: papermerge-redis
     restart: unless-stopped
     expose:

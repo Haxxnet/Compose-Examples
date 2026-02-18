@@ -51,7 +51,7 @@ services:
     #  - traefik.http.routers.vouchervault.middlewares=local-ipwhitelist@file
 
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     container_name: vouchervault-redis
     restart: unless-stopped
     #networks:

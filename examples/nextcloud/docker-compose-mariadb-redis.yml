@@ -36,7 +36,7 @@ services:
     #  - proxy
 
   nextcloud-app:
-    image: nextcloud:31-apache
+    image: nextcloud:32-apache
     container_name: nextcloud-app
     hostname: nextcloud-app
     restart: unless-stopped

@@ -14,3 +14,13 @@
 
 
 After spawning the stack, visit http://127.0.0.1:8888/launchpad to create your first admin user.
+
+> [!Note]
+> To save bandwidth, the Overleaf image only comes with a minimal install of TeXLive.
+
+To upgrade to a complete TeXLive installation, run the installation script in the Overleaf container with the following command:
+````
+docker exec sharelatex tlmgr install scheme-full
+````
+
+Alternatively you can install packages manually as you need by replacing scheme-full with the package name.

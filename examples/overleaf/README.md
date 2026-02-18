@@ -11,3 +11,6 @@
 ```
 - MongoDB runs with a replica set (`--replSet overleaf`), which is required by newer Overleaf versions
 - If migrating from an older setup (mongo 5.0, no replica set), initialize the replica set manually on existing data rather than relying on the init script
+
+
+After spawning the stack, visit http://127.0.0.1:8888/launchpad to create your first admin user.

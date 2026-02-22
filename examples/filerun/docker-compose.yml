@@ -1,7 +1,7 @@
 services:
 
   db:
-    image: mariadb:11.8
+    image: mariadb:12.2
     container_name: filerun-db
     environment:
       - MYSQL_ROOT_PASSWORD=your_mysql_root_password

@@ -1,7 +1,7 @@
 services:
 
   wordpress-db:
-    image: mariadb:10.11
+    image: mariadb:12.2
     container_name: wordpress-db
     hostname: wordpress-db
     restart: unless-stopped

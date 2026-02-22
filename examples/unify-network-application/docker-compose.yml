@@ -8,10 +8,10 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - MONGO_USER=unifi
-      - MONGO_PASS=
+      - MONGO_PASS=unify
       - MONGO_HOST=unifi-db
       - MONGO_PORT=27017
-      - MONGO_DBNAME=unifi
+      - MONGO_DBNAME=unifi-db
       - MONGO_AUTHSOURCE=admin
       - MEM_LIMIT=1024 #optional
       - MEM_STARTUP=1024 #optional
@@ -40,9 +40,9 @@ services:
       - 27017
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=
+      - MONGO_INITDB_ROOT_PASSWORD=unify
       - MONGO_USER=unifi
-      - MONGO_PASS=
+      - MONGO_PASS=unify
       - MONGO_DBNAME=unifi-db
       - MONGO_AUTHSOURCE=admin
     volumes:

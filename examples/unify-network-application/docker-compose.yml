@@ -35,6 +35,9 @@ services:
   unifi-db:
     image: docker.io/mongo:8.2
     container_name: unifi-network-application-mongodb
+    restart: unless-stopped
+    expose:
+      - 27017
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=
@@ -45,6 +48,3 @@ services:
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/unifi-network-application/mongodb_data:/data/db
       - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
-    restart: unless-stopped
-    expose:
-      - 27017

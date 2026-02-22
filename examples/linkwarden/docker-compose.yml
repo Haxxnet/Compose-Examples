@@ -51,7 +51,7 @@ services:
     #  - internal
 
   meilisearch:
-    image: getmeili/meilisearch:v1.12.8
+    image: getmeili/meilisearch:v1.35.1
     container_name: linkwarden-search
     restart: unless-stopped
     env_file:

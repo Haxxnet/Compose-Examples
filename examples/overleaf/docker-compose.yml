@@ -2,7 +2,7 @@ services:
 
     sharelatex:
         restart: always
-        image: sharelatex/sharelatex:6.1.1
+        image: sharelatex/sharelatex:6.1.2
         container_name: sharelatex
         depends_on:
             mongo:

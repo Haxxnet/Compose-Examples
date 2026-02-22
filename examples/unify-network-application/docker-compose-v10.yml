@@ -38,7 +38,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=
       - MONGO_USER=unifi
       - MONGO_PASS=
-      - MONGO_DBNAME=unifi
+      - MONGO_DBNAME=unifi-db
       - MONGO_AUTHSOURCE=admin
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/unifi-network-application/mongodb_data:/data/db

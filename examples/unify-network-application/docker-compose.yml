@@ -31,7 +31,7 @@ services:
     restart: unless-stopped
 
   unifi-db:
-    image: mongo:4.4
+    image: mongo:8.2
     container_name: unifi-network-application-mongodb
     restart: unless-stopped
     expose:

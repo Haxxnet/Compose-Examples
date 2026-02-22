@@ -1,7 +1,7 @@
 services:
 
   db_recipes:
-    image: postgres:16-alpine    
+    image: postgres:18-alpine    
     container_name: tandoor_db
     restart: always
     expose:

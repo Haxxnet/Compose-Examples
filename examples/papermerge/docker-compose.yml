@@ -37,7 +37,7 @@ services:
     #  - traefik.http.routers.papermerge.middlewares=limit-papermerge     
 
   db:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     container_name: papermerge-db
     restart: unless-stopped
     expose:

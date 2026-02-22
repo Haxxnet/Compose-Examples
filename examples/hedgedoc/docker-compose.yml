@@ -1,7 +1,7 @@
 services:
 
   database:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     container_name: hedgedoc-db
     restart: always    
     expose:

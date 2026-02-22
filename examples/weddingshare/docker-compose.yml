@@ -1,7 +1,7 @@
 services:
 
   wedding-share:
-    image: cirx08/wedding_share:1.6.11
+    image: cirx08/wedding_share:1.8.2
     container_name: WeddingShare
     restart: always
     ports:
@@ -10,19 +10,19 @@ services:
       - 5000
     environment:
       - TITLE=WeddingShare
-      - DEFAULT_THEME=dark
-      - LOGO=YOUR-URL
-      - GALLERY_COLUMNS=4
-      - ALLOWED_FILE_TYPES=.jpg,.jpeg,.png,.heic
-      - MAX_FILE_SIZE_MB=10
       - ACCOUNT_OWNER_USERNAME=admin
-      - ACCOUNT_OWNER_PASSWORD=PleaseChangeMe # <-- change this
-      - ENCRYPTION_KEY=PleaseChangeMe # <-- change this
-      - REQUIRE_REVIEW=true
+      - ACCOUNT_OWNER_PASSWORD=ChangeMe
       - DATABASE_TYPE=sqlite
-      - DISABLE_REVIEW_COUNTER=false
-      - DISABLE_QR_CODE=false
-      - MAX_GALLERY_SIZE_MB=4096
+      - ENCRYPTION_KEY=ChangeMe
+      - ENCRYPTION_SALT=ChangeMe
+      - THEMES_DEFAULT=dark
+      - GALLERY_COLUMNS=4
+      - GALLERY_ALLOWED_FILE_TYPES=.jpg,.jpeg,.png,.heic
+      - GALLERY_MAX_SIZE_MB=10
+      - GALLERY_REQUIRE_REVIEW=true
+      - GALLERY_REVIEW_COUNTER=false
+      - GALLERY_QR_CODE_ENABLED=false
+      - GALLERY_MAX_SIZE_MB=4096
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/config:/app/config
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/weddingshare/uploads/thumbnails:/app/wwwroot/thumbnails

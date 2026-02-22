@@ -1,7 +1,7 @@
 services:
 
   wedding-share:
-    image: cirx08/wedding_share:1.6.11
+    image: cirx08/wedding_share:1.8.2
     container_name: WeddingShare
     restart: always
     ports:

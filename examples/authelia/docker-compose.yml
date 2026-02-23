@@ -1,7 +1,7 @@
 services:
 
   authelia:
-    image: authelia/authelia
+    image: authelia/authelia:latest
     container_name: authelia
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authelia/config:/config
@@ -23,7 +23,7 @@ services:
     #  - proxy      
 
   redis:
-    image: redis:alpine
+    image: redis:8-alpine
     container_name: authelia-redis
     command: redis-server --requirepass SuperSecureRedisAuthPassword # also reflect this in the authelia config file
     volumes:

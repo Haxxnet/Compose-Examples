@@ -1,7 +1,7 @@
 services:
 
   dashy:
-    image: lissy93/dashy    
+    image: lissy93/dashy:latest    
     container_name: dashy
     hostname: dashy
     volumes:

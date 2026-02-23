@@ -24,7 +24,7 @@ services:
     #labels:
     #  - com.centurylinklabs.watchtower.enable=false
     #  - traefik.enable=true
-    #  - traefik.http.routers.duplicacy.rule=Host(`duplicati.example.com`)
+    #  - traefik.http.routers.duplicacy.rule=Host(`duplicacy.example.com`)
     #  - traefik.http.services.duplicacy.loadbalancer.server.port=3875
     #  - traefik.docker.network=proxy
     #  # Part for local lan services only

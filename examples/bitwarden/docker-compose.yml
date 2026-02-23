@@ -31,7 +31,7 @@ services:
     #  - traefik.http.routers.bitwarden.middlewares=local-ipwhitelist@file
   
   db:
-    image: postgres:alpine3.18
+    image: postgres:18-alpine
     container_name: bitwarden-lite-db
     restart: always
     environment:

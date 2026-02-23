@@ -27,11 +27,11 @@ services:
     #  - traefik.http.routers.evershop.middlewares=local-ipwhitelist@file,authelia@docker 
 
   database:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     container_name: evershop-db
     restart: unless-stopped
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/evershop/psqldata:/var/lib/postgresql/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/evershop/psqldata:/var/lib/postgresql
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres

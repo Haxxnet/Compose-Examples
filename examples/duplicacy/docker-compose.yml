@@ -19,3 +19,17 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/duplicacy-web/cache:/cache
       - /path/to/my/data/dir1:/data/dir1:ro # 1st path to your data for backup
       - /path/to/my/data/dir2:/data/dir2:ro # 2nd path to your data for backup
+    #networks:
+    #  - proxy
+    #labels:
+    #  - com.centurylinklabs.watchtower.enable=false
+    #  - traefik.enable=true
+    #  - traefik.http.routers.duplicacy.rule=Host(`duplicati.example.com`)
+    #  - traefik.http.services.duplicacy.loadbalancer.server.port=3875
+    #  - traefik.docker.network=proxy
+    #  # Part for local lan services only
+    #  - traefik.http.routers.duplicacy.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#     external: true

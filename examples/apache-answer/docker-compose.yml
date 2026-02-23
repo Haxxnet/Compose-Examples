@@ -1,7 +1,7 @@
 services:
 
   answer:
-    image: answerdev/answer
+    image: answerdev/answer:latest
     container_name: answer
     ports:
       - 9080:80

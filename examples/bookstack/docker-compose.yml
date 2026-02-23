@@ -1,7 +1,7 @@
 services:
 
   bookstack:
-    image: linuxserver/bookstack
+    image: linuxserver/bookstack:latest
     container_name: bookstack
     hostname: bookstack
     environment:
@@ -40,7 +40,7 @@ services:
     #  - traefik.http.routers.bookstack.middlewares=limit-bookstack
 
   bookstack_db:
-    image: linuxserver/mariadb
+    image: linuxserver/mariadb:latest
     container_name: bookstack_db
     hostname: bookstack_db
     environment:

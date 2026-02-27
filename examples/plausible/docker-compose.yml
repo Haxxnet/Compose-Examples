@@ -17,7 +17,7 @@ services:
     #  - proxy
 
   plausible_events_db:
-    image: clickhouse/clickhouse-server:26.1-alpine
+    image: clickhouse/clickhouse-server:26.2-alpine
     container_name: plausible-events-db
     restart: always
     user: "101:1000"

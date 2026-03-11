@@ -1,0 +1,47 @@
+services:
+
+  casdoor:
+    image: casbin/casdoor:2.353.0
+    container_name: casdoor
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+    expose:
+      - 8000
+    environment:
+      - GIN_MODE=release
+      - RUNNING_IN_DOCKER=true
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/casdoor/conf:/conf # config file must be created manually with postgres connection
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/casdoor/logs:/logs
+    #networks:
+    #  - proxy
+    #  - casdoor_net
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.casdoor.rule=Host(`casdoor.example.com`)
+    #  - traefik.http.services.casdoor.loadbalancer.server.port=8000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.casdoor.middlewares=local-ipwhitelist@file,crowdsec@file,limit-CHANGEME
+
+  db:
+    image: postgres:18-alpine
+    container_name: casdoor-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=casdoor
+      - POSTGRES_PASSWORD=pls-changeme-to-strong-pw
+      - POSTGRES_DB=casdoor
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/casdoor/db:/var/lib/postgresql
+    #networks:
+    #  - casdoor_net
+
+#networks:
+#  proxy:
+#    external: true
+#  casdoor_net:
+#    internal: true

@@ -124,6 +124,7 @@ A [proxy](https://en.wikipedia.org/wiki/Proxy_server) is a server application th
 - [Authentik](examples/authentik) - Authentik is an open-source Identity Provider focused on flexibility and versatility.
 - [Keycloak](examples/keycloak) - Keycloak is an open-source Identity and Access Management (IAM) solution for modern applications and services.
 - [ZITADEL](examples/zitadel) - ZITADEL is an open-source identity and access management platform built for teams that need more than basic auth.
+- [Casdoor](examples/casdoor) - An open-source AI-first Identity and Access Management (IAM) /AI MCP gateway and auth server with web UI.
 - [lldap](examples/lldap) - lldap is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication. It integrates with many backends, from KeyCloak to Authelia to Nextcloud and more.
 
 ### Large Language Models & AI

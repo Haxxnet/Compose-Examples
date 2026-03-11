@@ -14,7 +14,7 @@ services:
       - GIN_MODE=release
       - RUNNING_IN_DOCKER=true
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/casdoor/conf:/conf # config file must be created manually with postgres connection
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/casdoor/conf:/conf # config file `app.conf` must be created manually with postgres connection
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/casdoor/logs:/logs
     #networks:
     #  - proxy

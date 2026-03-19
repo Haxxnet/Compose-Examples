@@ -144,9 +144,12 @@ http:
     # rate limiting
     rate-limit:
       rateLimit:
-        average: 100
-        period: 1
+        average: 50
+        period: 1s
         burst: 100
+        # uncomment the next lines if behind cloudflare
+        #sourceCriterion:
+        #  requestHeaderName: CF-Connecting-IP        
 
     # basic auth popup
     basic-auth:

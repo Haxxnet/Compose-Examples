@@ -472,6 +472,7 @@ Software that does not fit in another section.
 
 - [Network-Multitool](examples/network-multitool) - Multi-arch multitool for container network troubleshooting.
 - [IT-Tools](examples/it-tools) - Collection of handy online tools for developers, with great UX.
+- [Pumperly](examples/pumperly) - An open-source fuel & EV route planner with real-time prices across 36 countries. Self-hostable with PostGIS, Valhalla routing, and Photon geocoding.
 - [Scratch-Map](examples/scratch-map) - An open-source scratch-off style map to track your travels.
 
 ## 🌟 Star History

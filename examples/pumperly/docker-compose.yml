@@ -1,0 +1,123 @@
+services:
+
+  pumperly:
+    image: drumsergio/pumperly:latest
+    container_name: pumperly
+    restart: unless-stopped
+    depends_on:
+      pumperly-db:
+        condition: service_healthy
+    ports:
+      - 3000:3000/tcp
+    expose:
+      - 3000/tcp
+    environment:
+      - DATABASE_URL=postgresql://pumperly:changeme@pumperly-db:5432/pumperly
+      - PUMPERLY_DEFAULT_COUNTRY=ES
+      - PUMPERLY_ENABLED_COUNTRIES=ES,FR,DE # adjust to your countries
+      - VALHALLA_URL=http://pumperly-valhalla:8002
+      - PHOTON_URL=http://pumperly-photon:2322
+      - PUMPERLY_CLUSTER_STATIONS=true
+      #- TANKERKOENIG_API_KEY= # required for Germany; register at https://creativecommons.tankerkoenig.de
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.pumperly.rule=Host(`pumperly.example.com`)
+    #  - traefik.http.services.pumperly.loadbalancer.server.port=3000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.pumperly.middlewares=local-ipwhitelist@file
+
+  pumperly-db:
+    image: postgis/postgis:17-3.4
+    container_name: pumperly-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=pumperly
+      - POSTGRES_USER=pumperly
+      - POSTGRES_PASSWORD=changeme # CHANGE THIS
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/pumperly/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pumperly"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pumperly-valhalla:
+    image: ghcr.io/gis-ops/docker-valhalla/valhalla:3.5.1
+    container_name: pumperly-valhalla
+    restart: unless-stopped
+    environment:
+      - use_tiles_ignore_pbf=False
+      - serve_tiles=True
+      - build_elevation=False
+      - build_admins=True
+      - build_time_zones=True
+      - build_transit=False
+      - server_threads=2
+      # Comma-separated PBF URLs from https://download.geofabrik.de/
+      # Adjust to match your PUMPERLY_ENABLED_COUNTRIES:
+      - tile_urls=https://download.geofabrik.de/europe/spain-latest.osm.pbf,https://download.geofabrik.de/europe/france-latest.osm.pbf,https://download.geofabrik.de/europe/germany-latest.osm.pbf
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/pumperly/valhalla:/custom_files
+    deploy:
+      resources:
+        limits:
+          memory: 24G # 24 GB peak during tile build; ~2 GB at runtime
+
+  pumperly-photon:
+    image: eclipse-temurin:21-jre
+    container_name: pumperly-photon
+    restart: unless-stopped
+    working_dir: /photon
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        set -e
+        LANGS="es,en,fr,de"
+        BASE="https://download1.graphhopper.com/public/europe"
+        if [ ! -f /photon/photon.jar ]; then
+          apt-get update -qq && apt-get install -y -qq --no-install-recommends wget zstd >/dev/null 2>&1
+          wget -q "https://github.com/komoot/photon/releases/download/1.0.1/photon-1.0.1.jar" -O /photon/photon.jar
+        fi
+        if [ ! -f /photon/.imported_spain ]; then
+          apt-get update -qq 2>/dev/null; apt-get install -y -qq --no-install-recommends wget zstd >/dev/null 2>&1
+          wget -q -O /photon/spain.jsonl.zst "$$BASE/spain/photon-dump-spain-1.0-latest.jsonl.zst"
+          zstd -dc /photon/spain.jsonl.zst > /photon/spain.jsonl && rm -f /photon/spain.jsonl.zst
+          java -Xmx3g -jar /photon/photon.jar import -import-file /photon/spain.jsonl -languages $$LANGS
+          rm -f /photon/spain.jsonl && touch /photon/.imported_spain
+        fi
+        if [ ! -f /photon/.import_done ]; then
+          apt-get update -qq 2>/dev/null; apt-get install -y -qq --no-install-recommends wget zstd >/dev/null 2>&1
+          (
+            sleep 5
+            # Adjust countries to match your PUMPERLY_ENABLED_COUNTRIES:
+            COUNTRIES="france-monacco germany"
+            for country in $$COUNTRIES; do
+              if [ -f /photon/.imported_$$country ]; then continue; fi
+              wget -q -O "/photon/$$country.jsonl.zst" "$$BASE/$$country/photon-dump-$$country-1.0-latest.jsonl.zst"
+              zstd -dc "/photon/$$country.jsonl.zst" > "/photon/$$country.jsonl"
+              rm -f "/photon/$$country.jsonl.zst"
+              java -Xmx3g -jar /photon/photon.jar import -import-file "/photon/$$country.jsonl" -languages $$LANGS
+              rm -f "/photon/$$country.jsonl" && touch "/photon/.imported_$$country"
+            done
+            touch /photon/.import_done
+          ) &
+        fi
+        exec java -jar /photon/photon.jar serve -languages $$LANGS -listen-ip 0.0.0.0 -cors-any
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/pumperly/photon:/photon
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+
+#networks:
+#  proxy:
+#    external: true

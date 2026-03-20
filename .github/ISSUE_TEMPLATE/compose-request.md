@@ -7,6 +7,12 @@ assignees: ''
 
 ---
 
+> [!WARNING]
+> Please do not open issues or pull requests if the maintainer already provides a well-documented Docker Compose example. Instead, we may add a reference to the maintainer’s repository, but we will not duplicate or track it here.
+
+> [!CAUTION]
+> Please do not open issues or pull requests for newly created or unverified projects. This repository does not include untrusted or unknown Compose examples. Projects must first gain community trust, undergo public review, and demonstrate adoption (e.g., stars, usage) before being considered.
+
 **What FOSS project is currently missing. Provide names and links.**
 
 * NAME: 
@@ -25,9 +31,8 @@ Here some links to pre-existing docker-compose examples:
 Here my personal working docker-compose.yml:
 
 ````
-version: '3.3'
-
 services:
+
   example:
     image: user/image:tag
     container_name: example

@@ -1,9 +1,9 @@
 services:
 
   deemix:
-    image: registry.gitlab.com/bockiii/deemix-docker:latest    
+    image: ghcr.io/bambanah/deemix:latest
     container_name: deemix
-    hostname: deemix    
+    hostname: deemix
     environment:
       - PUID=1000
       - PGID=1000

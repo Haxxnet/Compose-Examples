@@ -366,6 +366,7 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 
 - [Matomo](examples/matomo) - Matomo is the leading Free/Libre open analytics platform.
 - [Plausible](examples/plausible) - Simple, open-source, lightweight (< 1 KB) and privacy-friendly web analytics alternative to Google Analytics.
+- [Rybbit](examples/rybbit) - An open-source and privacy-friendly alternative to Google Analytics that is 10x more intuitive.
 
 ### Security & Privacy
 

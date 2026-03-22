@@ -27,8 +27,8 @@ services:
     restart: unless-stopped
     expose:
       - 8123
-    networks:
-      - internal
+    #networks:
+    #  - internal
 
   postgres:
     image: postgres:17-alpine
@@ -48,8 +48,8 @@ services:
     restart: unless-stopped
     expose:
       - 5432
-    networks:
-      - internal
+    #networks:
+    #  - internal
 
   backend:
     image: ghcr.io/rybbit-io/rybbit-backend:${IMAGE_TAG:-latest}

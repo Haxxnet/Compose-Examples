@@ -54,6 +54,8 @@ services:
   backend:
     image: ghcr.io/rybbit-io/rybbit-backend:${IMAGE_TAG:-latest}
     container_name: rybbit-backend
+    ports:
+      - 3001:3001
     expose:
       - 3001
     environment:
@@ -97,6 +99,8 @@ services:
   client:
     image: ghcr.io/rybbit-io/rybbit-client:${IMAGE_TAG:-latest}
     container_name: rybbit-client
+    ports:
+      - 3002:3002
     expose:
       - 3002
     environment:

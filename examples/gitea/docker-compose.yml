@@ -1,9 +1,9 @@
 services:
 
   gitea:
-    image: gitea/gitea:latest    
+    image: gitea/gitea:latest
     container_name: gitea
-    restart: unless-stopped    
+    restart: unless-stopped
     environment:
       - USER_UID=1000
       - USER_GID=1000

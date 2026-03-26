@@ -10,7 +10,7 @@ https://docs.gitea.com/administration/config-cheat-sheet
 
 Typical configuration adjustments:
 
-````
+````markdown
 [service]
 # Allow user registration (only via external auth because of setting below)
 DISABLE_REGISTRATION = false
@@ -71,7 +71,7 @@ In case you want to use a local Gitea Act runner, you must enable Gitea Actions 
 
 Please add the following sections to your `app.ini` file:
 
-````
+````markdown
 [actions]
 ENABLED=true
 ````

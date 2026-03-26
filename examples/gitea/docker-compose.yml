@@ -18,6 +18,7 @@ services:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitea/data:/data
     #networks:
     #  - proxy
+    #  - runner-network
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.gitea.rule=Host(`git.example.com`)
@@ -26,6 +27,23 @@ services:
     #  # Part for local lan services only
     #  - traefik.http.routers.gitea.middlewares=local-ipwhitelist@file
 
+  #runner:
+  #  image: docker.io/gitea/act_runner:nightly
+  #  environment:
+  #    #CONFIG_FILE: /config.yaml
+  #    GITEA_INSTANCE_URL: "http://gitea:3000"
+  #    GITEA_RUNNER_REGISTRATION_TOKEN: "<TOKEN>"
+  #    GITEA_RUNNER_NAME: "gitea-runner-1"
+  #    GITEA_RUNNER_LABELS: "ubuntu-latest:docker://node:16-bullseye,ubuntu-22.04:docker://node:16-bullseye,ubuntu-20.04:docker://node:16-bullseye,ubuntu-18.04:docker://node:16-buster"
+  #  volumes:
+  #    #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitea/runners/config.yaml:/config.yaml
+  #    - /var/run/docker.sock:/var/run/docker.sock # better use a docker socket proxy
+  #    - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitea/runners/data:/data
+  #  networks:
+  #    - runner-network
+
 #networks:
 #  proxy:
+#    external: true
+#  runner-network:
 #    external: true

@@ -1,4 +1,4 @@
-[ReportBurster](https://github.com/flowkraft/reportburster) is a self-hosted, open-source BI application and an alternative to commercial software like Crystal Reports, SSRS, Tableau, or even Power BI.
+[ReportBurster](https://github.com/flowkraft/reportburster) is a self-hosted, open-source BI application and an alternative to commercial software like Crystal Reports, SSRS, Tableau, or Power BI.
 
 ## Self-Host with Docker
 

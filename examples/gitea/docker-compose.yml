@@ -34,7 +34,7 @@ services:
   #    GITEA_INSTANCE_URL: "http://gitea:3000"
   #    GITEA_RUNNER_REGISTRATION_TOKEN: "<TOKEN>"
   #    GITEA_RUNNER_NAME: "gitea-runner-1"
-  #    GITEA_RUNNER_LABELS: "ubuntu-latest:docker://node:16-bullseye,ubuntu-22.04:docker://node:16-bullseye,ubuntu-20.04:docker://node:16-bullseye,ubuntu-18.04:docker://node:16-buster"
+  #    GITEA_RUNNER_LABELS: "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-latest,node:docker://node:20-bullseye,python:docker://python:3.12-slim,golang:docker://golang:1.22-bullseye,alpine:docker://alpine:3.19"
   #  volumes:
   #    #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/gitea/runners/config.yaml:/config.yaml
   #    - /var/run/docker.sock:/var/run/docker.sock # better use a docker socket proxy

@@ -4,7 +4,7 @@
 
 # Notes
 
-After spawning up Gitea, it's recommended to adjust the configuration file `app.ini`.
+After spawning up Gitea, it's recommended to adjust the configuration file `/mnt/docker-volumes/gitea/data/gitea/conf/app.ini`.
 
 https://docs.gitea.com/administration/config-cheat-sheet
 

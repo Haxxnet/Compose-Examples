@@ -1,0 +1,63 @@
+# =============================================================================
+# ReportBurster Server Docker Compose
+# =============================================================================
+#
+# USAGE:
+#   Start:  docker-compose up -d
+#   Stop:   docker-compose down
+#   Logs:   docker-compose logs -f reportburster-server
+#   Shell:  docker-compose exec reportburster-server bash
+#
+# FIRST RUN:
+#   The container entrypoint will extract default config files from the image
+#   into host bind-mounts (if directories are missing or empty) before starting the services.
+#
+# =============================================================================
+
+services:
+  reportburster-server:
+    # image: flowkraft/reportburster-server:14.5.0
+    image: flowkraft/reportburster-server:latest
+    container_name: reportburster-server
+    ports:
+      - "${SERVER_PORT:-9090}:9090"
+    environment:
+      - SERVER_PORT=9090
+      # Optional: Set a specific API key (otherwise auto-generated)
+      # - API_KEY=your-secret-api-key-here
+    # Enable host.docker.internal on Linux (already available on Docker Desktop for Windows/Mac)
+    # This allows the container to reach host-mapped ports for StarterPacks and Apps
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      # Docker-in-Docker: Required for StarterPacks and Docker Apps
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Data volumes (persisted on host)
+      - ./_apps:/app/_apps
+      - ./backup:/app/backup
+      - ./config:/app/config
+      - ./db:/app/db
+      - ./input-files:/app/input-files
+      - ./logs:/app/logs
+      - ./output:/app/output
+      - ./poll:/app/poll
+      - ./quarantine:/app/quarantine
+      - ./samples:/app/samples
+      - ./scripts:/app/scripts
+      - ./temp:/app/temp
+      - ./templates:/app/templates
+    restart: unless-stopped
+    #healthcheck:
+    #  test: ["CMD", "curl", "-f", "http://localhost:9090/api/jobman/system/version"]
+    #  interval: 30s
+    #  timeout: 10s
+    #  retries: 3
+    #  start_period: 60s
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"   # SMTP
+      - "8025:8025"   # Web UI
+    restart: unless-stopped

@@ -1,7 +1,7 @@
 services:
 
   crowdsec:
-    image: crowdsecurity/crowdsec:v1.7.6
+    image: crowdsecurity/crowdsec:v1.7.7
     container_name: crowdsec
     restart: unless-stopped
     ports:

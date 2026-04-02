@@ -134,6 +134,7 @@ A [proxy](https://en.wikipedia.org/wiki/Proxy_server) is a server application th
 A [Large Language Model (LLM)](https://en.wikipedia.org/wiki/Large_language_model) is a language model notable for its ability to achieve general-purpose language generation and other natural language processing tasks such as classification. LLMs can be used for text generation, a form of generative [AI](https://en.wikipedia.org/wiki/Artificial_intelligence), by taking an input text and repeatedly predicting the next token or word.
 
 - [Ollama + Open WebUI](examples/ollama-ui) - Get up and running with Llama 3, Mistral, Gemma, and other large language models using Ollama. Using an interactive, user-friendly WebUI via Open WebUI (formerly known as Ollama WebUI).
+- [Open WebUI Ultimate Stack](https://github.com/BitWise-0x/open-webui-ultimate-stack) - Production-ready Docker stack for Open WebUI with 35+ pre-built tools/filters/pipelines, RAG (pgvector), private search (SearXNG), OCR (Tika), TTS (EdgeTTS), and ComfyUI workflows. Includes a curated library of tools pushed automatically on every deploy via the internal API.
 - [Serge](examples/serge) - A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
 
 ### Virtual Private Network (VPN) & Remote Access

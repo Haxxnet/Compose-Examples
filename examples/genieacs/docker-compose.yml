@@ -1,0 +1,60 @@
+services:
+
+  genieacs:
+    image: drumsergio/genieacs:1.2.16.0
+    container_name: genieacs
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - 7547:7547
+      - 7557:7557
+      - 7567:7567
+      - 3000:3000
+    expose:
+      - 3000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/genieacs/ext:/opt/genieacs/ext
+    environment:
+      GENIEACS_UI_JWT_SECRET: ${GENIEACS_UI_JWT_SECRET:-ChangeMe1234}
+      GENIEACS_MONGODB_CONNECTION_URL: mongodb://mongo/genieacs?authSource=admin
+      GENIEACS_CWMP_ACCESS_LOG_FILE: /var/log/genieacs/genieacs-cwmp-access.log
+      GENIEACS_NBI_ACCESS_LOG_FILE: /var/log/genieacs/genieacs-nbi-access.log
+      GENIEACS_FS_ACCESS_LOG_FILE: /var/log/genieacs/genieacs-fs-access.log
+      GENIEACS_UI_ACCESS_LOG_FILE: /var/log/genieacs/genieacs-ui-access.log
+      GENIEACS_DEBUG_FILE: /var/log/genieacs/genieacs-debug.yaml
+      GENIEACS_EXT_DIR: /opt/genieacs/ext
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "--quiet", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.genieacs.rule=Host(`acs.example.com`)
+    #  - traefik.http.services.genieacs.loadbalancer.server.port=3000
+
+  mongo:
+    image: mongo:8.0
+    container_name: genieacs-mongo
+    restart: unless-stopped
+    expose:
+      - 27017
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/genieacs/mongodb:/data/db
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/genieacs/mongodb-config:/data/configdb
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+#networks:
+#  proxy:
+#    external: true

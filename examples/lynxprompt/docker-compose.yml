@@ -1,0 +1,140 @@
+services:
+
+  lynxprompt:
+    image: drumsergio/lynxprompt:latest
+    container_name: lynxprompt
+    restart: unless-stopped
+    depends_on:
+      postgres-app:
+        condition: service_healthy
+      postgres-users:
+        condition: service_healthy
+      postgres-blog:
+        condition: service_healthy
+      postgres-support:
+        condition: service_healthy
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lynxprompt/uploads:/data/uploads
+    environment:
+      # NextAuth (required — generate with: openssl rand -base64 32)
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:?Generate with openssl rand -base64 32}
+      # Databases
+      DB_APP_HOST: postgres-app
+      DB_APP_USER: lynxprompt_app
+      DB_APP_PASSWORD: ${POSTGRES_APP_PASSWORD:-DatabasePassword1234}
+      DB_APP_NAME: lynxprompt_app
+      DB_USERS_HOST: postgres-users
+      DB_USERS_USER: lynxprompt_users
+      DB_USERS_PASSWORD: ${POSTGRES_USERS_PASSWORD:-DatabasePassword1234}
+      DB_USERS_NAME: lynxprompt_users
+      DB_BLOG_HOST: postgres-blog
+      DB_BLOG_USER: lynxprompt_blog
+      DB_BLOG_PASSWORD: ${POSTGRES_BLOG_PASSWORD:-DatabasePassword1234}
+      DB_BLOG_NAME: lynxprompt_blog
+      DB_SUPPORT_HOST: postgres-support
+      DB_SUPPORT_USER: lynxprompt_support
+      DB_SUPPORT_PASSWORD: ${POSTGRES_SUPPORT_PASSWORD:-DatabasePassword1234}
+      DB_SUPPORT_NAME: lynxprompt_support
+      # Feature flags (all optional)
+      ENABLE_EMAIL_AUTH: ${ENABLE_EMAIL_AUTH:-true}
+      ENABLE_PASSKEYS: ${ENABLE_PASSKEYS:-true}
+      ENABLE_USER_REGISTRATION: ${ENABLE_USER_REGISTRATION:-true}
+      # OAuth (optional)
+      #GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-}
+      #GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}
+      #ENABLE_GITHUB_OAUTH: ${ENABLE_GITHUB_OAUTH:-false}
+      # AI features (optional — requires Anthropic API key)
+      #ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      #ENABLE_AI: ${ENABLE_AI:-false}
+      # Branding
+      APP_NAME: ${APP_NAME:-LynxPrompt}
+      APP_URL: ${APP_URL:-http://localhost:3000}
+      UPLOAD_DIR: /data/uploads/blog
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.lynxprompt.rule=Host(`lynxprompt.example.com`)
+    #  - traefik.http.services.lynxprompt.loadbalancer.server.port=3000
+
+  postgres-app:
+    image: postgres:18-alpine
+    container_name: lynxprompt-postgres-app
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lynxprompt/db-app:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: lynxprompt_app
+      POSTGRES_USER: lynxprompt_app
+      POSTGRES_PASSWORD: ${POSTGRES_APP_PASSWORD:-DatabasePassword1234}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lynxprompt_app"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-users:
+    image: postgres:18-alpine
+    container_name: lynxprompt-postgres-users
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lynxprompt/db-users:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: lynxprompt_users
+      POSTGRES_USER: lynxprompt_users
+      POSTGRES_PASSWORD: ${POSTGRES_USERS_PASSWORD:-DatabasePassword1234}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lynxprompt_users"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-blog:
+    image: postgres:18-alpine
+    container_name: lynxprompt-postgres-blog
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lynxprompt/db-blog:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: lynxprompt_blog
+      POSTGRES_USER: lynxprompt_blog
+      POSTGRES_PASSWORD: ${POSTGRES_BLOG_PASSWORD:-DatabasePassword1234}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lynxprompt_blog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-support:
+    image: postgres:18-alpine
+    container_name: lynxprompt-postgres-support
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/lynxprompt/db-support:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: lynxprompt_support
+      POSTGRES_USER: lynxprompt_support
+      POSTGRES_PASSWORD: ${POSTGRES_SUPPORT_PASSWORD:-DatabasePassword1234}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lynxprompt_support"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+#networks:
+#  proxy:
+#    external: true

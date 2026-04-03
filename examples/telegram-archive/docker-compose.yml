@@ -1,0 +1,66 @@
+services:
+
+  telegram-backup:
+    image: drumsergio/telegram-archive:latest
+    container_name: telegram-backup
+    restart: unless-stopped
+    command: ["python", "-m", "src", "schedule"]
+    expose:
+      - 8000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/telegram-archive:/data
+    environment:
+      # Telegram Credentials (required — get from https://my.telegram.org)
+      TELEGRAM_API_ID: ${TELEGRAM_API_ID}
+      TELEGRAM_API_HASH: ${TELEGRAM_API_HASH}
+      TELEGRAM_PHONE: ${TELEGRAM_PHONE}
+      SESSION_NAME: ${SESSION_NAME:-telegram_backup}
+      # Backup schedule (cron format)
+      SCHEDULE: ${SCHEDULE:-0 */6 * * *}
+      # Backup settings
+      BACKUP_PATH: /data/backups
+      DOWNLOAD_MEDIA: ${DOWNLOAD_MEDIA:-true}
+      MAX_MEDIA_SIZE_MB: ${MAX_MEDIA_SIZE_MB:-100}
+      # Chat filtering (comma-separated types: private, groups, channels)
+      CHAT_TYPES: ${CHAT_TYPES:-private,groups,channels}
+      # Database
+      DB_TYPE: ${DB_TYPE:-sqlite}
+      DB_PATH: /data/backups/telegram_backup.db
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.telegram-backup.rule=Host(`telegram.example.com`)
+    #  - traefik.http.services.telegram-backup.loadbalancer.server.port=8000
+
+  telegram-viewer:
+    image: drumsergio/telegram-archive-viewer:latest
+    container_name: telegram-viewer
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    expose:
+      - 8000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/telegram-archive:/data
+    environment:
+      BACKUP_PATH: /data/backups
+      # Authentication (recommended)
+      VIEWER_USERNAME: ${VIEWER_USERNAME:-admin}
+      VIEWER_PASSWORD: ${VIEWER_PASSWORD:-ChangeMe1234}
+      VIEWER_TIMEZONE: ${VIEWER_TIMEZONE:-Europe/Berlin}
+      # Database — must match backup service
+      DB_TYPE: ${DB_TYPE:-sqlite}
+      DB_PATH: /data/backups/telegram_backup.db
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.telegram-viewer.rule=Host(`telegram.example.com`)
+    #  - traefik.http.services.telegram-viewer.loadbalancer.server.port=8000
+
+#networks:
+#  proxy:
+#    external: true

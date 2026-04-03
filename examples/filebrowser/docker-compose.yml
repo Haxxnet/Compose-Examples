@@ -6,7 +6,7 @@ services:
     restart: unless-stopped    
     user: 1000:1000 # adjust to your needs
     environment:
-      - FB_BASEURL=/filebrowser    
+      - FB_BASE_URL=/filebrowser    
     ports:
       - 8080:80
     expose:

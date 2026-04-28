@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/haxxnet-compose-examples-badge.png)](https://mseep.ai/app/haxxnet-compose-examples)
+
 <div align="center" width="100%">
     <h1>Awesome Docker Compose Examples</h1>
     <p>Various Docker Compose examples of selfhosted FOSS and proprietary projects.</p>

@@ -135,6 +135,7 @@ A [Large Language Model (LLM)](https://en.wikipedia.org/wiki/Large_language_mode
 
 - [Ollama + Open WebUI](examples/ollama-ui) - Get up and running with Llama 3, Mistral, Gemma, and other large language models using Ollama. Using an interactive, user-friendly WebUI via Open WebUI (formerly known as Ollama WebUI).
 - [Serge](examples/serge) - A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
+- [LynxPrompt](examples/lynxprompt) - Self-hosted platform for managing and sharing AI IDE configuration files (AGENTS.md, CLAUDE.md) with a web UI, CLI, and federation support.
 
 ### Virtual Private Network (VPN) & Remote Access
 
@@ -199,6 +200,7 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [Watchtower](examples/watchtower) - A container-based solution for automating Docker container base image updates.
 - [Unify Network Application](examples/unify-network-application) - The Unifi-network-application software is a powerful, enterprise wireless software engine ideal for high-density client deployments requiring low latency and high uptime performance.
 - [UpSnap](examples/upsnap) - A simple wake on lan app written with SvelteKit, Go, PocketBase and nmap.
+- [GenieACS](examples/genieacs) - Open-source TR-069 remote management platform for ISP customer-premises equipment (routers, ONTs, set-top boxes).
 
 ### Recipe Management
 
@@ -255,6 +257,7 @@ Digital [archiving](https://en.wikipedia.org/wiki/Archival_science) and [preserv
 - [Shiori](examples/shiori) - Simple bookmark manager and website archiver built with Go.
 - [Readeck](examples/readeck) - Readeck is a simple web application that lets you save the precious readable content of web pages you like and want to keep forever.
 - [Linkwarden](examples/linkwarden) - Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages, articles, and documents.
+- [Telegram Archive](examples/telegram-archive) - Own your Telegram history with automated, incremental backups and a local web viewer that mirrors the Telegram UI.
 
 ### Document Management
 

@@ -199,6 +199,7 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [Watchtower](examples/watchtower) - A container-based solution for automating Docker container base image updates.
 - [Unify Network Application](examples/unify-network-application) - The Unifi-network-application software is a powerful, enterprise wireless software engine ideal for high-density client deployments requiring low latency and high uptime performance.
 - [UpSnap](examples/upsnap) - A simple wake on lan app written with SvelteKit, Go, PocketBase and nmap.
+- [Beszel](examples/beszel) - Lightweight server monitoring platform with Docker statistics, historical data, and alerts.
 
 ### Recipe Management
 

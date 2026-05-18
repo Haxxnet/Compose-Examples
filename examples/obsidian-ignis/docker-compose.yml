@@ -26,7 +26,7 @@ services:
     # Part for optional traefik middlewares
     #  - traefik.http.routers.ignis.middlewares=authentik@docker
 
- git-sync:
+  git-sync:
     image: l4rm4nd/git-sync:latest
     container_name: ignis-git-sync
     restart: unless-stopped

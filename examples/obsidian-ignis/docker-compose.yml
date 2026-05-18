@@ -23,7 +23,7 @@ services:
     #  - traefik.http.routers.ignis.rule=Host(`ignis.example.com`)
     #  - traefik.http.services.ignis.loadbalancer.server.port=8080      
     #  - traefik.docker.network=proxy
-      # Part for optional traefik middlewares
+    # Part for optional traefik middlewares
     #  - traefik.http.routers.ignis.middlewares=authentik@docker
 
  git-sync:

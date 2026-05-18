@@ -320,6 +320,7 @@ A [pastebin](https://en.wikipedia.org/wiki/Pastebin) is a type of online content
 - [Overleaf](examples/overleaf) - Overleaf is a collaborative cloud-based LaTeX editor used for writing, editing and publishing scientific documents.
 - [Obsidian-Gitsync-Perlite](https://github.com/l4rm4nd/Obsidian-Gitsync-Perlite) - Continuously sync Obsidian markdown notes from GitHub and publish it for the webs.
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
+- [Obsidian-Ignis](examples/obsidian-ignis) - Obsidian as a self-hosted native web app with read and write feature.
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 
 ### URL Shorteners

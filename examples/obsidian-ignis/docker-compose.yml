@@ -1,0 +1,43 @@
+services:
+
+  ignis:
+    image: nobbe/ignis:latest
+    container_name: ignis
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+    environment:
+      - OBSIDIAN_VERSION=1.12.7
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/vaults:/vaults
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/data:/app/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/obsidian-app:/app/obsidian-app
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.ignis.rule=Host(`ignis.example.com`)
+    #  - traefik.http.services.ignis.loadbalancer.server.port=8080      
+    #  - traefik.docker.network=proxy
+      # Part for optional traefik middlewares
+    #  - traefik.http.routers.ignis.middlewares=authentik@docker
+
+ git-sync:
+    image: l4rm4nd/git-sync:latest
+    container_name: ignis-git-sync
+    restart: unless-stopped
+    user: 1000:1000
+    environment:
+      - GIT_SYNC_USERNAME=${GIT_SYNC_USERNAME:-gituser}
+      - GIT_SYNC_PASSWORD=${GIT_SYNC_PASSWORD:-gitsyncpw}
+      - GIT_SYNC_PERIOD=${GIT_SYNC_PERIOD:-30s}
+      - GIT_SYNC_REPO=${GIT_SYNC_REPO}
+      - GIT_SYNC_ROOT=${GIT_SYNC_ROOT}
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/vaults:/tmp/git/root
+    #networks:
+    #  - proxy

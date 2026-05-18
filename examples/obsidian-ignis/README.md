@@ -3,3 +3,9 @@
 - https://github.com/Nystik-gh/ignis
 
 # Notes
+
+Ignis is a compatibility shim that provides browser-compatible implementations of the Electron APIs used by Obsidian, allowing Obsidian to run in a standard browser while keeping your vault on the server. Obsidian is not included in or distributed with this project. The Docker container downloads Obsidian directly from its official source on first run.
+
+Live Demo here:
+
+https://ignis-demo.thiefling.com/?vault=Welcome&workspace=Default

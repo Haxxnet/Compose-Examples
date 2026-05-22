@@ -43,7 +43,7 @@ services:
     #  - proxy
 
   plausible:
-    image: ghcr.io/plausible/community-edition:v3.2.0 
+    image: ghcr.io/plausible/community-edition:v3.2.1
     container_name: plausible
     restart: always
     volumes:

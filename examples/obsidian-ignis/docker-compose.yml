@@ -2,7 +2,7 @@ services:
 
   ignis:
     image: nobbe/ignis:latest
-    container_name: ignis
+    container_name: obsidian-ignis
     ports:
       - "8080:8080"
     expose:
@@ -27,17 +27,27 @@ services:
     #  - traefik.http.routers.ignis.middlewares=authentik@docker
 
   git-sync:
-    image: l4rm4nd/git-sync:latest
-    container_name: ignis-git-sync
+    image: ubuntu/git-sync:4.5-24.04_stable
+    container_name: obsidian-git-sync
     restart: unless-stopped
-    user: 1000:1000
+    user: "1000:1000"
+    entrypoint: ["git-sync"]
+    command:
+      - "--repo=${GITSYNC_REPO:?please define the repo to sync}"
+      - "--root=/vaults/.git-sync"
+      - "--link=/vaults/current"
+      - "--period=${GITSYNC_PERIOD:-30s}"
+      - "--ref=${GITSYNC_REF:-HEAD}"
+      - "--max-failures=-1"
+      - "--verbose=5"
     environment:
-      - GIT_SYNC_USERNAME=${GIT_SYNC_USERNAME:-gituser}
-      - GIT_SYNC_PASSWORD=${GIT_SYNC_PASSWORD:-gitsyncpw}
-      - GIT_SYNC_PERIOD=${GIT_SYNC_PERIOD:-30s}
-      - GIT_SYNC_REPO=${GIT_SYNC_REPO}
-      - GIT_SYNC_ROOT=${GIT_SYNC_ROOT}
+      - GITSYNC_USERNAME=${GITSYNC_USERNAME:-gituser}
+      - GITSYNC_PASSWORD=${GITSYNC_PASSWORD:-gitsyncpw}
     volumes:
-      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/vaults:/tmp/git/root
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/vaults:/vaults
     #networks:
     #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

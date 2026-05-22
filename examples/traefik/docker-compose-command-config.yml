@@ -34,6 +34,7 @@ services:
       - "--certificatesresolvers.myresolver-dns.acme.dnschallenge.provider=cloudflare" # define provider for certificates
       - "--certificatesresolvers.myresolver-dns.acme.storage=/etc/traefik/acme.json" # define acme path for certificate information
       - "--certificatesresolvers.myresolver-dns.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53" # define dns servers for your resolver, here cloudflare
+      - "--certificatesresolvers.myresolver-http.acme.email=myemail@domain.tld" # define your email address
       - "--certificatesresolvers.myresolver-http.acme.httpchallenge=true" # use http challenge
       - "--certificatesresolvers.myresolver-http.acme.httpchallenge.entrypoint=http" # define entrypoint for http challenge
       ####################################################

@@ -1,7 +1,7 @@
 services:
 
   vouchervault:
-    image: l4rm4nd/vouchervault:1.27.x
+    image: l4rm4nd/vouchervault:1.28.x
     container_name: vouchervault
     environment:
       # your FQDN or IP; multiple ones supported via comma delimiter

@@ -1,0 +1,23 @@
+services:
+
+  hivekeep:
+    image: ghcr.io/marlburrow/hivekeep:latest
+    container_name: hivekeep
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/hivekeep/data:/app/data
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.hivekeep.rule=Host(`hivekeep.example.com`)
+    #  - traefik.http.services.hivekeep.loadbalancer.server.port=3000
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.hivekeep.middlewares=local-ipwhitelist@file,authelia@docker
+
+#networks:
+#  proxy:
+#    external: true

@@ -399,7 +399,6 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [Obsidian-Gitsync-Perlite](https://github.com/l4rm4nd/Obsidian-Gitsync-Perlite) - Continuously sync Obsidian markdown notes from GitHub and publish it for the webs.
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 - [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
-- [Docmost](examples/docmost) - Docmost is an open source collaborative documentation and wiki software. It is an open-source alternative to the likes of Confluence and Notion.
 - [Atlassian Confluence](examples/atlassian-jira-confluence) - Confluence is a wiki solution built for business teams.
 - [Siyuan](examples/siyuan) - A privacy-first, self-hosted, fully open source personal knowledge management software, written in typescript and golang.
 - [Kiwix Serve](examples/kiwix) - Offline reader for Wikipedia and other web content stored in ZIM files, served through a lightweight web interface.

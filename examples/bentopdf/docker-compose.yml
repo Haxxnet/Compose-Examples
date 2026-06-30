@@ -1,0 +1,25 @@
+services:
+
+  bentopdf:
+    image: ghcr.io/alam00000/bentopdf-simple:latest
+    container_name: bentopdf
+    restart: unless-stopped
+    expose:
+      - 8080
+    ports:
+      - 8080:8080/tcp
+    environment:
+      - DISABLE_IPV6=true
+    networks:
+      - dev
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dev
+      - traefik.http.routers.bentopdf.rule=Host(`pdf.lrvt.de`)
+      - traefik.http.services.bentopdf.loadbalancer.server.port=8080
+      # Optional part for traefik middlewares
+      - traefik.http.routers.bentopdf.middlewares=local-ipwhitelist@file
+
+networks:
+  dev:
+    external: true

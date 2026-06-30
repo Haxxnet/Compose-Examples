@@ -268,6 +268,7 @@ A [document management system](https://en.wikipedia.org/wiki/Document_management
 - [DocuSeal](examples/docuseal) - Create, fill, and sign digital documents (alternative to DocuSign).
 - [Koillection](examples/koillection) - Koillection is a self-hosted service allowing users to manage any kind of collections.
 - [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports PWA, offline caching, expiry notifications, transaction histories, file uploads and OIDC SSO.
+- [BentoPDF](examples/bentopdf) - BentoPDF is a powerful, privacy-first, client-side PDF toolkit that is self hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser.
 
 ### Pastebins
 

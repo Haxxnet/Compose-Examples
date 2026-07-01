@@ -85,7 +85,8 @@ entryPoints:
         - 2c0f:f248::/32
         # end of Cloudlare public IP list
     http:
-      #underscoreHeadersStrategy: delete
+      # https://doc.traefik.io/traefik/migrate/v3/#underscoreheadersstrategy
+      underscoreHeadersStrategy: delete
       redirections:
         entryPoint:
           to: https
@@ -101,7 +102,8 @@ entryPoints:
     #http3:
     #  advertisedPort: '443'      
     http:
-      #underscoreHeadersStrategy: delete
+      # https://doc.traefik.io/traefik/migrate/v3/#underscoreheadersstrategy
+      underscoreHeadersStrategy: delete
       # use dynamically generated self-signed certificate
       tls: {}
       # or use a pre-defined certificate resolver from below

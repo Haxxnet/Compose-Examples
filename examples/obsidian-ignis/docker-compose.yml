@@ -33,7 +33,7 @@ services:
     user: "1000:1000"
     entrypoint: ["git-sync"]
     command:
-      - "--repo=${GITSYNC_REPO:?please define the repo to sync}"
+      - "--repo=${GITSYNC_REPO:-https://github.com/example/example.git}"
       - "--root=/vaults/.git-sync"
       - "--link=/vaults/current"
       - "--period=${GITSYNC_PERIOD:-30s}"

@@ -133,6 +133,7 @@ A [proxy](https://en.wikipedia.org/wiki/Proxy_server) is a server application th
 
 A [Large Language Model (LLM)](https://en.wikipedia.org/wiki/Large_language_model) is a language model notable for its ability to achieve general-purpose language generation and other natural language processing tasks such as classification. LLMs can be used for text generation, a form of generative [AI](https://en.wikipedia.org/wiki/Artificial_intelligence), by taking an input text and repeatedly predicting the next token or word.
 
+- [qq-ai-bot](examples/qq-ai-bot) - QQ bot scaffold bridging OneBot 11 / NapCat / LLOneBot to ACP-compatible agents, with persistent sessions, progress streaming, and a Docker demo.
 - [Ollama + Open WebUI](examples/ollama-ui) - Get up and running with Llama 3, Mistral, Gemma, and other large language models using Ollama. Using an interactive, user-friendly WebUI via Open WebUI (formerly known as Ollama WebUI).
 - [Serge](examples/serge) - A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
 

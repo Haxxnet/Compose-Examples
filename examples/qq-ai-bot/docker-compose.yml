@@ -1,0 +1,56 @@
+services:
+
+  napcat:
+    image: mlikiowa/napcat-docker:latest
+    container_name: napcat
+    restart: unless-stopped
+    environment:
+      - NAPCAT_UID=1000
+      - NAPCAT_GID=1000
+      - WEBUI_TOKEN=napcat
+    ports:
+      - 3000:3000
+      - 6099:6099
+    expose:
+      - 3000
+      - 6099
+    volumes:
+      - ./napcat.onebot11.reverse-ws.json:/app/napcat/config/onebot11.json:ro
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/qq-ai-bot/napcat-qq:/app/.config/QQ
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.napcat.rule=Host(`napcat.example.com`)
+    #  - traefik.http.services.napcat.loadbalancer.server.port=6099
+    #  # Optional part for local-only access
+    #  - traefik.http.routers.napcat.middlewares=local-ipwhitelist@file
+
+  qq-ai-bot:
+    image: ghcr.io/happysnaker/qq-ai-bot:latest
+    container_name: qq-ai-bot
+    depends_on:
+      - napcat
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - 18080:8080
+    expose:
+      - 8080
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/qq-ai-bot/data:/app/data
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.qq-ai-bot.rule=Host(`qq-ai-bot.example.com`)
+    #  - traefik.http.services.qq-ai-bot.loadbalancer.server.port=8080
+    #  # Optional part for local-only access
+    #  - traefik.http.routers.qq-ai-bot.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

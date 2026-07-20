@@ -3,7 +3,6 @@ services:
   kutt:
     image: kutt/kutt:v3.2.6
     container_name: kutt
-    hostname: kutt
     depends_on:
       redis:
         condition: service_started
@@ -13,8 +12,6 @@ services:
     expose:
       - 3000
     volumes:
-      #- /etc/localtime:/etc/localtime:ro
-      #- /etc/timezone:/etc/timezone:ro
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/kutt/data:/var/lib/kutt
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/kutt/custom:/kutt/custom
     environment:
@@ -55,7 +52,6 @@ services:
       #- OIDC_SCOPE=${KUTT_OIDC_SCOPE:-openid profile email}
       #- OIDC_EMAIL_CLAIM=${KUTT_OIDC_EMAIL_CLAIM:-email}
       #- OIDC_BUTTON_TEXT=${KUTT_OIDC_BUTTON_TEXT:-Log in with OIDC}
-
       #- SERVER_IP_ADDRESS=${KUTT_SERVER_IP_ADDRESS}
       #- SERVER_CNAME_ADDRESS=${KUTT_SERVER_CNAME_ADDRESS}
       #- REPORT_EMAIL=${KUTT_REPORT_EMAIL}
@@ -73,14 +69,11 @@ services:
     #  - traefik.http.routers.kutt.middlewares=local-ipwhitelist@file,crowdsec@file
 
   redis:
-    image: redis:alpine
+    image: redis:8-alpine
     container_name: kutt-redis
-    hostname: redis
     restart: unless-stopped
     expose:
       - 6379
-    environment:
-      - TZ=Europe/Berlin
     #networks:
     #  - internal
 

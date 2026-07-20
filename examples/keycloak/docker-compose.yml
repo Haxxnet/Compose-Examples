@@ -22,7 +22,7 @@ services:
       - keycloak-internal
 
   keycloak:
-    image: quay.io/keycloak/keycloak:26.6
+    image: quay.io/keycloak/keycloak:26.7
     container_name: keycloak-app
     command: start
     environment:
@@ -72,4 +72,4 @@ networks:
   keycloak-internal:
     internal: true
   proxy:
-    external: true    
+    external: true

@@ -40,6 +40,10 @@ The default username is `guacadmin`. The default password is `guacadmin`.
 
 https://guacamole.apache.org/doc/gug/configuring-guacamole.html#overriding-guacamole-home
 
-The docker container makes use of the path `/opt/guacamole/extensions`. One may bind-mount this volume but there is a better alternative.
+The docker container makes use of the path `/opt/guacamole/extensions` for extensions. One may bind-mount this volume but there is a better alternative.
 
-One can advice the container to use a different home path via the environment variable `GUACAMOLE_HOME`. This way, every file placed there will be read-only copied to the real `/opt/guacamole/extensions` path inside the container, without affecting the regular extensions and install files. Please inspect the compose examples, which add the `GUACAMOLE_HOME=/etc/guacamole` env to support custom extensions.
+One can advice the container to use a different home path via the environment variable `GUACAMOLE_HOME`. This way, every file placed there will be read-only copied to the real `/opt/guacamole/` path inside the container, without affecting the regular extensions and install files. 
+
+Please inspect the compose examples, which add the `GUACAMOLE_HOME=/etc/guacamole` env to support custom extensions.
+
+To supply your own custom extension, just place it at the local bind-mount dir `/mnt/docker-volumes/guacamole/customization/extensions/my-custom-extension.jar`. It will be autoamtically copied and enabled upon container restart.

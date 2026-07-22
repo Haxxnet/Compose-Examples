@@ -35,7 +35,7 @@ services:
       - guacd
       - postgres
     environment:
-      - TOTP_ENABLED=true
+      - TOTP_ENABLED=false # may set to true to enforce TOTP MFA
       - GUACAMOLE_HOME=/etc/guacamole # pseudo home path; placed extensions and contents are moved to /opt/guacamole inside the container
       - GUACD_HOSTNAME=guacd
       - POSTGRESQL_HOSTNAME=postgres

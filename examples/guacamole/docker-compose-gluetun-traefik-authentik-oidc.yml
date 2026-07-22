@@ -36,10 +36,11 @@ services:
       - postgres
       - gluetun
     environment:
+      - GUACAMOLE_HOME=/etc/guacamole # pseudo home path; placed extensions and contents are moved to /opt/guacamole inside the container    
       - GUACD_HOSTNAME=localhost
       - POSTGRESQL_HOSTNAME=localhost
       - POSTGRESQL_DATABASE=guacamole_db
-      - POSTGRESQL_USER=guacamole_user
+      - POSTGRESQL_USERNAME=guacamole_user
       - POSTGRESQL_PASSWORD=ChooseYourOwnPasswordHere1234
       - OPENID_ENABLED=true
       - OPENID_AUTHORIZATION_ENDPOINT=https://authentik.example.com/application/o/authorize/
@@ -49,6 +50,8 @@ services:
       - OPENID_REDIRECT_URI=https://guacamole.example.com/guacamole
       - OPENID_USERNAME_CLAIM_TYPE=preferred_username
       - OPENID_SCOPE=openid email profile
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/customization/extensions:/etc/guacamole/extensions:ro      
     network_mode: container:gluetun
 
   gluetun:

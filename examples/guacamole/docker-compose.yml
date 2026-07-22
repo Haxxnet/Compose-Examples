@@ -35,11 +35,14 @@ services:
       - guacd
       - postgres
     environment:
+      - GUACAMOLE_HOME=/etc/guacamole # pseudo home path; placed extensions and contents are moved to /opt/guacamole inside the container
       - GUACD_HOSTNAME=guacd
       - POSTGRESQL_HOSTNAME=postgres
       - POSTGRESQL_DATABASE=guacamole_db
-      - POSTGRESQL_USER=guacamole_user
+      - POSTGRESQL_USERNAME=guacamole_user
       - POSTGRESQL_PASSWORD=ChooseYourOwnPasswordHere1234
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/guacamole/customization/extensions:/etc/guacamole/extensions:ro
     links:
       - guacd
     ports:

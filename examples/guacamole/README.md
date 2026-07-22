@@ -36,6 +36,22 @@ The default username is `guacadmin`. The default password is `guacadmin`.
 >
 > See `docker-compose-gluetun-traefik-authentik-oidc.yml` for an example with wireguard and Authentik OIDC SSO.
 
+### OIDC
+
+You can enable OIDC SSO via the environment variable `OPENID_ENABLED`.
+
+Once set to `True`, the OIDC extension is installed automatically and provisioned by the other `OPENID_` environment variables.
+
+See https://guacamole.apache.org/doc/gug/openid-auth.html
+
+### TOTP MFA
+
+You can enable TOTP MFA via the environment variable `TOTP_ENABLED`.
+
+Once set to `True`, the TOTP extension is installed automatically and will be active.
+
+See https://guacamole.apache.org/doc/gug/totp-auth.html
+
 ## Custom Extensions
 
 https://guacamole.apache.org/doc/gug/configuring-guacamole.html#overriding-guacamole-home

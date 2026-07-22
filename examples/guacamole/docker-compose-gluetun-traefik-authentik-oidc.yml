@@ -42,6 +42,7 @@ services:
       - POSTGRESQL_DATABASE=guacamole_db
       - POSTGRESQL_USERNAME=guacamole_user
       - POSTGRESQL_PASSWORD=ChooseYourOwnPasswordHere1234
+      - TOTP_ENABLED=true
       - OPENID_ENABLED=true
       - OPENID_AUTHORIZATION_ENDPOINT=https://authentik.example.com/application/o/authorize/
       - OPENID_JWKS_ENDPOINT=https://authentik.example.com/application/o/guacamole-oidc/jwks/

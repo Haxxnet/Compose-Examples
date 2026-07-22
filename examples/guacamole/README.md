@@ -47,3 +47,7 @@ One can advice the container to use a different home path via the environment va
 Please inspect the compose examples, which add the `GUACAMOLE_HOME=/etc/guacamole` env to support custom extensions.
 
 To supply your own custom extension, just place it at the local bind-mount dir `/mnt/docker-volumes/guacamole/customization/extensions/my-custom-extension.jar`. It will be autoamtically copied and enabled upon container restart.
+
+## Custom Login UI
+
+See https://github.com/l4rm4nd/Guacamole-Custom-Login

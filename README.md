@@ -479,7 +479,7 @@ Software that does not fit in another section.
 - [Scratch-Map](examples/scratch-map) - An open-source scratch-off style map to track your travels.
 
 ## 🌟 Star History
-[![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.dera.page/#Haxxnet/Compose-Examples&type=Date)
 
 ## 🧑‍🤝‍🧑 Join the Community!
 

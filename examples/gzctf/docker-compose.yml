@@ -19,7 +19,9 @@ services:
       - db
     #networks:
     #  - internal
+    #    gw_priority: 0    
     #  - proxy
+    #    gw_priority: 100    
     #labels:
     #  - traefik.enable=true
     #  - traefik.docker.network=proxy

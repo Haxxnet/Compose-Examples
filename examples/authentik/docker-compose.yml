@@ -68,7 +68,10 @@ services:
       - authentik-internal
     #labels:
     #  - traefik.enable=true
+    # traefik v2
     #  - traefik.http.routers.authentik.rule=Host(`authentik.example.com`) || HostRegexp(`{subdomain:[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?}.example.com`) && PathPrefix(`/outpost.goauthentik.io/`)
+    # traefik v3
+    #  - traefik.http.routers.authentik.rule=Host(`authentik.example.com`) || (Host(`*.example.com`) && PathPrefix(`/outpost.goauthentik.io/`))
     #  - traefik.http.services.authentik.loadbalancer.server.port=9000
     #  - traefik.docker.network=proxy
     #  - traefik.http.middlewares.authentik.forwardauth.address=http://authentik-proxy:9000/outpost.goauthentik.io/auth/traefik

@@ -103,7 +103,7 @@ entryPoints:
     #  advertisedPort: '443'      
     http:
       # https://doc.traefik.io/traefik/migrate/v3/#underscoreheadersstrategy
-      underscoreHeadersStrategy: delete
+      aliasHeadersStrategy: delete
       # use dynamically generated self-signed certificate
       tls: {}
       # or use a pre-defined certificate resolver from below

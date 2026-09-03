@@ -46,7 +46,7 @@ services:
       - immich-internal
 
   immich-redis:
-    image: docker.io/valkey/valkey:9@sha256:64e361b630ecf18dff7ca4df6a88e6eafc193687eb48cff2c7e0a293ab67d29a
+    image: docker.io/valkey/valkey:9@sha256:a91d34ab33975b1054e26f1bd9995b268f7e0c507b5ded7f3d181a1a25521630
     container_name: immich-redis
     restart: unless-stopped
     healthcheck:

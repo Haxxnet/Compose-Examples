@@ -379,6 +379,7 @@ A [blog](https://en.wikipedia.org/wiki/Blog) is a discussion or informational we
 Software that helps to increase security and privacy.
 
 - [Nessus](examples/nessus) - Nessus is a proprietary vulnerability scanner developed by Tenable, Inc.
+- [Dark-Moon](https://github.com/ASCIT31/Dark-Moon) - Open source self-hosted platform for autonomous AI penetration testing of web, API, Active Directory and Kubernetes environments, shipped as docker-compose with an MCP server.
 - [Greenbone](examples/greenbone) - Greenbone is the world's most trusted provider of open source vulnerability management.
 - [SonarQube](examples/sonarqube) - SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs and code smells on 29 programming languages.
 - [Fail2ban](examples/fail2ban) - Fail2ban is an intrusion prevention software framework. Written in the Python programming language, it is designed to prevent against brute-force attacks.

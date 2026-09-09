@@ -135,6 +135,7 @@ A [Large Language Model (LLM)](https://en.wikipedia.org/wiki/Large_language_mode
 
 - [Ollama + Open WebUI](examples/ollama-ui) - Get up and running with Llama 3, Mistral, Gemma, and other large language models using Ollama. Using an interactive, user-friendly WebUI via Open WebUI (formerly known as Ollama WebUI).
 - [Serge](examples/serge) - A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
+- [ENZO](examples/enzo) - A self-hosted, bring-your-own-key AI workspace with multi-provider chat (Groq, OpenRouter, NVIDIA, Google AI, Hugging Face), a plain-English agent builder, scheduled agent runs, and skills like web search, Gmail, and Google Calendar. Provider keys are sealed client-side; the server only relays.
 
 ### Virtual Private Network (VPN) & Remote Access
 

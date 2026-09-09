@@ -1,0 +1,28 @@
+services:
+
+  enzo:
+    image: ghcr.io/theguysudo/enzo:latest
+    container_name: enzo
+    hostname: enzo
+    restart: unless-stopped
+    ports:
+      - 5001:5001/tcp
+    expose:
+      - 5001
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/enzo/data:/app/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/enzo/generated-projects:/app/generated-projects
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/enzo/skills:/app/src/skills/skills
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.enzo.rule=Host(`enzo.example.com`)
+    #  - traefik.http.services.enzo.loadbalancer.server.port=5001
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.enzo.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

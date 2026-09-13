@@ -1,0 +1,67 @@
+services:
+
+  quantrank500-db:
+    image: postgres:16
+    container_name: quantrank500-db
+    hostname: quantrank500-db
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/quantrank500/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=quantrank
+      - POSTGRES_PASSWORD=CHANGEME
+      - POSTGRES_DB=quantrank500
+      - TZ=Europe/Berlin
+    networks:
+      - quantrank500
+
+  quantrank500-api:
+    build: https://github.com/RusUsf/quantrank500.git
+    container_name: quantrank500-api
+    hostname: quantrank500-api
+    restart: unless-stopped
+    depends_on:
+      - quantrank500-db
+    ports:
+      - 8000:8000/tcp
+    expose:
+      - 8000
+    environment:
+      - QR500_ENV=dev
+      - QR500_API_HOST=0.0.0.0
+      - QR500_PG_DSN=postgresql://quantrank:CHANGEME@quantrank500-db:5432/quantrank500
+      - QR500_LAKE_DSN=postgresql://quantrank:CHANGEME@quantrank500-db:5432/quantrank500
+      - TZ=Europe/Berlin
+    networks:
+      - quantrank500
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.quantrank500.rule=Host(`quantrank500.example.com`)
+    #  - traefik.http.routers.quantrank500.entrypoints=https
+    #  - traefik.http.routers.quantrank500.tls=true
+    #  - traefik.http.services.quantrank500.loadbalancer.server.port=8000
+
+  quantrank500-worker:
+    build: https://github.com/RusUsf/quantrank500.git
+    container_name: quantrank500-worker
+    hostname: quantrank500-worker
+    restart: unless-stopped
+    command: ["python", "scripts/run_worker.py"]
+    depends_on:
+      - quantrank500-db
+    environment:
+      - QR500_ENV=dev
+      - QR500_PG_DSN=postgresql://quantrank:CHANGEME@quantrank500-db:5432/quantrank500
+      - QR500_LAKE_DSN=postgresql://quantrank:CHANGEME@quantrank500-db:5432/quantrank500
+      - TZ=Europe/Berlin
+    networks:
+      - quantrank500
+
+networks:
+  quantrank500:
+  #proxy:
+  #  external: true

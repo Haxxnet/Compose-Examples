@@ -415,6 +415,7 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [Money-Balancer](examples/money-balancer) - A simple application for managing debt with your friends!
 - [Firefly III](examples/firefly) - A self-hosted manager for your personal finances.
 - [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports expiry notifications, transaction histories and file uploads.
+- [QuantRank500](examples/quantrank500) - Self-hosted public record of stock predictions, locked before the market opens and settled automatically against exchange data, kept in an append-only hash-chained ledger.
 
 ### Genealogy
 

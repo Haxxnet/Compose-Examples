@@ -2,7 +2,7 @@ services:
 
     sharelatex:
         restart: always
-        image: sharelatex/sharelatex:6.1.2
+        image: sharelatex/sharelatex:6.3
         container_name: sharelatex
         depends_on:
             mongo:
@@ -19,28 +19,22 @@ services:
         stop_grace_period: 60s
         volumes:
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sharelatex/data:/var/lib/overleaf
-            # - /var/run/docker.sock:/var/run/docker.sock
         environment:
-
             OVERLEAF_APP_NAME: Overleaf Community Edition
             OVERLEAF_MONGO_URL: mongodb://mongo/sharelatex?replicaSet=overleaf
-
+            OVERLEAF_INVITE_TOKEN_SECRET: Distance-Rework-Iphone-Viewing # generate a secure value with openssl rand -base64 32
             OVERLEAF_REDIS_HOST: redis
             REDIS_HOST: redis
-
             ENABLED_LINKED_FILE_TYPES: 'project_file,project_output_file'
             ENABLE_CONVERSIONS: 'true'
             EMAIL_CONFIRMATION_DISABLED: 'true'
             #TEXMFVAR: /var/lib/sharelatex/tmp/texmf-var
-
             # OVERLEAF_SITE_URL: http://overleaf.example.com
             # OVERLEAF_NAV_TITLE: Overleaf Community Edition
             # OVERLEAF_HEADER_IMAGE_URL: http://example.com/mylogo.png
             # OVERLEAF_ADMIN_EMAIL: support@it.com
-
             # OVERLEAF_LEFT_FOOTER: '[{"text": "Another page I want to link to can be found <a href=\"here\">here</a>"} ]'
             # OVERLEAF_RIGHT_FOOTER: '[{"text": "Hello I am on the Right"} ]'
-
             # OVERLEAF_EMAIL_FROM_ADDRESS: "hello@example.com"
             # OVERLEAF_EMAIL_AWS_SES_ACCESS_KEY_ID:
             # OVERLEAF_EMAIL_AWS_SES_SECRET_KEY:
@@ -54,9 +48,7 @@ services:
             # OVERLEAF_EMAIL_SMTP_NAME: '127.0.0.1'
             # OVERLEAF_EMAIL_SMTP_LOGGER: true
             # OVERLEAF_CUSTOM_EMAIL_FOOTER: "This system is run by department x"
-
             # ENABLE_CRON_RESOURCE_DELETION: true
-
             # OVERLEAF_LDAP_URL: 'ldap://ldap:389'
             # OVERLEAF_LDAP_SEARCH_BASE: 'ou=people,dc=planetexpress,dc=com'
             # OVERLEAF_LDAP_SEARCH_FILTER: '(uid={{username}})'
@@ -66,10 +58,19 @@ services:
             # OVERLEAF_LDAP_NAME_ATT: 'cn'
             # OVERLEAF_LDAP_LAST_NAME_ATT: 'sn'
             # OVERLEAF_LDAP_UPDATE_USER_DETAILS_ON_LOGIN: 'true'
-
             # OVERLEAF_TEMPLATES_USER_ID: "578773160210479700917ee5"
             # OVERLEAF_NEW_PROJECT_TEMPLATE_LINKS: '[ {"name":"All Templates","url":"/templates/all"}]'
             # OVERLEAF_PROXY_LEARN: "true"
+        #networks:
+        #  - proxy
+        #  - internal-db
+        #labels:
+        #  - traefik.enable=true
+        #  - traefik.docker.network=proxy
+        #  - traefik.http.routers.overleaf.rule=Host(`overleaf.example.com`)
+        #  - traefik.http.services.overleaf.loadbalancer.server.port=8080
+        #  # Optional part for traefik middlewares
+        #  - traefik.http.routers.overleaf.middlewares=local-ipwhitelist@file,crowdsec@file
 
     mongo:
         restart: always
@@ -80,7 +81,7 @@ services:
             - 27017
         volumes:
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sharelatex/mongo:/data/db
-            - ./mongodb-init-replica-set.js:/docker-entrypoint-initdb.d/mongodb-init-replica-set.js
+            - ./mongodb-init-replica-set.js:/docker-entrypoint-initdb.d/mongodb-init-replica-set.js:ro
         environment:
             MONGO_INITDB_DATABASE: sharelatex
         extra_hosts:
@@ -90,6 +91,8 @@ services:
             interval: 10s
             timeout: 10s
             retries: 5
+        #networks:
+        #  - internal-db            
 
     redis:
         restart: always
@@ -99,3 +102,11 @@ services:
             - 6379
         volumes:
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sharelatex/redis:/data
+        #networks:
+        #  - internal-db
+
+#networks:
+#  proxy:
+#    external: true
+#  internal-db:
+#    internal: true

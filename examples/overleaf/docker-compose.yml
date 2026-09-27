@@ -19,7 +19,6 @@ services:
         stop_grace_period: 60s
         volumes:
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sharelatex/data:/var/lib/overleaf
-            - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sharelatex/texlive:/usr/local/texlive
         environment:
             OVERLEAF_APP_NAME: Overleaf Community Edition
             OVERLEAF_MONGO_URL: mongodb://mongo/sharelatex?replicaSet=overleaf

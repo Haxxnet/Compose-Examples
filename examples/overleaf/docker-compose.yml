@@ -68,7 +68,7 @@ services:
         #  - traefik.enable=true
         #  - traefik.docker.network=proxy
         #  - traefik.http.routers.overleaf.rule=Host(`overleaf.example.com`)
-        #  - traefik.http.services.overleaf.loadbalancer.server.port=8080
+        #  - traefik.http.services.overleaf.loadbalancer.server.port=80
         #  # Optional part for traefik middlewares
         #  - traefik.http.routers.overleaf.middlewares=local-ipwhitelist@file,crowdsec@file
 

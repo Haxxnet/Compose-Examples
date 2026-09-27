@@ -19,7 +19,7 @@ services:
         stop_grace_period: 60s
         volumes:
             - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/sharelatex/data:/var/lib/overleaf
-        environment:
+        environment: # see https://docs.overleaf.com/on-premises/configuration/overleaf-toolkit/environment-variables
             OVERLEAF_APP_NAME: Overleaf Community Edition
             OVERLEAF_MONGO_URL: mongodb://mongo/sharelatex?replicaSet=overleaf
             OVERLEAF_INVITE_TOKEN_SECRET: Distance-Rework-Iphone-Viewing # generate a secure value with openssl rand -base64 32
@@ -61,6 +61,7 @@ services:
             # OVERLEAF_TEMPLATES_USER_ID: "578773160210479700917ee5"
             # OVERLEAF_NEW_PROJECT_TEMPLATE_LINKS: '[ {"name":"All Templates","url":"/templates/all"}]'
             # OVERLEAF_PROXY_LEARN: "true"
+            # OVERLEAF_TRUSTED_PROXY_IPS: 127.0.0.1/32
         #networks:
         #  - proxy
         #  - internal-db

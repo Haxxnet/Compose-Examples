@@ -1,9 +1,9 @@
 services:
 
     sharelatex:
-        restart: always
         image: sharelatex/sharelatex:6.3
         container_name: sharelatex
+        restart: always
         depends_on:
             mongo:
                 condition: service_healthy

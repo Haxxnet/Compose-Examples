@@ -23,6 +23,7 @@ services:
       - proxynet
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      #- /home/myuser/.docker/config.json:/config.json:ro # to support fetching private registries; use docker login to create the file
     working_dir: /
     labels:
       - com.centurylinklabs.watchtower.enable=false

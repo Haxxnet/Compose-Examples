@@ -200,6 +200,7 @@ Tools and software for [software project management](https://en.wikipedia.org/wi
 - [Watchtower](examples/watchtower) - A container-based solution for automating Docker container base image updates.
 - [Unify Network Application](examples/unify-network-application) - The Unifi-network-application software is a powerful, enterprise wireless software engine ideal for high-density client deployments requiring low latency and high uptime performance.
 - [UpSnap](examples/upsnap) - A simple wake on lan app written with SvelteKit, Go, PocketBase and nmap.
+- [Beszel](examples/beszel) - Lightweight server monitoring platform with Docker statistics, historical data, and alerts.
 - [GenieACS](examples/genieacs) - Open-source TR-069 remote management platform for ISP customer-premises equipment (routers, ONTs, set-top boxes).
 
 ### Recipe Management
@@ -270,6 +271,7 @@ A [document management system](https://en.wikipedia.org/wiki/Document_management
 - [DocuSeal](examples/docuseal) - Create, fill, and sign digital documents (alternative to DocuSign).
 - [Koillection](examples/koillection) - Koillection is a self-hosted service allowing users to manage any kind of collections.
 - [VoucherVault](examples/vouchervault) - Django web application to store and manage vouchers, coupons, loyalty and gift cards digitally. Supports PWA, offline caching, expiry notifications, transaction histories, file uploads and OIDC SSO.
+- [BentoPDF](examples/bentopdf) - BentoPDF is a powerful, privacy-first, client-side PDF toolkit that is self hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser.
 
 ### Pastebins
 
@@ -322,6 +324,7 @@ A [pastebin](https://en.wikipedia.org/wiki/Pastebin) is a type of online content
 - [Overleaf](examples/overleaf) - Overleaf is a collaborative cloud-based LaTeX editor used for writing, editing and publishing scientific documents.
 - [Obsidian-Gitsync-Perlite](https://github.com/l4rm4nd/Obsidian-Gitsync-Perlite) - Continuously sync Obsidian markdown notes from GitHub and publish it for the webs.
 - [Obsidian-Remote](examples/obsidian-remote) - This docker image allows you to run obsidian in docker as a container and access it via your web browser.
+- [Obsidian-Ignis](examples/obsidian-ignis) - Obsidian as a self-hosted native web app with read and write feature.
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 
 ### URL Shorteners
@@ -329,6 +332,7 @@ A [pastebin](https://en.wikipedia.org/wiki/Pastebin) is a type of online content
 **[`^        back to top        ^`](#-project-list)**
 
 - [YOURLS](examples/yourls) - The de-facto standard self hosted URL shortener in PHP.
+- [Kutt](examples/kutt) - Kutt is a modern URL shortener with support for custom domains, link editing, statistics, users management and more.
 
 ### Blogging Platforms and Homepages
 
@@ -400,7 +404,6 @@ A [wiki](https://en.wikipedia.org/wiki/Wiki) is a publication collaboratively ed
 - [Obsidian-Gitsync-Perlite](https://github.com/l4rm4nd/Obsidian-Gitsync-Perlite) - Continuously sync Obsidian markdown notes from GitHub and publish it for the webs.
 - [Memos](examples/memos) - An open-source, self-hosted memo hub with knowledge management and social networking.
 - [HedgeDoc](examples/hedgedoc) - HedgeDoc lets you create real-time collaborative markdown notes.
-- [Docmost](examples/docmost) - Docmost is an open source collaborative documentation and wiki software. It is an open-source alternative to the likes of Confluence and Notion.
 - [Atlassian Confluence](examples/atlassian-jira-confluence) - Confluence is a wiki solution built for business teams.
 - [Siyuan](examples/siyuan) - A privacy-first, self-hosted, fully open source personal knowledge management software, written in typescript and golang.
 - [Kiwix Serve](examples/kiwix) - Offline reader for Wikipedia and other web content stored in ZIM files, served through a lightweight web interface.
@@ -479,7 +482,7 @@ Software that does not fit in another section.
 - [Scratch-Map](examples/scratch-map) - An open-source scratch-off style map to track your travels.
 
 ## 🌟 Star History
-[![Star History Chart](https://api.star-history.com/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.com/#Haxxnet/Compose-Examples&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.dera.page/#Haxxnet/Compose-Examples&type=Date)
 
 ## 🧑‍🤝‍🧑 Join the Community!
 

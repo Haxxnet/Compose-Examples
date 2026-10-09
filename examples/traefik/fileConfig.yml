@@ -106,6 +106,12 @@ http:
     #      crowdsecLapiHost: crowdsec:8080
     #      crowdsecLapiScheme: http
     #      crowdsecLapiTLSInsecureVerify: false
+    #      banFilePath: /ban.html
+    #      captchaProvider: hcaptcha
+    #      captchaSiteKey: YourSiteKey
+    #      captchaSecretKey: YourSecretKey
+    #      captchaGracePeriodSeconds: 1800
+    #      captchaFilePath: /captcha.html    
     #      forwardedHeadersTrustedIPs:
     #        # private class ranges
     #        - 10.0.0.0/8

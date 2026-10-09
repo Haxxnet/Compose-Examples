@@ -106,6 +106,7 @@ services:
       - promtail
     environment:
       - GF_SERVER_ROOT_URL=https://grafana.example.com # pls change this
+      - GF_METRICS_ENABLED=false
     volumes:
       - ./volume-data/grafana:/var/lib/grafana
       #- ./volume-data/defaults.ini:/etc/grafana/grafana.ini

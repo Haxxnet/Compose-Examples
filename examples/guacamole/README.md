@@ -5,6 +5,8 @@
 
 # Notes
 
+## Installation
+
 Before spawning up the Docker Compose stack you have to pre-supply an `initdb.sql` initialization file for the Postgresql database.
 
 Please go ahead and create this init file in the corresponding Docker Volume bind mount.
@@ -23,12 +25,45 @@ Afterwards, you can spawn up the Docker stack as follows:
 docker compose up -d
 ````
 
+## Authentication
+
 The Guacamole login is available at `http://<YOUR-IP>:8080/guacamole`.
 
 The default username is `guacadmin`. The default password is `guacadmin`.
-
 
 > [!TIP]
 > You can also access internal hosts somewhere else. Just use gluetun to force guacamole over vpn.
 >
 > See `docker-compose-gluetun-traefik-authentik-oidc.yml` for an example with wireguard and Authentik OIDC SSO.
+
+### OIDC
+
+You can enable OIDC SSO via the environment variable `OPENID_ENABLED`.
+
+Once set to `True`, the OIDC extension is installed automatically and provisioned by the other `OPENID_` environment variables.
+
+See https://guacamole.apache.org/doc/gug/openid-auth.html
+
+### TOTP MFA
+
+You can enable TOTP MFA via the environment variable `TOTP_ENABLED`.
+
+Once set to `True`, the TOTP extension is installed automatically and will be active.
+
+See https://guacamole.apache.org/doc/gug/totp-auth.html
+
+## Custom Extensions
+
+https://guacamole.apache.org/doc/gug/configuring-guacamole.html#overriding-guacamole-home
+
+The docker container makes use of the path `/opt/guacamole/extensions` for extensions. One may bind-mount this volume but there is a better alternative.
+
+One can advice the container to use a different home path via the environment variable `GUACAMOLE_HOME`. This way, every file placed there will be read-only copied to the real `/opt/guacamole/` path inside the container, without affecting the regular extensions and install files. 
+
+Please inspect the compose examples, which add the `GUACAMOLE_HOME=/etc/guacamole` env to support custom extensions.
+
+To supply your own custom extension, just place it at the local bind-mount dir `/mnt/docker-volumes/guacamole/customization/extensions/my-custom-extension.jar`. It will be autoamtically copied and enabled upon container restart.
+
+## Custom Login UI
+
+See https://github.com/l4rm4nd/Guacamole-Custom-Login

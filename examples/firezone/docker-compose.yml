@@ -9,7 +9,7 @@ x-deploy: &default-deploy
 services:
 
   firezone:
-    image: l4rm4nd/firezone
+    image: l4rm4nd/firezone:7.2.x # or for arm: l4rm4nd/firezone:7.2.x-arm64
     container_name: firezone-web
     ports:
       - 51820:51820/udp

@@ -1,0 +1,26 @@
+services:
+
+  beszel:
+    image: henrygd/beszel:latest
+    container_name: beszel
+    hostname: beszel
+    restart: unless-stopped
+    ports:
+      - 8090:8090/tcp
+    expose:
+      - 8090
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/beszel:/beszel_data
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.beszel.rule=Host(`beszel.example.com`)
+    #  - traefik.http.services.beszel.loadbalancer.server.port=8090
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.beszel.middlewares=local-ipwhitelist@file
+
+#networks:
+#  proxy:
+#    external: true

@@ -17,7 +17,7 @@ log:
 #  plugins:
 #    bouncer:
 #      moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
-#      version: v1.5.1
+#      version: v1.7.1
 
 #metrics:
 #  influxDB2:
@@ -37,6 +37,7 @@ accessLog:
   filters:
     statusCodes:
       - "200-299" # log successful http requests
+      - "300-399" # log redirect http requests
       - "400-599" # log failed http requests
     #retryAttempts: true
     #minDuration: "10ms"
@@ -84,6 +85,8 @@ entryPoints:
         - 2c0f:f248::/32
         # end of Cloudlare public IP list
     http:
+      # https://doc.traefik.io/traefik/migrate/v3/#underscoreheadersstrategy
+      underscoreHeadersStrategy: delete
       redirections:
         entryPoint:
           to: https
@@ -99,6 +102,8 @@ entryPoints:
     #http3:
     #  advertisedPort: '443'      
     http:
+      # https://doc.traefik.io/traefik/migrate/v3/#underscoreheadersstrategy
+      aliasHeadersStrategy: delete
       # use dynamically generated self-signed certificate
       tls: {}
       # or use a pre-defined certificate resolver from below

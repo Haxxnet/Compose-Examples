@@ -24,3 +24,7 @@ docker exec sharelatex tlmgr install scheme-full
 ````
 
 Alternatively you can install packages manually as you need by replacing scheme-full with the package name.
+
+> [!CAUTION]
+> After container restart, all prior installed packages are lost.
+> Please use `docker commit` to persist them. Read [this](https://github.com/overleaf/overleaf/wiki/Quick-Start-Guide#latex-environment).

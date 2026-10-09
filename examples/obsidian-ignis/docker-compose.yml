@@ -1,0 +1,53 @@
+services:
+
+  ignis:
+    image: nobbe/ignis:latest
+    container_name: obsidian-ignis
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+    environment:
+      - OBSIDIAN_VERSION=1.12.7
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/vaults:/vaults
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/data:/app/data
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/obsidian-app:/app/obsidian-app
+    restart: unless-stopped
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.ignis.rule=Host(`ignis.example.com`)
+    #  - traefik.http.services.ignis.loadbalancer.server.port=8080      
+    #  - traefik.docker.network=proxy
+    # Part for optional traefik middlewares
+    #  - traefik.http.routers.ignis.middlewares=authentik@docker
+
+  git-sync:
+    image: ubuntu/git-sync:4.5-24.04_stable
+    container_name: obsidian-git-sync
+    restart: unless-stopped
+    user: "1000:1000"
+    entrypoint: ["git-sync"]
+    command:
+      - "--repo=${GITSYNC_REPO:-https://github.com/example/example.git}"
+      - "--root=/vaults/.git-sync"
+      - "--link=/vaults/current"
+      - "--period=${GITSYNC_PERIOD:-30s}"
+      - "--ref=${GITSYNC_REF:-HEAD}"
+      - "--max-failures=-1"
+      - "--verbose=5"
+    environment:
+      - GITSYNC_USERNAME=${GITSYNC_USERNAME:-gituser}
+      - GITSYNC_PASSWORD=${GITSYNC_PASSWORD:-gitsyncpw}
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/ignis/vaults:/vaults
+    #networks:
+    #  - proxy
+
+#networks:
+#  proxy:
+#    external: true

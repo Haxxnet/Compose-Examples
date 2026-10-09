@@ -1,12 +1,10 @@
 services:
 
   telegram-backup:
-    image: drumsergio/telegram-archive:latest
+    image: drumsergio/telegram-archive:9.3.2
     container_name: telegram-backup
     restart: unless-stopped
-    command: ["python", "-m", "src", "schedule"]
-    expose:
-      - 8000
+    command: ["python", "-m", "telegram_archive", "schedule"]
     volumes:
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/telegram-archive:/data
     environment:
@@ -15,8 +13,8 @@ services:
       TELEGRAM_API_HASH: ${TELEGRAM_API_HASH}
       TELEGRAM_PHONE: ${TELEGRAM_PHONE}
       SESSION_NAME: ${SESSION_NAME:-telegram_backup}
-      # Backup schedule (cron format)
-      SCHEDULE: ${SCHEDULE:-0 */6 * * *}
+      # Full pass schedule (cron format). Empty means one pass a day; new messages are saved as they arrive.
+      SCHEDULE: ${SCHEDULE:-}
       # Backup settings
       BACKUP_PATH: /data/backups
       DOWNLOAD_MEDIA: ${DOWNLOAD_MEDIA:-true}
@@ -26,16 +24,9 @@ services:
       # Database
       DB_TYPE: ${DB_TYPE:-sqlite}
       DB_PATH: /data/backups/telegram_backup.db
-    #networks:
-    #  - proxy
-    #labels:
-    #  - traefik.enable=true
-    #  - traefik.docker.network=proxy
-    #  - traefik.http.routers.telegram-backup.rule=Host(`telegram.example.com`)
-    #  - traefik.http.services.telegram-backup.loadbalancer.server.port=8000
 
   telegram-viewer:
-    image: drumsergio/telegram-archive-viewer:latest
+    image: drumsergio/telegram-archive-viewer:9.3.2
     container_name: telegram-viewer
     restart: unless-stopped
     ports:

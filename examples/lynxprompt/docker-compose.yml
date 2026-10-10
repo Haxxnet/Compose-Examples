@@ -1,7 +1,7 @@
 services:
 
   lynxprompt:
-    image: drumsergio/lynxprompt:2.1.39
+    image: drumsergio/lynxprompt:2.1.40
     container_name: lynxprompt
     # The image is built for amd64 only; ARM hosts run it under emulation.
     platform: linux/amd64

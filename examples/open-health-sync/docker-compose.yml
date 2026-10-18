@@ -1,0 +1,63 @@
+services:
+
+  open-health-sync-db:
+    image: timescale/timescaledb:2.22.1-pg17
+    container_name: open-health-sync-db
+    hostname: open-health-sync-db
+    restart: unless-stopped
+    expose:
+      - 5432
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/open-health-sync/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=ohs
+      - POSTGRES_PASSWORD=CHANGEME # adjust
+      - POSTGRES_DB=ohs
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U ohs -d ohs"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+
+  open-health-sync:
+    image: ghcr.io/soma-intelligence/open-health-sync:0.1.0
+    container_name: open-health-sync
+    hostname: open-health-sync
+    user: 1000:1000 # owner of the raw volume below
+    command: ["up"] # runs database migrations, then the server
+    restart: unless-stopped
+    depends_on:
+      open-health-sync-db:
+        condition: service_healthy
+    stop_grace_period: 35s
+    ports:
+      - 8080:8080/tcp
+    expose:
+      - 8080
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/open-health-sync/raw:/var/lib/ohs/raw
+    environment:
+      - OHS_DATABASE_URL=postgres://ohs:CHANGEME@open-health-sync-db:5432/ohs?sslmode=disable&pool_max_conns=20 # same password as above
+      - OHS_ENCRYPTION_KEY=CHANGEME # openssl rand -base64 32; keep it safe, it seals stored provider tokens
+      - OHS_PUBLIC_URL=http://localhost:8080 # public base URL, used for OAuth callbacks
+      - OHS_RAW_STORE=file:///var/lib/ohs/raw
+    healthcheck:
+      test: ["CMD", "/ohs", "doctor", "--quick"]
+      interval: 10s
+      timeout: 12s
+      retries: 6
+      start_period: 15s
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=proxy
+    #  - traefik.http.routers.open-health-sync.rule=Host(`health.example.com`)
+    #  - traefik.http.services.open-health-sync.loadbalancer.server.port=8080
+    #  # Optional part for selecting certificate resolver
+    #  - traefik.http.routers.open-health-sync.tls.certresolver=myresolver-http
+
+#networks:
+#  proxy:
+#    external: true

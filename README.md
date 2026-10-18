@@ -477,6 +477,7 @@ Software that does not fit in another section.
 - [Network-Multitool](examples/network-multitool) - Multi-arch multitool for container network troubleshooting.
 - [IT-Tools](examples/it-tools) - Collection of handy online tools for developers, with great UX.
 - [Scratch-Map](examples/scratch-map) - An open-source scratch-off style map to track your travels.
+- [Open-Health-Sync](examples/open-health-sync) - Self-hosted health data aggregator for Apple Health, Health Connect, Oura, WHOOP, Withings and more, with a REST API, FHIR R4 and a read-only MCP server.
 
 ## 🌟 Star History
 [![Star History Chart](https://star-history.dera.page/svg?repos=Haxxnet/Compose-Examples&type=Date)](https://star-history.dera.page/#Haxxnet/Compose-Examples&type=Date)

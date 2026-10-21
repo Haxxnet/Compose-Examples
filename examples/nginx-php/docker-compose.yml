@@ -26,13 +26,24 @@ services:
   
   php:
     image: php:8-fpm-alpine
+    user: 82:82
     container_name: php    
     hostname: php
     volumes:
+      - php_tmp:/tmp
+      - php_run:/run
       - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/nginx/www-data:/var/www # must be same path to www-data as above
       #- ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/php/custom-php.ini:/usr/local/etc/php/conf.d/php.ini:ro
     restart: unless-stopped
     working_dir: /var/www
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    pids_limit: 100
+    mem_limit: 512m
+    cpus: 1.0
     expose:
       - 9000
     #networks:
@@ -41,3 +52,7 @@ services:
 #networks:
 #  proxy:
 #    external: true
+
+volumes:
+  php_tmp:
+  php_run:

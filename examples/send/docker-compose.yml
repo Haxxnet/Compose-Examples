@@ -1,8 +1,8 @@
 services:
 
   send:
-    image: registry.gitlab.com/timvisee/send:latest # official image
-    #image: l4rm4nd/send:latest # image of a fork with darkmode only
+    #image: registry.gitlab.com/timvisee/send:latest # official image
+    image: ghcr.io/l4rm4nd/send:3.4.x # image of a fork with darkmode only
     container_name: send-app
     restart: unless-stopped
     read_only: true

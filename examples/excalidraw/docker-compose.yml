@@ -46,12 +46,12 @@ services:
     #  - traefik.docker.network=proxy
 
   excalidraw-room:
-    image: excalidraw/excalidraw-room:latest
+    image: alswl/excalidraw-room-go:latest
     container_name: excalidraw-room
     ports:
-      - 8889:80 # web-socket for collaboration
+      - 8889:8080 # web-socket for collaboration
     expose:
-      - 80
+      - 8080
     restart: unless-stopped
     read_only: true
     tmpfs:
@@ -61,7 +61,7 @@ services:
     cap_drop:
       - ALL
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:80/ >/dev/null 2>&1 || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8080/ >/dev/null 2>&1 || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -71,5 +71,5 @@ services:
     #labels:
     #  - traefik.enable=true
     #  - traefik.http.routers.excalidraw-collab.rule=Host(`draw2gether.example.com`)
-    #  - traefik.http.services.excalidraw-collab.loadbalancer.server.port=80
+    #  - traefik.http.services.excalidraw-collab.loadbalancer.server.port=8080
     #  - traefik.docker.network=proxy

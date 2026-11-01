@@ -86,7 +86,7 @@ entryPoints:
         # end of Cloudlare public IP list
     http:
       # https://doc.traefik.io/traefik/migrate/v3/#underscoreheadersstrategy
-      underscoreHeadersStrategy: delete
+      aliasHeadersStrategy: delete
       redirections:
         entryPoint:
           to: https

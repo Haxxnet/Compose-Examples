@@ -1,0 +1,30 @@
+services:
+
+  podfetch:
+    image: samuel19982/podfetch:latest
+    container_name: podfetch
+    hostname: podfetch
+    restart: unless-stopped
+    ports:
+      - "8000:8000" # web ui
+    expose:
+      - 8000
+    volumes:
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/podfetch/podcasts:/app/podcasts
+      - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/podfetch/db:/app/db
+    environment:
+      - POLLING_INTERVAL=60
+      - DATABASE_URL=sqlite:///app/db/podcast.db
+    #networks:
+    #  - proxy
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.http.routers.podfetch.rule=Host(`podfetch.example.com`)
+    #  - traefik.http.services.podfetch.loadbalancer.server.port=8000
+    #  - traefik.docker.network=proxy
+    #  # Part for optional traefik middlewares
+    #  - traefik.http.routers.podfetch.middlewares=local-ipwhitelist@file,basic-auth@file
+
+#networks:
+#  proxy:
+#    external: true

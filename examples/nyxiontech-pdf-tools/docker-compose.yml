@@ -1,0 +1,29 @@
+services:
+
+  nyxiontech-pdf-tools:
+    image: ghcr.io/jurecki007/nyxiontech-tools:1.2.0
+    container_name: nyxiontech-pdf-tools
+    restart: unless-stopped
+    expose:
+      - 80
+    ports:
+      - 8080:80/tcp
+    healthcheck:
+      # the image serves /health; 127.0.0.1 rather than localhost, as the container has no IPv6
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    #networks:
+    #  - dev
+    #labels:
+    #  - traefik.enable=true
+    #  - traefik.docker.network=dev
+    #  - traefik.http.routers.nyxiontech-pdf-tools.rule=Host(`pdf.example.com`)
+    #  - traefik.http.services.nyxiontech-pdf-tools.loadbalancer.server.port=80
+    #  # Optional part for traefik middlewares
+    #  - traefik.http.routers.nyxiontech-pdf-tools.middlewares=local-ipwhitelist@file
+
+#networks:
+#  dev:
+#    external: true

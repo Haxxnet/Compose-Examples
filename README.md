@@ -235,6 +235,7 @@ Software to manage audio and video material.
 - [Deemix](examples/deemix) - deemix is a barebone deezer downloader library built from the ashes of Deezloader Remix.
 - [Forte](examples/forte) - forte is a self-hosted music platform. You can either connect to a forte server or create your own server for your friends & family. However, it is also very convenient to use forte on your local machine as a stand-alone music player. Supports group streaming sessions.
 - [MeTube](examples/metube) - Web GUI for youtube-dl (using the yt-dlp fork) with playlist support. Allows you to download videos and audio only from YouTube and dozens of other sites.
+- [PodFetch](examples/podfetch) - Self-hosted podcast manager and downloader. Auto-downloads new episodes from RSS feeds, with a web UI and GPodder API for podcast apps.
 - [Transmission](examples/transmission) - Transmission is a fast, easy, and free BitTorrent client.
 - [FlareSolverr](examples/flaresolverr) - FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
 - [Plex](examples/plex) - Plex organizes video, music and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices.
